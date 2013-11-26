@@ -17,7 +17,9 @@ main :: IO ()
 main = hakyllWith config $ do
     -- template <- liftIO $ readDataFileUTF8 Nothing "templates/default.epub"
     -- Build tags
-    tags <- buildTags "posts/*" (fromCapture "tags/*.html")
+     
+    -- tags <- buildTags (fromRegex "^(posts/*|research/**)") (fromCapture "tags/*.html")
+    tags <- buildTags ("posts/*" .||. "research/**") (fromCapture "tags/*.html")
 
     -- Compress CSS
     match "assets/css/*" $ do
@@ -58,6 +60,8 @@ main = hakyllWith config $ do
             >>= loadAndApplyTemplate "templates/post.html" (tagsCtx tags)
             >>= saveSnapshot "content"
             >>= pageCompiler
+            
+    
 
     match "posts/*" $ version "toc" $
        compile $ pandocCompilerWith defaultHakyllReaderOptions
@@ -67,6 +71,8 @@ main = hakyllWith config $ do
                                       , writerStandalone = True
                                       , writerHTMLMathMethod = MathJax ""
                                       }
+    
+                                      
     match "posts/*" $ version "epub" $ do
         route $ setExtension "epub"
         compile $ do
@@ -98,7 +104,7 @@ main = hakyllWith config $ do
             bibFile <- liftM (fromMaybe "") $ getMetadataField item "biblio"
             cslFile <- liftM (fromMaybe "chicago") $ getMetadataField item "csl"
             list <- if related == "*" then
-                        postList "" tags ("posts/*" .&&. hasNoVersion) recentFirst
+                        postList "" tags (("posts/*" .||. "research/**") .&&. hasNoVersion) recentFirst
                     else let items = fromMaybe [] $ Prelude.lookup related (tagsMap tags)
                          in postList "" tags (fromList items) recentFirst
             let relatedCtx = if list == [] then
@@ -121,11 +127,68 @@ main = hakyllWith config $ do
     match "projects/**.md" $ do
         route $ setExtension ".html"
         compile $ pandocCompilerWith defaultHakyllReaderOptions pandocOptions >>= pageCompiler
+    
+    -- Research pages
+    -- match "research/**.md" $ do
+    --     route $ setExtension ".html"
+    --     compile $ pandocCompilerWith defaultHakyllReaderOptions pandocOptions >>= pageCompiler
 
     match ("projects/**" .&&. complement "projects/**.md") $ do
         route   idRoute
         compile copyFileCompiler
 
+    -- Render research
+    -- match "research/**.md" $ do
+    --     route   $ setExtension ".html"
+    -- compile $ do
+    --   item <- getUnderlying
+    --   bibFile <- liftM (fromMaybe "") $ getMetadataField item "biblio"
+    --   cslFile <- liftM (fromMaybe "chicago") $ getMetadataField item "csl"
+    --   let compiler = if bibFile /= "" then
+    --  	bibtexCompiler cslFile bibFile
+    --  	else	pandocCompilerWith defaultHakyllReaderOptions pandocOptions
+    --   compiler
+    --      >>= loadAndApplyTemplate "templates/research.html" (tagsCtx tags)
+    --      >>= saveSnapshot "content"
+    --      >>= pageCompiler
+            
+    -- Static pages
+    match "research/**.md" $ do
+        route   $ setExtension ".html"
+	compile $ do
+            item <- getUnderlying
+            title <- liftM (fromMaybe "Posts Relacionados") $ getMetadataField item "relatedTitle"
+            related <- liftM (fromMaybe "") $ getMetadataField item "related"
+            bibFile <- liftM (fromMaybe "") $ getMetadataField item "biblio"
+            cslFile <- liftM (fromMaybe "chicago") $ getMetadataField item "csl"
+            list <- if related == "*" then
+                        postList "" tags (("posts/*" .||. "research/**") .&&. hasNoVersion) recentFirst
+                    else let items = fromMaybe [] $ Prelude.lookup related (tagsMap tags)
+                         in postList "" tags (fromList items) recentFirst
+            let relatedCtx = if list == [] then
+				(mconcat[constField "related.title" "",
+				constField "related" list,
+				defaultContext])
+			     else
+				(mconcat[constField "related.title" title,
+				constField "related" list,
+				defaultContext])
+            let compiler = if bibFile /= "" then
+                                bibtexCompiler cslFile bibFile
+                           else pandocCompilerWith defaultHakyllReaderOptions pandocOptions
+            compiler
+                >>= loadAndApplyTemplate "templates/research.html" (mconcat [(tagsCtx tags),relatedCtx])
+                >>= pageCompiler
+            
+    match "research/**" $ version "toc" $
+       compile $ pandocCompilerWith defaultHakyllReaderOptions
+                                    defaultHakyllWriterOptions {
+                                        writerTableOfContents = True
+                                      , writerTemplate = "$toc$"
+                                      , writerStandalone = True
+                                      , writerHTMLMathMethod = MathJax ""
+                                      }
+                                      
     -- Post tags
     tagsRules tags $ \tag pattern -> do
         let title = "Posts com tag " ++ tag
@@ -157,7 +220,7 @@ main = hakyllWith config $ do
     create ["sitemap.xml"] $ do
         route idRoute
         compile $ do
-            posts <- loadAll (("pages/*" .||. "posts/*" .||. "projects/**.md")
+            posts <- loadAll (("pages/*" .||. "posts/*" .||. "projects/**.md" .||. "research/**.md")
                               .&&. hasNoVersion)
             itemTpl <- loadBody "templates/sitemap-item.xml"
             list <- applyTemplateList itemTpl (sitemapCtx feedConfiguration) posts

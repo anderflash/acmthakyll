@@ -26,9 +26,20 @@ thumbnail: assets/images/planejamento-thumb.jpg
 
 # Objetivos
 
+O objetivo da revisão é:
+
+- conhecer os principais métodos de identificação de eventos do olhar;
+- analisar as vantagens e desvantagens de acordo com critérios de qualificação 
+  alinhados à pergunta;
+- classificar os métodos e escolher o melhor.
+
 # Fontes Primárias
 
+Fontes conhecidas na área, como artigos, periódicos, livros-texto, base de dados, teses...
+
 ## Lista de Periódicos
+
+São periódicos que tem como área o rastreamento do olhar, Interação
 
 - ETRA
 - CHI
@@ -37,6 +48,9 @@ thumbnail: assets/images/planejamento-thumb.jpg
 ## Lista de Bases de Dados
 
 - IEEE
+- ACM
+- Springer
+- ...
  
 
 ## Teses

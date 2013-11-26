@@ -1,10 +1,8 @@
 <article itemscope itemtype="http://schema.org/Article">
-
-    <header class="posthead">
+    <header class="researchhead posthead">
         <h1 itemprop="name">$title$</h1>
         <div class="meta"><i class="icon-user"/> by <span itemprop="creator">$author$</span>
             <i class="icon-tags"/> <span itemprop="keywords">$prettytags$</span></div>
-        <time itemprop="dateCreated" datetime="$date.machine$"><span class="m">$date.month$</span> <span class ="d">$date.day$</span> <span class="y">$date.year$</span></time>
     </header>
     <aside role="nav">
     <h1>Conteúdo</h1>
@@ -12,6 +10,9 @@
     </aside>
     <section itemprop="articleBody">
     $body$
+    
+    <h1>$related.title$</h1>
+    $related$
     </section>
     <footer>
     <p class="meta">atualizado: <time itemprop="dateModified" datetime="$updated.machine$">$updated$</time>

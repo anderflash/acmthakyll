@@ -4,6 +4,10 @@ biblio: library.bib
 csl: jcsl.csl
 ---
 
+# Estágio
+
+- 2014.1 - MAC 0420 - [Introdução à Computação Gráfica](research/mac0420-2014-1/2013-11-26-index.html)
+
 # Áreas de Pesquisa
 
 - Realidade Virtual/Aumentada

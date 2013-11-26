@@ -104,10 +104,10 @@ a:visited {
     color: black;
 }
 .content h1 {
-    font-size: 2em;
+    font-size: 1.75em;
 }
 .content h2 {
-    font-size: 1.5em;
+    font-size: 1.25em;
 }
 .content h3 {
     font-family: "Alegreya SC",  Palatino,  Georgia,  serif;
@@ -149,11 +149,17 @@ a:visited {
     padding-left: 6rem;
     min-height: 5rem;
 }
+
+.researchhead
+{
+    padding-left: 0rem;
+}
+
 .posthead  h1 {
     display: inline-block;
     margin: 0;
     vertical-align: top;
-    font-size:2.5em;
+    font-size:2em;
 }
 .meta {
     color: #888;
