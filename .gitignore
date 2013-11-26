@@ -1,0 +1,10 @@
+_cache
+_site
+bin/blog
+*.hi
+*.o
+compile
+rebuildeploy
+buildeploy
+deploy
+build

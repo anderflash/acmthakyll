@@ -1,0 +1,26 @@
+.thumbnail
+{
+	width: 128px;
+	height: 80px;
+	vertical-align:middle;
+	float:left;
+	margin-right:10px;
+}
+.thumbnaildiv
+{
+	vertical-align:middle;
+	float:left;
+}
+.archivelist li
+{
+	list-style-type: none;
+}
+
+.archivelistitem
+{
+	list-style-type: none;
+}
+.archivepostitemdiv
+{
+	min-height:82px;
+}

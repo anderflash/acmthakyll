@@ -1,0 +1,15 @@
+/* TEAM */
+Name: Anderson Tavares
+Site: vision.ime.usp.br/~acmt/hakyll
+Twitter: @anderflash
+Location: São Paulo, Brasil
+
+/* THANKS */
+Name: Jasper Van der Jeugt (http://jaspervdj.be) pelo hakyll
+      Idan Gazit (http://gazit.me) pelo design visual de gist.io.
+      Julien Tanguy (http://gazit.me) por um dos poucos blogs que resolveram meu problema.
+
+/* SITE */ 
+Last update: 2013-07-02
+Standards: HTML5, CSS3.
+Software: hakyll, vim
