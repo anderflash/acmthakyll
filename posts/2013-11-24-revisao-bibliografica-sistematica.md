@@ -2,7 +2,7 @@
 title: Revisão Bibliográfica Sistemática
 author: Anderson Tavares
 description: Estudo sobre Revisão Bibliográfica Sistemática: conceitos, métodos e discussão
-tags: RBS, Metanalise
+tags: RBS, Metanálise
 math: false
 biblio: library.bib
 csl: ieee-with-url.csl

@@ -12,6 +12,8 @@ import Text.Pandoc.Shared
 import Text.Pandoc.Definition
 import Text.Pandoc
 import Hakyll
+import Network.HTTP (urlEncode)
+import Data.ByteString.UTF8
 
 main :: IO ()
 main = hakyllWith config $ do
@@ -19,7 +21,7 @@ main = hakyllWith config $ do
     -- Build tags
      
     -- tags <- buildTags (fromRegex "^(posts/*|research/**)") (fromCapture "tags/*.html")
-    tags <- buildTags ("posts/*" .||. "research/**") (fromCapture "tags/*.html")
+    tags <- buildTags ("posts/*" .||. "research/**") (fromCapture "tags/*.html". urlEncode)
 
     -- Compress CSS
     match "assets/css/*" $ do
@@ -208,13 +210,13 @@ main = hakyllWith config $ do
     create ["rss.xml"] $ do
         route idRoute
         compile $ loadAllSnapshots ("posts/*" .&&. hasNoVersion) "content"
-            >>= fmap (take 10) . recentFirst
+            >>= fmap (Prelude.take 10) . recentFirst
             >>= renderRss feedConfiguration feedCtx
 
     create ["atom.xml"] $ do
         route idRoute
         compile $ loadAllSnapshots ("posts/*" .&&. hasNoVersion) "content"
-            >>= fmap (take 10) . recentFirst
+            >>= fmap (Prelude.take 10) . recentFirst
             >>= renderAtom feedConfiguration feedCtx
 
     create ["sitemap.xml"] $ do
@@ -260,7 +262,11 @@ mathjax item = do
     return $ case Data.Map.lookup "math" metadata of
         Just "true" -> "<script type=\"text/javascript\" src=\"http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML\" />"
         otherwise   -> ""
-        
+
+convertNonAscii :: String -> String
+convertNonAscii name = urlEncode name
+
+
 -- Contexts
 postCtx :: Context String
 postCtx = mconcat [ dateField "date.machine" (iso8601DateFormat Nothing)

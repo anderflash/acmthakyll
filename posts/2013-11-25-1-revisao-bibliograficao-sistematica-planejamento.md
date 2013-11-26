@@ -2,29 +2,30 @@
 author: Anderson Tavares
 title: Planejamento da RBS para Eventos do Olhar
 description: Planejamento da RBS para o problema da identificação dos eventos do olhar.
-tags: RBS, Identificacao, Olhar
+tags: RBS, Identificação, Olhar
 thumbnail: assets/images/planejamento-thumb.jpg
+biblio: library.bib
+csl: jcsl.csl
 ------------------------------
-
 % Planejamento da Revisão Bibliográfica Sistemática para o Problema da Identificação dos Eventos do Olhar
 % Instituto de Matemática e Estatística
 % Universidade de São Paulo
 
-# Problema
+# (Fazendo) Problema
 
 - Identificação de Eventos do Olhar.
 
-## Pergunta
+## (Fazendo) Pergunta
 
 - Qual o melhor método para identificar o maior número de eventos do olhar?
 
-## Hipóteses
+## (Fazendo) Hipóteses
 
 - HMM
 - Redes Neurais
 - Graph-Cut
 
-# Objetivos
+# (Fazendo) Objetivos
 
 O objetivo da revisão é:
 
@@ -33,43 +34,55 @@ O objetivo da revisão é:
   alinhados à pergunta;
 - classificar os métodos e escolher o melhor.
 
-# Fontes Primárias
+# (Fazendo) Fontes Primárias
 
-Fontes conhecidas na área, como artigos, periódicos, livros-texto, base de dados, teses...
+Fontes conhecidas na área que podem auxiliar o processo de busca, como artigos, periódicos, livros-texto, base de dados, teses...
 
-## Lista de Periódicos
+## (Fazendo) Lista de Periódicos
 
-São periódicos que tem como área o rastreamento do olhar, Interação
+São periódicos que tem como área o Rastreamento do Olhar, Interação Humano-Computador e Visão Computacional
 
-- ETRA
-- CHI
-- ...
+Sigla         Descricao
+-----         ---------
+ETRA          Eye Tracking Research and Applications
+CHI           Computer-Human Interaction
+TAP           Transactions on Applied Perception
+ETSA          Conference on Eye Tracking South Africa
+SIGGRAPH      Special Interest Group on Computer Graphics and Interactive Techniques Conference
+ICMI          International Conference on Multimodal Interaction
+JEMR          Journal of Eye Movement Research
+-----         ---------
 
-## Lista de Bases de Dados
 
-- IEEE
-- ACM
-- Springer
-- ...
+## (Fazendo) Lista de Bases de Dados
+
+- [IEEE Xplore](http://ieeexplore.ieee.org/Xplore/home.jsp)
+- [ACM Digital Library](http://portal.acm.org)
+- [SpringerLink](http://link.springer.com/)
+- [Google Scholar](http://scholar.google.com/)
+- [Computer and Information Systems Abstracts (ProQuest)](http://search.proquest.ez67.periodicos.capes.gov.br/computerinfo/index)
+- [Computers & Applied Sciences Complete(EBSCO)](http://web-ebscohost-com.ez67.periodicos.capes.gov.br/ehost/search/basic?sid=0272740f-1598-4055-9270-01c40b462886%40sessionmgr111&vid=1&hid=113)
+- [ScienceDirect](http://www.sciencedirect.com/)
+- [Dedalus USP](http://dedalus.usp.br/)
+
+## (A fazer) Teses
+
  
 
-## Teses
+## (Fazendo) Livros Texto
 
+- [@Holmqvist2011]
+- [@Duchowski2007]
+- [@Gregory1997]
 
-## Livros Texto
-
-
-
-
-
-## Lista de bases de dados
-
-# Strings de Busca
+# (Fazendo) Strings de Busca
 
 Será feita uma combinação entre dois grupos de palavras. O idioma das palavras é o inglês.
 
-- (Identification OR Analysis OR Segmentation) AND (
-    Fixation OR Saccade OR (Eye AND (Movements OR Events)) OR Gaze)
+```sql
+(Identification OR Analysis OR Segmentation) AND 
+(Fixation OR Saccade OR (Eye AND (Movements OR Events)) OR Gaze)
+```
 
 Exemplos: 
 
@@ -82,13 +95,14 @@ Exemplos:
 
 # (A fazer) Critérios de Qualificação
 
-
+- Número de Eventos distintos detectados
+- ...
 
 # (A fazer) Método e Ferramentas
 
-Para a busca serão usados os Serão usados os sistemas 
+Para a busca serão usados os serão usados os sistemas 
 
-# Cronograma
+# (Fazendo) Cronograma
 
  id  etapa                          entrega
 ---- -----------------------------  ------------
@@ -105,30 +119,22 @@ Para a busca serão usados os Serão usados os sistemas
 10   síntese dos resultados         15/12/2013
 11   apresentação dos resultados    17/12/2013
 
-# Execução das Buscas
+# (A fazer) Execução das Buscas
 
-<A fazer>
 
-# Coleta de dados
+# (A fazer) Coleta de dados
 
-<A fazer>
 
-# Análise de dados
+# (A fazer) Análise de dados
 
-<A fazer>
 
-# Documentação
+# (A fazer) Documentação
 
-<A fazer>
 
-## Alertas
+## (A fazer) Alertas
 
-<A fazer>
 
-## Síntese dos resultados
+## (A fazer) Síntese dos resultados
 
-<A fazer>
 
-## Modelos Teóricos
-
-<A fazer>
+## (A fazer) Modelos Teóricos

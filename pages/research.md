@@ -1,5 +1,5 @@
 ---
-title: Research
+title: Pesquisa
 biblio: library.bib
 csl: jcsl.csl
 ---
