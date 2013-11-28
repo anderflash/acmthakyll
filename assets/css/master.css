@@ -196,3 +196,8 @@ tr
   border-bottom:1px solid black;
   
 }
+.tutorial table tbody img
+{
+  width:96px;
+  height:96px;
+}

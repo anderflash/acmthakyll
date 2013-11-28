@@ -8,3 +8,5 @@ rebuildeploy
 buildeploy
 deploy
 build
+rebuild
+clean
