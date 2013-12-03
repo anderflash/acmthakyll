@@ -1,0 +1,40 @@
+---
+title: Projeção Anamórfica
+tags: projeção, anamorfismo
+author: Anderson Tavares
+biblio: library.bib
+csl: ieee-with-url.csl
+thumbnail: assets/images/teapot-thumb.png
+description: Explorar técnicas projeção anamórfica em superfícies planas usando sistemas computacionais.
+---
+
+# Introdução
+
+<img class="anamorphism" src="../../assets/images/anamorphism-swimming.jpg"/>
+<img class="anamorphism" src="../../assets/images/anamorphism-painting.jpg"/>
+<img class="anamorphism" src="../../assets/images/anamorphism-painting1.jpg"/>
+<img class="anamorphism" src="../../assets/images/anamorphism-painting3.jpg"/>
+
+
+<script type="text/javascript">
+function redimensionar()
+{
+	valor = $(".anamorphism");
+	valor.each(function(i, obj){
+		$(this).height($(this).width());
+	});
+}
+$(window).resize(function () {
+		redimensionar();
+});
+redimensionar();
+</script>
+
+
+# Objetivo
+
+O objetivo do trabalho é explorar técnicas projeção anamórfica em superfícies planas usando sistemas computacionais. Participação do trabalho de mestrado de Fábio Rosa.
+
+# Atividades
+
+[Revisão Bibliográfica Sistemática](2013-11-30-rbs.html)

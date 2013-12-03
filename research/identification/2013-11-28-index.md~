@@ -26,7 +26,38 @@ Quer saber o que estão falando sobre Rastreamento do Olhar? Veja no Reddit.
 
 # Twitter Hashtags (Eye Tracking)
 
-<a class="twitter-timeline" href="https://twitter.com/search?q=%23EyeTracking" data-widget-id="407647761312382978">Tweets about "#EyeTracking"</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-
-
+<script src="http://widgets.twimg.com/j/2/widget.js"></script>
+<script>
+new TWTR.Widget({
+  version: 2,
+  type: 'search',
+  search: '#EyeTracking',
+  rpp: 30,
+  interval: 5000,
+  title: 'Últimos Tuítes',
+  subject: 'Updated Live',
+  width: 200,
+  height: 300,
+  theme: {
+    shell: {
+      background: '#8ec1da',
+      color: '#ffffff'
+    },
+    tweets: {
+      background: '#ffffff',
+      color: '#000000',
+      links: '#1985b5'
+    }
+  },
+  features: {
+    scrollbar: true,
+    loop: true,
+    live: true,
+    hashtags: true,
+    timestamp: true,
+    avatars: true,
+    toptweets: true,
+    behavior: 'all'
+  }
+}).render().start();
+</script>

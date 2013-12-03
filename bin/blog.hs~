@@ -47,11 +47,6 @@ main = hakyllWith config $ do
     match "assets/font/*" $ do
         route   idRoute
         compile copyFileCompiler
-        
-    -- Copy static assets
-    match "assets/js/*" $ do
-        route   idRoute
-        compile copyFileCompiler
 
     -- Render posts
     match "posts/*" $ do

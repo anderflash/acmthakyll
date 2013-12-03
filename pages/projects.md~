@@ -22,8 +22,6 @@ O objetivo do trabalho é explorar técnicas projeção anamórfica em superfíc
 
 <img src="assets/images/nhe-thumb.jpg"/>
 
-O objetivo do trabalho é explorar técnicas de Realidade Aumentada para modelagem e simulação de sistemas de eventos discretos usando _Discrete Event Specification_ (DEVS)
-
 <div id="nhe"></div>
 <script type="text/javascript">
 corpo = $('#nhe');
