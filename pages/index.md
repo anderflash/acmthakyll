@@ -25,8 +25,3 @@ Sou um estudante de doutorado do Instituto de Matemática e Estatística da Univ
 <!---# Currículo
 
 Meu currículo está disponível [aqui](/cv.pdf)--->
-
-# Twitter 
-
-
-
