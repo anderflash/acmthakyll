@@ -1,0 +1,482 @@
+\section{Introdução}\label{introduuxe7uxe3o}
+
+Rastreamento do olhar é uma área que estuda o comportamento do olhar,
+analisando o processamento visual e cognitivo da pessoa. Os movimentos
+do olhar são coletados por equipamentos denominados rastreadores de
+olhar (\emph{eye trackers}) para análise, comparação e para desenvolver
+sistemas mais interativos.
+
+Dependendo da taxa de amostragem do equipamento e da aplicação
+pretendida, a quantidade de dados coletados poder ser muito grande para
+sua análise. Nesse caso é necessária uma transformação destes dados em
+eventos que informem melhor o processamento visual e cognitivo durante o
+experimento.
+
+Os rastreadores basicamente informam a coordenada bidimensional de cada
+ponto coletado e seu \emph{timestamp}. Outras propriedades também podem
+ser informadas, como o diâmetro da pupila. As amostras configuram uma
+série temporal. Os dados de tempo e espaço podem ser usados para
+analisar os eventos.
+
+\section{Eventos}\label{eventos}
+
+Os eventos do movimento do olhar podem ser:
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  \textbf{Fixações}: Para Salvucci {[}@Salvucci2000{]} e
+  Karrsgard{[}@Karrsgard2003{]}, uma fixação é uma pausa sobre regiões
+  de interesse.
+\item
+  \textbf{Sacadas}: Um rápido movimento entre fixações {[}@Salvucci2000,
+  @Karrsgard2003{]};
+\item
+  \textbf{Movimentos fixacionais}: O olho não fica parado durante uma
+  fixação, todavia ocorrem pequenos movimentos, como \emph{drifts}
+  (desvios do foco para fora do alvo durante a fixação), tremores
+  (rápidos, de baixa amplitude e involuntários), microssacadas
+  (correções dos \emph{drifts} e renovação do estímulo na retina) e
+  nystagmus (patologia periódica composta por movimentos suaves e
+  rápidos alternadamente, que pode provocar tontura e sensação de
+  movimento em objetos estáticos).
+\item
+  \textbf{Perseguição Contínua}: O movimento do olho acompanhando um
+  alvo em movimento é denominado \emph{perseguição contínua},
+  \emph{perseguição suave}, ou simplesmente \emph{perseguição}.
+\item
+  \textbf{Glissadas}: No fim da sacada, geralmente o olho não para no
+  ponto desejado, e sim ele o passa. Dessa forma, ele faz um pequeno
+  movimento senoidal para corrigir e fixar-se no ponto. Esse movimento é
+  denominado \emph{glissada}.
+\end{itemize}
+
+\section{Filtros}\label{filtros}
+
+A análise de dados do olhar é dividida em duas partes: filtragem e
+classificação. Os ruídos também são divididos em duas categorias:
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Ruídos provenientes do equipamento;
+\item
+  Movimentos do olhar que não estão sendo analisados.
+\end{itemize}
+
+Os filtros servem para remover, ou pelo menos reduzir, o primeiro tipo
+de ruído. A classificação elimina o segundo tipo. Essa separação em duas
+etapas faz com que os métodos de classificação sejam mais independentes
+dos equipamentos e suas características.
+
+Alguns filtros utilizandos na literatura são:
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Filtro de Resposta ao Impulso Finita (FIR) {[}@Olsson2007{]};
+\item
+  Filtro de Média {[}@Olsen2012{]};
+\item
+  Filtro de Mediana {[}@Olsen2012{]};
+\item
+  Filtro Savitzky-Golay {[}@Nystrom2010{]};
+\item
+  Filtro de Kalman {[}@Sauter1991{]}.
+\end{itemize}
+
+\section{Categorias de Métodos de
+Classificação}\label{categorias-de-muxe9todos-de-classificauxe7uxe3o}
+
+Salvucci {[}@Salvucci2000{]} introduz uma taxonomia de algoritmos de
+identificação de fixações e sacadas. Esta taxonomia é baseada em como
+são usadas as informações de tempo e espaço. Os algoritmos citados no
+artigo representam classes de técnicas que compartilham algum critério
+de identificação. Ele também apresenta uma forma de analisar os
+algoritmos de maneira qualitativa: facilidade de uso, velocidade de
+interpretação, acurácia, robustez, e parametrização.
+
+\subsubsection{Critérios espaciais}\label{crituxe9rios-espaciais}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Baseados em velocidade: Estes algoritmos utilizam o fato dos pontos
+  que compõem uma fixação terem uma velocidade baixa, enquanto que numa
+  sacada, as velocidades dos pontos são altas. Geralmente são utilizadas
+  para classificar sacadas;
+\item
+  Baseados em dispersão: Em uma fixação, os pontos são próximos entre
+  si. Medidas de dispersão podem ser utilizadas para classificar
+  fixações;
+\item
+  Baseados em área de interesse (AOI): Os pontos são agrupados de acordo
+  com regiões pré-determinadas pela aplicação. Servem geralmente para
+  uma análise de alto nível. Podem ser usados algoritmos baseados em
+  velocidade e/ou dispersão antes de realizar a análise baseado em AOI.
+\end{itemize}
+
+\subsubsection{Critérios temporaais}\label{crituxe9rios-temporaais}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Sensível à duração: Utiliza uma duração mínima para descartar fixações
+  com uma duração curta demais para os limites fisiológicos do olho.
+\item
+  Localmente adaptativo: pontos vizinhos influenciam a classificação de
+  um ponto específico. Robusto contra ruídos.
+\end{itemize}
+
+\section{Métodos}\label{muxe9todos}
+
+\begin{longtable}[c]{@{}llll@{}}
+\hline\noalign{\medskip}
+Nome & Fixação & Sacada & Perseguição Lenta
+\\\noalign{\medskip}
+\hline\noalign{\medskip}
+I-VT & & &
+\\\noalign{\medskip}
+I-HMM & & &
+\\\noalign{\medskip}
+I-DT & & &
+\\\noalign{\medskip}
+I-MST & & &
+\\\noalign{\medskip}
+I-AOI & & &
+\\\noalign{\medskip}
+\hline
+\end{longtable}
+
+I-VDT Komogortsev ------------------ -------------- ----------------
+------------------
+
+Os algoritmos proposto por Salvucci representam as características mais
+básicas e distintas dos algoritmos criados e publicados antes do seu
+artigo de revisão: I-VT, I-DT, I-HMM, I-MST, I-AOI.
+
+\subsection{I-VT}\label{i-vt}
+
+Este algoritmo representativo proposto por Salvucci é um dos mais
+básicos. Contém um parâmetro, o limiar de velocidade. Recebendo as
+amostras dos pontos, calculam-se suas velocidades. Se a velocidade for
+menor que o limiar, o respectivo ponto é classificado como fixação,
+senão é classificado como sacada.
+
+\subsubsection{Vantagens}\label{vantagens}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  fácil de implementar;
+\item
+  eficiente;
+\item
+  pode ser executado em tempo real.
+\end{itemize}
+
+\subsubsection{Desvantagens}\label{desvantagens}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  instável em pontos com velocidade próxima do threshold (precisa lidar
+  com o ruído do equipamento e movimentos do olhar irrelevantes para a
+  pesquisa);
+\item
+  Pode provocar alternâncias entre classificações, implicando em
+  fixações e sacadas com poucos pontos, aumentando o número de fixações
+  excluídas pelo critério de duração mínima;
+\item
+  Não é robusto;
+\item
+  Perseguições podem ser classificados como fixações ou sacadas
+  dependendo de sua velocidade.
+\end{itemize}
+
+\subsection{I-HMM}\label{i-hmm}
+
+Este algoritmo utiliza uma máquina de 2 estados para classificar fixação
+e sacada, recebendo parâmetros de distribuição das velocidades (média e
+desvio padrão para cada estado), além das probabilidades de transição
+entre estados. O modelo pode ser treinado para reestimar os parâmetros.
+
+\subsubsection{Vantagens:}\label{vantagens-1}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Modelo probabilístico ao invés de um threshold. Utiliza informação
+  sequencial (os vizinhos influenciam o ponto);
+\item
+  É mais robusto na presença do ruído;
+\item
+  Pode expandir o diagrama de estados (incorporando mais movimentos do
+  olhar);
+\item
+  É executado em tempo linear e pode ser executado em tempo real.
+\end{itemize}
+
+\subsubsection{Desvantagens:}\label{desvantagens-1}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Mais complexo que I-VT;
+\item
+  Procedimento de reestimar os parâmetros também é complexo.
+\end{itemize}
+
+\subsection{I-DT}\label{i-dt}
+
+Este algoritmo utiliza o critério de dispersão para agrupar os pontos em
+uma fixação. Ele inicia uma janela com tamanho de acordo com a duração
+mínima de uma fixação (fixações curtas são descartadas), geralmente 100
+ms. Caso a medida de dispersão dos pontos dentro da janela for menor que
+um limiar, então a janela é expandida até que a dispersão seja maior,
+agrupando todos os pontos na janela como uma fixação. Salvucci utilizou
+como critério de dispersão $(Max_x - Min_x) + (Max_y - Min_y)$. Outras
+medidas de dispersão podem ser usadas:
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Distância entre qualquer um dos pontos;
+\item
+  Distância entre os pontos e o centro da fixação;
+\item
+  Desvio padrão das coordenadas.
+\end{itemize}
+
+\subsubsection{Vantagens:}\label{vantagens-2}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Algoritmo simples
+\item
+  Tempo linear;
+\item
+  Pode ser feito em tempo real;
+\item
+  Resultado parecido com a saída do I-HMM (sendo mais robusto do que o
+  I-VT).
+\end{itemize}
+
+\subsubsection{Desvantagens:}\label{desvantagens-2}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Parâmetros interdependentes (ex: duração mínima alta e limiar de
+  dispersão baixa pode não classificar nenhuma fixação);
+\item
+  Sensível a ruído no critério espacial (pode ultrapassar o limiar);
+\item
+  Possíveis fixações dispersas podem não ser classificadas.
+\end{itemize}
+
+\subsection{I-MST}\label{i-mst}
+
+Este algoritmo cria uma estrutura de árvore que interliga os pontos de
+tal forma que a soma dos comprimentos das arestas da árvore seja o menor
+possível. Para construir a árvore, utiliza-se o algoritmo de Prim
+{[}@Prim1988{]}. É localmente adaptativo por interligar os pontos aos
+seus vizinhos, direta ou indiretamente.
+
+\subsubsection{Vantagens:}\label{vantagens-3}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Robusto (pode usar variância e média para lidar com ruído);
+\item
+  Cria clusters de fixações
+\item
+  Podem-se usar outras caracterizações que não sejam meramente espaciais
+  para classificar as fixações.
+\end{itemize}
+
+\subsubsection{Desvantagens:}\label{desvantagens-3}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Lento (tempo de execução exponencial);
+\item
+  Para cada ponto adicionado, é necessário achar o ponto mais próximo
+  dentre vários para restruturar o cluster e separar os clusters.
+\end{itemize}
+
+\subsection{I-AOI}\label{i-aoi}
+
+Este método de classificação de alto nível converte as amostras em
+regiões de acordo com divisões da região do estímulo. Cada região é
+identificada com um símbolo. O resultado do método transforma as
+amostras em uma sequência de símbolos, cujas sequências podem ser
+comparadas entre si usando o algoritmo de
+Levenshtein{[}@Cristino2010{]}.
+
+\subsubsection{Vantagens:}\label{vantagens-4}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Tempo real;
+\item
+  Simples;
+\item
+  Análise de alto nível.
+\end{itemize}
+
+\subsubsection{Desvantagens:}\label{desvantagens-4}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Não lida bem com sacadas (incluídas nas fixações se estiverem dentro
+  das regiões), aumentando a duração da fixação;
+\item
+  Longas sacadas são consideradas fixações nas regiões intermediárias;
+\item
+  Depende da aplicação (distribuição das regiões).
+\end{itemize}
+
+\section{I-VDT de Komogortsev}\label{i-vdt-de-komogortsev}
+
+O algoritmo de Komogortsev{[}@Komogortsev2013{]} classifica fixações,
+sacadas e perseguições contínuas. Argumenta-se que não há algoritmos
+robustos que classifiquem esses movimentos ternários.
+
+\subsection{Vantagens}\label{vantagens-5}
+
+\subsection{Desvantagens}\label{desvantagens-5}
+
+\section{I-VT Adaptativo de
+Nyström}\label{i-vt-adaptativo-de-nystruxf6m}
+
+\subsection{Vantagens}\label{vantagens-6}
+
+\subsection{Desvantagens}\label{desvantagens-6}
+
+\section{I-HMM de Karrsgard}\label{i-hmm-de-karrsgard}
+
+\subsection{Vantagens}\label{vantagens-7}
+
+\subsection{Desvantagens}\label{desvantagens-7}
+
+\section{Clusterização de Projeção de
+Urruty}\label{clusterizauxe7uxe3o-de-projeuxe7uxe3o-de-urruty}
+
+\subsection{Vantagens}\label{vantagens-8}
+
+\subsection{Desvantagens}\label{desvantagens-8}
+
+\section{Avaliação dos Métodos}\label{avaliauxe7uxe3o-dos-muxe9todos}
+
+Shic{[}@Shic2008{]} explora diferentes algoritmos de identificação de
+fixações mostrando que suas interpretações podem ser diferentes, mesmo
+trabalhando com os mesmos dados coletados. Ele analisa os seguintes
+algoritmos baseados em dispersão:
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Dispersão de Distância: a distância entre dois pontos quaisquer na
+  fixação não pode superar um limiar. É executado em $O(n^2)$;
+\item
+  Centróide: os pontos de uma fixação não podem ser mais distantes do
+  que um limiar para sua centróide. Pode construir uma versão em tempo
+  real, computando apenas os novos pontos;
+\item
+  Posição-Variância: modela o grupo de pontos como uma distribuição
+  gaussiana, e não podem ultrapassar um desvio padrão de distância;
+\item
+  I-DT de Salvucci: a soma da máxima distância horizontal com a máxima
+  distância vertical deve ser menor que um limiar.
+\end{itemize}
+
+Ele viu que o tempo de fixação médio segue um comportamento linear para
+valores que correspondem aos limites fisiológicos da visão foveal
+(desvio padrão da dispersão até $1̣^\circ$ e tempo mínimo de fixação até
+200ms), mesmo que o número de fixações e o total de tempo gasto nas
+fixações forem não lineares.
+
+Salvucci {[}@Salvucci2000{]} avalia os algoritmos de acordo com
+critérios subjetivos:
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Facilidade de implementação;
+\item
+  Acurácia;
+\item
+  Velocidade;
+\item
+  Robustez;
+\item
+  Número de parâmetros.
+\end{itemize}
+
+O único critério quantitativo é o número de parâmetros, visto que ele
+definiu os outros critérios qualitativamente, embora possam ser criadas
+métricas para torná-los objetivos. Também não há um valor final devido à
+subjetividade, todavia também pode ser criado um cálculo usando e
+agregando os critérios de forma quantitativa.
+
+Larsson {[}@Larsson2010{]} em sua tese apresenta um método de avaliação
+denominado \emph{Precision and Recall}. O método classifica a saída dos
+algoritmos em 4 tipos baseados na \emph{predição} (a saída do algoritmo)
+e no \emph{padrão de outro} (a correta classificação):
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Padrão de ouro como \emph{Sim} e Predição como \emph{Sim}: Verdadeiro
+  Positivo (VP);
+\item
+  Padrão de ouro como \emph{Sim} e Predição como \emph{Não}: Falso
+  Positivo (FP);
+\item
+  Padrão de ouro como \emph{Não} e Predição como \emph{Sim}: Falso
+  Negativo (FN);
+\item
+  Padrão de ouro como \emph{Não} e Predição como \emph{Não}: Verdadeiro
+  Negativo (VP).
+\end{itemize}
+
+O objetivo da etapa \emph{Precision} é saber a razão entre os
+verdadeiros positivos -- o algoritmo classificou corretamente como
+\emph{Sim} -- e todos os classificados como \emph{Sim} pelo algoritmo,
+mesmo os falso positivos. O objetivo da etapa \emph{Recall} é saber a
+razão entre os verdadeiros positivos e todos que deveriam ser
+classificados como \emph{Sim}, de acordo com o padrão de ouro.
+
+Precision = \[\frac{VP}{VP+FP}\]
+
+Recall = \[\frac{VP}{VP+FN}\]
+
+\section{Conclusão}\label{conclusuxe3o}
+
+Esta revisão serve para conhecer os métodos de classificação de dados do
+olhar e métodos de avaliação dos algoritmos de análise. Como trabalho
+futuro, as etapas de filtragem, bem como outros métodos de
+classificação, serão descritas e analisadas. Classificações de outros
+eventos do olhar também serão levadas em conta, como piscadas,
+perseguições contínuas e nystagmus. Alguns dos métodos que estão sendo
+avaliados são:
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  HMM de Karrsgard {[}@Karrsgard2003{]};
+\item
+  Clusterização de Projeção de Urruty {[}@Urruty2007a{]};
+\item
+  Variância e Covariância de Veneri {[}@Veneri2011{]};
+\item
+  \emph{Mean Shift Procedure} de Santella {[}@Santella2004{]}.
+\end{itemize}
+
+\section{Bibliografia}\label{bibliografia}

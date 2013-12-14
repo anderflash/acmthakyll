@@ -1,0 +1,37 @@
+\BOOKMARK [1][-]{section*.1}{Introdução}{}% 1
+\BOOKMARK [1][-]{section*.2}{Eventos}{}% 2
+\BOOKMARK [1][-]{section*.3}{Filtros}{}% 3
+\BOOKMARK [1][-]{section*.4}{Categorias de Métodos de Classificação}{}% 4
+\BOOKMARK [2][-]{section*.5}{Critérios espaciais}{section*.4}% 5
+\BOOKMARK [3][-]{section*.6}{Critérios temporaais}{section*.5}% 6
+\BOOKMARK [1][-]{section*.7}{Métodos}{}% 7
+\BOOKMARK [2][-]{section*.8}{I-VT}{section*.7}% 8
+\BOOKMARK [3][-]{section*.9}{Vantagens}{section*.8}% 9
+\BOOKMARK [3][-]{section*.10}{Desvantagens}{section*.8}% 10
+\BOOKMARK [2][-]{section*.11}{I-HMM}{section*.7}% 11
+\BOOKMARK [3][-]{section*.12}{Vantagens:}{section*.11}% 12
+\BOOKMARK [3][-]{section*.13}{Desvantagens:}{section*.11}% 13
+\BOOKMARK [2][-]{section*.14}{I-DT}{section*.7}% 14
+\BOOKMARK [3][-]{section*.15}{Vantagens:}{section*.14}% 15
+\BOOKMARK [3][-]{section*.16}{Desvantagens:}{section*.14}% 16
+\BOOKMARK [2][-]{section*.17}{I-MST}{section*.7}% 17
+\BOOKMARK [3][-]{section*.18}{Vantagens:}{section*.17}% 18
+\BOOKMARK [3][-]{section*.19}{Desvantagens:}{section*.17}% 19
+\BOOKMARK [2][-]{section*.20}{I-AOI}{section*.7}% 20
+\BOOKMARK [3][-]{section*.21}{Vantagens:}{section*.20}% 21
+\BOOKMARK [3][-]{section*.22}{Desvantagens:}{section*.20}% 22
+\BOOKMARK [1][-]{section*.23}{I-VDT\040de\040Komogortsev}{}% 23
+\BOOKMARK [2][-]{section*.24}{Vantagens}{section*.23}% 24
+\BOOKMARK [2][-]{section*.25}{Desvantagens}{section*.23}% 25
+\BOOKMARK [1][-]{section*.26}{I-VT Adaptativo de Nyström}{}% 26
+\BOOKMARK [2][-]{section*.27}{Vantagens}{section*.26}% 27
+\BOOKMARK [2][-]{section*.28}{Desvantagens}{section*.26}% 28
+\BOOKMARK [1][-]{section*.29}{I-HMM\040de\040Karrsgard}{}% 29
+\BOOKMARK [2][-]{section*.30}{Vantagens}{section*.29}% 30
+\BOOKMARK [2][-]{section*.31}{Desvantagens}{section*.29}% 31
+\BOOKMARK [1][-]{section*.32}{Clusterização de Projeção de Urruty}{}% 32
+\BOOKMARK [2][-]{section*.33}{Vantagens}{section*.32}% 33
+\BOOKMARK [2][-]{section*.34}{Desvantagens}{section*.32}% 34
+\BOOKMARK [1][-]{section*.35}{Avaliação dos Métodos}{}% 35
+\BOOKMARK [1][-]{section*.36}{Conclusão}{}% 36
+\BOOKMARK [1][-]{section*.37}{Bibliografia}{}% 37

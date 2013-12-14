@@ -1,4 +1,5 @@
-% Identificação de Eventos do Olhar: Métodos
+% Métodos para Detecção de Fixações, Sacadas e Outros Movimentos do Olhar
+% Anderson C. M. Tavares
 % Universidade de São Paulo
 
 # Introdução
@@ -53,6 +54,18 @@ Salvucci [@Salvucci2000] introduz uma taxonomia de algoritmos de identificação
 
 
 # Métodos
+
+Nome               Fixação        Sacada           Perseguição Lenta
+------------------ -------------- ---------------- ------------------
+I-VT
+I-HMM
+I-DT
+I-MST
+I-AOI
+
+I-VDT Komogortsev
+------------------ -------------- ---------------- ------------------
+
 
 Os algoritmos proposto por Salvucci representam as características mais básicas e distintas dos algoritmos criados e publicados antes do seu artigo de revisão: I-VT, I-DT, I-HMM, I-MST, I-AOI.
 
@@ -140,6 +153,42 @@ Este método de classificação de alto nível converte as amostras em regiões 
 - Não lida bem com sacadas (incluídas nas fixações se estiverem dentro das regiões), aumentando a duração da fixação;
 - Longas sacadas são consideradas fixações nas regiões intermediárias;
 - Depende da aplicação (distribuição das regiões).
+
+# I-VDT de Komogortsev
+
+O algoritmo de Komogortsev[@Komogortsev2013] classifica fixações, sacadas e perseguições contínuas. Argumenta-se que não há algoritmos robustos que classifiquem esses movimentos ternários.
+
+## Vantagens
+
+
+
+## Desvantagens
+
+
+# I-VT Adaptativo de Nyström
+
+
+## Vantagens
+
+
+## Desvantagens
+
+# I-HMM de Karrsgard
+
+
+## Vantagens
+
+
+## Desvantagens
+
+
+# Clusterização de Projeção de Urruty
+
+
+## Vantagens
+
+
+## Desvantagens
 
 
 # Avaliação dos Métodos
