@@ -269,6 +269,12 @@
               <text macro="title"/>
               <text variable="container-title" font-style="italic"/>
               <text macro="issued"/>
+              <choose>
+		<if variable="URL">
+		  <text value=" [Online]"/>
+		</if>
+	      </choose>
+              <text macro="access"/>
             </group>
           </else-if>
           <else-if type="patent">
@@ -324,16 +330,17 @@
               <text macro="publisher"/>
               <text macro="page"/>
               <text macro="issued"/>
+              <choose>
+		<if variable="URL">
+		  <text value=" [Online]"/>
+		</if>
+	      </choose>
+              <text macro="access"/>
             </group>
           </else>
         </choose>
-        <choose>
-          <if variable="URL">
-            <text value=" [Online]"/>
-          </if>
-        </choose>
       </group>
-      <text macro="access"/>
+      
     </layout>
   </bibliography>
 </style>

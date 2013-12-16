@@ -1,0 +1,70 @@
+\glossarysection[\glossarytoctitle]{\glossarytitle}\glossarypreamble
+\providecommand*\glsXpageXglsnumberformat[2]{\setentrycounter[#1]{page}\glsnumberformat{#2}}
+\providecommand*\glsXpageXtextrm[2]{\setentrycounter[#1]{page}\textrm{#2}}
+\providecommand*\glsXpageXtextsf[2]{\setentrycounter[#1]{page}\textsf{#2}}
+\providecommand*\glsXpageXtexttt[2]{\setentrycounter[#1]{page}\texttt{#2}}
+\providecommand*\glsXpageXtextbf[2]{\setentrycounter[#1]{page}\textbf{#2}}
+\providecommand*\glsXpageXtextmd[2]{\setentrycounter[#1]{page}\textmd{#2}}
+\providecommand*\glsXpageXtextit[2]{\setentrycounter[#1]{page}\textit{#2}}
+\providecommand*\glsXpageXtextup[2]{\setentrycounter[#1]{page}\textup{#2}}
+\providecommand*\glsXpageXtextsl[2]{\setentrycounter[#1]{page}\textsl{#2}}
+\providecommand*\glsXpageXtextsc[2]{\setentrycounter[#1]{page}\textsc{#2}}
+\providecommand*\glsXpageXemph[2]{\setentrycounter[#1]{page}\emph{#2}}
+\providecommand*\glsXpageXglshypernumber[2]{\setentrycounter[#1]{page}\glshypernumber{#2}}
+\providecommand*\glsXpageXhyperrm[2]{\setentrycounter[#1]{page}\hyperrm{#2}}
+\providecommand*\glsXpageXhypersf[2]{\setentrycounter[#1]{page}\hypersf{#2}}
+\providecommand*\glsXpageXhypertt[2]{\setentrycounter[#1]{page}\hypertt{#2}}
+\providecommand*\glsXpageXhyperbf[2]{\setentrycounter[#1]{page}\hyperbf{#2}}
+\providecommand*\glsXpageXhypermd[2]{\setentrycounter[#1]{page}\hypermd{#2}}
+\providecommand*\glsXpageXhyperit[2]{\setentrycounter[#1]{page}\hyperit{#2}}
+\providecommand*\glsXpageXhyperup[2]{\setentrycounter[#1]{page}\hyperup{#2}}
+\providecommand*\glsXpageXhypersl[2]{\setentrycounter[#1]{page}\hypersl{#2}}
+\providecommand*\glsXpageXhypersc[2]{\setentrycounter[#1]{page}\hypersc{#2}}
+\providecommand*\glsXpageXhyperemph[2]{\setentrycounter[#1]{page}\hyperemph{#2}}
+\begin{theglossary}\glossaryheader
+\glsgroupheading{F}\relax\glsresetentrylist
+\glossaryentryfield{FIR}{\glsnamefont{FIR}}{\emph {Finite Impulse Response}}{\relax }{\glossaryentrynumbers{\relax 
+\glsXpageXglsnumberformat{}{6}\delimN 
+\glsXpageXglsnumberformat{}{7}}}\glsgroupskip
+\glsgroupheading{I}\relax\glsresetentrylist
+\glossaryentryfield{I-AAT}{\glsnamefont{I-AAT}}{\emph {Identification by Acceleration Adaptive-Threshold}}{\relax }{\glossaryentrynumbers{\relax 
+\glsXpageXglsnumberformat{}{22}}}\relax\glsresetentrylist
+\glossaryentryfield{I-AOI}{\glsnamefont{I-AOI}}{\emph {Identification by Area Of Interest}}{\relax }{\glossaryentrynumbers{\relax 
+\glsXpageXglsnumberformat{}{11}}}\relax\glsresetentrylist
+\glossaryentryfield{I-DT}{\glsnamefont{I-DT}}{\emph {Identification by Velocity Threshold}}{\relax }{\glossaryentrynumbers{\relax 
+\glsXpageXglsnumberformat{}{1}\delimN 
+\glsXpageXglsnumberformat{}{2}\delimN 
+\glsXpageXglsnumberformat{}{11}\delimN 
+\glsXpageXglsnumberformat{}{14}\delimN 
+\glsXpageXglsnumberformat{}{17}\delimN 
+\glsXpageXglsnumberformat{}{20}\delimN 
+\glsXpageXglsnumberformat{}{21}\delimN 
+\glsXpageXglsnumberformat{}{24}}}\relax\glsresetentrylist
+\glossaryentryfield{I-HMM}{\glsnamefont{I-HMM}}{\emph {Identification by Hidden Markov Model}}{\relax }{\glossaryentrynumbers{\relax 
+\glsXpageXglsnumberformat{}{1}\delimN 
+\glsXpageXglsnumberformat{}{11}\delimN 
+\glsXpageXglsnumberformat{}{13}\delimN 
+\glsXpageXglsnumberformat{}{14}\delimN 
+\glsXpageXglsnumberformat{}{20}}}\relax\glsresetentrylist
+\glossaryentryfield{I-MST}{\glsnamefont{I-MST}}{\emph {Identification by Minimum Spanning Tree}}{\relax }{\glossaryentrynumbers{\relax 
+\glsXpageXglsnumberformat{}{1}\delimN 
+\glsXpageXglsnumberformat{}{11}\delimN 
+\glsXpageXglsnumberformat{}{15}\delimN 
+\glsXpageXglsnumberformat{}{21}}}\relax\glsresetentrylist
+\glossaryentryfield{I-VDT}{\glsnamefont{I-VDT}}{\emph {Identification by Velocity and Dispersion Threshold}}{\relax }{\glossaryentrynumbers{\relax 
+\glsXpageXglsnumberformat{}{17}}}\relax\glsresetentrylist
+\glossaryentryfield{I-VMP}{\glsnamefont{I-VMP}}{\emph {Identification by Velocity and Movement Pattern}}{\relax }{\glossaryentrynumbers{\relax 
+\glsXpageXglsnumberformat{}{17}}}\relax\glsresetentrylist
+\glossaryentryfield{I-VT}{\glsnamefont{I-VT}}{\emph {Identification by Velocity Threshold}}{\relax }{\glossaryentrynumbers{\relax 
+\glsXpageXglsnumberformat{}{1}\delimN 
+\glsXpageXglsnumberformat{}{2}\delimN 
+\glsXpageXglsnumberformat{}{11}\delimR 
+\glsXpageXglsnumberformat{}{14}\delimN 
+\glsXpageXglsnumberformat{}{17}\delimN 
+\glsXpageXglsnumberformat{}{18}\delimN 
+\glsXpageXglsnumberformat{}{20}\delimN 
+\glsXpageXglsnumberformat{}{21}\delimN 
+\glsXpageXglsnumberformat{}{23}}}\relax\glsresetentrylist
+\glossaryentryfield{I-VVT}{\glsnamefont{I-VVT}}{\emph {Identification by Velocity and Velocity Threshold}}{\relax }{\glossaryentrynumbers{\relax 
+\glsXpageXglsnumberformat{}{17}}}%
+\end{theglossary}\glossarypostamble

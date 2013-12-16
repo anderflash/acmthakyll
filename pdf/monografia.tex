@@ -1,5 +1,5 @@
 \documentclass[brazil,]{report}
-\usepackage[T1]{fontenc}
+\usepackage[xindy]{glossaries}
 \usepackage{lmodern}
 \usepackage{amssymb,amsmath}
 \usepackage{ifxetex,ifluatex}
@@ -41,10 +41,11 @@
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{6pt plus 2pt minus 1pt}
 \setlength{\emergencystretch}{3em}  % prevent overfull lines
-\setcounter{secnumdepth}{0}
+\setcounter{secnumdepth}{5}
 \ifxetex
   \usepackage{polyglossia}
   \setmainlanguage{brazil}
+  \setotherlanguage{english}
 \else
   \usepackage[brazil]{babel}
 \fi
@@ -53,8 +54,47 @@
 \author{Anderson C. M. Tavares}
 \date{Universidade de São Paulo}
 
+\usepackage{titlesec}
+\newcommand{\sectionbreak}{\clearpage}
+
+\newacronym{I-VT} {I-VT}{\emph{Identification by Velocity Threshold}}
+\newacronym{I-DT} {I-DT}{\emph{Identification by Velocity Threshold}}
+\newacronym{I-VVT}{I-VVT}{\emph{Identification by Velocity and Velocity Threshold}}
+\newacronym{I-VDT}{I-VDT}{\emph{Identification by Velocity and Dispersion Threshold}}
+\newacronym{I-VMP}{I-VMP}{\emph{Identification by Velocity and Movement Pattern}}
+\newacronym{I-HMM}{I-HMM}{\emph{Identification by Hidden Markov Model}}
+\newacronym{I-MST}{I-MST}{\emph{Identification by Minimum Spanning Tree}}
+\newacronym{I-AOI}{I-AOI}{\emph{Identification by Area Of Interest}}
+\newacronym{I-AAT}{I-AAT}{\emph{Identification by Acceleration Adaptive-Threshold}}
+\newacronym{FIR}{FIR}{\emph{Finite Impulse Response}}
+
+\renewcommand*{\glossaryname}{Lista de Termos}
+%\deftranslation{Glossary}{Lista de Termos}
+
+\makeglossaries
+
 \begin{document}
 \maketitle
+
+\begin{english}
+\begin{abstract}
+Complex systems imply to complex interfaces for users. With the demand with more accessible and effective interfaces, eye tracking is developing in a fast way. Eye movements can reflect user's cognitive processes and desires. To know these movements, several algorithms were and are being proposed for eye data classification basically in fixations and saccades. This work lists some known algorithms, their characteristics, advantages, disadvantages and applications. Works that analyzed some of these methods also are cited. According to the authors, there is no best classification method and also there is no best evaluation method of classification algorithms.
+\end{abstract}
+\end{english}
+\newpage
+\selectlanguage{brazil}
+\begin{abstract}
+Sistemas complexos implicam em interfaces complexas para os usuários. Na demanda por interfaces mais acessíveis e eficazes, a área de rastreamento do olhar vem se desenvolvendo rapidamente. Movimentos do olhar podem refletir processos cognitivos e desejos. Para conhecer esses movimentos, vários algoritmos foram e estão sendo propostos para classificação dos dados do olhar basicamente em fixações e sacadas. Este trabalho lista alguns algoritmos conhecidos, suas características, vantagens, desvantagens e aplicações. Trabalhos que analisaram alguns desses métodos também são citados. De acordo com os autores, não há melhor algoritmo de classificação e também não há um melhor método de avaliação do algoritmos de classificação.
+\end{abstract}
+
+{
+\hypersetup{linkcolor=black}
+\setcounter{tocdepth}{3}
+\tableofcontents
+\newpage
+}
+
+\printglossary[type=\acronymtype]
 
 \chapter{Introdução}\label{introduuxe7uxe3o}
 
@@ -67,18 +107,33 @@ sistemas mais interativos.
 Dependendo da taxa de amostragem do equipamento e da aplicação
 pretendida, a quantidade de dados coletados poder ser muito grande para
 sua análise. Nesse caso é necessária uma transformação destes dados em
-eventos que informem melhor o processamento visual e cognitivo durante o
-experimento.
+informações do processamento visual e cognitivo durante o experimento.
+Tal transformação é denominada identificação ou classificação dos
+movimentos do olhar.
 
 Os rastreadores basicamente informam a coordenada bidimensional de cada
 ponto coletado e seu \emph{timestamp}. Outras propriedades também podem
 ser informadas, como o diâmetro da pupila. As amostras configuram uma
 série temporal. Os dados de tempo e espaço podem ser usados para
-analisar os eventos.
+analisar os movimentos.
 
-\chapter{Eventos}\label{eventos}
+O objetivo deste trabalho é levantar uma lista de métodos de
+identificação de fixações e sacadas. Outros movimentos do olhar que
+sejam também classificados por esses métodos também serão citados.
 
-Os eventos do movimento do olhar podem ser:
+A seção \hyperref[movimentos]{Movimentos} define os movimentos do olhar.
+A seção \hyperref[filtros]{Filtros} mostra os filtros utilizados como
+pré-processamento da classificação dos movimentos. A seção
+\hyperref[muxe9todos]{Métodos} descrevem os algoritmos estudados. A
+seção \hyperref[avaliauxe7uxe3o-dos-muxe9todos]{Avaliação dos Métodos}
+mostra algumas métricas e técnicas de avaliação criados para comparar e
+validar resultados dos algoritmos de identificação. A seção
+\hyperref[conclusuxe3o]{Conclusão} finaliza o texto e levanta tarefas e
+trabalhos futuros.
+
+\hyperdef{}{movimentos}{\chapter{Movimentos}\label{movimentos}}
+
+Os movimentos do olhar podem ser:
 
 \begin{itemize}
 \itemsep1pt\parskip0pt\parsep0pt
@@ -107,7 +162,7 @@ Os eventos do movimento do olhar podem ser:
   denominado \emph{glissada}.
 \end{itemize}
 
-\chapter{Filtros}\label{filtros}
+\hyperdef{}{filtros}{\chapter{Filtros}\label{filtros}}
 
 A análise de dados do olhar é dividida em duas partes: filtragem e
 classificação. Os ruídos também são divididos em duas categorias:
@@ -130,7 +185,7 @@ Alguns filtros utilizandos na literatura são:
 \begin{itemize}
 \itemsep1pt\parskip0pt\parsep0pt
 \item
-  Filtro de Resposta ao Impulso Finita (FIR) {[}3{]};
+  Filtro \gls{FIR} {[}3{]};
 \item
   Filtro de Média {[}4{]};
 \item
@@ -141,8 +196,79 @@ Alguns filtros utilizandos na literatura são:
   Filtro de Kalman {[}6{]}.
 \end{itemize}
 
-\chapter{Categorias de Métodos de
-Classificação}\label{categorias-de-muxe9todos-de-classificauxe7uxe3o}
+Filtros de média e mediana permitem reduzir o nível de ruído. Eles são
+usados pelo sistema da Tobii {[}4{]}. O filtro da média aumenta a
+duração da sacada, reduzindo sua velocidade e reduzindo a duração das
+fixações podendo comprometer as identificações, além de criar falsos
+pontos que não foram detectados pelo equipamento. O filtro da mediana
+não cria falsos pontos, o resultado do filtro são pontos existentes das
+amostras coletadas, não interfere na amplitude da sacada e na sua
+duração (mantendo a mudança brusca de posições durante a sacada).
+
+\renewcommand{\sectionbreak}{}
+
+\section{Filtro de Resposta ao Impulso
+Finita}\label{filtro-de-resposta-ao-impulso-finita}
+
+Os filtros \gls{FIR} principais são:
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Filtro Passa-Baixa;
+\item
+  Filtro Passa-Banda (ou Passa-Faixa);
+\item
+  Filtro Passa-Alta.
+\end{itemize}
+
+O filtro Passa-Baixa pode ser usado para atenuar as altas frequências do
+ruído em um sinal de dados do olhar, além de poder ser desenvolvido em
+\emph{hardware} utilizando um circuito RC (Resistor-Capacitor){[}3{]}. O
+sinal da sacada pode ficar comprometido devido a resposta não ideal do
+filtro. O resultado pode ser melhorado com um filtro FIR dinâmico
+{[}3{]}.
+
+\section{Savitzky-Golay}\label{savitzky-golay}
+
+Nyström {[}5{]} argumenta sobre o uso do filtro Savitzky-Golay que:
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  O filtro não faz nenhuma forte premissa sobre as curvas das
+  velocidades dos movimentos;
+\item
+  Mantém boa qualidade de informação sobre dados em alta frequência;
+\item
+  Mantém os máximos e mínimos locais (espacial e temporal);
+\end{itemize}
+
+A descrição em alto nível do processo de filtragem consiste em:
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Achara a função polinomial que melhor descreve os dados;
+\item
+  Derivar analiticamente a função (para não adicionar ruído);
+\item
+  Fazer uma amostragem das funções usando a frequência original.
+\end{itemize}
+
+\section{Filtro de Kalman}\label{filtro-de-kalman}
+
+O filtro de Kalman permite modelar sistemas cujos sinais sejam ruidosos,
+mas que tenham um comportamento dinâmico observado e conhecido. Sauter
+et al. {[}6{]} utiliza o filtro de Kalman para detectar perseguições,
+mesmo que o sinal tenha ruído e sacadas corretivas que mantém o algo
+novamente ao foco durante a perseguição. Ele realiza testes Chi-Quadrado
+para verificar se a hipótese nula (perseguição) se mantém devido aos
+valores estatísticos (média e desvio padrão) do sinal, ou se os novos
+dados são de uma distribuição diferente (hipótese da sacada).
+
+\chapter{Taxonomia de Métodos de
+Classificação}\label{taxonomia-de-muxe9todos-de-classificauxe7uxe3o}
 
 Salvucci {[}1{]} introduz uma taxonomia de algoritmos de identificação
 de fixações e sacadas. Esta taxonomia é baseada em como são usadas as
@@ -152,7 +278,7 @@ identificação. Ele também apresenta uma forma de analisar os algoritmos
 de maneira qualitativa: facilidade de uso, velocidade de interpretação,
 acurácia, robustez, e parametrização.
 
-\subsection{Critérios espaciais}\label{crituxe9rios-espaciais}
+\section{Critérios espaciais}\label{crituxe9rios-espaciais}
 
 \begin{itemize}
 \itemsep1pt\parskip0pt\parsep0pt
@@ -172,7 +298,7 @@ acurácia, robustez, e parametrização.
   velocidade e/ou dispersão antes de realizar a análise baseado em AOI.
 \end{itemize}
 
-\subsection{Critérios temporaais}\label{crituxe9rios-temporaais}
+\section{Critérios temporaais}\label{crituxe9rios-temporaais}
 
 \begin{itemize}
 \itemsep1pt\parskip0pt\parsep0pt
@@ -184,34 +310,65 @@ acurácia, robustez, e parametrização.
   um ponto específico. Robusto contra ruídos.
 \end{itemize}
 
-\chapter{Métodos}\label{muxe9todos}
+\renewcommand{\sectionbreak}{\clearpage}
 
-\begin{longtable}[c]{@{}llll@{}}
+\hyperdef{}{muxe9todos}{\chapter{Métodos}\label{muxe9todos}}
+
+Os métodos a seguir classificam os dados do olhar coletados pelo
+equipamento durante o experimento em sacadas, fixações, perseguições e
+outros movimentos. Nem todos os algoritmos são desenvolvidos para
+detectar todos os movimentos.
+
+\begin{longtable}[c]{@{}lllll@{}}
 \hline\noalign{\medskip}
-Nome & Fixação & Sacada & Perseguição Lenta
+Nome & Fixação & Sacada & Perseguição & Glissadas
 \\\noalign{\medskip}
 \hline\noalign{\medskip}
-I-VT & & &
+I-VT & X & X & &
 \\\noalign{\medskip}
-I-HMM & & &
+I-HMM & X & X & &
 \\\noalign{\medskip}
-I-DT & & &
+I-DT & X & O que não & &
 \\\noalign{\medskip}
-I-MST & & &
+& & for fixação & &
 \\\noalign{\medskip}
-I-AOI & & &
+I-MST & X & X & &
+\\\noalign{\medskip}
+I-AOI & Pontos dentro & Pontos fora & &
+\\\noalign{\medskip}
+& das áreas & das áreas & &
+\\\noalign{\medskip}
+I-VDT-Komogortsev & X & & &
+\\\noalign{\medskip}
+I-VT-Nyström & X & X & & X
+\\\noalign{\medskip}
+I-HMM-Karrsgard & X & X & &
+\\\noalign{\medskip}
+I-VVT & X & X & X &
+\\\noalign{\medskip}
+I-VMP & X & X & X &
+\\\noalign{\medskip}
+I-VDT & X & X & X &
+\\\noalign{\medskip}
+I-AAT & X & X & & X
+\\\noalign{\medskip}
+Kalman & & X & X &
+\\\noalign{\medskip}
+Clusterização & X & X & &
 \\\noalign{\medskip}
 \hline
 \end{longtable}
 
-I-VDT Komogortsev ------------------ -------------- ----------------
-------------------
-
 Os algoritmos proposto por Salvucci representam as características mais
 básicas e distintas dos algoritmos criados e publicados antes do seu
-artigo de revisão: I-VT, I-DT, I-HMM, I-MST, I-AOI.
+artigo de revisão: \gls{I-VT}, \gls{I-DT}, \gls{I-HMM}, \gls{I-MST},
+\gls{I-AOI}.
 
-\section{I-VT}\label{i-vt}
+Partindo destes métodos, melhorias e outros métodos foram propostos por
+outros pesquisadores, como Komogortsev{[}Komogortsev2013{]},
+Behrens{[}7{]}, Nyström{[}5{]}, Karrsgard{[}2{]} e Urruty.
+
+\section{\gls{I-VT}}\label{section}
 
 Este algoritmo representativo proposto por Salvucci é um dos mais
 básicos. Contém um parâmetro, o limiar de velocidade. Recebendo as
@@ -250,12 +407,25 @@ senão é classificado como sacada.
   dependendo de sua velocidade.
 \end{itemize}
 
-\section{I-HMM}\label{i-hmm}
+\section{\gls{I-HMM}}\label{section-1}
 
 Este algoritmo utiliza uma máquina de 2 estados para classificar fixação
 e sacada, recebendo parâmetros de distribuição das velocidades (média e
 desvio padrão para cada estado), além das probabilidades de transição
 entre estados. O modelo pode ser treinado para reestimar os parâmetros.
+
+O modelo recebe 8 parâmetros:
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  A média e desvio padrão das velocidades de cada estado, totalizando 4;
+\item
+  As probabilidades de transição (de fixação/sacada para
+  fixação/sacada), totalizando 4;
+\end{itemize}
+
+Os parâmetros podem ser reestimados em um treinamento inicial.
 
 \subsection{Vantagens:}\label{vantagens-1}
 
@@ -270,7 +440,10 @@ entre estados. O modelo pode ser treinado para reestimar os parâmetros.
   Pode expandir o diagrama de estados (incorporando mais movimentos do
   olhar);
 \item
-  É executado em tempo linear e pode ser executado em tempo real.
+  É executado em tempo linear e pode ser executado em tempo real;
+\item
+  Larsson {[}8{]} não encontrou melhora significativa entre o
+  \gls{I-HMM} e o \gls{I-VT}.
 \end{itemize}
 
 \subsection{Desvantagens:}\label{desvantagens-1}
@@ -278,21 +451,23 @@ entre estados. O modelo pode ser treinado para reestimar os parâmetros.
 \begin{itemize}
 \itemsep1pt\parskip0pt\parsep0pt
 \item
-  Mais complexo que I-VT;
+  Mais complexo que \gls{I-VT};
 \item
   Procedimento de reestimar os parâmetros também é complexo.
 \end{itemize}
 
-\section{I-DT}\label{i-dt}
+\section{\gls{I-DT}}\label{section-2}
 
 Este algoritmo utiliza o critério de dispersão para agrupar os pontos em
 uma fixação. Ele inicia uma janela com tamanho de acordo com a duração
 mínima de uma fixação (fixações curtas são descartadas), geralmente 100
 ms. Caso a medida de dispersão dos pontos dentro da janela for menor que
 um limiar, então a janela é expandida até que a dispersão seja maior,
-agrupando todos os pontos na janela como uma fixação. Salvucci utilizou
-como critério de dispersão $(Max_x - Min_x) + (Max_y - Min_y)$. Outras
-medidas de dispersão podem ser usadas:
+agrupando todos os pontos na janela como uma fixação.
+
+Salvucci utilizou como critério de dispersão
+$(Max_x - Min_x) + (Max_y - Min_y)$. Outras medidas de dispersão podem
+ser usadas:
 
 \begin{itemize}
 \itemsep1pt\parskip0pt\parsep0pt
@@ -315,8 +490,8 @@ medidas de dispersão podem ser usadas:
 \item
   Pode ser feito em tempo real;
 \item
-  Resultado parecido com a saída do I-HMM (sendo mais robusto do que o
-  I-VT).
+  Resultado parecido com a saída do \gls{I-HMM} (sendo mais robusto do
+  que o \gls{I-VT}).
 \end{itemize}
 
 \subsection{Desvantagens:}\label{desvantagens-2}
@@ -332,13 +507,27 @@ medidas de dispersão podem ser usadas:
   Possíveis fixações dispersas podem não ser classificadas.
 \end{itemize}
 
-\section{I-MST}\label{i-mst}
+\section{\gls{I-MST}}\label{section-3}
 
 Este algoritmo cria uma estrutura de árvore que interliga os pontos de
 tal forma que a soma dos comprimentos das arestas da árvore seja o menor
 possível. Para construir a árvore, utiliza-se o algoritmo de Prim . É
 localmente adaptativo por interligar os pontos aos seus vizinhos, direta
 ou indiretamente.
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Arestas maiores do que um limiar são consideradas sacadas.
+\item
+  Calcula-se a média e o desvio padrão para arestas locais;
+\item
+  Se o comprimento da aresta for maior do que a média + desvio, então a
+  aresta é considerada sacada.
+\item
+  Identificam-se fixações pelos \emph{clusters} não divididos pelas
+  sacadas.
+\end{itemize}
 
 \subsection{Vantagens:}\label{vantagens-3}
 
@@ -367,19 +556,22 @@ ou indiretamente.
 \section{I-AOI}\label{i-aoi}
 
 Este método de classificação de alto nível converte as amostras em
-regiões de acordo com divisões da região do estímulo. Cada região é
-identificada com um símbolo. O resultado do método transforma as
-amostras em uma sequência de símbolos, cujas sequências podem ser
-comparadas entre si usando o algoritmo de Levenshtein{[}7{]}.
+regiões de acordo com divisões da região do estímulo. São fixações os
+pontos que estiverem dentro das regiões. Pontos fora das regiões são
+considerados como sacadas.
+
+Cada região é identificada com um símbolo. O resultado do método
+transforma as amostras em uma sequência de símbolos, cujas sequências
+podem ser comparadas entre si usando o algoritmo de Levenshtein.
 
 \subsection{Vantagens:}\label{vantagens-4}
 
 \begin{itemize}
 \itemsep1pt\parskip0pt\parsep0pt
 \item
-  Tempo real;
+  Tempo real (execução online);
 \item
-  Simples;
+  Simples de implementar;
 \item
   Análise de alto nível.
 \end{itemize}
@@ -397,39 +589,363 @@ comparadas entre si usando o algoritmo de Levenshtein{[}7{]}.
   Depende da aplicação (distribuição das regiões).
 \end{itemize}
 
-\chapter{I-VDT de Komogortsev}\label{i-vdt-de-komogortsev}
+\section{I-VDT de Komogortsev}\label{i-vdt-de-komogortsev}
 
-O algoritmo de Komogortsev{[}8{]} classifica fixações, sacadas e
-perseguições contínuas. Argumenta-se que não há algoritmos robustos que
-classifiquem esses movimentos ternários.
+O algoritmo \gls{I-VDT} de Komogortsev{[}9{]} classifica fixações,
+sacadas e perseguições contínuas. Argumenta-se que não há algoritmos
+robustos que classifiquem esses movimentos ternários.
 
-\section{Vantagens}\label{vantagens-5}
+Ele apresenta e compara, além de seu artigo, outros dois algoritmos de
+identificação de fixações, sacadas e perseguições contínuas: \gls{I-VVT}
+(semelhante ao \gls{I-VT} de Salvucci {[}1{]} com dois limiares de
+velocidade para as três classes), e \gls{I-VMP} de Agustin {[}10{]} e
+Larsson{[}11{]}.
 
-\section{Desvantagens}\label{desvantagens-5}
+No I-VMP, dentro de uma janela temporal, calculam-se ângulos dos pontos
+com o eixo horizontal, plotam-se esses ângulos em uma circunferência
+unitária, calcula-se a centróide e sua distância com a coordenada (0,0)
+da circunferência. Se essa distância for maior que um limiar, seus
+pontos são considerados parte de uma perseguição contínua.
 
-\chapter{I-VT Adaptativo de
-Nyström}\label{i-vt-adaptativo-de-nystruxf6m}
+O algoritmo \gls{I-VDT} usa o limiar de velocidade (recebido como
+parâmetro) para classificar as sacadas, e uma medida de dispersão para
+classificar perseguições e fixações. A implementação dos algoritmos
+estão disponíveis em {[}12{]}.
 
-\section{Vantagens}\label{vantagens-6}
+\subsection{Vantagens}\label{vantagens-5}
 
-\section{Desvantagens}\label{desvantagens-6}
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  O \gls{I-VDT} é basicamente uma combinação do \gls{I-VT} com o
+  \gls{I-DT} do Salvucci {[}1{]}, dessa forma sendo facilmente absorvido
+  e rapidamente implementado;
+\item
+  Realiza uma classificação ternária. Primeira separa as sacadas pelo
+  critério de velocidade, depois separa fixações das perseguições pelo
+  critério da dispersão;
+\item
+  Pode ser executado em tempo real;
+\item
+  Pode-se alterar o cálculo de dispersão que melhor classifique os dados
+  do experimento. Komogortsev utilizou a medida de dispersão de
+  Salvucci.
+\end{itemize}
 
-\chapter{I-HMM de Karrsgard}\label{i-hmm-de-karrsgard}
+\subsection{Desvantagens}\label{desvantagens-5}
 
-\section{Vantagens}\label{vantagens-7}
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Tem as mesmas desvantagens do \gls{I-VT} no que diz respeito a
+  movimentos cujas velocidades estejam próximas ao limiar, podendo
+  alternar entre sacadas e outros movimentos.
+\item
+  Tem as mesmas desvantagens do \gls{I-DT} no que diz respeito ao ruído.
+\item
+  Não é adaptativo, o limiar precisa ser calculado externamente e
+  passado como um parâmetro.
+\end{itemize}
 
-\section{Desvantagens}\label{desvantagens-7}
+\section{\gls{I-VT} Adaptativo de
+Nyström}\label{adaptativo-de-nystruxf6m}
 
-\chapter{Clusterização de Projeção de
+O algoritmo \gls{I-VT} de Nyström realiza um método de classificação de
+sacadas, fixações e glissadas. Ele verificou que a duração das glissadas
+são longas o suficiente para influenciar as interpretações das fixações
+e sacadas, sendo importante preparar o algoritmo para tal movimento. Os
+passos para a classificação que o método executa são:
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Aplica-se o filtro Savitzky-Golay nos pontos;
+\item
+  Calculam-se as velocidades e acelerações ponto-a-ponto;
+\item
+  Captura-se uma janela de velocidades;
+\item
+  Obtém-se os picos de velocidade maiores que um limiar $PT_n$;
+\item
+  Para cada pico, calcula-se o início (\emph{onset}) e o fim
+  (\emph{offset}) da sacada.
+\item
+  Obtém-se as glissadas cujo onset seja igual ao offset da sacada
+  predecessora e seu offset seja o primeiro vale da primeira curva após
+  a sacada.
+\item
+  As fixações são os pontos não classificados como sacadas ou glissadas.
+\end{itemize}
+
+Os limiares não são fixos, e sim calculados iterativamente utilizando os
+níveis de ruído:
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Um limiar inicial é escolhido, $PT_1$;
+\item
+  Para todas as velocidades abaixo de $PT_1$, calcula-se a média $\mu_1$
+  e desvio padrão $\sigma_1$;
+\item
+  Atualiza-se o limiar $PT_n = \mu_{n-1} + 6\sigma_{n-1}$
+\item
+  Quando $|PT_n-PT_{n-1}| < 1^\circ/s$, então o limiar final é obtido.
+\end{itemize}
+
+\subsection{Vantagens}\label{vantagens-6}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Classificação ternária: glissadas, fixações e sacadas.
+\item
+  Os histogramas da duração de fixação, duração da sacada, velocidade de
+  pico da sacada e aceleração de pico da sacada tem um formato mais
+  comportado, semelhante a uma distribuição normal;
+\item
+  O cálculo dos limiares são baseados nos dados, e por isso, mais
+  robustos ao ruído;
+\item
+  Os limiares podem ser calculados separadamente para cada usuário ou
+  experimento;
+\item
+  O pesquisador tem um maior controle sobre as glissadas, podendo
+  adicioná-las às fixações ou às sacadas.
+\end{itemize}
+
+\subsection{Desvantagens}\label{desvantagens-6}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Embora ele argumenta que a aceleração amplia o nível do ruído,
+  obrigando o pesquisador utilizar uma filtragem mais robusta, podem
+  haver métodos que melhorem o resultado do algoritmo que use apenas a
+  velocidade.
+\item
+  Usando apenas a velocidade, detecção de outros movimentos pode não ser
+  possível.
+\item
+  Não se usa medidas de dispersão para tornar o algoritmo mais robusto.
+  Ex: o que foi classificado como fixação, pode ter sido na verdade uma
+  perseguição contínua.
+\end{itemize}
+
+\section{\gls{I-DT} e HMM de Kärrsgård}\label{e-hmm-de-kuxe4rrsguxe5rd}
+
+Kärrsgård utiliza o algoritmo de identificação baseado em dispersão para
+classificar os dados do olhar, e posteriormente um Modelo de Markov
+Oculto na aplicação de digitação pelo olhar. Ele utiliza as fixações
+para realizar a seleção dos caracteres, convertendo-os em sequências de
+símbolos (palavras) para posterior interpretação do sistema.
+
+O método pode ser considerado um híbrido usando dispersão (para
+transformar os dados em fixações) e AOI para transformar fixações em
+alvos (as teclas) para formar as palavras.
+
+\subsection{Vantagens}\label{vantagens-7}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  As vantagens do I-DT também se aplicam;
+\item
+  As vantagens do I-AOI de Salvucci se aplicam ao modelo apresentado por
+  Kärrsgård;
+\end{itemize}
+
+\subsection{Desvantagens}\label{desvantagens-7}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Como a aplicação do algoritmo utilizou fixações, então o sistema de
+  digitação é baseado em \emph{dwell time}. Alguns trabalhos utilizam
+  sacadas (onset e offset{[}13{]}) para retirar a necessidade de fixação
+  nas teclas.
+\item
+  Larsson {[}8{]} analisou alguns algoritmos e concluiu que \gls{I-HMM}
+  não resulta em uma melhora significativa em relação ao simples
+  \gls{I-VT}. Ele argumentou que talvez mais testes podem ser
+  necessários, por causa da importância do modelo frente à adição de
+  novos estados para detecção robusta de outros movimentos.
+\item
+  As desvantagens do método I-DT e I-AOI de Salvucci, também se aplicam.
+\end{itemize}
+
+\section{Clusterização de Projeção de
 Urruty}\label{clusterizauxe7uxe3o-de-projeuxe7uxe3o-de-urruty}
 
-\section{Vantagens}\label{vantagens-8}
+O algoritmo de Urruty et al. encontra \emph{clusters} de pontos em um
+espaço de dimensionalidade menor e seleciona a projeção que melhor ajuda
+na identificação destes \emph{clusters}. O sistema de coordenadas para
+os dados pode ser aleatoriamente escolhido. Com isso, reduz-se a chance
+de obter clusters se sobrepondo. O método utiliza técnicas de projeção e
+técnicas baseadas em densidade.
 
-\section{Desvantagens}\label{desvantagens-8}
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Projetam-se os pontos nos eixos $X$ e $Y$;
+\item
+  Criam-se dois histogramas, um para cada eixo;
+\item
+  Divide-se o espaço bidimensional em regiões de acordo com os
+  histogramas;
+\item
+  As regiões de alta densidade são analisadas em um processo de
+  expansão, a fim de capturar pontos externos e próximos que mantenham a
+  densidade da região.
+\item
+  Análise da duração das fixações são realizadas para validar as
+  regiões.
+\item
+  Pontos de um mesmo \emph{cluster} separados por mais de um período
+  mínimo (recebido como parâmetro) são considerados de diferentes
+  fixações, dividindo o \emph{cluster} em dois ou mais;
+\item
+  Os clusters divididos devem ter duração maior do que o período mínimo;
+\item
+  Pontos que não estiverem nas regiões (ou \emph{clusters} inválidos)
+  são considerados como ruídos (ou movimento sacádicos).
+\end{itemize}
 
-\chapter{Avaliação dos Métodos}\label{avaliauxe7uxe3o-dos-muxe9todos}
+\subsection{Vantagens}\label{vantagens-8}
 
-Shic{[}9{]} explora diferentes algoritmos de identificação de fixações
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Urruty et al. verificam, usando o método de avaliação \emph{Precision
+  and Recall}, explanado na seção
+  \hyperref[avaliauxe7uxe3o-dos-muxe9todos]{Avaliação dos Métodos}, que
+  seu método detecta melhor as informações das fixações do que os
+  algoritmos de \gls{I-MST}, \gls{I-DT} e \gls{I-VT};
+\item
+  O método também foi analisado usando vídeos como estímulos. Foi
+  reforçado a possibilidade de seu uso na aplicação de sumarização de
+  vídeos, combinando áreas de interesses, imagens chaves do vídeo, ou na
+  aplicação de indexação dos vídeos.
+\end{itemize}
+
+\subsection{Desvantagens}\label{desvantagens-8}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  O método perde mais sacadas do que os outros métodos comparados;
+\item
+  O método ainda não foi comparado com métodos com limiares adaptativos;
+\item
+  A qualidade do resultado do método também não é conhecida na presença
+  de estímulos em movimento que gerariam perseguições contínuas.
+\end{itemize}
+
+\section{I-AAT de de Behrens}\label{i-aat-de-de-behrens}
+
+O algoritmo \gls{I-AAT} de Behrens {[}7{]} usa as acelerações das
+amostras para classificar movimentos sacádicos e não sacádicos. A
+diferença desse para seu trabalho anterior {[}14{]} se dá no cálculo do
+limiar não ser fixo, e sim adaptativo.
+
+O cálculo utiliza o desvio padrão de uma janela de acelerações. O limiar
+de aceleração $AT = N\times\sigma$, onde $N$ é um valor passado como
+parâmetro, é atualizado ao mover a janela. No momento em que o valor da
+aceleração de um ponto é maior do que o limiar, é constatado o início de
+um movimento sacádico. Outras intersecções são detectadas (em uma
+sacada, o sinal da aceleração resulta em duas curvas, uma positiva e uma
+negativa). O limiar durante a sacada é mantido constante por um período
+passado como parâmetro. Após o período, o limiar é modificado
+linearmente até atingir $N\times\sigma$, onde volta a ser recalculado
+iterativamente.
+
+Para separar movimentos sacádicos principais das não principais (como
+glissadas), o método utiliza também a posição, monotonicamente crescente
+ou decrescente. Caso haja menos de 3 intersecções durante a análise da
+aceleração e o sinal da posição das amostras da possível sacada tenha
+terminado, então o movimento sacádico é considerado não principal. O
+método utiliza uma função para controlar os estados destas variáveis.
+
+O método utiliza um filtro de convolução para obter a segunda derivada
+do sinal (aceleração) junto com um Filtro de Resposta Finito (FIR)
+Passa-Baixa para atenuar as altas frequências, embora o autor admite o
+aumento da magnitude do sinal do ruído remanescente.
+
+\subsection{Vantagens}\label{vantagens-9}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  O método utiliza um limiar adaptativo para se adequar ao ruído de
+  diferentes equipamentos e de dados de diferentes usuários;
+\item
+  Utiliza aceleração para detectar sacadas;
+\item
+  Pode identificar artefatos no sinal de aceleração próximos ao limiar;
+\item
+  Sacadas curtas podem conter sinais de velocidade irregulares. A
+  utilização de aceleração pode ser utilizada para a devida detecção.
+\end{itemize}
+
+\subsection{Desvantagens}\label{desvantagens-9}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Não utiliza velocidade para tornar a detecção das sacadas e fixações
+  mais robusta;
+\item
+  Utiliza a posição, confiando no processo de atenuação do ruído pelo
+  filtro;
+\end{itemize}
+
+\section{Filtro de Kalman}\label{filtro-de-kalman-1}
+
+Os filtros de Kalman podem ser usados para detectar perseguições. As
+sacadas corretivas dentro da perseguição podem ser considerados, junto
+com o problemas na coleta, parte de um ruído branco gaussiano. O filtro
+de Kalman trabalha com inovações dentro da previsão do modelo (em um
+processo recursivo) e o compara com os dados coletados para decidir se é
+uma perseguição ou uma sacada {[}6{]}. O filtro minimiza o erro entre o
+estado do sistema previsto e o estado do sistema observado, mesmo na
+presença de ruído, sendo interessante no uso de identificação de
+movimentos do olhar {[}15{]}.
+
+\subsection{Vantagens}\label{vantagens-10}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Permite detectar perseguições;
+\item
+  Não é necessária informação a priori da dinâmica da sacada;
+\item
+  Robusto a ruídos;
+\item
+  Koh et al.{[}15{]} verificaram que dados dos usuário que usam óculos
+  ou lentes foram melhor identificados pelo filtro de Kalman do que pelo
+  \gls{I-VT}.
+\end{itemize}
+
+\subsection{Desvantagens}\label{desvantagens-10}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  É necessária informação a priori da dinâmica da perseguição;
+\item
+  O modelo pode não representar fielmente a realidade dos dados, podendo
+  comprometer a identificação.
+\item
+  Os parâmetros para a identificação dependem da frequência do
+  equipamento e da acurácia na calibração do usuário, tornando o
+  algoritmo mais complexo de ser implementado.
+\end{itemize}
+
+\hyperdef{}{avaliauxe7uxe3o-dos-muxe9todos}{\chapter{Avaliação dos
+Métodos}\label{avaliauxe7uxe3o-dos-muxe9todos}}
+
+Shic{[}16{]} explora diferentes algoritmos de identificação de fixações
 mostrando que suas interpretações podem ser diferentes, mesmo
 trabalhando com os mesmos dados coletados. Ele analisa os seguintes
 algoritmos baseados em dispersão:
@@ -447,8 +963,8 @@ algoritmos baseados em dispersão:
   Posição-Variância: modela o grupo de pontos como uma distribuição
   gaussiana, e não podem ultrapassar um desvio padrão de distância;
 \item
-  I-DT de Salvucci: a soma da máxima distância horizontal com a máxima
-  distância vertical deve ser menor que um limiar.
+  \gls{I-DT} de Salvucci: a soma da máxima distância horizontal com a
+  máxima distância vertical deve ser menor que um limiar.
 \end{itemize}
 
 Ele viu que o tempo de fixação médio segue um comportamento linear para
@@ -480,7 +996,7 @@ métricas para torná-los objetivos. Também não há um valor final devido à
 subjetividade, todavia também pode ser criado um cálculo usando e
 agregando os critérios de forma quantitativa.
 
-Larsson {[}10{]} em sua tese apresenta um método de avaliação denominado
+Larsson {[}8{]} em sua tese apresenta um método de avaliação denominado
 \emph{Precision and Recall}. O método classifica a saída dos algoritmos
 em 4 tipos baseados na \emph{predição} (a saída do algoritmo) e no
 \emph{padrão de outro} (a correta classificação):
@@ -512,103 +1028,141 @@ Precision = \[\frac{VP}{VP+FP}\]
 
 Recall = \[\frac{VP}{VP+FN}\]
 
-\chapter{Conclusão}\label{conclusuxe3o}
+Komogortsev criou métricas quantitativas e qualitativas para avaliação
+dos algoritmos de identificação de fixações, sacadas {[}17{]} e
+perseguições {[}9{]}. São relações entre dados pertencentes a uma classe
+de movimento e estímulos considerados dessa classe.
+
+A métrica quantitativa da fixação considera a relação entre as fixações
+detectadas e as fixações do estímulo. O valor não chega a 100\% se o
+estímulo do experimento levar em conta fixações e sacadas.
+
+A métrica quantitativa da sacada compara o total das amplitudes das
+sacadas detectadas com o total das amplitudes das sacadas do estímulo. O
+valor pode estar acima de 100\% se fixações forem classificadadas como
+sacadas ou se houver problemas na coleta de dados.
+
+Há também a métrica qualitativa da fixação, usando o cálculo da soma das
+distâncias entre as fixações detectadas e o centro do estímulo. A
+métrica pode não dar um bom valor se o usuário não olhar exatamente para
+o centro do estímulo.
+
+\hyperdef{}{conclusuxe3o}{\chapter{Conclusão}\label{conclusuxe3o}}
 
 Esta revisão serve para conhecer os métodos de classificação de dados do
-olhar e métodos de avaliação dos algoritmos de análise. Como trabalho
-futuro, as etapas de filtragem, bem como outros métodos de
+olhar e métodos de avaliação dos algoritmos de análise. Com o estudo,
+percebe-se que não existe um melhor método de classificação, pois os
+resultados das análises dependem das definições adotadas dos movimentos,
+qualidade na coleta de dados, frequência da coleta, nível de ruído,
+características fisiológicas dos olhos de diferentes usuários, filtragem
+adotada, critérios usados na identificação, movimentos escolhidos para
+detecção, entre outras características.
+
+Mesmo assim, o resultado dessas análises podem contribuir com a
+interação dos usuários com os sistemas, a fim de aumentar a eficiência,
+eficácia, reduzir a fadiga, melhorar a resposta do sistema e aumentar a
+produtividade.
+
+Como trabalho futuro, as etapas de filtragem, bem como outros métodos de
 classificação, serão descritas e analisadas. Classificações de outros
-eventos do olhar também serão levadas em conta, como piscadas,
-perseguições contínuas e nystagmus. Alguns dos métodos que estão sendo
-avaliados são:
+movimentos do olhar também serão levadas em conta, como piscadas,
+perseguições contínuas, microssacadas, tremores e nystagmus.
+
+Alguns dos métodos que estão sendo estudados para complementar este
+texto são:
 
 \begin{itemize}
 \itemsep1pt\parskip0pt\parsep0pt
 \item
-  HMM de Karrsgard {[}2{]};
+  Variância e Covariância de Veneri {[}18{]};
 \item
-  Clusterização de Projeção de Urruty ;
-\item
-  Variância e Covariância de Veneri {[}11{]};
-\item
-  \emph{Mean Shift Procedure} de Santella {[}12{]}.
+  \emph{Mean Shift Procedure} de Santella {[}19{]}.
 \end{itemize}
 
 \chapter{Bibliografia}\label{bibliografia}
 
 {[}1{]} D. D. Salvucci and J. H. Goldberg, ``Identifying fixations and
 saccades in eye-tracking protocols,'' in \emph{Proceedings of the
-symposium on eye tracking research \& applications - eTRA '00}, 2000,
-pp. 71--78 {[}Online{]}. Available:
-\href{http://dl.acm.org/citation.cfm?id=355028 http://portal.acm.org/citation.cfm?doid=355017.355028}{http://dl.acm.org/citation.cfm?id=355028
-http://portal.acm.org/citation.cfm?doid=355017.355028}
+symposium on Eye tracking research \& applications - ETRA '00}, 2000,
+pp. 71--78.
 
 {[}2{]} I. Kärrsgård and A. Lindholm, ``Eye movement tracking using
-hidden Markov models,'' PhD thesis {[}Online{]}. Available:
-\url{http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.125.5895/\&rep=rep1/\&type=pdf}
+hidden Markov models,'' PhD thesis.
 
 {[}3{]} P. Olsson, ``Real-time and Offline Filters for Eye Tracking,''
 PhD thesis, KTH Electrical Engineering; KTH Electrical Engineering,
-Stockholm, Sweden, 2007 {[}Online{]}. Available:
-\url{http://kth.diva-portal.org/smash/record.jsf?pid=diva2:573446}
+Stockholm, Sweden, 2007.
 
-{[}4{]} A. Olsen, ``The Tobii I-VT Fixation Filter,'' 2012 {[}Online{]}.
-Available:
-\url{http://www.tobii.com/Global/Analysis/Training/WhitePapers/Tobii/_WhitePaper/_TobiiIVTFixationFilter.pdf}
+{[}4{]} A. Olsen, ``The Tobii I-VT Fixation Filter,'' 2012.
 
 {[}5{]} M. Nyström and K. Holmqvist, ``An adaptive algorithm for
 fixation, saccade, and glissade detection in eyetracking data.''
 \emph{Behavior research methods}, vol. 42, no. 1, pp. 188--204, Feb.
-2010 {[}Online{]}. Available:
-\href{http://link.springer.com/article/10.3758/BRM.42.1.188 http://www.ncbi.nlm.nih.gov/pubmed/20160299}{http://link.springer.com/article/10.3758/BRM.42.1.188
-http://www.ncbi.nlm.nih.gov/pubmed/20160299}
+2010.
 
 {[}6{]} D. Sauter, B. J. Martin, N. Renzo, and C. Vomscheid, ``Analysis
 of eye tracking movements using innovations generated by a Kalman
 filter,'' \emph{Medical \& Biological Engineering \& Computing}, vol.
-29, no. 1, pp. 63--69, Jan. 1991 {[}Online{]}. Available:
-\href{http://link.springer.com/article/10.1007/BF02446297 http://link.springer.com/10.1007/BF02446297}{http://link.springer.com/article/10.1007/BF02446297
-http://link.springer.com/10.1007/BF02446297}
+29, no. 1, pp. 63--69, Jan. 1991.
 
-{[}7{]} F. Cristino, S. Mathôt, J. Theeuwes, and I. D. Gilchrist,
-``ScanMatch: a novel method for comparing fixation sequences.''
-\emph{Behavior research methods}, vol. 42, no. 3, pp. 692--700, Aug.
-2010 {[}Online{]}. Available:
-\href{http://link.springer.com/article/10.3758/BRM.42.3.692 http://www.ncbi.nlm.nih.gov/pubmed/20805591}{http://link.springer.com/article/10.3758/BRM.42.3.692
-http://www.ncbi.nlm.nih.gov/pubmed/20805591}
+{[}7{]} F. Behrens, M. Mackeben, and W. Schröder-Preikschat, ``An
+improved algorithm for automatic detection of saccades in eye movement
+data and for calculating saccade parameters.'' \emph{Behavior research
+methods}, vol. 42, no. 3, pp. 701--8, Aug. 2010.
 
-{[}8{]} O. V. Komogortsev and A. Karpov, ``Automated classification and
+{[}8{]} G. Larsson, ``Evaluation methodology of eye movement
+classification algorithms,'' PhD thesis, Royal Institute of Technology,
+2010.
+
+{[}9{]} O. V. Komogortsev and A. Karpov, ``Automated classification and
 scoring of smooth pursuit eye movements in the presence of fixations and
 saccades.'' \emph{Behavior research methods}, vol. 45, no. 1, pp.
-203--15, Mar. 2013 {[}Online{]}. Available:
-\href{http://link.springer.com/article/10.3758/s13428-012-0234-9 http://www.ncbi.nlm.nih.gov/pubmed/22806708}{http://link.springer.com/article/10.3758/s13428-012-0234-9
-http://www.ncbi.nlm.nih.gov/pubmed/22806708}
+203--15, Mar. 2013.
 
-{[}9{]} F. Shic, B. Scassellati, and K. Chawarska, ``The incomplete
-fixation measure,'' in \emph{Proceedings of the 2008 symposium on eye
-tracking research \& applications - eTRA '08}, 2008, p. 111
-{[}Online{]}. Available:
-\href{http://dl.acm.org/citation.cfm?id=1344500 http://portal.acm.org/citation.cfm?doid=1344471.1344500}{http://dl.acm.org/citation.cfm?id=1344500
-http://portal.acm.org/citation.cfm?doid=1344471.1344500}
+{[}10{]} J. S. Agustin, ``Off-the-shelf gaze interaction,'' PhD thesis,
+2010.
 
-{[}10{]} G. Larsson, ``Evaluation methodology of eye movement
-classification algorithms,'' PhD thesis, Royal Institute of Technology,
-2010 {[}Online{]}. Available:
-\url{http://www.nada.kth.se/utbildning/grukth/exjobb/rapportlistor/2010/rapporter10/larsson/_gustav/_10064.pdf}
+{[}11{]} L. Larsson, ``Event detection in eye-tracking data,'' PhD
+thesis, Lund University, 2010.
 
-{[}11{]} G. Veneri, P. Piu, F. Rosini, P. Federighi, A. Federico, and A.
+{[}12{]} O. V. Komogortsev, ``Eye movement Classification
+{[}Software{]}.'' 2013, {[}Online{]}, Available:
+\url{http://cs.txstate.edu/~ok11/emd_offline.html}. {[}Accessed:
+14-Dec-2013{]}.
+
+{[}13{]} O. V. Komogortsev, Y. S. Ryu, D. H. Koh, and S. M. Gowda,
+``Instantaneous saccade driven eye gaze interaction,'' in
+\emph{Proceedings of the International Conference on Advances in
+Computer Enterntainment Technology - ACE '09}, 2009, p. 140.
+
+{[}14{]} F. Behrens and L. Weiss, ``An algorithm separating saccadic
+from nonsaccadic eye movements automatically by use of the acceleration
+signal,'' \emph{Vision Research}, vol. 32, no. 5, pp. 889--893, May
+1992.
+
+{[}15{]} D. H. Koh, S. A. Munikrishne Gowda, and O. V. Komogortsev,
+``Input evaluation of an eye-gaze-guided interface,'' in
+\emph{Proceedings of the 1st ACM SIGCHI symposium on Engineering
+interactive computing systems - EICS '09}, 2009, p. 197.
+
+{[}16{]} F. Shic, B. Scassellati, and K. Chawarska, ``The incomplete
+fixation measure,'' in \emph{Proceedings of the 2008 symposium on Eye
+tracking research \& applications - ETRA '08}, 2008, p. 111.
+
+{[}17{]} O. V. Komogortsev, S. Jayarathna, D. H. Koh, and S. M. Gowda,
+``Qualitative and quantitative scoring and evaluation of the eye
+movement classification algorithms,'' in \emph{Proceedings of the 2010
+Symposium on Eye-Tracking Research \& Applications - ETRA '10}, 2010, p.
+65.
+
+{[}18{]} G. Veneri, P. Piu, F. Rosini, P. Federighi, A. Federico, and A.
 Rufa, ``Automatic eye fixations identification based on analysis of
 variance and covariance,'' \emph{Pattern Recognition Letters}, vol. 32,
-no. 13, pp. 1588--1593, Oct. 2011 {[}Online{]}. Available:
-\href{http://www.sciencedirect.com/science/article/pii/S0167865511001887 http://linkinghub.elsevier.com/retrieve/pii/S0167865511001887}{http://www.sciencedirect.com/science/article/pii/S0167865511001887
-http://linkinghub.elsevier.com/retrieve/pii/S0167865511001887}
+no. 13, pp. 1588--1593, Oct. 2011.
 
-{[}12{]} A. Santella and D. DeCarlo, ``Robust clustering of eye movement
+{[}19{]} A. Santella and D. DeCarlo, ``Robust clustering of eye movement
 recordings for quantification of visual interest,'' in \emph{Proceedings
-of the eye tracking research \& applications symposium on eye tracking
-research \& applications - eTRA'2004}, 2004, pp. 27--34 {[}Online{]}.
-Available:
-\href{http://dl.acm.org/citation.cfm?id=968368 http://portal.acm.org/citation.cfm?doid=968363.968368}{http://dl.acm.org/citation.cfm?id=968368
-http://portal.acm.org/citation.cfm?doid=968363.968368}
+of the Eye tracking research \& applications symposium on Eye tracking
+research \& applications - ETRA'2004}, 2004, pp. 27--34.
 
 \end{document}

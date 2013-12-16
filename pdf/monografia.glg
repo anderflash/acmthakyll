@@ -1,0 +1,41 @@
+;; This logfile was generated automatically by `xindy'
+;; at 16.12.2013  02:02:54
+;; Indexstyle: "/tmp/J_e8aVsxUs", Rawindex: "/tmp/pQt7jfMSSK", Output: "monografia.gls"
+
+
+Building indexentry-tree:
+Hierdepth of index is :TREE
+
+sort-indexentries: (FORWARD BACKWARD FORWARD FORWARD)
+sort-indexentries: (FORWARD BACKWARD FORWARD FORWARD)
+sort-indexentries: (FORWARD BACKWARD FORWARD FORWARD)
+sort-indexentries: (FORWARD BACKWARD FORWARD FORWARD)
+sort-indexentries: (FORWARD BACKWARD FORWARD FORWARD)
+sort-indexentries: (FORWARD BACKWARD FORWARD FORWARD)
+sort-indexentries: (FORWARD BACKWARD FORWARD FORWARD)
+sort-indexentries: (FORWARD BACKWARD FORWARD FORWARD)
+sort-indexentries: (FORWARD BACKWARD FORWARD FORWARD)
+sort-indexentries: (FORWARD BACKWARD FORWARD FORWARD)
+
+Forming letter-groups:
+Letter-group: "¨åÚ" -> "I"
+Letter-group: "¨¤»»" -> "I"
+Letter-group: "¨Ú" -> "I"
+Letter-group: "¨»ÐÚ" -> "I"
+Letter-group: "œ¨Ë" -> "F"
+Letter-group: "¨€Ã¨" -> "I"
+Letter-group: "¨åÚ" -> "I"
+Letter-group: "¨ååÚ" -> "I"
+Letter-group: "¨å»È" -> "I"
+Letter-group: "¨€€Ú" -> "I"
+sort-indexentries: (FORWARD BACKWARD FORWARD FORWARD)
+Letter-group: "œ¨Ë" -> "F"
+sort-indexentries: (FORWARD BACKWARD FORWARD FORWARD)
+Letter-group: "¨€€Ú" -> "I"
+
+makeglossaries messages:
+
+Cannot locate xindy module for language brazil in codepage utf8.
+Retrying using default codepage.
+Cannot locate xindy module for language brazil.
+Retrying with -L general

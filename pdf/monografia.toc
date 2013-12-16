@@ -1,0 +1,50 @@
+\select@language {brazil}
+\select@language {english}
+\select@language {brazil}
+\select@language {brazil}
+\contentsline {chapter}{\numberline {1}Introdução}{4}{chapter.1}
+\contentsline {chapter}{\numberline {2}Movimentos}{5}{chapter.2}
+\contentsline {chapter}{\numberline {3}Filtros}{6}{chapter.3}
+\contentsline {section}{\numberline {3.1}Filtro de Resposta ao Impulso Finita}{7}{section.3.1}
+\contentsline {section}{\numberline {3.2}Savitzky-Golay}{7}{section.3.2}
+\contentsline {section}{\numberline {3.3}Filtro de Kalman}{7}{section.3.3}
+\contentsline {chapter}{\numberline {4}Taxonomia de Métodos de Classificação}{8}{chapter.4}
+\contentsline {section}{\numberline {4.1}Critérios espaciais}{8}{section.4.1}
+\contentsline {section}{\numberline {4.2}Critérios temporaais}{8}{section.4.2}
+\contentsline {chapter}{\numberline {5}Métodos}{10}{chapter.5}
+\contentsline {section}{\numberline {5.1}\gls {I-VT}}{12}{section.5.1}
+\contentsline {subsection}{\numberline {5.1.1}Vantagens}{12}{subsection.5.1.1}
+\contentsline {subsection}{\numberline {5.1.2}Desvantagens}{12}{subsection.5.1.2}
+\contentsline {section}{\numberline {5.2}\gls {I-HMM}}{13}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}Vantagens:}{13}{subsection.5.2.1}
+\contentsline {subsection}{\numberline {5.2.2}Desvantagens:}{13}{subsection.5.2.2}
+\contentsline {section}{\numberline {5.3}\gls {I-DT}}{14}{section.5.3}
+\contentsline {subsection}{\numberline {5.3.1}Vantagens:}{14}{subsection.5.3.1}
+\contentsline {subsection}{\numberline {5.3.2}Desvantagens:}{14}{subsection.5.3.2}
+\contentsline {section}{\numberline {5.4}\gls {I-MST}}{15}{section.5.4}
+\contentsline {subsection}{\numberline {5.4.1}Vantagens:}{15}{subsection.5.4.1}
+\contentsline {subsection}{\numberline {5.4.2}Desvantagens:}{15}{subsection.5.4.2}
+\contentsline {section}{\numberline {5.5}I-AOI}{16}{section.5.5}
+\contentsline {subsection}{\numberline {5.5.1}Vantagens:}{16}{subsection.5.5.1}
+\contentsline {subsection}{\numberline {5.5.2}Desvantagens:}{16}{subsection.5.5.2}
+\contentsline {section}{\numberline {5.6}I-VDT de Komogortsev}{17}{section.5.6}
+\contentsline {subsection}{\numberline {5.6.1}Vantagens}{17}{subsection.5.6.1}
+\contentsline {subsection}{\numberline {5.6.2}Desvantagens}{17}{subsection.5.6.2}
+\contentsline {section}{\numberline {5.7}\gls {I-VT} Adaptativo de Nyström}{18}{section.5.7}
+\contentsline {subsection}{\numberline {5.7.1}Vantagens}{18}{subsection.5.7.1}
+\contentsline {subsection}{\numberline {5.7.2}Desvantagens}{18}{subsection.5.7.2}
+\contentsline {section}{\numberline {5.8}\gls {I-DT} e HMM de Kärrsgård}{20}{section.5.8}
+\contentsline {subsection}{\numberline {5.8.1}Vantagens}{20}{subsection.5.8.1}
+\contentsline {subsection}{\numberline {5.8.2}Desvantagens}{20}{subsection.5.8.2}
+\contentsline {section}{\numberline {5.9}Clusterização de Projeção de Urruty}{21}{section.5.9}
+\contentsline {subsection}{\numberline {5.9.1}Vantagens}{21}{subsection.5.9.1}
+\contentsline {subsection}{\numberline {5.9.2}Desvantagens}{21}{subsection.5.9.2}
+\contentsline {section}{\numberline {5.10}I-AAT de de Behrens}{22}{section.5.10}
+\contentsline {subsection}{\numberline {5.10.1}Vantagens}{22}{subsection.5.10.1}
+\contentsline {subsection}{\numberline {5.10.2}Desvantagens}{22}{subsection.5.10.2}
+\contentsline {section}{\numberline {5.11}Filtro de Kalman}{23}{section.5.11}
+\contentsline {subsection}{\numberline {5.11.1}Vantagens}{23}{subsection.5.11.1}
+\contentsline {subsection}{\numberline {5.11.2}Desvantagens}{23}{subsection.5.11.2}
+\contentsline {chapter}{\numberline {6}Avaliação dos Métodos}{24}{chapter.6}
+\contentsline {chapter}{\numberline {7}Conclusão}{26}{chapter.7}
+\contentsline {chapter}{\numberline {8}Bibliografia}{27}{chapter.8}

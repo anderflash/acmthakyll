@@ -1,37 +1,46 @@
-\BOOKMARK [1][-]{section*.1}{Introdução}{}% 1
-\BOOKMARK [1][-]{section*.2}{Eventos}{}% 2
-\BOOKMARK [1][-]{section*.3}{Filtros}{}% 3
-\BOOKMARK [1][-]{section*.4}{Categorias de Métodos de Classificação}{}% 4
-\BOOKMARK [2][-]{section*.5}{Critérios espaciais}{section*.4}% 5
-\BOOKMARK [3][-]{section*.6}{Critérios temporaais}{section*.5}% 6
-\BOOKMARK [1][-]{section*.7}{Métodos}{}% 7
-\BOOKMARK [2][-]{section*.8}{I-VT}{section*.7}% 8
-\BOOKMARK [3][-]{section*.9}{Vantagens}{section*.8}% 9
-\BOOKMARK [3][-]{section*.10}{Desvantagens}{section*.8}% 10
-\BOOKMARK [2][-]{section*.11}{I-HMM}{section*.7}% 11
-\BOOKMARK [3][-]{section*.12}{Vantagens:}{section*.11}% 12
-\BOOKMARK [3][-]{section*.13}{Desvantagens:}{section*.11}% 13
-\BOOKMARK [2][-]{section*.14}{I-DT}{section*.7}% 14
-\BOOKMARK [3][-]{section*.15}{Vantagens:}{section*.14}% 15
-\BOOKMARK [3][-]{section*.16}{Desvantagens:}{section*.14}% 16
-\BOOKMARK [2][-]{section*.17}{I-MST}{section*.7}% 17
-\BOOKMARK [3][-]{section*.18}{Vantagens:}{section*.17}% 18
-\BOOKMARK [3][-]{section*.19}{Desvantagens:}{section*.17}% 19
-\BOOKMARK [2][-]{section*.20}{I-AOI}{section*.7}% 20
-\BOOKMARK [3][-]{section*.21}{Vantagens:}{section*.20}% 21
-\BOOKMARK [3][-]{section*.22}{Desvantagens:}{section*.20}% 22
-\BOOKMARK [1][-]{section*.23}{I-VDT\040de\040Komogortsev}{}% 23
-\BOOKMARK [2][-]{section*.24}{Vantagens}{section*.23}% 24
-\BOOKMARK [2][-]{section*.25}{Desvantagens}{section*.23}% 25
-\BOOKMARK [1][-]{section*.26}{I-VT Adaptativo de Nyström}{}% 26
-\BOOKMARK [2][-]{section*.27}{Vantagens}{section*.26}% 27
-\BOOKMARK [2][-]{section*.28}{Desvantagens}{section*.26}% 28
-\BOOKMARK [1][-]{section*.29}{I-HMM\040de\040Karrsgard}{}% 29
-\BOOKMARK [2][-]{section*.30}{Vantagens}{section*.29}% 30
-\BOOKMARK [2][-]{section*.31}{Desvantagens}{section*.29}% 31
-\BOOKMARK [1][-]{section*.32}{Clusterização de Projeção de Urruty}{}% 32
-\BOOKMARK [2][-]{section*.33}{Vantagens}{section*.32}% 33
-\BOOKMARK [2][-]{section*.34}{Desvantagens}{section*.32}% 34
-\BOOKMARK [1][-]{section*.35}{Avaliação dos Métodos}{}% 35
-\BOOKMARK [1][-]{section*.36}{Conclusão}{}% 36
-\BOOKMARK [1][-]{section*.37}{Bibliografia}{}% 37
+\BOOKMARK [0][-]{chapter.1}{Introdução}{}% 1
+\BOOKMARK [0][-]{chapter.2}{Movimentos}{}% 2
+\BOOKMARK [0][-]{chapter.3}{Filtros}{}% 3
+\BOOKMARK [1][-]{section.3.1}{Filtro\040de\040Resposta\040ao\040Impulso\040Finita}{chapter.3}% 4
+\BOOKMARK [1][-]{section.3.2}{Savitzky-Golay}{chapter.3}% 5
+\BOOKMARK [1][-]{section.3.3}{Filtro\040de\040Kalman}{chapter.3}% 6
+\BOOKMARK [0][-]{chapter.4}{Taxonomia de Métodos de Classificação}{}% 7
+\BOOKMARK [1][-]{section.4.1}{Critérios espaciais}{chapter.4}% 8
+\BOOKMARK [1][-]{section.4.2}{Critérios temporaais}{chapter.4}% 9
+\BOOKMARK [0][-]{chapter.5}{Métodos}{}% 10
+\BOOKMARK [1][-]{section.5.1}{I-VT}{chapter.5}% 11
+\BOOKMARK [2][-]{subsection.5.1.1}{Vantagens}{section.5.1}% 12
+\BOOKMARK [2][-]{subsection.5.1.2}{Desvantagens}{section.5.1}% 13
+\BOOKMARK [1][-]{section.5.2}{I-HMM}{chapter.5}% 14
+\BOOKMARK [2][-]{subsection.5.2.1}{Vantagens:}{section.5.2}% 15
+\BOOKMARK [2][-]{subsection.5.2.2}{Desvantagens:}{section.5.2}% 16
+\BOOKMARK [1][-]{section.5.3}{I-DT}{chapter.5}% 17
+\BOOKMARK [2][-]{subsection.5.3.1}{Vantagens:}{section.5.3}% 18
+\BOOKMARK [2][-]{subsection.5.3.2}{Desvantagens:}{section.5.3}% 19
+\BOOKMARK [1][-]{section.5.4}{I-MST}{chapter.5}% 20
+\BOOKMARK [2][-]{subsection.5.4.1}{Vantagens:}{section.5.4}% 21
+\BOOKMARK [2][-]{subsection.5.4.2}{Desvantagens:}{section.5.4}% 22
+\BOOKMARK [1][-]{section.5.5}{I-AOI}{chapter.5}% 23
+\BOOKMARK [2][-]{subsection.5.5.1}{Vantagens:}{section.5.5}% 24
+\BOOKMARK [2][-]{subsection.5.5.2}{Desvantagens:}{section.5.5}% 25
+\BOOKMARK [1][-]{section.5.6}{I-VDT\040de\040Komogortsev}{chapter.5}% 26
+\BOOKMARK [2][-]{subsection.5.6.1}{Vantagens}{section.5.6}% 27
+\BOOKMARK [2][-]{subsection.5.6.2}{Desvantagens}{section.5.6}% 28
+\BOOKMARK [1][-]{section.5.7}{I-VT Adaptativo de Nyström}{chapter.5}% 29
+\BOOKMARK [2][-]{subsection.5.7.1}{Vantagens}{section.5.7}% 30
+\BOOKMARK [2][-]{subsection.5.7.2}{Desvantagens}{section.5.7}% 31
+\BOOKMARK [1][-]{section.5.8}{I-DT e HMM de Kärrsgård}{chapter.5}% 32
+\BOOKMARK [2][-]{subsection.5.8.1}{Vantagens}{section.5.8}% 33
+\BOOKMARK [2][-]{subsection.5.8.2}{Desvantagens}{section.5.8}% 34
+\BOOKMARK [1][-]{section.5.9}{Clusterização de Projeção de Urruty}{chapter.5}% 35
+\BOOKMARK [2][-]{subsection.5.9.1}{Vantagens}{section.5.9}% 36
+\BOOKMARK [2][-]{subsection.5.9.2}{Desvantagens}{section.5.9}% 37
+\BOOKMARK [1][-]{section.5.10}{I-AAT\040de\040de\040Behrens}{chapter.5}% 38
+\BOOKMARK [2][-]{subsection.5.10.1}{Vantagens}{section.5.10}% 39
+\BOOKMARK [2][-]{subsection.5.10.2}{Desvantagens}{section.5.10}% 40
+\BOOKMARK [1][-]{section.5.11}{Filtro\040de\040Kalman}{chapter.5}% 41
+\BOOKMARK [2][-]{subsection.5.11.1}{Vantagens}{section.5.11}% 42
+\BOOKMARK [2][-]{subsection.5.11.2}{Desvantagens}{section.5.11}% 43
+\BOOKMARK [0][-]{chapter.6}{Avaliação dos Métodos}{}% 44
+\BOOKMARK [0][-]{chapter.7}{Conclusão}{}% 45
+\BOOKMARK [0][-]{chapter.8}{Bibliografia}{}% 46

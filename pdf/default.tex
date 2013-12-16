@@ -1,5 +1,5 @@
 \documentclass[$if(fontsize)$$fontsize$,$endif$$if(lang)$$lang$,$endif$$if(papersize)$$papersize$,$endif$$for(classoption)$$classoption$$sep$,$endfor$]{$documentclass$}
-\usepackage[T1]{fontenc}
+\usepackage[xindy]{glossaries}
 \usepackage{lmodern}
 \usepackage{amssymb,amsmath}
 \usepackage{ifxetex,ifluatex}
@@ -125,6 +125,7 @@ $if(lang)$
 \ifxetex
   \usepackage{polyglossia}
   \setmainlanguage{$mainlang$}
+  \setotherlanguage{english}
 \else
   \usepackage[$lang$]{babel}
 \fi
@@ -142,6 +143,25 @@ $endif$
 \author{$for(author)$$author$$sep$ \and $endfor$}
 \date{$date$}
 
+\usepackage{titlesec}
+\newcommand{\sectionbreak}{\clearpage}
+
+\newacronym{I-VT} {I-VT}{\emph{Identification by Velocity Threshold}}
+\newacronym{I-DT} {I-DT}{\emph{Identification by Velocity Threshold}}
+\newacronym{I-VVT}{I-VVT}{\emph{Identification by Velocity and Velocity Threshold}}
+\newacronym{I-VDT}{I-VDT}{\emph{Identification by Velocity and Dispersion Threshold}}
+\newacronym{I-VMP}{I-VMP}{\emph{Identification by Velocity and Movement Pattern}}
+\newacronym{I-HMM}{I-HMM}{\emph{Identification by Hidden Markov Model}}
+\newacronym{I-MST}{I-MST}{\emph{Identification by Minimum Spanning Tree}}
+\newacronym{I-AOI}{I-AOI}{\emph{Identification by Area Of Interest}}
+\newacronym{I-AAT}{I-AAT}{\emph{Identification by Acceleration Adaptive-Threshold}}
+\newacronym{FIR}{FIR}{\emph{Finite Impulse Response}}
+
+\renewcommand*{\glossaryname}{Lista de Termos}
+%\deftranslation{Glossary}{Lista de Termos}
+
+\makeglossaries
+
 \begin{document}
 $if(title)$
 \maketitle
@@ -151,13 +171,28 @@ $for(include-before)$
 $include-before$
 
 $endfor$
+\begin{english}
+\begin{abstract}
+$abstract$
+\end{abstract}
+\end{english}
+\newpage
+\selectlanguage{$mainlang$}
+\begin{abstract}
+$resumo$
+\end{abstract}
+
 $if(toc)$
 {
 \hypersetup{linkcolor=black}
 \setcounter{tocdepth}{$toc-depth$}
 \tableofcontents
+\newpage
 }
 $endif$
+
+\printglossary[type=\acronymtype]
+
 $body$
 
 $if(natbib)$
