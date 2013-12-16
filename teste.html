@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; }
+code > span.dt { color: #902000; }
+code > span.dv { color: #40a070; }
+code > span.bn { color: #40a070; }
+code > span.fl { color: #40a070; }
+code > span.ch { color: #4070a0; }
+code > span.st { color: #4070a0; }
+code > span.co { color: #60a0b0; font-style: italic; }
+code > span.ot { color: #007020; }
+code > span.al { color: #ff0000; font-weight: bold; }
+code > span.fu { color: #06287e; }
+code > span.er { color: #ff0000; font-weight: bold; }
+  </style>
+</head>
+<body>
+<div style="color:white">
+<div>
+<div>
+<div>
+<div>
+<table class="sourceCode haskell numberLines" id="mycode" startFrom="100"><tr class="sourceCode"><td class="lineNumbers"><pre>100
+101
+102
+103
+104
+</pre></td><td class="sourceCode"><pre><code class="sourceCode haskell"><span class="co">-- | Inefficient quicksort in haskell.</span>
+<span class="ot">qsort ::</span> (<span class="dt">Enum</span> a) <span class="ot">=&gt;</span> [a] <span class="ot">-&gt;</span> [a]
+qsort []     <span class="fu">=</span> []
+qsort (x<span class="fu">:</span>xs) <span class="fu">=</span> qsort (filter (<span class="fu">&lt;</span> x) xs) <span class="fu">++</span> [x] <span class="fu">++</span>
+               qsort (filter (<span class="fu">&gt;=</span> x) xs)</code></pre></td></tr></table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">-- | Inefficient quicksort in haskell.</span>
+<span class="ot">qsort ::</span> (<span class="dt">Enum</span> a) <span class="ot">=&gt;</span> [a] <span class="ot">-&gt;</span> [a]
+qsort []     <span class="fu">=</span> []
+qsort (x<span class="fu">:</span>xs) <span class="fu">=</span> qsort (filter (<span class="fu">&lt;</span> x) xs) <span class="fu">++</span> [x] <span class="fu">++</span>
+               qsort (filter (<span class="fu">&gt;=</span> x) xs) </code></pre>
+</body>
+</html>

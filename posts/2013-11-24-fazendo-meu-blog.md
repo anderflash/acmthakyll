@@ -22,5 +22,26 @@ de texto para criar uma bibliografia diretamente[@Galvao2004]
 pelo arquivo .bib, exportado[@Castro2001] do Mendeley que contém 
 um catálogo dos meus artigos.
 
+# Código
+
+~~~~ {#wgll1html1 .html .numberLines startFrom="1"}
+<html>
+  <head>
+	<meta charset="utf-8">
+  </head>
+  <body>
+  </body>
+</html>
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+~~~python
+import time
+# Quick, count to ten!
+for i in range(10):
+    # (but not *too* quick)
+    time.sleep(0.5)
+    print i
+~~~
+
 # Bibliografia
 
