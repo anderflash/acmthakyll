@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="64"
+   height="45"
+   id="svg3980"
+   version="1.1"
+   inkscape:version="0.48.3.1 r9886"
+   sodipodi:docname="belabutiko_logo.svg">
+  <defs
+     id="defs3982" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.2693981"
+     inkscape:cx="-85.332219"
+     inkscape:cy="13.830481"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1280"
+     inkscape:window-height="781"
+     inkscape:window-x="0"
+     inkscape:window-y="-4"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata3985">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-1007.3622)">
+    <g
+       transform="matrix(0.37383504,0,0,0.37383504,-19.447614,1008.8015)"
+       id="g3951"
+       style="fill:#ffffff;stroke:none">
+      <path
+         sodipodi:nodetypes="ccccccccccccc"
+         inkscape:connector-curvature="0"
+         id="path3165"
+         d="m 98.242812,27.249201 0,-7.98722 L 64.696486,20.060703 71.884984,77.56869 159.74441,89.549521 188.4984,9.6773163 209.26518,15.268371 214.05751,8.8785942 183.70607,0.8913738 154.95208,79.964856 79.872204,68.782748 76.677316,28.846645 z"
+         style="fill:#ffffff;fill-opacity:1;stroke:none" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path3935"
+         d="m 151.75719,2.4888179 -10.38339,71.8849841 11.18211,2.396166 14.377,-72.683706 z"
+         style="fill:#ffffff;fill-opacity:1;stroke:none" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path3937"
+         d="m 125.39936,9.6773163 -1.59745,62.3003197 11.18211,1.597444 7.1885,-62.30032 z"
+         style="fill:#ffffff;fill-opacity:1;stroke:none" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path3939"
+         d="m 107.02875,20.060703 1.59745,48.722045 11.98083,4.792332 -1.59745,-51.916933 z"
+         style="fill:#ffffff;fill-opacity:1;stroke:none" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path3941"
+         d="m 86.261981,32.041534 0.798722,35.942492 11.182108,0 1.597445,-35.14377 z"
+         style="fill:#ffffff;fill-opacity:1;stroke:none" />
+      <path
+         d="m 98.242815,91.546326 c 0,5.514025 -4.470001,9.984024 -9.984026,9.984024 -5.514025,0 -9.984026,-4.469999 -9.984026,-9.984024 0,-5.514026 4.470001,-9.984026 9.984026,-9.984026 5.514025,0 9.984026,4.47 9.984026,9.984026 z"
+         sodipodi:ry="9.984026"
+         sodipodi:rx="9.984026"
+         sodipodi:cy="91.546326"
+         sodipodi:cx="88.258789"
+         id="path3943"
+         style="opacity:0.98999999000000005;fill:#ffffff;fill-opacity:1;stroke:none"
+         sodipodi:type="arc" />
+      <path
+         d="m 146.16613,99.134186 c 0,5.734584 -4.6488,10.383384 -10.38338,10.383384 -5.73459,0 -10.38339,-4.6488 -10.38339,-10.383384 0,-5.734586 4.6488,-10.383387 10.38339,-10.383387 5.73458,0 10.38338,4.648801 10.38338,10.383387 z"
+         sodipodi:ry="10.383387"
+         sodipodi:rx="10.383387"
+         sodipodi:cy="99.134186"
+         sodipodi:cx="135.78275"
+         id="path3945"
+         style="opacity:0.98999999000000005;fill:#ffffff;fill-opacity:1;stroke:none"
+         sodipodi:type="arc" />
+    </g>
+  </g>
+</svg>

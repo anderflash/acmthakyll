@@ -145,7 +145,7 @@ a:visited {
 }
 }@media screen and (min-width: 30em) and (max-width: 63.236em) {
   .content{
-    width:30em;
+    /*width:30em;*/
 }
 }
 
