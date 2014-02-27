@@ -141,11 +141,11 @@ a:visited {
 }
 }@media all and (min-width: 33.236em) {
     .content {
-    width: 30em;
+    /*width: 30em;*/
 }
 }@media screen and (min-width: 30em) and (max-width: 63.236em) {
   .content{
-    width:30em;
+    /*width:30em;*/
 }
 }
 

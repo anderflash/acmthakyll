@@ -1,0 +1,133 @@
+.reveal .slides {
+  height: 100%;
+  top: 40%;
+  margin-top: 0;
+}
+
+.reveal .slides>section {
+  min-height: 90%;
+  min-width: 90%;
+}
+
+.reveal .slides>section>section {
+  min-height: 100%;
+}
+
+/*********************************************
+ * OTHER STATES
+ *********************************************/
+
+.fullscreen .state-background {
+  width: 100%;
+  height: 100%;
+}
+
+.fullscreen .reveal .slides {
+  margin: 0px;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  left: 0px;
+  right: 0px;
+  top: '30%';
+  bottom: 0px;
+}
+
+.unido
+{
+/*	position:relative;
+	display:block;
+	top: 0px;
+	left: 0px;*/
+}
+
+.fullscreen .reveal .slides > section {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  text-align: left;
+  left: 0px;
+  right: 0px;
+  top: '30%';
+  bottom: 0px;
+  margin:0px;
+  padding:20px;
+  padding-top: 20px;
+}
+
+.fullscreen .reveal .slides > section > section {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0px;
+  right: 0px;
+  top: '30%';
+  bottom: 0px;
+  min-height: 100%;
+  margin: 0px;
+  text-align: left;
+  padding:0px;
+  padding-top: 0px;
+}
+
+#reveal .slides {
+    position: static;
+    width: auto;
+    height: auto;
+
+    left: auto;
+  top: '30%';
+    margin-left: auto;
+    margin-top: auto;
+    padding: auto;
+
+    overflow: visible;
+    display: block;
+
+    text-align: center;
+    -webkit-perspective: none;
+    -moz-perspective: none;
+    -ms-perspective: none;
+      perspective: none;
+
+    -webkit-perspective-origin: 50% 50%; /* there isn't a none/auto value but 50-50 is the default */
+    -moz-perspective-origin: 50% 50%;
+    -ms-perspective-origin: 50% 50%;
+       perspective-origin: 50% 50%;
+}
+#reveal .slides>section, #reveal .slides>section>section, #reveal .slides>section.past, #reveal .slides>section.future {
+    visibility: visible;
+    position: static;
+    width: 90%;
+    height: auto;
+    display: block;
+    overflow: visible;
+
+    left: 0%;
+  top: '30%';
+    margin-left: 0px;
+    margin-top: 0px;
+    padding: 20px 0px;
+
+    opacity: 1;
+
+    -webkit-transform-style: flat;
+    -moz-transform-style: flat;
+    -ms-transform-style: flat;
+    transform-style: flat;
+
+    -webkit-transform: none;
+    -moz-transform: none;
+    -ms-transform: none;
+    transform: none;
+}
+section {
+    page-break-after: always !important; 
+}
+
+.reveal section img
+{
+	background:none;
+	border:none;
+}

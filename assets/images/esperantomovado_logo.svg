@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.0"
+   width="64"
+   height="45"
+   id="Flag of Esperanto"
+   inkscape:version="0.48.3.1 r9886"
+   sodipodi:docname="esperantomovado_logo.svg">
+  <metadata
+     id="metadata3034">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs3032" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1280"
+     inkscape:window-height="781"
+     id="namedview3030"
+     showgrid="false"
+     inkscape:zoom="5.6568542"
+     inkscape:cx="39.753842"
+     inkscape:cy="-3.5575185"
+     inkscape:window-x="0"
+     inkscape:window-y="-4"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="Flag of Esperanto" />
+  <g
+     id="g3036"
+     transform="matrix(0.02133333,0,0,0.0225,5e-6,43.56)">
+    <rect
+       style="fill:#ffffff"
+       id="white background"
+       y="-1936"
+       x="0"
+       height="2000"
+       width="3000" />
+    <g
+       transform="translate(0,-1936)"
+       style="fill:#009900"
+       id="g3022">
+      <rect
+         id="rect3024"
+         y="0"
+         x="1000"
+         height="2000"
+         width="2000" />
+      <rect
+         id="rect3026"
+         y="1000"
+         x="0"
+         height="1000"
+         width="3000" />
+    </g>
+    <polygon
+       style="fill:#009900"
+       id="polygon3028"
+       points="0.22451399,-0.30901699 0.95105652,-0.30901699 0.36327126,0.11803399 0.58778525,0.80901699 0,0.38196601 -0.58778525,0.80901699 -0.36327126,0.11803399 -0.95105652,-0.30901699 -0.22451399,-0.30901699 0,-1 "
+       transform="matrix(350,0,0,350,500,-1436)" />
+  </g>
+</svg>

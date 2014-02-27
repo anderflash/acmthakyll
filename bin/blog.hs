@@ -53,6 +53,11 @@ main = hakyllWith config $ do
         route   idRoute
         compile copyFileCompiler
 
+    -- Copy webgl demos
+    match "webgl/**" $ do
+        route   idRoute
+        compile copyFileCompiler
+
     -- Render posts
     match "posts/*" $ do
         route   $ setExtension ".html"
