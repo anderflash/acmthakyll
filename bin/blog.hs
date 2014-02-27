@@ -311,7 +311,7 @@ sitemapCtx conf = mconcat [ constField "root" (feedRoot conf)
 -- Configuration
 config :: Configuration
 config = defaultConfiguration {
-    deployCommand = " rsync --checksum --delete -ave 'ssh' \
+    deployCommand = " rsync --compress --checksum --delete -ave 'ssh' \
                     \_site/* acmt@pizza.ime.usp.br:www/hakyll"
     }
 

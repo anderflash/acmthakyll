@@ -1,0 +1,3 @@
+#!/bin/sh
+
+bin/blog build && cp -r _site/* $HOME/public_html/komputilisto/
