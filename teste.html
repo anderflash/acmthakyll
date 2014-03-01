@@ -1,11 +1,14 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta http-equiv="Content-Style-Type" content="text/css" />
-  <meta name="generator" content="pandoc" />
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title></title>
   <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
   <style type="text/css">
 table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
   margin: 0; padding: 0; vertical-align: baseline; border: none; }
@@ -27,30 +30,69 @@ code > span.er { color: #ff0000; font-weight: bold; }
   </style>
 </head>
 <body>
-<div style="color:white">
-<div>
-<div>
-<div>
-<div>
-<table class="sourceCode haskell numberLines" id="mycode" startFrom="100"><tr class="sourceCode"><td class="lineNumbers"><pre>100
-101
-102
-103
-104
-</pre></td><td class="sourceCode"><pre><code class="sourceCode haskell"><span class="co">-- | Inefficient quicksort in haskell.</span>
-<span class="ot">qsort ::</span> (<span class="dt">Enum</span> a) <span class="ot">=&gt;</span> [a] <span class="ot">-&gt;</span> [a]
-qsort []     <span class="fu">=</span> []
-qsort (x<span class="fu">:</span>xs) <span class="fu">=</span> qsort (filter (<span class="fu">&lt;</span> x) xs) <span class="fu">++</span> [x] <span class="fu">++</span>
-               qsort (filter (<span class="fu">&gt;=</span> x) xs)</code></pre></td></tr></table>
-</div>
-</div>
-</div>
-</div>
-</div>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">-- | Inefficient quicksort in haskell.</span>
-<span class="ot">qsort ::</span> (<span class="dt">Enum</span> a) <span class="ot">=&gt;</span> [a] <span class="ot">-&gt;</span> [a]
-qsort []     <span class="fu">=</span> []
-qsort (x<span class="fu">:</span>xs) <span class="fu">=</span> qsort (filter (<span class="fu">&lt;</span> x) xs) <span class="fu">++</span> [x] <span class="fu">++</span>
-               qsort (filter (<span class="fu">&gt;=</span> x) xs) </code></pre>
+<table class="sourceCode javascript numberLines" id="mycode" hl_lines="1" startFrom="1"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+</pre></td><td class="sourceCode"><pre><code class="sourceCode javascript">    <span class="kw">function</span> <span class="fu">iniciarShaders</span>()
+    {
+      <span class="kw">var</span> vertexShader = <span class="fu">getShader</span>(gl, <span class="st">&quot;#shader-vs&quot;</span>);
+      <span class="kw">var</span> fragmentShader = <span class="fu">getShader</span>(gl, <span class="st">&quot;#shader-fs&quot;</span>);
+      
+      shaderProgram = <span class="ot">gl</span>.<span class="fu">createProgram</span>();
+      <span class="ot">gl</span>.<span class="fu">attachShader</span>(shaderProgram, vertexShader);
+      <span class="ot">gl</span>.<span class="fu">attachShader</span>(shaderProgram, fragmentShader);
+      <span class="ot">gl</span>.<span class="fu">linkProgram</span>(shaderProgram);
+      
+      <span class="kw">if</span>(!<span class="ot">gl</span>.<span class="fu">getProgramParameter</span>(shaderProgram, <span class="ot">gl</span>.<span class="fu">LINK_STATUS</span>))
+      {
+    <span class="fu">alert</span>(<span class="st">&quot;Não pode inicializar shaders&quot;</span>);
+      }
+      
+      <span class="ot">gl</span>.<span class="fu">useProgram</span>(shaderProgram);
+      
+      <span class="ot">shaderProgram</span>.<span class="fu">vertexPositionAttribute</span> = <span class="ot">gl</span>.<span class="fu">vertexPositionAttribute</span> = <span class="ot">gl</span>.<span class="fu">getAttribLocation</span>(shaderProgram, <span class="st">&quot;aVertexPosition&quot;</span>);
+      <span class="ot">gl</span>.<span class="fu">enableVertexAttribArray</span>(<span class="ot">shaderProgram</span>.<span class="fu">vertexPositionAttribute</span>);
+      
+      <span class="ot">shaderProgram</span>.<span class="fu">vertexColorAttribute</span> = <span class="ot">gl</span>.<span class="fu">getAttribLocation</span>(shaderProgram, <span class="st">&quot;aVertexColor&quot;</span>);
+      <span class="ot">gl</span>.<span class="fu">enableVertexAttribArray</span>(<span class="ot">shaderProgram</span>.<span class="fu">vertexColorAttribute</span>);
+      
+      <span class="ot">shaderProgram</span>.<span class="fu">pMatrixUniform</span> = <span class="ot">gl</span>.<span class="fu">getUniformLocation</span>(shaderProgram, 
+            <span class="st">&quot;uPMatrix&quot;</span>);
+      <span class="ot">shaderProgram</span>.<span class="fu">vMatrixUniform</span> = <span class="ot">gl</span>.<span class="fu">getUniformLocation</span>(shaderProgram, 
+            <span class="st">&quot;uVMatrix&quot;</span>);
+      <span class="ot">shaderProgram</span>.<span class="fu">mMatrixUniform</span> = <span class="ot">gl</span>.<span class="fu">getUniformLocation</span>(shaderProgram, 
+            <span class="st">&quot;uMMatrix&quot;</span>);
+      
+      
+    }</code></pre></td></tr></table>
 </body>
 </html>

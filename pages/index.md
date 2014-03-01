@@ -4,7 +4,7 @@ related: *
 relatedTitle: Últimos Posts
 ---
 
-![Face](assets/images/face-quadrada.jpg "Face")
+![](assets/images/face-quadrada.jpg "Face")
 
 Sou um estudante de doutorado do Instituto de Matemática e Estatística da Universidade de São Paulo.
 

@@ -1,16 +1,20 @@
 ------------------------------
 author: Anderson Tavares
-title: Tutorial WebGL: Criando triângulos
-description: Criando triângulos
+title: Tutorial WebGL: Criando polígonos
+description: Criando polígonos
 tags: WebGL, OpenGL
 thumbnail: assets/images/webgl-criando-triangulo-thumb.png
 biblio: library.bib
 csl: ieee-with-url.csl
-math: True
+math: true
 en-GB: 2014-02-26-webgl-criando-triangulo
 eo: 2014-02-26-webgl-criando-triangulo
 pt-BR: 2014-02-26-webgl-criando-triangulo
 ------------------------------
+
+<div style="width:100%; height:30px">
+<span style="float:right">[T02: Adicionando Cores >> ](2014-02-28-webgl-colorindo-triangulo.html)</span>
+</div>
 
 Bem vindo ao meu primeiro tutorial de WebGL! Esta lição é baseado na [lição 1](http://learningwebgl.com/blog/?p=28) do site LearningWebGL.
 Nesta lição aprenderemos a exibir um triângulo e um quadrado. É o primeiro passo para criação de ambientes tridimensionais interessantes. 
@@ -259,7 +263,7 @@ Após a GPU converter os vértices transformados em fragmentos, o *Fragment Shad
     </script>
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Nesse caso, só precisamos definir a cor do fragmento.
+Nesse caso, só precisamos definir a cor do fragmento. E estamos utilizando apenas uma cor fixa (branco). No próximo tutorial aprenderemos como enviar uma cor específica para o shader direto do nosso script.
 
 **Mas e os fragmentos escondidos?** Se um polígono estiver atrás de outro, então dois fragmentos respectivos serão candidatos a um pixel. Qual deles? Depende do teste de profundidade que você escolher no ambiente. Se você não definir nada, por padrão o último polígono (P1) criado no buffer será desenhado acima do polígono previamente definido no buffer (P2), mesmo que P2 esteja mais perto da câmera do que P1. Dependendo da ordem que você define os vértices das faces de um cubo, a face traseira pode ser desenhada na frente da face frontal, tornando o desenho estranho.
 
@@ -269,12 +273,12 @@ Nesse script estamos simplesmente definindo a cor dos polígonos como branco. En
 
 ## Compilação do Shader
 
-Precisamos compilar o shader na GPU.
+Precisamos compilar o shader na GPU. Para isso vamos obter o script, criar um programa, anexar os shaders compilados ao programa e compilar o programa para ele ser usado na GPU. Depois disso obteremos as referências para as variáveis _uniforms_ e atributos para enviar nossos dados de vértices e transformações.
 
-**Tarefa: ** Adicione 
-
+**Tarefa: ** Adicione a função `iniciarShaders` junto com sua variável para o programa de shader.
 
 ~~~~ {#mycode .javascript .numberLines startFrom="1"}
+    var shaderProgram;
     function iniciarShaders()
     {
       var vertexShader = getShader(gl, "#shader-vs");
@@ -292,7 +296,7 @@ Precisamos compilar o shader na GPU.
       
       gl.useProgram(shaderProgram);
       
-      shaderProgram.vertexPositionAttribute = gl.vertexPositionAttribute = gl.getAttribLocation(shaderProgram, "aVertexPosition");
+      shaderProgram.vertexPositionAttribute = gl.getAttribLocation(shaderProgram, "aVertexPosition");
       gl.enableVertexAttribArray(shaderProgram.vertexPositionAttribute);
       
       shaderProgram.pMatrixUniform = gl.getUniformLocation(shaderProgram, 
@@ -463,6 +467,33 @@ Depois obtemos as referências dos _uniforms_, que nesse caso são as matrizes M
 
 Agora vamos criar os nossos modelos, o triângulo e o quadrado. Nessas primeiras lições, o ambiente será bidimensional, mas poucas linhas o transformam em tridimensional, tanto que colocaremos a coordenada `z` nos vértices. Por enquanto a coordenada `z` terá valor 0.
 
+Além dos buffers das posições do vértice, outros dados que precisamos enviar para a GPU são as matrizes de transformação. Elas podem ser qualquer tipo de matriz e serem organizadas de qualquer forma. Vamos utilizar a mais conhecida, que é o modelo _Model-View-Projection_.
+
+A matriz de modelo (_Model_) trata de orientar, posicionar e escalar ou cisalhar (distorcer a partir de um eixo) os objetos no mundo. Se você trabalhar com hierarquia de objetos (um esqueleto, por exemplo), você precisa fazer uma composição de transformações de modelo.
+
+A matriz de visualização (_View_) trata de orientar e posicionar a câmera para ver uma parte do ambiente. Ela é interessante porque quando a câmera se movimenta em um sentido, na verdade o mundo inteiro está se movimentando para outro sentido. Por enquanto colocaremos a câmera no seu padrão (matriz identidade), mas vamos modificá-la nos próximos tutoriais.
+
+A matriz de projeção (_Projection_) tem o objetivo de colocar todo o mundo tridimensional em um simples plano. Há vários modos para fazer isso. As duas principais são a projeção ortográfica e perspectiva. A projeção ortográfica simplesmente remove uma das coordenadas (nesse caso, removendo a coordenada $z$ para colocar todos os vértices no plano $XY$). A projeção perspectiva trabalha com o modelo de projeção _pin-hole_, inspirada no modelo visual humano.
+
+A ordem das multiplicações são $P \times V \times M \times \arrow{v}$, da direita para a esquerda, como uma função matemática.
+
+Precisamos criar variáveis para guardar estas matrizes.
+
+**Tarefa:** Adicione as variáveis globais `mMatrix`, `vMatrix` e `pMatrix` (próximas a tag `<script>` dentro do código)
+
+~~~~ {#mycode .javascript .numberLines startFrom="1"}
+var mMatrix = mat4.create();
+var vMatrix = mat4.create();
+var pMatrix = mat4.create();
+
+var triangleVertexPositionBuffer;
+var squareVertexPositionBuffer;
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Os buffers guardarão todas as posições do triângulo e do quadrado.
+
+**Tarefa:** Adicione a função `iniciarBuffers`:
+
 ~~~~ {#mycode .javascript .numberLines startFrom="1"}
 function iniciarBuffers()
 {
@@ -498,7 +529,6 @@ Para o triângulo, precisamos de 3 vértices (guardado em numItems) de 3 dimens�
 Para enviar os vértices ao buffer, precisamos dizer qual o tipo de buffer, os dados com o tipo desejado e como os dados do buffer vão ser manipulados. `STATIC_DRAW` significa que não iremos jogar os dados da GPU para a CPU, apenas da CPU para a GPU. Geralmente é o suficiente para nossas lições.
 
 Essa fase apenas lança os dados para a GPU. Se você não modificar os vértices dos modelos, então só precisa enviar apenas uma vez (podes ver que estamos chamando a função `iniciarBuffers` apenas uma vez).
-
 
 
 # Ambiente
@@ -561,12 +591,38 @@ Você pode limpar a tela usando `gl.clear` e colocando como parâmetro um númer
 
 ## Definindo a Perspectiva
 
-Há duas projeções 
+Há dois tipos de projeções principais: ortográfica e perspectiva. Existem outros tipos de projeções, como paraperspectiva, ortográfica escalada... Este [link](http://www.comp.nus.edu.sg/~cs4243/lecture/camera.pdf) contém uma apresentação sobre modelos de câmera e projeções. Livros sobre geometria projetiva como [esse](http://www.amazon.com/Projective-Geometry-H-S-M-Coxeter/dp/0387406239) de Coxeter trabalha matematicamente essa geometria que trabalha com incidências e que generaliza alguns aspectos sobre outras geometrias (euclidiana, afim...).
+
+Neste exemplo, queremos o efeito de que, quando o objeto estiver distante da câmera, seu tamanho seja reduzido na tela. Como estamos usando a regra da mão direita, com o polegar no eixo $X$, os outros dedos no eixo $Y$ e a palma da mão direcionada para o eixo $Z$, podes ver que o eixo $Z$ está orientado contra a câmera. Se você posicionar a câmera na origem $[0,0]$, então a coordenada $z$ dos objetos visíveis na câmera contém valores negativos.
+
+**Mas e se eu quiser valores positivos?** Então os objetos estarão "atrás" da câmera. Como vê-los? Orientando a câmera no sentido contrário, usando a matriz de câmera. Nas aulas seguintes trabalharemos melhor estes conceitos.
+
+Então vamos usar a função de projeção perspectiva. Geralmente 45 graus é um campo de visão satisfatório para a maioria das aplicações. Para o ambiente não ficar distorcido, vamos capturar o tamanho do canvas e usar a relação largura/altura. A figura abaixo mostra o _frustum_ (trapezóide) do campo de visão da câmera, um volume de uma pirâmide sem a ápice. Tudo que estiver dentro do volume será visualizado (ou pelo menos transformar-se-á em fragmentos). Veja na figura que o ângulo define a altura, enquanto o aspecto com a altura gera a largura. Esta função trabalha com dimensões no plano _near_. Os outros parâmetros são a distância dos planos _near_ e _far_ do centro de projeção da câmera. Por último, devemos dizer qual a matriz que guardará essa transformação.
+
+![](../assets/images/perspective.png)
+
+Por enquanto, não vamos deslocar a câmera e nem o modelo. Então insira a matriz identidade nestas variáveis.
 
 ## Desenhando o triângulo e o quadrado
 
-Veja que os códigos são parecidos para o triângulo e o quadrado. Na verdade deixamos como exercício jogar as linhas distintas para uma função e chamá-la apenas duas vezes para desenhar o triângulo e o quadrado.
+Veja que os códigos são parecidos para o triângulo e o quadrado. Na verdade deixamos como exercício criar apenas uma função para desenhar tanto o triângulo quanto o quadrado.
 
 Vamos desenhar o triângulo na esquerda e o quadrado na direita. Por isso estamos usamos a translação com (x,y,z) = (-1.5, 0, -7.0). -1.5 no eixo X pois o eixo é crescente na direita, e -7.0 pois o eixo Z é crescente na direção da câmera. Para tornar o objeto mais afastado da câmera, então colocamos valores negativos (na verdade são valores menores do que 0.1).
 
+Depois precisamos dizer ao OpenGL com quais pontos estamos lidando. Isso se faz com `gl.bindBuffer(gl.ARRAY_BUFFER, id_do_buffer)`. Todas as operações de buffer seguintes trabalharão com o buffer indicado (OpenGL é uma máquina de estado). A função `gl.vertexAttribPointer` associa o buffer que indicamos com o atributo do shader que compilamos. Ou seja, estamos respondendo a pergunta: "Para onde vai os vértices no shader da GPU?". Para esta função, precisamos do endereço do atributo no shader, o tamanho do atributo (se for posição em 3D, então é 3, se o atributo for cor RGBA, então é 4, se for coordenada de textura (s,t), então o valor é 2...), o tipo de dados (pois interamente ele trabalha com bytes), se queremos que os dados estejam na faixa $[-1,1]$ (não queremos isto), o início dos dados no buffer e o local do buffer (queremos desde o começo do buffer e queremos usar o buffer associado na função `bindBuffer`), por isso estamos colocando 0.
+
+Sabe a função `translate` que utilizamos antes do `bindBuffer`. Ela não joga para GPU diretamente a translação. Ela guarda a transformação na variável, pois podemos fazer combinações de transformações antes de enviar para a GPU. Lembre-se que atualmente o OpenGL não trabalha com modo imediato, e sim com o modo retido, para só depois mandar tudo para a GPU. Dessa forma, se você não altera nada no cenário, você não precisa mandar novamente o buffer de vértices nem os uniforms.
+
+**Mas quando ele envia estas transformações?** Justamente nas funções que colocamos dentro da função `setMatrixUniforms`. A função `gl.uniformMatrix4fv` envia uma matriz $4\times 4$ (do tipo ponto flutuante) para o _uniform_, espaço de memória na GPU que será tratada pelo shader. O uniform é diferente do atributo, pois ela está acessível tanto para o shader de vértice como de fragmento e ela é única para todos os vértices, enquanto que o atributo é específico para cada vértice. O primeiro argumento é o endereço da uniform no shader. O segundo argumento pergunta se queremos a transposta antes de enviar para a GPU. O terceiro parâmetro é efetivamente a matriz.
+
+Após jogar todos os vértices e transformações, devemos desenhá-las. A função `gl.drawArrays` precisa saber que tipo de forma estamos desenhando, o índice do primeiro vértice no buffer a ser desenhado (já que podemos desenhar partes do buffer, ao invés de desenhar ele todo, nesse caso estamos desenhando todos os vértices de uma vez), e o número de vértices a serem desenhadas.
+
 # Conclusão
+
+Ufa! Esse tutorial é muito grande, mas garanto que os outros tutoriais são apenas modificações (poucas linhas de código) em relação ao primeiro. E tem o efeito reverso: enquanto esse tutorial apenas mostra triângulos e quadrados apáticos, outros tutoriais terão efeitos bem mais interessantes com poucas modificações.
+
+Abraços e vejo vocês no segundo tutorial.
+
+<div style="width:100%; height:30px">
+<span style="float:right">[T02: Adicionando Cores >> ](2014-02-28-webgl-colorindo-triangulo.html)</span>
+</div>
