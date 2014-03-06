@@ -1,7 +1,7 @@
 ------------------------------
 author: Anderson Tavares
-title: Tutorial WebGL: Adicionando Cores
-description: Adicionando Cores
+title: Tutorial WebGL 2: Adicionando Cores
+description: Adicionando cores aos polígonos.
 tags: WebGL, OpenGL
 thumbnail: assets/images/webgl-colorindo-triangulo-thumb.png
 biblio: library.bib
@@ -17,7 +17,7 @@ math: true
 Bem vindo ao meu segundo tutorial de WebGL! Esta lição é baseado na [lição 2](http://learningwebgl.com/blog/?p=134) do site LearningWebGL. Vamos agora adicionar cores na cena. 
 Veja o resultado:
 
-<img src="../assets/images/webgl-colorindo-triangulo-resultado.png" style="height:300px;"/>
+<img class="sombreado" src="../assets/images/webgl-colorindo-triangulo-resultado.png" style="height:300px;"/>
 
 <a href="../webgl/demo-adicionando-cores" target="_blank">Veja o resultado</a>. 
 <a href="http://github.com/anderflash/webgl_tutorial" target="_blank">Baixe todos os demos</a>.
@@ -168,12 +168,12 @@ function iniciarBuffers()
   /*--Adicione estas linhas abaixo--*/
   triangleVertexColorBuffer = gl.createBuffer();
   gl.bindBuffer(gl.ARRAY_BUFFER, triangleVertexColorBuffer);
-  var colors = [
+  var cores = [
       1.0, 0.0, 0.0, 1.0,
       0.0, 1.0, 0.0, 1.0,
       0.0, 0.0, 1.0, 1.0
   ];
-  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(colors), gl.STATIC_DRAW);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(cores), gl.STATIC_DRAW);
   triangleVertexColorBuffer.itemSize = 4;
   triangleVertexColorBuffer.numItems = 3;
   
@@ -199,11 +199,11 @@ Para o quadrado, é o mesmo, porém vamos usar apenas uma cor. Então criamos um
   /*--Adicione estas linhas abaixo--*/
   squareVertexColorBuffer = gl.createBuffer();
   gl.bindBuffer(gl.ARRAY_BUFFER, squareVertexColorBuffer);
-  colors = []
+  cores = []
   for (var i=0; i < 4; i++) {
-    colors = colors.concat([0.5, 0.5, 1.0, 1.0]);
+    cores = cores.concat([0.5, 0.5, 1.0, 1.0]);
   }
-  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(colors), gl.STATIC_DRAW);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(cores), gl.STATIC_DRAW);
   squareVertexColorBuffer.itemSize = 4;
   squareVertexColorBuffer.numItems = 4;
 }

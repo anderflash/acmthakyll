@@ -19,8 +19,12 @@ body {
     font-family: "Alegreya",  Palatino,  Georgia,  serif;
     color: #444;
 }
+.sombreado
+{
+    box-shadow:0px 0px 5px #000;
+}
 pre {
-    background-color: #eee;
+    /*background-color: #eee;*/
     padding: 1ex;
     white-space: pre-wrap;
     word-wrap: break-word;

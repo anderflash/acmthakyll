@@ -85,13 +85,13 @@ main = hakyllWith config $ do
                                       }
     
                                       
-    match "posts/*" $ version "epub" $ do
-        route $ setExtension "epub"
-        compile $ do
-        body <- getResourceBody
-        withItemBody
-            (\p -> unsafeCompiler $ writeEPUB (defaultHakyllWriterOptions )  p)
-                    (readPandoc body)
+    -- match "posts/*" $ version "epub" $ do
+    --     route $ setExtension "epub"
+    --     compile $ do
+    --     body <- getResourceBody
+    --     withItemBody
+    --         (\p -> unsafeCompiler $ writeEPUB (defaultHakyllWriterOptions )  p)
+    --                 (readPandoc body)
 
     -- Render posts list
     create ["archive.html"] $ do
@@ -103,7 +103,7 @@ main = hakyllWith config $ do
             let archiveCtx = constField "title" "Todos os posts" `mappend`
                              defaultContext
             makeItem list
-                >>= loadAndApplyTemplate "templates/archive.html" (mconcat[mathCtx,archiveCtx])
+                >>= loadAndApplyTemplate "templates/archive.html" (mconcat[mathCtx,highlightingCtx, archiveCtx])
                 >>= pageCompiler
 
     -- Static pages
@@ -248,7 +248,7 @@ main = hakyllWith config $ do
 
 -- Auxiliary compilers
 pageCompiler :: Item String -> Compiler (Item String)
-pageCompiler i = loadAndApplyTemplate "templates/default.html" (mathCtx `mappend` defaultContext) i
+pageCompiler i = loadAndApplyTemplate "templates/default.html" (mconcat[mathCtx,highlightingCtx,thumbnailCtx, defaultContext]) i
                >>= relativizeUrls
 
 bibtexCompiler :: String -> String -> Compiler (Item String)
@@ -272,6 +272,32 @@ mathjax item = do
     return $ case Data.Map.lookup "math" metadata of
         Just "true" -> "<script type=\"text/javascript\" src=\"http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML\" />"
         otherwise   -> ""
+        
+        
+highlighting :: Item String -> Compiler String
+highlighting item = do
+    metadata <- getMetadata (itemIdentifier item)
+    return $ case Data.Map.lookup "highlighting" metadata of
+        Just "true" -> "<script type='text/javascript' src='"++ location ++ "/assets/js/shCore.js'></script><script type='text/javascript' src='"++ location ++ "/assets/js/shBrushJScript.js'></script><link href='"++ location ++ "/css/shCore.css' rel='stylesheet' type='text/css' /><link href='"++ location ++ "/css/shThemeDefault.css' rel='stylesheet' type='text/css' />"
+        otherwise   -> ""
+        
+
+retirarMaybe :: Maybe String -> [Char]
+retirarMaybe (Just s) = s
+retirarMaybe Nothing = []
+
+campo :: Metadata -> String -> String
+campo metadata nome = case nome of
+        "description" -> (retirarMaybe (Data.Map.lookup nome metadata))
+        "thumbnail" -> replace "-thumb" "" (location ++ "/" ++ (retirarMaybe (Data.Map.lookup nome metadata)))
+        otherwise -> location ++ "/" ++ (retirarMaybe (Data.Map.lookup nome metadata))
+        
+thumbnail :: Item String -> Compiler String
+thumbnail item = do
+    metadata <- getMetadata (itemIdentifier item)
+    return $ case Data.Map.lookup "thumbnail" metadata of
+        Just "" -> ""
+        otherwise -> "<meta property='shareaholic:image' content='"++ (campo metadata "thumbnail") ++ "' id='facebookShareMeta'/><meta property='twitter:image' content='"++ (campo metadata "thumbnail") ++"' id='twitterShareMeta'/><meta property='og:image' content='"++ (campo metadata "thumbnail") ++"' id='ogShareMeta'/><meta property='og:description' content='"++ (campo metadata "description") ++"' /><meta property='twitter:description' content='"++ (campo metadata "description") ++"' />"
 
 convertNonAscii :: String -> String
 convertNonAscii name = urlEncode name
@@ -296,8 +322,18 @@ mathCtx :: Context String
 mathCtx = mconcat
          [field "mathjax" mathjax
          ]
+highlightingCtx :: Context String
+highlightingCtx = mconcat
+         [field "highlighting" highlighting
+         ]
 
-                  
+
+thumbnailCtx :: Context String
+thumbnailCtx = mconcat
+         [field "thumbnailBody" thumbnail
+         ]
+
+         
 feedCtx :: Context String
 feedCtx = mconcat [ postCtx
                   , metadataField
@@ -320,15 +356,31 @@ config = defaultConfiguration {
                     \_site/* acmt@pizza.ime.usp.br:www/hakyll"
     }
 
+location :: String
+location = "http://vision.ime.usp.br/~acmt/hakyll"
+    
 feedConfiguration :: FeedConfiguration
 feedConfiguration = FeedConfiguration
     { feedTitle = "Anderson Tavares - RSS feed"
     , feedDescription = "Publicações, Pesquisas, Materiais..."
     , feedAuthorName = "Anderson Tavares"
     , feedAuthorEmail = "acmt@ime.usp.br"
-    , feedRoot = "http://vision.ime.usp.br/~acmt/hakyll"
+    , feedRoot = location
     }
 pandocOptions :: WriterOptions
 pandocOptions = defaultHakyllWriterOptions
    { writerHTMLMathMethod = MathJax ""
    }
+
+replace :: Eq a => [a] -> [a] -> [a] -> [a]
+replace needle replacement haystack
+  = case begins haystack needle of
+      Just remains -> replacement ++ remains
+      Nothing      -> case haystack of
+                        []     -> []
+                        x : xs -> x : replace needle replacement xs
+
+begins :: Eq a => [a] -> [a] -> Maybe [a]
+begins haystack []                = Just haystack
+begins (x : xs) (y : ys) | x == y = begins xs ys
+begins _        _                 = Nothing

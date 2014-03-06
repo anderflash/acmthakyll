@@ -1,6 +1,6 @@
 ------------------------------
 author: Anderson Tavares
-title: Tutorial WebGL: Movimentando objetos
+title: Tutorial WebGL 3: Movimentando objetos
 description: Movimentando objetos
 tags: WebGL, OpenGL
 thumbnail: assets/images/webgl-movimentando-triangulo-thumb.png
@@ -18,7 +18,7 @@ Bem vindo ao tutorial número 3 nessa série de tutoriais WebGL. Neste momento v
 
 Veja o resultado obtido:
 
-<iframe width="640" height="390" src="//www.youtube.com/embed/zM3rqs-6cUg" frameborder="0" allowfullscreen></iframe>
+<iframe class="sombreado" width="640" height="390" src="//www.youtube.com/embed/zM3rqs-6cUg" frameborder="0" allowfullscreen></iframe>
 
 <a href="../webgl/demo-movimentando-formas" target="_blank">Veja o resultado</a>. 
 <a href="http://github.com/anderflash/webgl_tutorial" target="_blank">Baixe todos os demos</a>.

@@ -1,7 +1,7 @@
 ------------------------------
 author: Anderson Tavares
-title: Tutorial WebGL: Criando polígonos
-description: Criando polígonos
+title: Tutorial WebGL 1: Criando polígonos
+description: Nesta lição vou ensinar a exibir polígonos no canvas usando o contexto WebGL. Esta lição é bastante grande, mas interessante.
 tags: WebGL, OpenGL
 thumbnail: assets/images/webgl-criando-triangulo-thumb.png
 biblio: library.bib
@@ -22,7 +22,7 @@ Colocaremos em prática as teorias obtidas no curso.
 
 Antes de fuçar o código, o resultado:
 
-<img src="../assets/images/webgl-criando-triangulo-resultado.png" style="height:300px;"/>
+<img class="sombreado" src="../assets/images/webgl-criando-triangulo-resultado.png" style="height:300px;"/>
 
 <a href="../webgl/demo-criando-triangulo" target="_blank">Veja o resultado</a>. 
 <a href="http://github.com/anderflash/webgl_tutorial" target="_blank">Baixe todos os demos</a>.
