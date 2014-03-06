@@ -24,7 +24,7 @@ Antes de fuçar o código, o resultado:
 
 <img class="sombreado" src="../assets/images/webgl-criando-triangulo-resultado.png" style="height:300px;"/>
 
-<a href="../webgl/demo-criando-triangulo" target="_blank">Veja o resultado</a>. 
+<a href="http://vision.ime.usp.br/~acmt/hakyll/webgl/demo-criando-triangulo" target="_blank">Veja o resultado</a>. 
 <a href="http://github.com/anderflash/webgl_tutorial" target="_blank">Baixe todos os demos</a>.
 
 Como o ambiente WebGL é mostrado em uma página HTML, vamos inicialmente entender o que é o HTML.
@@ -253,7 +253,7 @@ Após a GPU converter os vértices transformados em fragmentos, o *Fragment Shad
 **Tarefa: ** Adicione o seguinte script logo abaixo do script do *Vertex Shader*
 
 ~~~~ {#mycode .html .numberLines startFrom="1"}
-    <script id="shader-vs" type="x-shader/x-vertex">
+    <script id="shader-fs" type="x-shader/x-fragment">
       precision mediump float;
       
       void main(void)

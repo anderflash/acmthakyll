@@ -19,7 +19,7 @@ Veja o resultado:
 
 <img class="sombreado" src="../assets/images/webgl-colorindo-triangulo-resultado.png" style="height:300px;"/>
 
-<a href="../webgl/demo-adicionando-cores" target="_blank">Veja o resultado</a>. 
+<a href="http://vision.ime.usp.br/~acmt/hakyll/webgl/demo-adicionando-cores" target="_blank">Veja o resultado</a>. 
 <a href="http://github.com/anderflash/webgl_tutorial" target="_blank">Baixe todos os demos</a>.
 
 Este tutorial foi feito baseando-se no conteúdo das aulas de Introdução à Computação Gráfica do Instituto de Matemática e Estatística da USP. Mesmo assim, se você não estiver nessa condição, não haverá problema em compreender o conteúdo e visualizar seu resultado.

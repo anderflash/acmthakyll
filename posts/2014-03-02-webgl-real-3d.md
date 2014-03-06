@@ -20,7 +20,7 @@ Veja o resultado obtido:
 
 <iframe class="sombreado" width="640" height="360" src="//www.youtube.com/embed/Oa71cNJdkts?feature=player_embedded" frameborder="0" allowfullscreen></iframe>
 
-<a href="../webgl/demo-agora-em-3d" target="_blank">Veja o resultado</a>. 
+<a href="http://vision.ime.usp.br/~acmt/hakyll/webgl/demo-agora-em-3d" target="_blank">Veja o resultado</a>. 
 <a href="http://github.com/anderflash/webgl_tutorial" target="_blank">Baixe todos os demos</a>.
 
 Um aviso (de novo): estas lições estão baseadas no conteúdo dado na disciplina de Introdução à Computação Gráfica do Instituto de Matemática e Estatística da USP. Mesmo assim, outras pessoas que não sejam alunos dessa disciplina podem aproveitar e compreender o conteúdo destes tutoriais. Se você não fez o [tutorial 1](2014-02-26-webgl-criando-triangulo.html), o [tutorial 2](2014-02-28-webgl-colorindo-triangulo.html) e o [tutorial 3](2014-03-01-webgl-movimentando-triangulo.html), recomendo fazê-lo antes de avançar para este tutorial. Se você se sente seguro em compreender o que se passa aqui, pode continuar. Se houver falhas ou achar que falta alguma coisa para melhorar o tutorial, não hesite em me avisar.

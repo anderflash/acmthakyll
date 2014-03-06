@@ -20,7 +20,7 @@ Veja o resultado obtido:
 
 <iframe class="sombreado" width="640" height="360" src="//www.youtube.com/embed/FKtbpLdlpf8?feature=player_embedded" frameborder="0" allowfullscreen></iframe>
 
-<a href="../webgl/demo-teclado-filtro-textura" target="_blank">Veja o resultado</a>. 
+<a href="http://vision.ime.usp.br/~acmt/hakyll/webgl/demo-teclado-filtro-textura" target="_blank">Veja o resultado</a>. 
 <a href="http://github.com/anderflash/webgl_tutorial" target="_blank">Baixe todos os demos</a>.
 
 Um aviso (de novo): estas lições estão baseadas no conteúdo dado na disciplina de Introdução à Computação Gráfica do Instituto de Matemática e Estatística da USP. Mesmo assim, outras pessoas que não sejam alunos dessa disciplina podem aproveitar e compreender o conteúdo destes tutoriais. Faça os tutoriais anteriores para melhor compreensão do que está acontecendo. O código mostrado é apenas a diferença para o [tutorial 5](2014-03-04-webgl-texture.html). Se houver falhas ou achar que falta alguma coisa para melhorar o tutorial, não hesite em me avisar.
