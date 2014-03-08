@@ -635,29 +635,59 @@ Vamos abordar cada uma delas em detalhes.
 
 Em 2D, a rotação se dá sobre um ponto (a origem). Sendo $\theta$ o ângulo de rotação, os vetores $\vec{i}$ e $\vec{j}$ em $[cos(\theta) sen(\theta)]^T$ e $[-sen(\theta) cos(\theta)]^T$.
 
-$$\begin{bmatrix}
-  cos(\theta) & -sen(\theta)\\ 
-  sen(\theta) &  cos(\theta)
+$$R(\theta)=\begin{bmatrix}
+  \vec{p'} & \vec{q'}
 \end{bmatrix}$$
 
 ### Rotação em 3D
 
-Rotação sobre o eixo $x$
-$$\begin{bmatrix}
+Rotações em 3D não ocorrem sobre um ponto, mas sobre um eixo. Enquanto não abordarmos translação, estas rotações serão sobre eixos que passam pela origem. Precisamos saber que rotações são de ângulos positivas e negativos. Essa orientação pode ser obtida pela regra do sistema de coordenadas adotada. Mantenha o polegar na direção positiva do eixo e seus outros dedos farão a curva no sentido da orientação positiva da rotação. Por exemplo, na regra da mão direita:
+
+![](../assets/images/rotation_right_thumb.png)
+
+Perceba que o sentido da rotação positiva é antihorário. Na regra da mão esquerda, o sentido é horário. Com isso em mente, vamos ver inicialmente como são as matrizes que rotacionam sobre os eixos básicos. Lembrando que as colunas da matriz são os vetores resultantes depois da transformação dos vetores básicos canônicos.
+
+Na rotação sobre o eixo $x$:
+
+![](../assets/images/rotationX.png)
+
+$$R_x(\theta)=
+\begin{bmatrix}
+  \vec{i'} &
+  \vec{j'} &
+  \vec{k'}
+\end{bmatrix}=
+\begin{bmatrix}
   1 & 0 	  & 0 \\
   0 & cos(\theta) & -sen(\theta) \\
   0 & sen(\theta) &  cos(\theta)
 \end{bmatrix}$$
 
 Rotação sobre o eixo $y$
-$$\begin{bmatrix}
+
+![](../assets/images/rotationY.png)
+
+$$R_y(\theta)=
+\begin{bmatrix}
+  \vec{i'} &
+  \vec{j'} &
+  \vec{k'}
+\end{bmatrix}=\begin{bmatrix}
   cos(\theta) & 0 & sen(\theta) \\
   0           & 1 & 0            \\
  -sen(\theta) & 0 & cos(\theta)
 \end{bmatrix}$$
 
 Rotação sobre o eixo $z$
-$$\begin{bmatrix}
+
+![](../assets/images/rotationZ.png)
+
+$$R_z(\theta)=
+\begin{bmatrix}
+  \vec{i'} &
+  \vec{j'} &
+  \vec{k'}
+\end{bmatrix}=\begin{bmatrix}
   cos(\theta) & -sen(\theta) & 0 \\
   sen(\theta) &  cos(\theta) & 0 \\
   0           & 0 	     & 1
@@ -665,9 +695,125 @@ $$\begin{bmatrix}
 
 ### Rotação sobre um eixo arbitrário
 
+Esse é mais complicado. É necessário utilizar o arsenal que aprendemos sobre decomposição de vetores e as outras rotações.
+
+![](../assets/images/rotation_arbitrary.png)
+
+Essa imagem tem muitos vetores, mas olhe apenas para o vetor $\vec{n}$ e $\vec{v}$ na esquerda. Queremos rotacionar por um ângulo $\theta$ o vetor $\vec{v}$ em volta do vetor $\vec{n}$. Digamos que $\vec{n}$ seja um versor para facilitar o cálculo. Perceba que se decompormos $\vec{v}$ em $\vec{v}_\parallel$ (paralelo a $\vec{n}$) e $\vec{v}_\perp$, apenas o vetor $\vec{v}_\perp$ é rotacionado, resultando em $\vec{v}_\perp'$. Então só precisamos calcular $\vec{v}_\perp'$. Vamos ver por partes:
+
+- $\vec{v}_\parallel$ é simplesmente a projeção de $\vec{v}$ sobre o vetor $\vec{n}$. Isto pode ser calculado como $(\vec{v} \cdot \vec{n})\vec{n}$ (como $\vec{n}$ é unitário, a divisão é desnecessária);
+- $\vec{v}_\perp$ pode ser calculado como $\vec{v}-\vec{v}_\parallel$.
+- $\vec{w}$ é um vetor auxiliar que sempre será perpendicular a $\vec{v}_\perp$ e $\vec{v}_\parallel$ (e a $\vec{n}$). _Ué, mas um vetor que é perpendicular a dois outros vetores distintos é a definição de produto vetorial_. É isso mesmo, $\vec{w}$ pode ser calculado como $\vec{n}\times\vec{v}_\perp$;
+
+Perceba que $\vec{v}_\perp'$ é uma combinação linear entre $\vec{w}$ e $\vec{v}_\perp$, de forma circular:
+
+$$\vec{v}_\perp' = cos(\theta)\vec{v}_\perp + sen(\theta)\vec{w}$$
+
+Vamos representar $\vec{v}_\perp'$ com nossos vetores originais $\vec{v}$ e $\vec{n}$:
+
+$$\begin{align}
+\vec{v}_\parallel & = (\vec{v}\cdot \vec{n})\vec{n} \\
+\vec{v}_\perp     & = v - \vec{v}_\parallel \\
+                  & = v - (\vec{v}\cdot \vec{n})\vec{n} \\
+\vec{w}           & = \vec{n} \times \vec{v}_\perp \\
+                  & = \vec{n} \times (\vec{v} - \vec{v}_\parallel) \\
+                  & = \vec{n} \times \vec{v} - \vec{n} \times \vec{v}_\parallel\\
+                  & = \vec{n} \times \vec{v} - \vec{0}\\
+                  & = \vec{n} \times \vec{v}\\
+\vec{v}_\perp'    & = cos(\theta)\vec{v}_\perp + sen(\theta)\vec{w} \\
+                  & = cos(\theta)(\vec{v} - (\vec{v}\cdot \vec{n})n) + sen(\theta)(\vec{n}\times\vec{v})
+\end{align}
+$$
+
+E agora vamos compor nosso vetor resultante $\vec{v}'$:
+
+$$\begin{align}
+\vec{v}'          & = \vec{v}_\perp' + \vec{v}_\parallel \\
+                  & = cos(\theta)(\vec{v} - (\vec{v} \cdot \vec{n})n) + sen(\theta)(\vec{n}\times\vec{v}) + (\vec{v}\cdot\vec{n})\vec{n}
+\end{align}
+$$
+
+Com isso temos a rotação de um vetor $\vec{v}'$ representado por $\vec{v}$, $\theta$ e $\vec{n}$. Lembra como se constroi uma matriz de transformação? Vamos usar nossos vetores canônicos:
+
+$$\begin{align}
+\vec{i}  & = \begin{bmatrix}1\\0\\0\end{bmatrix} \\
+\vec{i}' & = cos(\theta)(\vec{i} - (\vec{i} \cdot \vec{n})n) + sen(\theta)(\vec{n}\times\vec{i}) + (\vec{i}\cdot\vec{i})\vec{n} \\
+         & = cos(\theta)\left(
+	      \begin{bmatrix}1\\0\\0\end{bmatrix}-\left(
+		\begin{bmatrix}1\\0\\0\end{bmatrix} \cdot
+		\begin{bmatrix}n_x\\n_y\\n_z\end{bmatrix}
+	      \right)
+	      \begin{bmatrix}n_x\\n_y\\n_z\end{bmatrix}
+	     \right)
+	     +sen(\theta)\left(
+	      \begin{bmatrix}n_x\\n_y\\n_z\end{bmatrix}\times
+	      \begin{bmatrix}1\\0\\0\end{bmatrix}
+	     \right)
+	     +\left(
+	      \begin{bmatrix}1\\0\\0\end{bmatrix}\cdot
+	      \begin{bmatrix}n_x\\n_y\\n_z\end{bmatrix}
+	     \right)
+	     \begin{bmatrix}n_x\\n_y\\n_z\end{bmatrix} \\
+	 & = cos(\theta)\left(
+	       \begin{bmatrix}1\\0\\0\end{bmatrix}-
+	       n_x\begin{bmatrix}n_x\\n_y\\n_z\end{bmatrix}
+	     \right) +
+	     sen(\theta)\begin{bmatrix}0\\n_z\\-n_y\end{bmatrix}+
+	     n_x\begin{bmatrix}n_x\\n_y\\n_z\end{bmatrix} \\
+	 & = cos(\theta)\begin{bmatrix}1-n_x^2\\-n_xn_y\\-n_xn_z\end{bmatrix}+
+	     sin(\theta)\begin{bmatrix}0\\n_z\\-n_y\end{bmatrix} + 
+	     \begin{bmatrix}n_x^2\\n_xn_y\\n_xn_z\end{bmatrix} \\
+	 & = \begin{bmatrix}cos(\theta)-n_x^2cos(\theta)\\-n_xn_ycos(\theta)\\-n_xn_zcos(\theta)\end{bmatrix} + 
+	     \begin{bmatrix}0\\n_zsen(\theta)\\-n_ysen(\theta)\end{bmatrix} + 
+	     \begin{bmatrix}n_x^2\\n_xn_y\\n_xn_z\end{bmatrix} \\
+	 & = \begin{bmatrix}
+	     cos(\theta) - \cos(\theta)n_x^2 + n_x^2\\
+	     -n_xn_ycos(\theta) + n_zsen(\theta) + n_xn_y\\
+	     -n_xn_zcos(\theta) - n_ysen(\theta) + n_xn_z
+	     \end{bmatrix} \\
+	 & = \begin{bmatrix}
+	     n_x^2(1-cos(\theta)) + cos(\theta)\\
+	     n_xn_y(1-cos(\theta)) + n_zsen(\theta)\\
+	     n_xn_z(1-cos(\theta)) - n_ysen(\theta)
+	     \end{bmatrix}
+\end{align}
+$$
+
+Ufa, achamos a primeira coluna da matriz. Faltam outras duas. O processo é o mesmo:
+
+$$\begin{align}
+\vec{j}  & = \begin{bmatrix}0 & 1 & 0\end{bmatrix}^T \\
+vec{j}' & = \begin{bmatrix}
+n_xn_y(1-cos\theta) - n_zsen\theta)\\
+n_y^2(1 - cos\theta) + cos\theta \\
+n_yn_z(1 - cos\theta) + n_xsen\theta
+\end{bmatrix}\\
+\vec{k}  & = \begin{bmatrix}0 & 0 & 1\end{bmatrix}^T \\
+vec{k}' & = \begin{bmatrix}
+n_xn_z(1-cos\theta) + n_ysen\theta)\\
+n_yn_z(1 - cos\theta) - n_xsen\theta \\
+n_z^2(1 - cos\theta) + cos\theta
+\end{bmatrix}
+\end{align}$$
+
+A matriz de rotação para um eixo arbitrário $\vec{n}$ é:
+
+$$R(\vec{n},\theta) = 
+\begin{bmatrix}
+n_x^2(1-cos\theta) + cos\theta     & n_xn_y(1-cos\theta) - n_zsen\theta) & n_xn_z(1-cos\theta) + n_ysen\theta) \\
+n_xn_y(1-cos\theta) + n_zsen\theta & n_y^2(1 - cos\theta) + cos\theta & n_yn_z(1 - cos\theta) - n_xsen\theta \\
+n_xn_z(1-cos\theta) - n_ysen\theta & n_yn_z(1 - cos\theta) + n_xsen\theta & n_z^2(1 - cos\theta) + cos\theta \\
+\end{bmatrix}
+$$
 
 
 ### Escala
+
+Podemos escalar um objeto para ele ficar proporcionalmente maior ou menor dependendo de um fator $k$. Se nós aplicarmos a mesma escala em todas as direções, então estamos aplicando uma escala uniforme. Escalas uniformes preservam ângulos e proporções. Comprimentos são escalados por um fator $k$, áreas por um fator $k^2$ e volumes por um fator $k^3$.
+
+Se $|k|<1$, então o objeto é reduzido. Se $|k|>1$, o objeto é ampliado. Se $k=0$, então estamos aplicando uma _projeção ortográfica_. Se $k<0$, então estamos fazendo uma reflexão. Reflexão e projeção ortográfica serão vistos mais adiante. Assuma nessa seção que $k > 0$.
+
+
 
 $$\begin{bmatrix}
   s_1    & 0      & \cdots & 0      \\ 
