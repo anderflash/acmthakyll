@@ -120,7 +120,7 @@ O que ela faz? Nesse caso estamos chamando a função `iniciaWebGL` que conterá
 
 **Tarefa**: Crie a função `iniciaWebGL`
 
-~~~~ {#mycode .javascript .numberLines startFrom="1"}
+~~~~ {#mycode .javascript .numberLines startFrom="11"}
     function iniciaWebGL()
     {
       var canvas = $('#canvas-webgl')[0];
@@ -150,7 +150,7 @@ O contexto é obtido do canvas. Com ele, você carrega os shaders, desenha os ob
 
 **Tarefa**: Crie a função `iniciarGL`
 
-~~~~ {#mycode .javascript .numberLines startFrom="1"}
+~~~~ {#mycode .javascript .numberLines startFrom="21"}
     function iniciarGL(canvas)
     {
       try
@@ -210,7 +210,7 @@ Vamos criar o script dos *shaders* de vértice e fragmento.
 
 **Tarefa**: Adicione os seguintes scripts em qualquer lugar entre as tags `<head>` e `</head>`:
 
-~~~~ {#mycode .html .numberLines startFrom="1"}
+~~~~ {#mycode .html .numberLines startFrom="5"}
     <script id="shader-vs" type="x-shader/x-vertex">
       attribute vec3 aVertexPosition;
       
@@ -252,7 +252,7 @@ Após a GPU converter os vértices transformados em fragmentos, o *Fragment Shad
 
 **Tarefa: ** Adicione o seguinte script logo abaixo do script do *Vertex Shader*
 
-~~~~ {#mycode .html .numberLines startFrom="1"}
+~~~~ {#mycode .html .numberLines startFrom="6"}
     <script id="shader-fs" type="x-shader/x-fragment">
       precision mediump float;
       
@@ -277,7 +277,7 @@ Precisamos compilar o shader na GPU. Para isso vamos obter o script, criar um pr
 
 **Tarefa: ** Adicione a função `iniciarShaders` junto com sua variável para o programa de shader.
 
-~~~~ {#mycode .javascript .numberLines startFrom="1"}
+~~~~ {#mycode .javascript .numberLines startFrom="72"}
     var shaderProgram;
     function iniciarShaders()
     {
@@ -494,7 +494,7 @@ Os buffers guardarão todas as posições do triângulo e do quadrado.
 
 **Tarefa:** Adicione a função `iniciarBuffers`:
 
-~~~~ {#mycode .javascript .numberLines startFrom="1"}
+~~~~ {#mycode .javascript .numberLines startFrom="143"}
 function iniciarBuffers()
 {
   triangleVertexPositionBuffer = gl.createBuffer();
@@ -533,7 +533,7 @@ Essa fase apenas lança os dados para a GPU. Se você não modificar os vértice
 
 # Ambiente
 
-~~~~ {#mycode .javascript .numberLines startFrom="1"}
+~~~~ {#mycode .javascript .numberLines startFrom="169"}
 function iniciarAmbiente()
 {
   gl.clearColor(0.0, 0.0, 0.0, 1.0);
@@ -549,7 +549,7 @@ Lembra do Z-Buffer? É com `gl.enable(gl.DEPTH_TEST)` que estamos habilitando o 
 
 # Desenhando a Cena
 
-~~~~ {#mycode .javascript .numberLines startFrom="1"}
+~~~~ {#mycode .javascript .numberLines startFrom="175"}
 function desenharCena()
 {
   gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);

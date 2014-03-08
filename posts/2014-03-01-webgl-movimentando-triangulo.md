@@ -29,7 +29,7 @@ Para o OpenGL, existem diversas bibliotecas gráficas (como [GLUT](http://www.op
 
 **Com que frequência?** Você escolhe. Você pode esperar a cada segundo, para desenhar uma cena, pode desenhar 30 imagens dentro desse segundo, ou então desenhar logo que a imagem ficar pronta e disponível. O JavaScript contém funções como `requestAnimFrame(func)` que recebe uma função que será chamada tão logo quanto possível. E se dentro da função `func` estiver justamente o `requestAnimFrame(func)`? Então a função `func` será regularmente chamada, e podemos utilizar esse recurso para fazer nossa animação. Alguns navegadores preferem criar suas próprias funções. Por exemplo, a Mozilla (do Firefox) disponibiliza a função `mozRequestAnimationFrame`. Para evitar que nosso ambiente seja incompatível com algum navegador, existe um código feito para resolver a incompatibilidade. Ele está disponível no WebGLSamples, um repositório de exemplos no Google Code. O arquivo é o [webgl-utils.js](http://code.google.com/p/webglsamples/source/browse/book/webgl-utils.js?r=41401f8a69b1f8d32c6863ac8c1953c8e1e8eba0). O arquivo também está disponibilizado no [código](https://github.com/anderflash/webgl_tutorial) do tutorial. Lembre-se de adicionar o link para o arquivo:
 
-~~~~ {#mycode .html .numberLines startFrom="1"}
+~~~~ {#mycode .html .numberLines startFrom="31"}
 <script type="text/javascript" src="../glMatrix-0.9.5.min.js"></script>
 <script type="text/javascript" src="../jquery-2.1.0.min.js"></script>
 <!--Adicione esta linha-->
@@ -38,7 +38,7 @@ Para o OpenGL, existem diversas bibliotecas gráficas (como [GLUT](http://www.op
 
 **Tarefa:** Modifique a função `iniciaWebGL` da forma como abaixo.
 
-~~~~ {#mycode .javascript .numberLines startFrom="1"}
+~~~~ {#mycode .javascript .numberLines startFrom="62"}
 function iniciaWebGL()
 {
   var canvas = $('#licao01-canvas')[0];
@@ -57,7 +57,7 @@ Removemos a função desenharCena (ela vai ser chamada dentro do `tick()`) e ins
 
 **Tarefa:** Adicione a função `tick()` no script em JavaScript:
 
-~~~~ {#mycode .javascript .numberLines startFrom="1"}
+~~~~ {#mycode .javascript .numberLines startFrom="72"}
 function tick()
 {
   requestAnimFrame(tick);
@@ -70,7 +70,7 @@ Ele programa sua próxima execução, desenha a cena e atualiza informações pa
 
 **Tarefa:** Adicione estas variáveis globais (fora de qualquer função):
 
-~~~~ {#mycode .javascript .numberLines startFrom="1"}
+~~~~ {#mycode .javascript .numberLines startFrom="50"}
 var rTri = 0;
 var rQuad= 0;
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -81,7 +81,7 @@ A próxima mudança se dá em `desenharCena`. Logo após a translação, faremos
 
 **Tarefa:** Modifique a função `desenharCena` (a parte do triângulo):
 
-~~~~ {#mycode .javascript .numberLines startFrom="1"}
+~~~~ {#mycode .javascript .numberLines startFrom="223"}
 function desenharCena()
 {
   gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
@@ -115,7 +115,7 @@ Permita-me explicar essa função de rotação: os ângulos precisam ser convert
 
 **Tarefa:** Modifique a função `desenharCena` (agora para o quadrado):
 
-~~~~ {#mycode .javascript .numberLines startFrom="1"}
+~~~~ {#mycode .javascript .numberLines startFrom="246"}
   // Desenhando o Quadrado
   mat4.translate(mMatrix, [3.0, 0.0, 0.0]);
   /*---Adicione estas duas linhas---*/
@@ -137,7 +137,7 @@ Isso é tudo para a função `desenharCena`. Vamos agora atualizar os ângulos p
 
 **Tarefa:** Adicione a função `animar()`.
 
-~~~~ {#mycode .javascript .numberLines startFrom="1"}
+~~~~ {#mycode .javascript .numberLines startFrom="268"}
   var ultimo = 0;
   function animar()
   {
@@ -158,7 +158,7 @@ Ah, adicionamos novas funções `mPushMatrix` e `mPopMatrix`. Eles simplesmente 
 
 **Tarefa:** Adicione a pilha (variável global) e as funções `mPushMatrix` e `mPopMatrix`.
 
-~~~~ {#mycode .javascript .numberLines startFrom="1"}
+~~~~ {#mycode .javascript .numberLines startFrom="281"}
   var mMatrix = mat4.create();
   /*---Adicione esta linha---*/
   var mMatrixPilha = [];

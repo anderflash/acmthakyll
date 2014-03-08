@@ -58,7 +58,7 @@ Vamos então ao código. Trabalharemos com modificações a partir do código da
 
 **Tarefa**: Copie a pasta da lição 1 e renomeie para lição 2. Modifique o shader de vértice para ficar desta forma:
 
-~~~~ {#mycode .c .numberLines startFrom="1"}
+~~~~ {#mycode .c .numberLines startFrom="5"}
 // Para cada vértice
 attribute vec3 aVertexPosition;
 /*--Adicione esta linha--*/
@@ -87,7 +87,7 @@ Agora nós temos 2 atributos (posição e cor). A cor é um vetor 4x1 pois estam
 
 Na função principal do shader, só adicionamos a atribuição do varying cor (que será passada para o fragment shader) pelo atributo (que foi passado pela CPU). Após esse ponto, a interpolação será realizada e as cores serão também interpolados entre os vértices do mesmo polígono. O shader de fragmento fica assim:
 
-~~~~ {#mycode .c .numberLines startFrom="1"}
+~~~~ {#mycode .c .numberLines startFrom="21"}
 precision mediump float;
 /*--Adicione esta linha--*/
 varying vec4 vColor;
@@ -103,7 +103,7 @@ Depois de definir a precisão do ponto flutuante (existem _highp_ que demanda ma
 
 Existem duas outras modificações (iniciarShaders e desenharCena). As mudanças estão comentadas:
 
-~~~~ {#mycode .javascript .numberLines hl_lines="3" startFrom="1"}
+~~~~ {#mycode .javascript .numberLines hl_lines="3" startFrom="82"}
 function iniciarShaders()
 {
   var vertexShader = getShader(gl, "#shader-vs");
@@ -143,7 +143,7 @@ Estamos querendo saber a referência para o atributo 'cor' no shader. Vamos usar
 
 A próxima mudança se dá na função desenharCena, mas antes precisamos declarar as variáveis dos buffers de cores no JavaScript. Onde tiver os buffers, adicione as linhas comentadas:
 
-~~~~ {#mycode .javascript .numberLines hl_lines="3" startFrom="1"}
+~~~~ {#mycode .javascript .numberLines hl_lines="3" startFrom="38"}
 var triangleVertexPositionBuffer;
 var triangleVertexColorBuffer;
 var squareVertexPositionBuffer;
@@ -152,7 +152,7 @@ var squareVertexColorBuffer;
 
 Vamos agora inicializar os buffers de cores. Modifique a função `iniciarShaders`:
 
-~~~~ {#mycode .javascript .numberLines hl_lines="3" startFrom="1"}
+~~~~ {#mycode .javascript .numberLines hl_lines="3" startFrom="155"}
 function iniciarBuffers()
 {
   triangleVertexPositionBuffer = gl.createBuffer();
@@ -183,7 +183,7 @@ O que fizemos para o buffer de posição fizemos para o buffer de cores. Criamos
 
 Para o quadrado, é o mesmo, porém vamos usar apenas uma cor. Então criamos um laço para repetir a cor para os 4 vértices.
 
-~~~~ {#mycode .javascript .numberLines hl_lines="3" startFrom="1"}
+~~~~ {#mycode .javascript .numberLines hl_lines="3" startFrom="179"}
 
   squareVertexPositionBuffer = gl.createBuffer();
   gl.bindBuffer(gl.ARRAY_BUFFER, squareVertexPositionBuffer);
@@ -211,7 +211,7 @@ Para o quadrado, é o mesmo, porém vamos usar apenas uma cor. Então criamos um
 
 Agora vamos mudar a função `desenharCena`. 
 
-~~~~ {#mycode .javascript .numberLines hl_lines="3" startFrom="1"}
+~~~~ {#mycode .javascript .numberLines hl_lines="3" startFrom="209"}
 
 function desenharCena()
 {

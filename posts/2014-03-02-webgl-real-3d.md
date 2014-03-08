@@ -52,7 +52,7 @@ Vamos renomear tudo que tenha a palavra _triangle_ para colocar _piramide_ (para
 
 **Tarefa:** Mude na função `desenharCena` os nomes `triangleVertexPositionBuffer` e `triangleVertexColorBuffer` para `piramideVertexPositionBuffer` e `piramideVertexColorBuffer`.
 
-~~~~ {#mycode .javascript .numberLines startFrom="1"}
+~~~~ {#mycode .javascript .numberLines startFrom="318"}
   gl.bindBuffer(gl.ARRAY_BUFFER, piramideVertexPositionBuffer);
   gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, piramideVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
 
@@ -65,7 +65,7 @@ Vamos renomear tudo que tenha a palavra _triangle_ para colocar _piramide_ (para
 
 **Tarefa:** Mude também para o cubo
 
-~~~~ {#mycode .javascript .numberLines startFrom="1"}
+~~~~ {#mycode .javascript .numberLines startFrom="334"}
 gl.bindBuffer(gl.ARRAY_BUFFER, cuboVertexPositionBuffer);
 gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, cuboVertexPositionBuffer.itemSize, gl.FLOAT, false, 0, 0);
 
@@ -76,7 +76,7 @@ gl.vertexAttribPointer(shaderProgram.vertexColorAttribute, cuboVertexColorBuffer
 
 **Tarefa:** Renomeie também na declaração das variáveis
 
-~~~~ {#mycode .javascript .numberLines startFrom="1"}
+~~~~ {#mycode .javascript .numberLines startFrom="39"}
 var piramideVertexPositionBuffer;
 var piramideVertexColorBuffer;
 var cuboVertexPositionBuffer;
@@ -98,7 +98,7 @@ Para usá-los, simplesmente execute o `bindBuffer` nesse _buffer_ dos índices (
 
 **Tarefa:** Renomeie também na declaração das variáveis
 
-~~~~ {#mycode .javascript .numberLines startFrom="1"}
+~~~~ {#mycode .javascript .numberLines startFrom="338"}
 /*---Troque também gl.ARRAY_BUFFER por gl.ELEMENT_ARRAY_BUFFER---*/
 gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, cuboVertexIndexBuffer);
 setMatrixUniforms();
@@ -111,7 +111,7 @@ A função `drawElements` precisa do tipo de polígono a ser desenhado, o númer
 
 **Tarefa:** Adicione a declaração da variável para o buffer de índices do cubo.
 
-~~~~ {#mycode .javascript .numberLines startFrom="1"}
+~~~~ {#mycode .javascript .numberLines startFrom="39"}
 var piramideVertexPositionBuffer;
 var piramideVertexColorBuffer;
 var cuboVertexPositionBuffer;
@@ -124,7 +124,7 @@ Vamos atualizar os buffers lá na função `iniciarBuffers`.
 
 **Tarefa:** Renomeie as variáveis e edite os vértices e índices dos buffers na função `iniciarBuffers` (buffer de posição)
 
-~~~~ {#mycode .javascript .numberLines startFrom="1"}
+~~~~ {#mycode .javascript .numberLines startFrom="172"}
 piramideVertexPositionBuffer = gl.createBuffer();
 gl.bindBuffer(gl.ARRAY_BUFFER, piramideVertexPositionBuffer);
 var vertices = [
@@ -152,7 +152,7 @@ piramideVertexPositionBuffer.numItems = 12; // Mudar
 
 **Tarefa:** Renomeie as variáveis e edite os vértices e índices dos buffers na função `iniciarBuffers` (buffer de cores)
 
-~~~~ {#mycode .javascript .numberLines startFrom="1"}
+~~~~ {#mycode .javascript .numberLines startFrom="196"}
 piramideVertexColorBuffer = gl.createBuffer();
 gl.bindBuffer(gl.ARRAY_BUFFER, piramideVertexColorBuffer);
 var cores = [
@@ -180,7 +180,7 @@ piramideVertexColorBuffer.numItems = 12; // Mudar
 
 **Tarefa:** Agora para o cubo => Renomeie as variáveis e edite os vértices e índices dos buffers na função `iniciarBuffers` (buffer de posições)
 
-~~~~ {#mycode .javascript .numberLines startFrom="1"}
+~~~~ {#mycode .javascript .numberLines startFrom="220"}
 cuboVertexPositionBuffer = gl.createBuffer();
 gl.bindBuffer(gl.ARRAY_BUFFER, cuboVertexPositionBuffer);
 vertices = [
@@ -229,7 +229,7 @@ No OpenGL (e WebGL) se dois vértices tiverem qualquer um dos atributos diferent
 
 **Tarefa:** Renomeie as variáveis e edite os vértices e índices dos buffers na função `iniciarBuffers` (buffer de cores)
 
-~~~~ {#mycode .javascript .numberLines startFrom="1"}
+~~~~ {#mycode .javascript .numberLines startFrom="263"}
 cuboVertexColorBuffer = gl.createBuffer();
 gl.bindBuffer(gl.ARRAY_BUFFER, cuboVertexColorBuffer);
 cores = [
@@ -257,7 +257,7 @@ E agora vamos criar os nossos índices para desenhar nosso cubo. Se um triângul
 
 **Tarefa:** Adicione esse código abaixo do último código supracitado na função `iniciarBuffers`.
 
-~~~~ {#mycode .javascript .numberLines startFrom="1"}
+~~~~ {#mycode .javascript .numberLines startFrom="284"}
 cuboVertexIndexBuffer = gl.createBuffer();
 gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, cuboVertexIndexBuffer);
 var indices = [
