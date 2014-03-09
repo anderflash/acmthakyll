@@ -470,18 +470,12 @@ Algumas observações com relação à multiplicação entre matrizes:
 Lado esquerdo, lado direito, vetor coluna, vetor linha. Há 4 formas de multiplicar uma matriz e um vetor. Veja o que acontece mostrando exemplos com matrizes $3\times 3$ e vetores:
 
 $$
-\begin{bmatrix}x & y & z\end{bmatrix}
-\begin{bmatrix}m_{11} & m_{11} & m_{11}\\m_{11} & m_{11} & m_{11}\\m_{11} & m_{11} & m_{11}\end{bmatrix} = \begin{bmatrix}xm_{11} + ym_{21} + zm_{31} & xm_{12} + ym_{22} + zm_{32} & xm_{13} + ym_{23} + zm_{33}\end{bmatrix}
-$$
-$$
-\begin{bmatrix}m_{11} & m_{11} & m_{11}\\m_{11} & m_{11} & m_{11}\\m_{11} & m_{11} & m_{11}\end{bmatrix}\begin{bmatrix}x \\ y \\ z\end{bmatrix} = \begin{bmatrix}xm_{11} + ym_{12} + zm_{13} \\ xm_{21} + ym_{22} + zm_{23} \\ xm_{31} + ym_{32} + zm_{33}\end{bmatrix}
-$$
-$$
-\begin{bmatrix}m_{11} & m_{11} & m_{11}\\m_{11} & m_{11} & m_{11}\\m_{11} & m_{11} & m_{11}\end{bmatrix}\begin{bmatrix}x & y & z\end{bmatrix} = indefinido
-$$
-$$
-\begin{bmatrix}x \\ y \\ z\end{bmatrix}
-\begin{bmatrix}m_{11} & m_{11} & m_{11}\\m_{11} & m_{11} & m_{11}\\m_{11} & m_{11} & m_{11}\end{bmatrix} = indefinido
+\begin{align}
+\begin{bmatrix}x & y & z\end{bmatrix}\begin{bmatrix}m_{11} & m_{12} & m_{13}\\m_{21} & m_{22} & m_{23}\\m_{31} & m_{32} & m_{33}\end{bmatrix} &= \begin{bmatrix}xm_{11} + ym_{21} + zm_{31} & xm_{12} + ym_{22} + zm_{32} & xm_{13} + ym_{23} + zm_{33}\end{bmatrix}\\
+\begin{bmatrix}m_{11} & m_{12} & m_{13}\\m_{21} & m_{22} & m_{23}\\m_{31} & m_{32} & m_{33}\end{bmatrix}\begin{bmatrix}x \\ y \\ z\end{bmatrix} &= \begin{bmatrix}xm_{11} + ym_{12} + zm_{13} \\ xm_{21} + ym_{22} + zm_{23} \\ xm_{31} + ym_{32} + zm_{33}\end{bmatrix}\\
+\begin{bmatrix}m_{11} & m_{12} & m_{13}\\m_{21} & m_{22} & m_{23}\\m_{31} & m_{32} & m_{33}\end{bmatrix}\begin{bmatrix}x & y & z\end{bmatrix} &= indefinido\\
+\begin{bmatrix}x \\ y \\ z\end{bmatrix}\begin{bmatrix}m_{11} & m_{12} & m_{13}\\m_{21} & m_{22} & m_{23}\\m_{31} & m_{32} & m_{33}\end{bmatrix} &= indefinido
+\end{align}
 $$
 
 Um vetor linha só pode ser multiplicado por uma matriz pelo lado direito, enquanto que um vetor coluna só pode ser multiplicado por uma matriz pelo seu lado esquerdo. O resultado é um vetor linha ou coluna respectivamente, mantendo a dimensão do vetor original. Outras observações:
@@ -526,7 +520,7 @@ v_1\vec{i} + v_2\vec{j} + v_3\vec{k} \\
 \end{split}
 $$
 
-Nós expressamos o vetor $\vec{v}$ como uma combinação linear dos vetores $\vec{i}$, $\vec{j}$ e $\vec{k}$. Denominemos estes vetores como _vetores base_. Com estas bases, podemos formar qualquer vetor no espaço $n$-dimensional ($n$ é o número de vetores base), todavia veja que não há combinação linear de \vec{i} e \vec{j} que resulte em \vec{k}. Quando isso acontece, então eles são _linearmente independentes_ (LI). Existem diversas bases que podem formar o mesmo espaço vetorial, todavia elas precisam ser LI (nós denominamos os vetores base \vec{i}, \vec{j} e \vec{k} como _base canônica_). Se você tiver no seu conjunto de vetores base um vetor que seja combinação linear dos outros vetores, então sua base não é LI. É necessário remover esse vetor e fazer um novo teste, até conseguir um número de vetores base. Em 3D, a consequência de uma base LI de dimensão 3 é que seus três vetores não pertencem a um plano.
+Nós expressamos o vetor $\vec{v}$ como uma combinação linear dos vetores $\vec{i}$, $\vec{j}$ e $\vec{k}$. Denominemos estes vetores como _vetores base_. Com estas bases, podemos formar qualquer vetor no espaço $n$-dimensional ($n$ é o número de vetores base), todavia veja que não há combinação linear de $\vec{i}$ e $\vec{j}$ que resulte em $\vec{k}$ (nem de $\vec{j}$ e $\vec{k}$ para $\vec{i}$ e de $\vec{k}$ e $\vec{i}$ para $\vec{j}$). Quando isso acontece, então eles são _linearmente independentes_ (LI). Existem diversas bases que podem formar o mesmo espaço vetorial, todavia elas precisam ser LI (nós denominamos os vetores base \vec{i}, \vec{j} e \vec{k} como _base canônica_). Se você tiver no seu conjunto de vetores base um vetor que seja combinação linear dos outros vetores, então sua base não é LI. É necessário remover esse vetor e fazer um novo teste, até conseguir um número de vetores base. Em 3D, a consequência de uma base LI de dimensão 3 é que seus três vetores não pertencem a um plano.
 
 Então vamos representar geometricamente os vetores $\vec{v}$, $\vec{i}$, $\vec{j}$ e $\vec{k}$ (Em 2D é mais fácil de visualizar):
 
@@ -637,6 +631,11 @@ Em 2D, a rotação se dá sobre um ponto (a origem). Sendo $\theta$ o ângulo de
 
 $$R(\theta)=\begin{bmatrix}
   \vec{p'} & \vec{q'}
+\end{bmatrix}
+ =
+\begin{bmatrix}
+cos\theta & -sen\theta \\
+sen\theta & cos\theta
 \end{bmatrix}$$
 
 ### Rotação em 3D
@@ -721,7 +720,7 @@ $$\begin{align}
                   & = \vec{n} \times \vec{v} - \vec{0}\\
                   & = \vec{n} \times \vec{v}\\
 \vec{v}_\perp'    & = cos(\theta)\vec{v}_\perp + sen(\theta)\vec{w} \\
-                  & = cos(\theta)(\vec{v} - (\vec{v}\cdot \vec{n})n) + sen(\theta)(\vec{n}\times\vec{v})
+                  & = cos(\theta)(\vec{v} - (\vec{v}\cdot \vec{n})\vec{n}) + sen(\theta)(\vec{n}\times\vec{v})
 \end{align}
 $$
 
@@ -729,7 +728,7 @@ E agora vamos compor nosso vetor resultante $\vec{v}'$:
 
 $$\begin{align}
 \vec{v}'          & = \vec{v}_\perp' + \vec{v}_\parallel \\
-                  & = cos(\theta)(\vec{v} - (\vec{v} \cdot \vec{n})n) + sen(\theta)(\vec{n}\times\vec{v}) + (\vec{v}\cdot\vec{n})\vec{n}
+                  & = cos(\theta)(\vec{v} - (\vec{v} \cdot \vec{n})\vec{n}) + sen(\theta)(\vec{n}\times\vec{v}) + (\vec{v}\cdot\vec{n})\vec{n}
 \end{align}
 $$
 
@@ -737,7 +736,7 @@ Com isso temos a rotação de um vetor $\vec{v}'$ representado por $\vec{v}$, $\
 
 $$\begin{align}
 \vec{i}  & = \begin{bmatrix}1\\0\\0\end{bmatrix} \\
-\vec{i}' & = cos(\theta)(\vec{i} - (\vec{i} \cdot \vec{n})n) + sen(\theta)(\vec{n}\times\vec{i}) + (\vec{i}\cdot\vec{i})\vec{n} \\
+\vec{i}' & = cos(\theta)(\vec{i} - (\vec{i} \cdot \vec{n})\vec{n}) + sen(\theta)(\vec{n}\times\vec{i}) + (\vec{i}\cdot\vec{i})\vec{n} \\
          & = cos(\theta)\left(
 	      \begin{bmatrix}1\\0\\0\end{bmatrix}-\left(
 		\begin{bmatrix}1\\0\\0\end{bmatrix} \cdot
@@ -813,22 +812,93 @@ Podemos escalar um objeto para ele ficar proporcionalmente maior ou menor depend
 
 Se $|k|<1$, então o objeto é reduzido. Se $|k|>1$, o objeto é ampliado. Se $k=0$, então estamos aplicando uma _projeção ortográfica_. Se $k<0$, então estamos fazendo uma reflexão. Reflexão e projeção ortográfica serão vistos mais adiante. Assuma nessa seção que $k > 0$.
 
+![](../assets/images/scale.png)
 
+Então $\vec{i}=[1,0,0]^T$ se transforma em $\vec{i}'=[k_1,0,0]^T$. $\vec{k}$ e $\vec{j}$ se transformam em $[0,k_2,0]^T$ e $[0,0,k_3]^T$. Generalizando, a matriz de transformação para dimensão $n$ é:
 
-$$\begin{bmatrix}
-  s_1    & 0      & \cdots & 0      \\ 
-  0      & s_2    & \cdots & 0      \\ 
+$$S(k_1, k_2, \dots,k_n) = \begin{bmatrix}
+  k_1    & 0      & \cdots & 0      \\ 
+  0      & k_2    & \cdots & 0      \\ 
   \vdots & \vdots & \ddots & \vdots \\
-  0      & 0      & \cdots & s_n        
+  0      & 0      & \cdots & k_n        
 \end{bmatrix}$$
 
+### Escala em uma direção arbitrária
 
+Podemos aplicar uma escala em qualquer eixo. Vamos representar este eixo por um vetor $\vec{n}$ e o vetor a ser escalado por $\vec{v}$. 
+
+![](../assets/images/scale_arbitrary.png)
+
+Da mesma forma que a rotação, se você decompor $\vec{v}$ em $$ e $$, você perceberá que apenas o componente $$ sofre a transformação. Vamos aos cálculos:
+
+$$
+\begin{align}
+  \vec{v} &= \vec{v}_\parallel + \vec{v}_\perp\\
+  \vec{v}_\parallel &= (\vec{v}\cdot\vec{n})\vec{n}\\
+  \vec{v}_\perp' &= \vec{v}_\perp\\
+          &= \vec{v} - \vec{v}_\parallel\\
+          &= \vec{v} - (\vec{v}\cdot\vec{n})\vec{n}\\
+  \vec{v}_\parallel' &= k\vec{v}_\parallel\\
+          &= k(\vec{v}\cdot\vec{n})\vec{n}\\
+  \vec{v}'&= \vec{v}_\perp' + \vec{v}_\parallel'\\
+          &= \vec{v}-(\vec{v}\cdot\vec{n})\vec{n} + k(\vec{v}\cdot\vec{n})\vec{n}\\
+          &= \vec{v}+(k-1)(\vec{v}\cdot\vec{n})\vec{n}\\
+\end{align}
+$$
+
+Agora vamos calcular as transformações de cada vetor canônico (em 2D):
+
+$$
+\begin{align}
+  \vec{i} & = \begin{bmatrix}1&0\end{bmatrix}^T\\
+  \vec{i}'& = \vec{i}+(k-1)(\vec{i}\cdot\vec{n})\vec{n}\\
+          & = \begin{bmatrix}1\\0\end{bmatrix}+(k-1)(\begin{bmatrix}1\\0\end{bmatrix}\cdot\begin{bmatrix}n_x\\n_y\end{bmatrix})\begin{bmatrix}n_x\\n_y\end{bmatrix}\\
+          & = \begin{bmatrix}1\\0\end{bmatrix}+(k-1)n_x\begin{bmatrix}n_x\\n_y\end{bmatrix}\\
+          & = \begin{bmatrix}1\\0\end{bmatrix}+\begin{bmatrix}(k-1)n_x^2\\(k-1)n_xn_y\end{bmatrix}\\
+          & = \begin{bmatrix}1+(k-1)n_x^2\\(k-1)n_xn_y\end{bmatrix}\\
+  \vec{j} & = \begin{bmatrix}0&1\end{bmatrix}^T\\
+  \vec{j}'& = \begin{bmatrix}(k-1)n_xn_y\\1+(k-1)n_y^2\end{bmatrix}\\
+\end{align}
+$$
+
+Então a matriz de escala por um eixo arbitrário é:
+
+$$
+S(\vec{n},k)=\begin{bmatrix}\vec{i}'\\\vec{j}'\end{bmatrix} = 
+\begin{bmatrix}1+(k-1)n_x^2 & (k-1)n_xn_y\\(k-1)n_xn_y & 1+(k-1)n_y^2\end{bmatrix}
+$$
+
+E agora em 3D:
+
+$$
+\begin{align}
+  \vec{i} & = \begin{bmatrix}1&0\end{bmatrix}^T\\
+  \vec{i}'& = \vec{i}+(k-1)(\vec{i}\cdot\vec{n})\vec{n}\\
+          & = \begin{bmatrix}1\\0\end{bmatrix}+(k-1)(\begin{bmatrix}1\\0\end{bmatrix}\cdot\begin{bmatrix}n_x\\n_y\end{bmatrix})\begin{bmatrix}n_x\\n_y\end{bmatrix}\\
+          & = \begin{bmatrix}1\\0\end{bmatrix}+(k-1)n_x\begin{bmatrix}n_x\\n_y\end{bmatrix}\\
+          & = \begin{bmatrix}1\\0\end{bmatrix}+\begin{bmatrix}(k-1)n_x^2\\(k-1)n_xn_y\end{bmatrix}\\
+          & = \begin{bmatrix}1+(k-1)n_x^2\\(k-1)n_xn_y\end{bmatrix}\\
+  \vec{j} & = \begin{bmatrix}0&1\end{bmatrix}^T\\
+  \vec{j}'& = \begin{bmatrix}(k-1)n_xn_y\\1+(k-1)n_y^2\end{bmatrix}\\
+  \vec{k} & = \begin{bmatrix}0&1\end{bmatrix}^T\\
+  \vec{k}'& = \begin{bmatrix}(k-1)n_xn_y\\1+(k-1)n_y^2\end{bmatrix}\\
+\end{align}
+$$
+
+A matriz de escala por um eixo arbitrário em 3D é:
+
+$$
+S(\vec{n},k)=\begin{bmatrix}\vec{i}'\\\vec{j}'\end{bmatrix} = 
+\begin{bmatrix}1+(k-1)n_x^2 & (k-1)n_xn_y\\(k-1)n_xn_y & 1+(k-1)n_y^2\end{bmatrix}
+$$
 
 ### Projeção Ortográfica
 
 
 
 ### Reflexão
+
+![](../assets/images/reflection.png)
 
 $$\begin{bmatrix}
   s_1    & 0      & \cdots & 0      \\ 
@@ -839,7 +909,7 @@ $$\begin{bmatrix}
 
 ### Cisalhamento
 
-
+![](../assets/images/shearing.png)
 
 
 
