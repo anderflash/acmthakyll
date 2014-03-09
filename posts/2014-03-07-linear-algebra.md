@@ -19,10 +19,10 @@ Um bom livro disponível na Internet na íntegra é o livro de Jacir J. Venturi 
 
 Geralmente os vetores são utilizados para representar deslocamentos ao invés de posições imediatas. Em alguns momentos precisamos trabalhar com deslocamentos:
 
-- De uma cidade para outra você traça uma seta representando seu deslocamento;
+- De uma cidade para outra, traça uma seta representando seu deslocamento;
 - Em um segundo, o carro se desloca de um ponto a outro. Se olharmos de cima, podemos traçar uma seta da origem para o destino;
-- Os fótons dos raios solares batem na superfície do espelho e refletem como se fossem bolas quiquando. O sentido e direção desses fótons são importantes para sabermos se eles vão atingir o seu olho (se você percebe o raio refletido) ou não;
-- Se você der um soco num saco de boxe (soco num saco, parece uma cacofonia...), a parte inferior do saco vai para o sentido do murro aplicado, com uma aceleração e velocidade iniciais. A ponta no alto está presa no teto, e como a altura do saco é finita e por causa da força centrípeta, o saco tende a subir. Mas aí o sentido da velocidade se orienta para cima, contra a gravidade. A gravidade reduz a velocidade, fazendo com que o saco pare e depois ganhe velocidade no outro sentido. Devido à pressão do ar, a energia não é conservada, tornando o sistema estável. Tudo isso para dizer que velocidade, gravidade, força do soco e do vento podem ser modeladas como vetores;
+- Os fótons dos raios solares batem na superfície do espelho e refletem como se fossem bolas quiquando. O sentido e direção desses fótons são importantes para sabermos se eles vão atingir o seu olho (se percebes o raio refletido) ou não;
+- Se aplicares um soco num saco de boxe (soco num saco, parece uma cacofonia...), a parte inferior do saco vai para o sentido do murro aplicado, com uma aceleração e velocidade iniciais. A ponta no alto está presa no teto, e como a altura do saco é finita e por causa da força centrípeta, o saco tende a subir. Mas aí o sentido da velocidade se orienta para cima, contra a gravidade. A gravidade reduz a velocidade, fazendo com que o saco pare e depois ganhe velocidade no outro sentido. Devido à pressão do ar, a energia não é conservada, tornando o sistema estável. Tudo isso para dizer que velocidade, gravidade, força do soco e do vento podem ser modeladas como vetores;
 - Em circuitos elétricos, existem componentes para controlar a passagem de elétrons como resistores e indutores. A resistência e reatância compõem a impedância, e é onde os campos elétricos e magnéticos são estudadas em conjunto, como campos eletromagnéticos. Porém esses campos contém polarizações diferentes (90 graus de diferença de fase). A polarização pode ser modelada como vetores;
 
 Existem milhares de exemplos e aplicações que utilizam vetores e outros conceitos de álgebra linear. Como criar um conceito matemático que seja básico o suficiente para atender tamanha variedade de aplicações? Vamos entender o que é o vetor. Mas antes disso vamos entender o sistema de coordenadas cartesiano.
@@ -49,7 +49,7 @@ E os pobres que não podem ter uma ovelha inteira, apenas uma parte dela? Com o 
 
 Depois perceberam que alguns números importantes não podiam ser representados por números racionais, como a razão entre o perímetro da circunferência e seu diâmetro. Estes são os números irracionais, que requerem um infinito número de casas decimais. Enquanto que os números racionais podem ser contáveis, fazendo um mapeamento bijetor para números naturais, os números irracionais não são contáveis. Com isso, duas das maiores áreas da matemática nasceram: a matemática discreta e a matemática contínua.
 
-Pode ser que você pense: não dá para representar fielmente o mundo por parecer contínuo devido a quantidade absurda de átomos, quarks e outras partículas. Mas aí é onde entre a **Primeira Lei da Computação Gráfica**
+Pode ser que penses: não dá para representar fielmente o mundo por parecer contínuo devido a quantidade absurda de átomos, quarks e outras partículas. Mas aí é onde entre a **Primeira Lei da Computação Gráfica**
 
 > Se parecer Ok, então está Ok.
 
@@ -63,7 +63,7 @@ As linhas que passam pela origem se chamam "eixos". Não necessariamente os eixo
 
 - Embora a cidade seja limitada, o sistema de coordenadas 2D é ilimitado, se estendendo ao infinito;
 - As ruas em Cartésia tem espessura, enquanto que as linhas no sistema abstrato não tem. 
-- Em Cartésia, você só pode dirigir nas rodovias e ruas. Em um sistema de coordenadas, você não está limitado à grade desenhada, apenas ao domínio do números dos eixos.
+- Em Cartésia, só podes dirigir nas rodovias e ruas. Em um sistema de coordenadas, não estás limitado à grade desenhada, apenas ao domínio do números dos eixos.
 
 Podemos denominar o eixo horizontal de eixo $X$ e o vertical de eixo $Y$. (5,3), significa 5 quadras no eixo X e 3 quadras no eixo Y.
 
@@ -82,7 +82,7 @@ Para Cartésia, houve um problema: os profissionais que projetaram Cartésia era
 ![](../assets/images/orientacao7.png)
 ![](../assets/images/orientacao8.png)
 
-Eles escolheram a primeira como a _orientação normal_ e perceberam que outras três poderiam ser rotacionadas para ficar idênticas à _orientação normal_. Mas as outras 4 propostas deram trabalho para eles. Apenas no final do dia, quando foram apagar a luz, um dos funcionários percebeu que se colocar uma das outras 4 propostas à contraluz, elas se transformariam à primeira. Ou seja, não importa a orientação no sistema de coordenadas 2D, você poderá transformá-la na _orientação normal_. Depois veremos que em 3D isso não acontece.
+Eles escolheram a primeira como a _orientação normal_ e perceberam que outras três poderiam ser rotacionadas para ficar idênticas à _orientação normal_. Mas as outras 4 propostas deram trabalho para eles. Apenas no final do dia, quando foram apagar a luz, um dos funcionários percebeu que se colocar uma das outras 4 propostas à contraluz, elas se transformariam à primeira. Ou seja, não importa a orientação no sistema de coordenadas 2D, poderás transformá-la na _orientação normal_. Depois veremos que em 3D isso não acontece.
 
 ### 3 dimensões
 
@@ -96,7 +96,7 @@ Nem sempre uma orientação pode ser igual a outra, mesmo que rotacione os eixos
 
 ![](../assets/images/right-hand.png)
 
-Para a mão esquerda, há uma convenção: coloque o seu polegar no eixo X, os outros dedos no eixo Y (pode ser apenas o polegar), e o eixo Z automagicamente estará saindo da sua palma. Para os sistemas de coordenadas da mão direita, é o mesmo processo. Mas veja que se você usar a mão esquerda em um sistema de coordenadas de mão direita, o eixo Z estará saindo das costas da mão. Se seguirmos a ordem X-Y-Z, verás que essa ordem na sua mão direita é polegar-indicador-palma, dando uma orientação antihorária. Essa ordem na mão esquerda resulta numa orientação horária. Então no espaço de coordenadas da mão direita, ângulos positivos seguem a orientação antihorária. Veja como fica a orientação olhando contra o eixo X no sistema de coordenadas da mão esquerda:
+Para a mão esquerda, há uma convenção: coloque o seu polegar no eixo X, os outros dedos no eixo Y (pode ser apenas o polegar), e o eixo Z automagicamente estará saindo da sua palma. Para os sistemas de coordenadas da mão direita, é o mesmo processo. Mas veja que se usares a mão esquerda em um sistema de coordenadas de mão direita, o eixo Z estará saindo das costas da mão. Se seguirmos a ordem X-Y-Z, verás que essa ordem na sua mão direita é polegar-indicador-palma, dando uma orientação antihorária. Essa ordem na mão esquerda resulta numa orientação horária. Então no espaço de coordenadas da mão direita, ângulos positivos seguem a orientação antihorária. Veja como fica a orientação olhando contra o eixo X no sistema de coordenadas da mão esquerda:
 
 ![](../assets/images/left-hand-orientation.png)
 
@@ -127,7 +127,7 @@ não tem magnitude                    tem magnitude
 tem posição                          não tem uma posição específica
 -----------------------------------------------------------------------------
 
-Quando você quiser especificar uma posição, por exemplo um lugar _A_ com latitude=-23 e longitude=-46, você especifica um ponto (-23, -46). Quando você quiser especificar um deslocamento, por exemplo entre A(-23, -46) e B(50, 20) você precisa caminhar 73 unidades no eixo X e 66 unidades no eixo Y, resultando em [73,66], que é diferente de um ponto C na posição (73,66).
+Quando quiseres especificar uma posição, por exemplo um lugar _A_ com latitude=-23 e longitude=-46, especificas um ponto (-23, -46). Quando quiseres especificar um deslocamento, por exemplo entre A(-23, -46) e B(50, 20) precisas caminhar 73 unidades no eixo X e 66 unidades no eixo Y, resultando em [73,66], que é diferente de um ponto C na posição (73,66).
 
 Geometricamente podemos associar pontos e vetores:
 
@@ -142,13 +142,13 @@ Matematicamente podemos associar pontos e vetores dessa forma:
 
 ### Vetor zero
 
-A identidade da operação de adição entre vetores é o vetor zero: $[0,0,\dots,0]^T$. Se você fixar a magnitude de um vetor, todos os vetores distintos formam um círculo de vetores. Porém o vetor zero não tem direção, ou seguindo a definição, tem todas as direções. Não pense no vetor zero como um ponto, pense como "sem deslocamento".
+A identidade da operação de adição entre vetores é o vetor zero: $[0,0,\dots,0]^T$. Se fixares a magnitude de um vetor, todos os vetores distintos formam um círculo de vetores. Porém o vetor zero não tem direção, ou seguindo a definição, tem todas as direções. Não pense no vetor zero como um ponto, pense como "sem deslocamento".
 
 ### Negar um vetor
 
 $-\vec{a}= -[a_1,a_2,\dots,a_n]^T = [-a_1,-a_2,\dots,-a_n]^T$
 
-Geometricamente você inverte o sentido do vetor:
+Geometricamente invertes o sentido do vetor:
 
 ![](../assets/images/negative.png)
 
@@ -193,7 +193,7 @@ Geometricamente, a multiplicação de um vetor por uma escalar estica ou encolhe
 
 ### Normalização
 
-Multas vezes você só quer saber o sentido do vetor, sem se importar com a magnitude:
+Multas vezes só queres saber o sentido do vetor, sem se importar com a magnitude:
 
 - Para onde o vento está orientado nesse ponto?
 - Para onde esse fóton está indo?
@@ -257,7 +257,7 @@ $$
 
 ### Distância entre pontos
 
-Dados dois pontos A e B, você pode obter um vetor $v = A-B = [a_1 - b_1,a_2-b_2,\dots,a_n-b_n]^T$. A distância entre A e B é a magnitude $\|v\| = \sqrt{(a_1-b_1)^2+(a_2-b_2)^2+\dots+(a_n-b_n)^2}$
+Dados dois pontos A e B, podes obter um vetor $v = A-B = [a_1 - b_1,a_2-b_2,\dots,a_n-b_n]^T$. A distância entre A e B é a magnitude $\|v\| = \sqrt{(a_1-b_1)^2+(a_2-b_2)^2+\dots+(a_n-b_n)^2}$
 
 ### Produto Escalar
 
@@ -277,7 +277,7 @@ $\vec{a}\cdot\vec{b} = cos(\theta)$
 
 ### Projetando um vetor no outro
 
-Digamos que você tenha modelado um coqueiro inclinado e o sol esteja exatamente acima, e você queira projetar sua sombra. Representando estas elementos como vetores:
+Digamos que tenhas modelado um coqueiro inclinado e o sol esteja exatamente acima, e queiras projetar sua sombra. Representando estas elementos como vetores:
 
 ![](../assets/images/vector_projection.png)
 
@@ -321,7 +321,7 @@ $$
 \begin{bmatrix} y_1z_2 - y_2z_1 \\ x_1z_2 - z_1x_2 \\ x_1y_2-y_1x_2 \end{bmatrix}
 $$
 
-Parece confuso e aleatório? Vou dar uma dica para visualizar o padrão nessa multiplicação: para achar o primeiro valor do vetor resultante, remova a primeira linha dos dois vetores, junte os outros 4 números e calcule o determinante. Para o segundo ou terceiro valores, remova a segunda ou terceira linha e repita o processo. Daí você pode lembrar: _Isso se parece com determinante usando expansão em cofatores_. Mas é isso mesmo, há uma forma de calcular esse produto vetorial usando apenas uma determinante. Se eu representar o vetor $[x,y,z]^T$ como $x\vec{i}+y\vec{j}+z\vec{k}$, onde $\vec{i} = [1,0,0]^T$, $\vec{j} = [0,1,0]^T$ e $\vec{k} = [0,0,1]^T$, então o produto vetorial pode ser representado como:
+Parece confuso e aleatório? Vou dar uma dica para visualizar o padrão nessa multiplicação: para achar o primeiro valor do vetor resultante, remova a primeira linha dos dois vetores, junte os outros 4 números e calcule o determinante. Para o segundo ou terceiro valores, remova a segunda ou terceira linha e repita o processo. Daí podes lembrar: _Isso se parece com determinante usando expansão em cofatores_. Mas é isso mesmo, há uma forma de calcular esse produto vetorial usando apenas uma determinante. Se eu representar o vetor $[x,y,z]^T$ como $x\vec{i}+y\vec{j}+z\vec{k}$, onde $\vec{i} = [1,0,0]^T$, $\vec{j} = [0,1,0]^T$ e $\vec{k} = [0,0,1]^T$, então o produto vetorial pode ser representado como:
 
 $$
 \vec{v}\times\vec{w} = 
@@ -390,7 +390,7 @@ $$AB = [a_{ij}][b_{ij}] = [a_{ij}b_{ij}]$$
 
 Inclusive nas ferramentas computacionais, existe essa operação de multiplicação elemento-a-elemento entre matrizes. Todavia, com o tempo, percebeu-se que uma outra forma de multiplicação se mostrava muito mais útil para o desenvolvimento da álgebra linear e suas aplicações. Mantendo a abordagem top-down, vou mostrar o conceito primeiramente mostrando um problema, um exemplo.
 
-Imagine que você esteja resolvendo um sistema de equações lineares:
+Imagine que estejas resolvendo um sistema de equações lineares:
 
 $$
 \begin{array}\\a_{11}x_1 + a_{12}x_2 + a_{13}x_3 + a_{14}x_4 = b_1 \\
@@ -427,7 +427,7 @@ Podemos abreviar as matrizes:
 
 $$A\vec{x} = \vec{b}$$
 
-Esse exemplo mostra uma multiplicação entre matriz e vetor. Percebeu que há uma relação entre as linhas da primeira matriz e as colunas da segunda matriz (que nesse caso só havia uma coluna, o vetor coluna)? O número de elementos dentro de cada linha do primeiro vetor e dentro de cada coluna do segundo vetor deve ser o mesmo. Generalizando, você pode multiplicar vetores de diferentes tamanhos, porém seguindo essa regra.
+Esse exemplo mostra uma multiplicação entre matriz e vetor. Percebeu que há uma relação entre as linhas da primeira matriz e as colunas da segunda matriz (que nesse caso só havia uma coluna, o vetor coluna)? O número de elementos dentro de cada linha do primeiro vetor e dentro de cada coluna do segundo vetor deve ser o mesmo. Generalizando, podes multiplicar vetores de diferentes tamanhos, porém seguindo essa regra.
 
 $$A_{l \times n}B_{n \times c} = C_{l \times c}$$
 
@@ -458,7 +458,7 @@ Algumas observações com relação à multiplicação entre matrizes:
   
     $(AB)^T = B^TA^T$. 
   
-    Isso faz sentido quando você leva em conta o tamanho das matrizes, de forma a manter a multiplicação válida:
+    Isso faz sentido quando levas em conta o tamanho das matrizes, de forma a manter a multiplicação válida:
   
     $(A_{l \times n}B_{n \times c})^T = B^T_{c \times n}A^T_{n \times l}$
   
@@ -520,7 +520,7 @@ v_1\vec{i} + v_2\vec{j} + v_3\vec{k} \\
 \end{split}
 $$
 
-Nós expressamos o vetor $\vec{v}$ como uma combinação linear dos vetores $\vec{i}$, $\vec{j}$ e $\vec{k}$. Denominemos estes vetores como _vetores base_. Com estas bases, podemos formar qualquer vetor no espaço $n$-dimensional ($n$ é o número de vetores base), todavia veja que não há combinação linear de $\vec{i}$ e $\vec{j}$ que resulte em $\vec{k}$ (nem de $\vec{j}$ e $\vec{k}$ para $\vec{i}$ e de $\vec{k}$ e $\vec{i}$ para $\vec{j}$). Quando isso acontece, então eles são _linearmente independentes_ (LI). Existem diversas bases que podem formar o mesmo espaço vetorial, todavia elas precisam ser LI (nós denominamos os vetores base \vec{i}, \vec{j} e \vec{k} como _base canônica_). Se você tiver no seu conjunto de vetores base um vetor que seja combinação linear dos outros vetores, então sua base não é LI. É necessário remover esse vetor e fazer um novo teste, até conseguir um número de vetores base. Em 3D, a consequência de uma base LI de dimensão 3 é que seus três vetores não pertencem a um plano.
+Nós expressamos o vetor $\vec{v}$ como uma combinação linear dos vetores $\vec{i}$, $\vec{j}$ e $\vec{k}$. Denominemos estes vetores como _vetores base_. Com estas bases, podemos formar qualquer vetor no espaço $n$-dimensional ($n$ é o número de vetores base), todavia veja que não há combinação linear de $\vec{i}$ e $\vec{j}$ que resulte em $\vec{k}$ (nem de $\vec{j}$ e $\vec{k}$ para $\vec{i}$ e de $\vec{k}$ e $\vec{i}$ para $\vec{j}$). Quando isso acontece, então eles são _linearmente independentes_ (LI). Existem diversas bases que podem formar o mesmo espaço vetorial, todavia elas precisam ser LI (nós denominamos os vetores base \vec{i}, \vec{j} e \vec{k} como _base canônica_). Se tiveres no seu conjunto de vetores base um vetor que seja combinação linear dos outros vetores, então sua base não é LI. É necessário remover esse vetor e fazer um novo teste, até conseguir um número de vetores base. Em 3D, a consequência de uma base LI de dimensão 3 é que seus três vetores não pertencem a um plano.
 
 Então vamos representar geometricamente os vetores $\vec{v}$, $\vec{i}$, $\vec{j}$ e $\vec{k}$ (Em 2D é mais fácil de visualizar):
 
@@ -829,7 +829,7 @@ Podemos aplicar uma escala em qualquer eixo. Vamos representar este eixo por um 
 
 ![](../assets/images/scale_arbitrary.png)
 
-Da mesma forma que a rotação, se você decompor $\vec{v}$ em $$ e $$, você perceberá que apenas o componente $$ sofre a transformação. Vamos aos cálculos:
+Da mesma forma que a rotação, se decompores $\vec{v}$ em $$ e $$, perceberás que apenas o componente $$ sofre a transformação. Vamos aos cálculos:
 
 $$
 \begin{align}
@@ -892,25 +892,281 @@ S(\vec{n},k)=\begin{bmatrix}\vec{i}'\\\vec{j}'\end{bmatrix} =
 \begin{bmatrix}1+(k-1)n_x^2 & (k-1)n_xn_y\\(k-1)n_xn_y & 1+(k-1)n_y^2\end{bmatrix}
 $$
 
+
+
 ### Projeção Ortográfica
 
+Projeção é uma operação de redução de dimensão. O ambiente tridimensional, após uma projeção, se torna um ambiente bidimensional. A forma mais simples é simplesmente descartar uma das coordenadas. Nesse caso todos os pontos estarão dentro de um plano alinhado aos outros eixos. Além disso, podemos realizar uma escala numa direção arbitrária com fator igual a zero. Esta é denominada _projeção ortográfica_, ou projeção paralela, já que os pontos originais e seus correspondentes pontos após a transformação formam linhas paralelas.
 
+![](../assets/images/ortographic.png)
+
+Inicialmente vamos usar os vetores básicos canônicos como direções de projeção. Simplesmente transformamos o vetor básico em um vetor nulo:
+
+$$P_x = S(\begin{bmatrix}0&1\end{bmatrix},0) = \begin{bmatrix}1&0\\0&0\end{bmatrix}
+
+$$P_y = S(\begin{bmatrix}1&0\end{bmatrix},0) = \begin{bmatrix}0&0\\0&1\end{bmatrix}
+
+$$P_{xy} = S(\begin{bmatrix}0&0&1\end{bmatrix},0) = \begin{bmatrix}1&0&0\\0&1&0\\0&0&0\end{bmatrix}
+
+$$P_{xz} = S(\begin{bmatrix}0&1&0\end{bmatrix},0) = \begin{bmatrix}1&0&0\\0&0&0\\0&0&1\end{bmatrix}
+
+$$P_{yz} = S(\begin{bmatrix}1&0&0\end{bmatrix},0) = \begin{bmatrix}0&0&0\\0&1&0\\0&0&1\end{bmatrix}
+
+Projeção ortográfica sobre uma direção arbitrária consiste em escalar essa direção por um fator nulo:
+
+$$\begin{align}
+P(\vec{n}) &= S(\vec{n},0) \\
+           &= \begin{bmatrix}1+(0-1)n_x^2 & (0-1)n_xn_y\\(0-1)n_xn_y&1+(0-1)n_y^2\end{bmatrix} \\
+           &= \begin{bmatrix}1-n_x^2&-n_xn_y\\-n_xn_y&1-n_y^2\end{bmatrix}
+\end{align}
+$$
+
+Em 3D:
+
+$$\begin{align}
+P(\vec{n}) &= S(\vec{n},0) \\
+           &= \begin{bmatrix}1+(0-1)n_x^2 & (0-1)n_xn_y&(0-1)n_xn_z\\(0-1)n_xn_y&1+(0-1)n_y^2&(0-1)n_yn_z\\(0-1)n_xn_z&(0-1)n_yn_z&1+(0-1)n_z^2\end{bmatrix} \\
+           &= \begin{bmatrix}1-n_x^2&-n_xn_y&-n_xn_z\\-n_xn_y&1-n_y^2&-n_yn_z\\-n_xn_z&-n_yn_z&1-n_z^2\end{bmatrix}
+\end{align}
+$$
 
 ### Reflexão
 
 ![](../assets/images/reflection.png)
 
-$$\begin{bmatrix}
-  s_1    & 0      & \cdots & 0      \\ 
-  0      & s_2    & \cdots & 0      \\ 
-  \vdots & \vdots & \ddots & \vdots \\
-  0      & 0      & \cdots & s_n        
-\end{bmatrix}$$
+Em 2D a reflexão ocorre sobre um eixo. Você pode fazer uma reflexão sobre um eixo canônico realizando uma escala com fator -1. Para um eixo arbitrário representado por \vec{n}:
+
+$$
+\begin{align}
+R(\vec{n}) & = S(\vec{n}, -1) \\
+           & = \begin{bmatrix}1+(-1-1)n_x^2&(-1-1)n_xn_y\\(-1-1)n_xn_y&1+(-1-1)n_y^2\end{bmatrix}
+           & = \begin{bmatrix}1-2n_x^2&-2n_xn_y\\-2n_xn_y 1-2n_y^2\end{bmatrix}
+\end{align}
+$$
+
+Em 3D, nós realizamos reflexão sobre um plano ao invés de um eixo. A seguinte matriz reflete sobre um plano que passa pela origem e é perpendicular ao vetor \vec{n}:
+
+$$
+\begin{align}
+R(\vec{n}) & = S(\vec{n}, -1) \\
+           & = \begin{bmatrix}1+(-1-1)n_x^2&(-1-1)n_xn_y&(-1-1)n_xn_z\\(-1-1)n_xn_y&1+(-1-1)n_y^2&(-1-1)n_yn_z\\(-1-1)n_xn_z&(-1-1)n_yn_z&1+(-1-1)n_z^2\end{bmatrix}
+           & = \begin{bmatrix}1-2n_x^2&-2n_xn_y&-2n_xn_z\\-2n_xn_y 1-2n_y^2&-2n_yn_z\\-2n_xn_z&-2n_yn_z&1-2n_z^2\end{bmatrix}
+\end{align}
+$$
+
+Duas reflexões (não necessariamente sobre o mesmo eixo ou plano) resultam numa rotação.
 
 ### Cisalhamento
 
+Cisalhamento é uma transformação que distorce o objeto, transformando retângulos e quadrados em paralelogramos. 
+
 ![](../assets/images/shearing.png)
 
+Como se pode ver, os ângulos não são preservados, mas a área e o volume sim. A ideia é fazer uma coordenada influenciar a outra. Por exemplo, podemos pegar o múltiplo de \vec{i} e inserir em \vec{j}, de forma que \vec{j}' = \vec{j} + c\vec{i}, como na figura.
+
+A matriz que realiza este cisalhamento é:
+
+$$H_x(c)=\begin{bmatrix}1&c\\0&1\end{bmatrix}$$
+
+A notação $H_x$ denota a coordenada $x$ sendo cisalhada pela coordenada $y$. O parâmetro $c$ controla a quantidade e direção do cisalhamento. Para cisalhar no eixo $y$, $H_y$ é dado abaixo:
+
+$$H_y(c)=\begin{bmatrix}1&0\\c&1\end{bmatrix}$$
+
+Em 3D, podemos adicionar múltiplos de um eixo em dois outros eixos. A notação H_{xy} significa que as coordenadas $x$ e $y$ estão sendo cisalhadas pela coordenada $z$. Estas matrizes são dadas abaixo:
+
+$$
+\begin{align}
+H_{xy}(c,d) &= \begin{bmatrix}1&0&c\\0&1&d\\0&0&1\end{bmatrix}\\
+H_{xz}(c,d) &= \begin{bmatrix}1&c&0\\0&1&0\\0&d&1\end{bmatrix}\\
+H_{yz}(c,d) &= \begin{bmatrix}1&0&0\\c&1&0\\d&0&1\end{bmatrix}
+\end{align}
+$$
+
+A combinação de cisalhamento e escala pode ser uma transformação semelhante a alguma combinação de rotação e escala. Cisalhamento também gera um efeito interessante para a transformação perspectiva. Fora dessa aplicação, cisalhamento não é bastante usado.
+
+### Composição de Transformações
+
+Digamos que tenhas criado seus modelos tridimensionais. Onde posicioná-los? Como escalá-los? Como rotacioná-los? Além disso, todo o ambiente precisa ser projetado para uma imagem 2D que aparecerá na tela. Ainda não abordamos posicionamento (translação) e nem projeção perspectiva.
+Será que rotação e escala é o efeito que quero naquele momento ou é escala e rotação?
+
+![](../assets/images/composition_transformation.png)
+
+Digamos que cries os pontos ($A$, $B$, $C$ e $D$), baseando-se no sistema de coordenadas do objeto. Seus correspondentes vértices ($\vec{a}$, $\vec{b}$, $\vec{c}$ e $\vec{d}$) também estão ilustrados. Talvez na figura não consigas ver, mas denominei os vértices resultantes da transformação das coordenadas de objeto para as coordenadas do mundo como $\vec{a}'$, $\vec{b}'$, $\vec{c}'$ e $\vec{d}'$. Na segunda transformação, os vértices resultantes são $\vec{a}''$, $\vec{b}''$, $\vec{c}''$ e $\vec{d}''$. Veja também que o sistema de coordenadas pode ser qualquer um (veja o sist. de coord. do mundo na figura), desde que siga a regra estabelecida (na nossa convenção, a regra da mão direita). Generalizando para um vértice $\vec{v}$:
+
+$$\begin{align}
+\vec{v}'  & = M_{objeto\rightarrow mundo}\vec{v} \\
+\vec{v}'' & = M_{mundo->camera}\vec{v}' \\
+          & = M_{mundo->camera}(M_{objeto\rightarrow mundo}\vec{v}) \\
+\vec{v}'''& = M_{camera->tela}\vec{v}'' \\
+          & = M_{camera->tela}(M_{mundo->camera}(M_{objeto\rightarrow mundo}\vec{v}))
+\end{align}$$
+
+Como uma matriz é associativa, podemos reunir as matrizes:
+
+$$\begin{align}
+\vec{v}'''& = (M_{camera->tela}M_{mundo->camera}M_{objeto\rightarrow mundo})\vec{v} 
+\end{align}$$
+
+Para encurtar, podemos denominar $M_{camera->tela}$ de $P$ (para lembrar _projeção_), $M_{mundo->camera}$ de $V$ (para lembrar _visualização_) e $M_{objeto->mundo}$ de $M$ mesmo (para lembrar _modelo_). Esta estruturação se dá o nome de MVP (do inglês _Model-View-Projection_), bastante usada nas aplicações de computação gráfica.
+
+Sabemos que as colunas das matrizes de transformação são os vetores bases transformados:
+
+$$A = \begin{bmatrix}\vec{a_1}&\vec{a_2}&\vec{a_3}\end{bmatrix}$$
+
+Então as colunas da segunda transformação são os vetores das colunas de A transformados:
+
+$$\begin{align}
+BA & = B\begin{bmatrix}\vec{a_1}&\vec{a_2}&\vec{a_3}\end{bmatrix}\\
+   & = \begin{bmatrix}B\vec{a_1}&B\vec{a_2}&B\vec{a_3}\end{bmatrix}
+\end{align}$$
+
+## Classes de Transformações
+
+Com tantas matrizes de transformações distintas, será que podemos achar padrões? Será que podemos achar um subconjunto de transformações que preservam ângulos? E que nome se dá a esse subconjunto? Essa classificação é importante para saberes que tipo de transformação não amplia o volume dos objetos (escala não é um deles).
+
+Já que uma transformação está realizando um mapeamento de um vértice para outro, podemos denominar a transformação de _mapeamento_ ou _função_. Um mapeamento $F$ que mapeia $a$ para $b$ se define como $F(a) = b$. Um conjunto de transformações e um conjunto de pontos em um determinado domínio é chamado de _geometria_. Cada geometria preserva certas propriedades, e existem algumas geometrias que são subconjuntos de outras, herdando propriedades e adicionando outras.
+
+### Geometria Euclidiana
+
+A geometria euclidiana contém transformações que preservam:
+
+- ângulos;
+- paralelismo;
+- áreas (2D, 3D e outros $N$D, com $N\ge 2$);
+- volumes (no caso de 3D e outros $N$D, com $N\ge 2$);
+- razões de distâncias entre pontos (ex: AB/AC se mantém após a transformação);
+- colinearidade: se vários pontos estão contidos numa linha, os pontos resultantes ainda formarão parte de uma linha;
+- distância;
+- incidência: se uma linha incidir sobre um ponto, a linha transformada incidirá sobre o ponto transformado.
+- razão cruzada: se calculares as distâncias entre um ponto e outros dois pontos (ex: AC e AD), fazer a razão ($\frac{AC}{AD}$), e fizer o mesmo com um outro ponto (\frac{BC}{BD}), e fizer a razão entre estas razões (\frac{\frac{AC}{AD}}{\frac{BC}{BD}}), esse valor se manterá após a transformação.
+- forma;
+
+As transformações dessa geometria são:
+
+- translação;
+- rotação;
+- reflexão.
+
+### Geometria de Similaridade
+
+Dois objetos são similares se eles tiverem a mesma forma (seja refletido, ampliado ou reduzido). Transformações que mantém o formato dos objetos estão contidos nesta
+
+- ângulos;
+- paralelismo;
+- razões de distâncias entre pontos;
+- colinearidade;
+- incidência;
+- razão cruzada;
+- forma;
+
+As transformações dessa geometria são:
+
+- translação;
+- rotação;
+- reflexão;
+- escala Uniforme.
+
+Veja que a geometria euclidiana é um subconjunto da geometria de similaridade.
+
+### Geometria Afim
+
+A geometria afim preserva menos propriedades do que a geometria de similaridade (pois a segunda é um subconjunto da primeira, a geometria afim é menos restritiva e mais abrangente). As propriedades que a geometria afim preserva são:
+
+- paralelismo;
+- razões de distâncias entre pontos;
+- colinearidade;
+
+As transformações dessa geometria são:
+
+- translação;
+- rotação;
+- reflexão;
+- escala Uniforme;
+- escala Não-Uniforme;
+- cisalhamento.
+
+### Geometria Projetiva
+
+Já viste uma foto de uma praia em um pôr-de-sol? E uma foto que contenha um trilho de trem, onde o trilho vai reduzindo de tamanho conforme vai ficando mais distante da câmera até se transformar em um ponto no horizonte? E se considerarmos (de forma hipotética) que o horizonte está localizado a uma distância infinita de nós? É estranho constatarmos que fotografamos o infinito. Até porque não existem esses pontos ao infinito na geometria euclidiana até a afim, porém na geometria projetiva, esses pontos são como qualquer outro, e são projetados no plano da imagem como qualquer outro ponto no espaço, formando um horizonte.
+
+As propriedades que a geometria projetiva preserva são:
+
+- razões de distâncias entre pontos;
+- colinearidade;
+
+**E onde está o paralelismo?** Mesmo o trilho de trem sendo paralelo no espaço, na foto elas aparecerão se encontrando no horizonte (na hipotética linha do infinito). De fato, todas as linhas paralelas, transformadas projetivamente, na verdade se encontram no horizonte. Isso transforma a frase da geometria euclidiana - "Duas linhas se encontram em um ponto exceto quando são paralelas" - na frase - "Duas linhas se encontram em um ponto", removendo a indesejada exceção. Por causa disso, ela não preserva o paralelismo.
+
+As transformações dessa geometria são:
+
+- Todas as transformações da geometria afim;
+- Projeção perspectiva
+- Composição de projeções
+
+Geometria projetiva é um tópico em que são dedicados vários livros completos. Essa revisão apenas mostra uma leve introdução. Mesmo assim, é um assunto fascinante, pois é uma base para Computação Gráfica e para Visão Computacional, especialmente para aplicações de reconstrução de ambientes tridimensionais a partir de simples fotografias. Vide o livro [Multiple View Geometry](http://www.amazon.com/Multiple-View-Geometry-Computer-Vision/dp/0521540518/ref=sr_1_1?ie=UTF8&qid=1394402186&sr=8-1&keywords=multi+view+geometry) e [Projective Geometry](http://www.amazon.com/Projective-Geometry-H-S-M-Coxeter/dp/0387406239/ref=sr_1_1?ie=UTF8&qid=1394402213&sr=8-1&keywords=projective+geometry).
+
+Existem outras geometrias que não são baseadas na Geometria Euclidiana. São chamadas de [Geometrias Não-Euclidianas](http://www.amazon.com/Euclidean-Non-Euclidean-Geometries-Development-History/dp/0716799480/ref=sr_1_3?ie=UTF8&qid=1394402375&sr=8-3&keywords=non+euclidean+geometry). Todavia, nessa revisão, não serão abordadas.
+
+Após mostrar as geometrias, vamos ver algumas características interessantes sobre transformações lineares.
+
+### Transformação Linear
+
+Um mapeamento F(a) é linear se 
+
+$$F(a+b) = F(a) + F(b)$$
+
+e
+
+$$F(ka) = kF(a)$$.
+
+Ou seja, se pensarmos na função linear como uma máquina que processa uma entrada e gera uma saída, se enviarmos duas entradas em momentos distintos, e somarmos as saídas, é o mesmo que somar as entradas, jogar o resultado na entrada da máquina e obter seu resultado. A segunda característica pode ser pensada assim: Se duplicarmos a entrada, duplicaremos a saída, e assim sucessivamente com outros fatores.
+
+Se $F$ for apenas uma multiplicação por uma matriz, então a transformação é linear, pois:
+
+$$\begin{align}
+F(\vec{a}+\vec{b}) &= M(\vec{a}+\vec{b}) \\
+       &= M\vec{a}+M\vec{b}  \\
+       &= F(\vec{a}) + F(\vec{b})
+\end{align}
+$$
+
+e
+
+$$\begin{align}
+F(k\vec{a}) &= M(k\vec{a}) \\
+       &= kM\vec{a}  \\
+       &= kF(\vec{a})
+\end{align}
+$$
+
+Se uma transformação mapear o vetor nulo para outro vetor ($\vec{a}$ por exemplo), significa que a origem do sistema de coordenadas foi deslocado (ocorreu uma translação). Mas translação não é uma transformação linear (Se $F(\vec{0}) = \vec{a}$, com $\vec{a}\neq\vec{0}$, então $F(k\vec{0}) = F(\vec{0}) = \vec{a}$ e por isso $F(k\vec{0})\neq kF(\vec{0})$.) Todas as transformações que apresentamos (pois podem ser representadas por uma multiplicação de matriz) são transformações lineares.
+
+Na verdade, existe uma forma de tornar a translação uma transformação linear.
+
+### Transformação Afim
+
+A transformação afim engloba as transformações lineares e a translação, no seguinte formato:
+
+$$F(\vec{a}) = M\vec{a} + \vec{t}$$
+
+Se $\vec{t}=\vec{0}$, então temos uma transformação linear. Se $\vec{t}\neq\vec{0}$:
+
+$$\begin{align}
+F(\vec{a} + \vec{b}) &= M(\vec{a} + \vec{b}) + \vec{t} \\
+                     &= (M\vec{a} + \vec{t}) + (M\vec{b} + \vec{t}) - \vec{t} \\
+                     &= F(\vec{a}) + F(\vec{b}) - \vec{t} \\
+                     &\neq F(\vec{a}) + F(\vec{b})
+\end{align}
+
+$$
 
 
-## 
+### Transformação 
+
+### Transformação Afim
+
+
+
+### Transformação Inversível
+
+
+

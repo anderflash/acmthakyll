@@ -14,7 +14,10 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.4 r9939"
-   sodipodi:docname="Novo documento 1">
+   sodipodi:docname="rotation_arbitrary.svg"
+   inkscape:export-filename="/home/acmt/Documentos/git/acmthakyll/assets/images/rotation_arbitrary.png"
+   inkscape:export-xdpi="40"
+   inkscape:export-ydpi="40">
   <defs
      id="defs4">
     <marker
@@ -70,10 +73,10 @@
      fit-margin-left="5"
      fit-margin-right="5"
      fit-margin-bottom="5"
-     inkscape:window-width="1366"
-     inkscape:window-height="768"
-     inkscape:window-x="0"
-     inkscape:window-y="0"
+     inkscape:window-width="1091"
+     inkscape:window-height="368"
+     inkscape:window-x="274"
+     inkscape:window-y="369"
      inkscape:window-maximized="0" />
   <metadata
      id="metadata7">
