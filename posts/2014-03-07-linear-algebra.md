@@ -1140,7 +1140,7 @@ $$
 
 Se uma transformação mapear o vetor nulo para outro vetor ($\vec{a}$ por exemplo), significa que a origem do sistema de coordenadas foi deslocado (ocorreu uma translação). Mas translação não é uma transformação linear (Se $F(\vec{0}) = \vec{a}$, com $\vec{a}\neq\vec{0}$, então $F(k\vec{0}) = F(\vec{0}) = \vec{a}$ e por isso $F(k\vec{0})\neq kF(\vec{0})$.) Todas as transformações que apresentamos (pois podem ser representadas por uma multiplicação de matriz) são transformações lineares.
 
-Na verdade, existe uma forma de tornar a translação uma transformação linear.
+Na verdade, existe uma forma de tornar a translação uma transformação linear. De fato, a transformação linear é uma característica transversal às geometrias.
 
 ### Transformação Afim
 
@@ -1156,17 +1156,46 @@ F(\vec{a} + \vec{b}) &= M(\vec{a} + \vec{b}) + \vec{t} \\
                      &= F(\vec{a}) + F(\vec{b}) - \vec{t} \\
                      &\neq F(\vec{a}) + F(\vec{b})
 \end{align}
-
 $$
-
-
-### Transformação 
-
-### Transformação Afim
-
 
 
 ### Transformação Inversível
 
+Outra classe de transformações são as transformações inversíveis, nais quais se existe F(a)=b, então existe F^{-1} tal que F^{-1}(b) = a. Isso significa que você pode reverter a transformação, voltando à configuração anterior. Por exemplo: se você rotacionou um objeto 30 graus em sentido antihorário, para retornar à posição original, basta aplicar uma rotação horária de 30 graus. Rotação (negando o ângulo), escala (invertendo as escalas), e translação (negando o deslocamento) contém transformações inversas. 
+
+A projeção não é uma transformação inversível, dado que uma dimensão foi perdida no caminho. Com isso, todas as transformações afins exceto a projeção são transformações inversíveis. Como as transformações inversíveis são representadas por multiplicação de matrizes, encontrar a transformação inversa consiste em encontrar a matriz inversa. Se o determinante de uma matriz for zero, então a matriz não contém uma inversa.
+
+Dentro do grupo de transformações inversíveis, há o grupo de transformações ortogonais, em que os eixos mantém-se ortogonais e não há escala aplicada. Transformações ortogoniais contém $det(M) \pm 1$ em que tem a interessante propriedade de $M^{-1} = M^T$. Translação, rotação, reflexão são transformações ortogonais. Por causa disso, todas as transformações ortogonais são euclidianas.
+
+## Matrizes
+
+Desenvolvido melhor a intuição das matrizes no contexto de transformações na álgebra linear, vamos conhecer melhor o básico de matrizes.
+
+### Determinante
+
+[Faronta]
+
+### Inversa
+
+[Faronta]
+
+### Matrizes Ortogonais
+
+[Faronta]
+
+### Matrizes Homogêneas
+
+[Faronta]
 
 
+## Orientação e Deslocamento Angular
+
+[Faronta]
+
+## Primitivas Geométricas
+
+[Faronta]
+
+## Testes Geométricos
+
+[Faronta]
