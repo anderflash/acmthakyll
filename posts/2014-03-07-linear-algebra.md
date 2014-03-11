@@ -829,7 +829,7 @@ Podemos aplicar uma escala em qualquer eixo. Vamos representar este eixo por um 
 
 ![](../assets/images/scale_arbitrary.png)
 
-Da mesma forma que a rotação, se decompores $\vec{v}$ em $$ e $$, perceberás que apenas o componente $$ sofre a transformação. Vamos aos cálculos:
+Da mesma forma que a rotação, se decompores $\vec{v}$ em $\vec{v}_\perp$ e $\vec{v}_\parallel$, perceberás que apenas o componente $\vec{v}_\parallel$ sofre a transformação. Vamos aos cálculos:
 
 $$
 \begin{align}
@@ -902,15 +902,15 @@ Projeção é uma operação de redução de dimensão. O ambiente tridimensiona
 
 Inicialmente vamos usar os vetores básicos canônicos como direções de projeção. Simplesmente transformamos o vetor básico em um vetor nulo:
 
-$$P_x = S(\begin{bmatrix}0&1\end{bmatrix},0) = \begin{bmatrix}1&0\\0&0\end{bmatrix}
+$$P_x = S(\begin{bmatrix}0&1\end{bmatrix},0) = \begin{bmatrix}1&0\\0&0\end{bmatrix}$$
 
-$$P_y = S(\begin{bmatrix}1&0\end{bmatrix},0) = \begin{bmatrix}0&0\\0&1\end{bmatrix}
+$$P_y = S(\begin{bmatrix}1&0\end{bmatrix},0) = \begin{bmatrix}0&0\\0&1\end{bmatrix}$$
 
-$$P_{xy} = S(\begin{bmatrix}0&0&1\end{bmatrix},0) = \begin{bmatrix}1&0&0\\0&1&0\\0&0&0\end{bmatrix}
+$$P_{xy} = S(\begin{bmatrix}0&0&1\end{bmatrix},0) = \begin{bmatrix}1&0&0\\0&1&0\\0&0&0\end{bmatrix}$$
 
-$$P_{xz} = S(\begin{bmatrix}0&1&0\end{bmatrix},0) = \begin{bmatrix}1&0&0\\0&0&0\\0&0&1\end{bmatrix}
+$$P_{xz} = S(\begin{bmatrix}0&1&0\end{bmatrix},0) = \begin{bmatrix}1&0&0\\0&0&0\\0&0&1\end{bmatrix}$$
 
-$$P_{yz} = S(\begin{bmatrix}1&0&0\end{bmatrix},0) = \begin{bmatrix}0&0&0\\0&1&0\\0&0&1\end{bmatrix}
+$$P_{yz} = S(\begin{bmatrix}1&0&0\end{bmatrix},0) = \begin{bmatrix}0&0&0\\0&1&0\\0&0&1\end{bmatrix}$$
 
 Projeção ortográfica sobre uma direção arbitrária consiste em escalar essa direção por um fator nulo:
 
@@ -938,9 +938,7 @@ Em 2D a reflexão ocorre sobre um eixo. Você pode fazer uma reflexão sobre um 
 
 $$
 \begin{align}
-R(\vec{n}) & = S(\vec{n}, -1) \\
-           & = \begin{bmatrix}1+(-1-1)n_x^2&(-1-1)n_xn_y\\(-1-1)n_xn_y&1+(-1-1)n_y^2\end{bmatrix}
-           & = \begin{bmatrix}1-2n_x^2&-2n_xn_y\\-2n_xn_y 1-2n_y^2\end{bmatrix}
+R(\vec{n}) & = S(\vec{n}, -1) = \begin{bmatrix}1+(-1-1)n_x^2&(-1-1)n_xn_y\\(-1-1)n_xn_y&1+(-1-1)n_y^2\end{bmatrix} = \begin{bmatrix}1-2n_x^2&-2n_xn_y\\-2n_xn_y 1-2n_y^2\end{bmatrix}
 \end{align}
 $$
 
@@ -948,9 +946,9 @@ Em 3D, nós realizamos reflexão sobre um plano ao invés de um eixo. A seguinte
 
 $$
 \begin{align}
-R(\vec{n}) & = S(\vec{n}, -1) \\
-           & = \begin{bmatrix}1+(-1-1)n_x^2&(-1-1)n_xn_y&(-1-1)n_xn_z\\(-1-1)n_xn_y&1+(-1-1)n_y^2&(-1-1)n_yn_z\\(-1-1)n_xn_z&(-1-1)n_yn_z&1+(-1-1)n_z^2\end{bmatrix}
-           & = \begin{bmatrix}1-2n_x^2&-2n_xn_y&-2n_xn_z\\-2n_xn_y 1-2n_y^2&-2n_yn_z\\-2n_xn_z&-2n_yn_z&1-2n_z^2\end{bmatrix}
+R(\vec{n}) & = S(\vec{n}, -1) 
+             = \begin{bmatrix}1+(-1-1)n_x^2&(-1-1)n_xn_y&(-1-1)n_xn_z\\(-1-1)n_xn_y&1+(-1-1)n_y^2&(-1-1)n_yn_z\\(-1-1)n_xn_z&(-1-1)n_yn_z&1+(-1-1)n_z^2\end{bmatrix}
+             = \begin{bmatrix}1-2n_x^2&-2n_xn_y&-2n_xn_z\\-2n_xn_y 1-2n_y^2&-2n_yn_z\\-2n_xn_z&-2n_yn_z&1-2n_z^2\end{bmatrix}
 \end{align}
 $$
 
@@ -1038,7 +1036,7 @@ A geometria euclidiana contém transformações que preservam:
 - colinearidade: se vários pontos estão contidos numa linha, os pontos resultantes ainda formarão parte de uma linha;
 - distância;
 - incidência: se uma linha incidir sobre um ponto, a linha transformada incidirá sobre o ponto transformado.
-- razão cruzada: se calculares as distâncias entre um ponto e outros dois pontos (ex: AC e AD), fazer a razão ($\frac{AC}{AD}$), e fizer o mesmo com um outro ponto (\frac{BC}{BD}), e fizer a razão entre estas razões (\frac{\frac{AC}{AD}}{\frac{BC}{BD}}), esse valor se manterá após a transformação.
+- razão cruzada: se calculares as distâncias entre um ponto e outros dois pontos (ex: AC e AD), fazer a razão ($\frac{AC}{AD}$), e fizer o mesmo com um outro ponto ($\frac{BC}{BD}$), e fizer a razão entre estas razões ($\frac{\frac{AC}{AD}}{\frac{BC}{BD}}$), esse valor se manterá após a transformação.
 - forma;
 
 As transformações dessa geometria são:
@@ -1173,6 +1171,7 @@ Desenvolvido melhor a intuição das matrizes no contexto de transformações na
 
 ### Determinante
 
+Existe um mapeamento entre uma matriz e um número denominado _determinante_. A determinante de uma matriz $M$ é denotada por $|M|$ ou $det(M)$. A determinante de uma matriz não-quadrada 
 [Faronta]
 
 ### Inversa

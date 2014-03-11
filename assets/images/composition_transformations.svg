@@ -14,7 +14,10 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.4 r9939"
-   sodipodi:docname="Novo documento 1">
+   sodipodi:docname="composition_transformations.svg"
+   inkscape:export-filename="/home/acmt/Documentos/git/acmthakyll/assets/images/composition_transformation.png"
+   inkscape:export-xdpi="40"
+   inkscape:export-ydpi="40">
   <defs
      id="defs4">
     <marker
@@ -530,7 +533,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.29077442"
-     inkscape:cx="1424.0887"
+     inkscape:cx="1878.452"
      inkscape:cy="1020.8976"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -547,9 +550,9 @@
      fit-margin-left="5"
      fit-margin-right="5"
      fit-margin-bottom="5"
-     inkscape:window-width="1366"
-     inkscape:window-height="768"
-     inkscape:window-x="0"
+     inkscape:window-width="454"
+     inkscape:window-height="738"
+     inkscape:window-x="911"
      inkscape:window-y="0"
      inkscape:window-maximized="0" />
   <metadata

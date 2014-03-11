@@ -24,7 +24,7 @@ Antes de fuçar o código, o resultado:
 
 <img class="sombreado" src="../assets/images/webgl-criando-triangulo-resultado.png" style="height:300px;"/>
 
-<a href="http://vision.ime.usp.br/~acmt/hakyll/webgl/demo-criando-triangulo" target="_blank">Veja o resultado</a>. 
+<a href="http://vision.ime.usp.br/~acmt/hakyll/webgl/demo-criando-triangulos" target="_blank">Veja o resultado</a>. 
 <a href="http://github.com/anderflash/webgl_tutorial" target="_blank">Baixe todos os demos</a>.
 
 Como o ambiente WebGL é mostrado em uma página HTML, vamos inicialmente entender o que é o HTML.
