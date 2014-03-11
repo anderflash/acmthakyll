@@ -31,9 +31,20 @@ Como essa revisão de álgebra linear é grande, embora curta comparado aos livr
 
 # Luzes
 
-Uma má notícia: não existe funções pré-definidas em WebGL para iluminação. Mas há uma boa notícia: uma vez explicado um ou mais modelos de iluminação, é fácil aplicá-lo em WebGL por meio de shaders.
+Uma má notícia: não existe funções pré-definidas em WebGL para iluminação. Mas há uma boa notícia: uma vez explicado um ou mais modelos de iluminação, é fácil aplicá-lo em WebGL por meio de shaders. Além disso, sombras podem ser adicionadas como objetos próprios (tu mesmo deves fazer isso manualmente) ou uma interação entre os raios e os objetos, atingindo o destino final (que pode ser outro objeto). Também nesse caso o desenvolvedor deve calcular isso.
+
+O objetivo é simular um número de fontes de luz na cena. As fontes não precisam necessariamente aparecer, mas seus efeitos devem tornar os objetos mais realísticos. Se alguma face do objeto estiver direcionada à luz, ela será mais iluminada. Para cada objeto precisamos saber como interage com cada fonte de luz. Creio que neste ponto dos tutoriais você já sabe que todo este processo envolverá _shaders_. Neste tutorial você saberá como a luz afeta a cor de um vértice e dos seus intermediários. Vamos aproveitar o processo de interpolação dos _shaders_. Por enquanto vamos trabalhar com uma fonte de luz, todavia não é complicado adicionar outras fontes.
+
+Quando a luz interage com um material, ela pode ser refletida, refratada (transmitida) ou absorvida. Tudo isso depende do ângulo do raio de luz, em que posição do material ela chega, do comprimento de onda que a luz é refletida/refratada/absorvida. Alguns modelos foram propostos. No caso da reflexão, que vamos trabalhar neste tutorial, o modelo é o Bi-directional Reflectance Distribution Function (BRDF). O [artigo de Wynn](../assets/files/wynn.pdf) dá uma boa noção sobre o modelo BRDF.
+
+O modelo BRDF calcula a relação entre a energia que chega em uma determinada faixa de direções (determinado por dois ângulos em coordenadas esféricas), e a energia que sai a partir daquele ponto para uma faixa de direções (também determinado por dois ângulos em coordenadas esféricas).
 
 ![](../assets/images/webgl-lighting.png)
+
+Se parte da luz que chega for na verdade reflexões e refrações da luz por outros objetos, então significa que o modelo é de _iluminação global_. Se estiveres trabalhando apenas com a interação direta entre a luz e a superfície do objeto, então este modelo é de _iluminação local_. Uma simplificação do modelo BRDF para iluminação local é o _Modelo de Reflexão Phong_.
+
+
+
 
 
 
