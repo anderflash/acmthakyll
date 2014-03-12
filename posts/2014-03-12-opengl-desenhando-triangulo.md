@@ -10,7 +10,7 @@ description: Exibindo sua primeira Janela
 
 Bem vindos ao tutorial 2 da nossa séries de tutoriais OpenGL. Este tutorial está baseado no [tutorial 02](http://www.opengl-tutorial.org/beginners-tutorials/tutorial-2-the-first-triangle/) do _Opengl-Tutorial_.
 
-Um aviso: estas lições estão baseadas no conteúdo dado na disciplina de Introdução à Computação Gráfica do Instituto de Matemática e Estatística da USP. Mesmo assim, outras pessoas que não sejam alunos dessa disciplina podem aproveitar e compreender o conteúdo destes tutoriais. Se você não fez os tutoriais anteriores, recomendo fazê-lo antes de avançar para este tutorial. Se te sentes seguro em compreender o que se passa aqui, podes continuar. Se houver falhas ou achares que falta alguma coisa para melhorar o tutorial, não hesita em avisar-me.
+Um aviso: estas lições estão baseadas no conteúdo dado na disciplina de Introdução à Computação Gráfica do Instituto de Matemática e Estatística da USP. Mesmo assim, outras pessoas que não sejam alunos dessa disciplina podem aproveitar e compreender o conteúdo destes tutoriais. Se não fizeste os tutoriais anteriores, recomendo fazê-lo antes de avançar para este tutorial. Se te sentes seguro em compreender o que se passa aqui, podes continuar. Se houver falhas ou achares que falta alguma coisa para melhorar o tutorial, não hesita em avisar-me.
 
 # Álgebra Linear
 
@@ -71,18 +71,18 @@ Aqui está um diagrama simplificado do que ocorrerá no pipeline para nossos tut
 
 O que precisamos escrever para esses tutoriais iniciais são o código do aplicativo, o _script_ do _shader_ de vértices e o _script_ do _shader_ de fragmentos. Os outros shaders por enquanto não iremos trabalhar.
 
-No código da aplicação haverá a criação da janela, a escolha do contexto e perfil OpenGL com sua versão e outros parâmetros, o carregamento e compilação dos _shaders_, a criação e compilação do programa de _shaders_ (direi depois o que é isso), o envio dos dados dos vértices, transformações e imagens de textura para a GPU, e o laço para realizar o desenho frame a frame, até o momento em que a aplicação acaba. Cada frame é guardado no framebuffer, local da memória onde se guarda os pixels a serem exibidos na tela. Na verdade há dois buffers, um para desenhar e outro para exibir na tela. Se fosse apenas um buffer, o usuário veria o processo de limpeza do buffer e desenho, causando um efeito indesejado de animação piscando (_flicker_).
+No código da aplicação haverá a criação da janela, a escolha do contexto e perfil OpenGL com sua versão e outros parâmetros, o carregamento e compilação dos _shaders_, a criação e compilação do programa de _shaders_ (direi depois o que é isso), o envio dos dados dos vértices, transformações e imagens de textura para a GPU, e o laço para realizar o desenho frame a frame, até o momento em que a aplicação acaba. Cada frame é guardado no framebuffer, local da memória onde se guarda os pixels a serem exibidos na tela. Na verdade há dois buffers, um para desenhar e outro para exibir na tela. Se fosse apenas um buffer, o usuário veria o processo de limpeza do buffer e desenho, causando um efeito indesejado de piscada na animação (_flickering_).
 
 Na execução do aplicativo, no momento em que se pede para desenhar o ambiente virtual, veja o que acontece (de acordo com a figura acima):
 
 - Antes de começar o processamento dentro do pipeline até gerar a imagem no framebuffer, o aplicativo precisa enviar os dados dos vértices (posição, cor, coordenada de textura), além das texturas e as matrizes de transformações (da projeção, visualização e modelo, vide [revisão de álgebra linear](http://vision.ime.usp.br/~acmt/hakyll/posts/2014-03-07-linear-algebra.html#composi%C3%A7%C3%A3o-de-transforma%C3%A7%C3%B5es));
 - O shader de vértices será executado em vários núcleos da GPU, e cada execução paralela estará associado a um vértice. O objetivo do shader de vértices é transformar os vértices nas coordenadas do objeto (separado para cada objeto), nas coordenadas da tela (um retângulo de [0,0] a [largura,altura] e comum a todos os vértices);
-- O processo de montagem interliga vértices que pertencem a um mesmo polígono. Essa ligação resultará em pixels intermediários, digitalizando os polígonos (primitivas). Esses pixels são chamados de fragmentos. Cada fragmento não só conterá sua coordenada de tela (x,y), mas também sua profundidade, pois se um fragmento estiver atrás do outro, este não estará visível na tela, sendo descartado pelo processo de Z-buffer (A menos que você utilize a transparência, no processo de composição, ou _blending_);
+- O processo de montagem interliga vértices que pertencem a um mesmo polígono. Essa ligação resultará em pixels intermediários, digitalizando os polígonos (primitivas). Esses pixels são chamados de fragmentos. Cada fragmento não só conterá sua coordenada de tela (x,y), mas também sua profundidade, pois se um fragmento estiver atrás do outro, este não estará visível na tela, sendo descartado pelo processo de Z-buffer (A menos que utilizes a transparência, no processo de composição, ou _blending_);
 - O shader de fragmentos será executados várias vezes ao mesmo tempo para cada fragmento dentro de vários núcleos da GPU. O objetivo do shader de fragmentos é colorir o fragmento. É aqui que boa parte do processo de iluminação, dentre outros efeitos, é aplicado;
 - Todos os fragmentos, até os ocultos, são enviados para o processo de composição, onde se escolhe os fragmentos que serão pixels na tela, ou então faz uma combinação de cores de fragmentos que têm a mesma coordenada, realizando um processo de _alpha blending_;
-- No fim os pixels são enviados para o FrameBuffer, geralmente enviado para a janela. Mas você pode usar a imagem para ser uma textura de outro objeto em um outro ambiente (mas precisa repetir o processo para renderizar esse novo ambiente);
+- No fim os pixels são enviados para o FrameBuffer, geralmente enviado para a janela. Mas podes usar a imagem para ser uma textura de outro objeto em um outro ambiente (mas precisa repetir o processo para renderizar esse novo ambiente);
 
-Veja que o shader de vértices e o shader de fragmentos não utilizam diretamente dados da memória da CPU, mas os dados da memória da GPU que você enviou. Esses dados são guardados em buffers, que precisam ser criados a partir de chamadas de funções no código do aplicativo. As referências para todos os buffers, somadas com mais algumas outras informações de estado dos shaders e dos programas de shaders são guardadas em um objeto chamado de Vertex Array Object (VAO). Então antes de carregar os shaders, criar os buffers e enviar os dados, é necessário criar um VAO. Cada buffer de dados dos vértices é um Vertex Buffer Object (VBO). Primeiro se cria um VAO para depois criar vários VBOs e compilar os shaders.
+Veja que o shader de vértices e o shader de fragmentos não utilizam diretamente dados da memória da CPU, mas os dados da memória da GPU que enviaste. Esses dados são guardados em buffers, que precisam ser criados a partir de chamadas de funções no código do aplicativo. As referências para todos os buffers, somadas com mais algumas outras informações de estado dos shaders e dos programas de shaders são guardadas em um objeto chamado de Vertex Array Object (VAO). Então antes de carregar os shaders, criar os buffers e enviar os dados, é necessário criar um VAO. Cada buffer de dados dos vértices é um Vertex Buffer Object (VBO). Primeiro se cria um VAO para depois criar vários VBOs e compilar os shaders.
 
 ## O _Vertex Array Object_ (VAO)
 
@@ -94,7 +94,7 @@ glGenVertexArrays(1, &VertexArrayID);
 glBindVertexArray(VertexArrayID);
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Ah, devo avisar: ao criar VAO, VBO, _shaders_, programas de _shader_ e outros objetos dentro da GPU, o OpenGL não retorna a você explicitamente a memória desses objetos na GPU, ou o ponteiro para elas. Na verdade ela cria um rótulo em formato de número inteiro (GLuint) e retorna apenas esse número. Apenas com esse número você tem acesso ao envio e recebimento de dados para o objeto relacionado. A função glBindVertexArray diz que todas as próximas operações que forem modificar ou usar algum VAO, deverá utilizar o VAO especificado no parâmetro. O OpenGL é uma máquina de estados, e dessa forma tu não precisas dizer a todo momento qual é o VAO que deve ser utilizado, apenas uma vez.
+Ah, devo avisar: ao criar VAO, VBO, _shaders_, programas de _shader_ e outros objetos dentro da GPU, o OpenGL não retorna a ti explicitamente a memória desses objetos na GPU, ou o ponteiro para elas. Na verdade ela cria um rótulo em formato de número inteiro (GLuint) e retorna apenas esse número. Apenas com esse número tens acesso ao envio e recebimento de dados para o objeto relacionado. A função glBindVertexArray diz que todas as próximas operações que forem modificar ou usar algum VAO, deverá utilizar o VAO especificado no parâmetro. O OpenGL é uma máquina de estados, e dessa forma tu não precisas dizer a todo momento qual é o VAO que deve ser utilizado, apenas uma vez.
 
 Outra coisa é que funções que modificam variáveis externas necessitam receber o endereço da variável, senão a modificação não terá nenhum efeito. Por isso a função `glGenVertexArrays` recebe o endereço da variável `VertexArrayID`, após o número de VAOs (se o número de VAOs for maior que 1, então é necessário criar um vetor de GLuint e passar o endereço do primeiro elemento do vetor).
 
@@ -244,7 +244,7 @@ GLuint carregarShaders(const char * vShaderArquivo,const char * fShaderArquivo){
  
     return ProgramID;
 }
-
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
 Veja o resultado:
