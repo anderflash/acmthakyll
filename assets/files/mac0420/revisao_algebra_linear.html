@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Anderson Tavares" />
+  <title>Revisão de Álgebra Linear para CG</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="reveal.js/css/reveal.min.css"/>
+    <style type="text/css">code{white-space: pre;}</style>
+    <link rel="stylesheet" href="reveal.js/css/theme/simple.css" id="theme">
+  <link rel="stylesheet" media="print" href="reveal.js/css/print/pdf.css" />
+  <!--[if lt IE 9]>
+  <script src="reveal.js/lib/js/html5shiv.js"></script>
+  <![endif]-->
+    <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+    <h1 class="title">Revisão de Álgebra Linear para CG</h1>
+    <h2 class="author">Anderson Tavares</h2>
+    <h3 class="date">Universidade de São Paulo</h3>
+</section>
+
+<section><section id="sistemas-de-coordenadas-cartesiano" class="titleslide slide level1"><h1>Sistemas de Coordenadas Cartesiano</h1></section><section id="uma-dimensão" class="slide level2">
+<h1>Uma dimensão</h1>
+<ul>
+<li class="fragment">Números contáveis</li>
+<li class="fragment"><div>
+Contar ovelha<br><img src="../../images/uma_ovelha.png" />
+</div></li>
+<li class="fragment"><a href="http://www.livrariasaraiva.com.br/produto/392616">Introdução à História da Matemática</a></li>
+<li class="fragment"><div>
+Pensamento Logaritmo<br> <img src="../../images/babylogarithms.jpg" />
+</div></li>
+</ul>
+</section><section id="uma-dimensão-1" class="slide level2">
+<h1>Uma dimensão</h1>
+<ul>
+<li class="fragment"><div>
+Zero (nenhuma ovelha)<br><img src="../../images/linha_ovelhas.png" />
+</div></li>
+<li class="fragment"><div>
+Devendo uma ovelha<br><img src="../../images/linha_ovelhas_negativos.png" />
+</div></li>
+<li class="fragment">E os pobres sem poder comprar a ovelha inteira?</li>
+<li class="fragment">Números racionais <span class="math">\(\frac{31415}{10000}\)</span></li>
+<li class="fragment">Número decimal <span class="math">\(3,1415\)</span>.</li>
+</ul>
+</section><section id="uma-dimensão-2" class="slide level2">
+<h1>Uma dimensão</h1>
+<ul>
+<li class="fragment">Números irracionais</li>
+<li class="fragment">Não são contáveis</li>
+<li class="fragment">Matemática discreta e matemática contínua</li>
+<li class="fragment">Como representar esse mundo contínuo?</li>
+</ul>
+</section><section id="uma-dimensão-3" class="slide level2">
+<h1>Uma dimensão</h1>
+<h3 id="primeira-lei-da-computação-gráfica">Primeira Lei da Computação Gráfica</h3>
+<p>Se parecer Ok, então está Ok.</p>
+</section><section id="duas-dimensões" class="slide level2">
+<h1>Duas dimensões</h1>
+<figure>
+<img src="../../images/cartesia.png" />
+</figure>
+<figure>
+<img src="../../images/sistema-coordenadas-tela.png" />
+</figure>
+<p><img src="../../images/orientacao1.png" /> <img src="../../images/orientacao2.png" /> <img src="../../images/orientacao3.png" /> <img src="../../images/orientacao4.png" /> <img src="../../images/orientacao5.png" /> <img src="../../images/orientacao6.png" /> <img src="../../images/orientacao7.png" /> <img src="../../images/orientacao8.png" /></p>
+</section><section id="três-dimensões" class="slide level2">
+<h1>Três dimensões</h1>
+<p>test3</p>
+</section></section>
+<section><section id="vetores" class="titleslide slide level1"><h1>Vetores</h1></section><section id="vetor-zero" class="slide level2">
+<h1>Vetor zero</h1>
+</section><section id="negar-um-vetor" class="slide level2">
+<h1>Negar um vetor</h1>
+</section><section id="magnitude" class="slide level2">
+<h1>Magnitude</h1>
+</section><section id="multiplicação-por-um-escalar" class="slide level2">
+<h1>Multiplicação por um escalar</h1>
+</section><section id="normalização" class="slide level2">
+<h1>Normalização</h1>
+</section><section id="adição-e-subtração-de-vetores" class="slide level2">
+<h1>Adição e Subtração de vetores</h1>
+</section><section id="distância-entre-pontos" class="slide level2">
+<h1>Distância entre pontos</h1>
+</section><section id="produto-escalar" class="slide level2">
+<h1>Produto Escalar</h1>
+</section><section id="projetando-um-vetor-no-outro" class="slide level2">
+<h1>Projetando um vetor no outro</h1>
+</section><section id="produto-vetorial" class="slide level2">
+<h1>Produto Vetorial</h1>
+</section></section>
+<section><section id="matrizes" class="titleslide slide level1"><h1>Matrizes</h1></section><section id="introdução" class="slide level2">
+<h1>Introdução</h1>
+</section><section id="multiplicação-de-uma-matriz-por-uma-escalar" class="slide level2">
+<h1>Multiplicação de uma matriz por uma escalar</h1>
+</section><section id="multiplicação-entre-matrizes" class="slide level2">
+<h1>Multiplicação entre Matrizes</h1>
+</section><section id="multiplicar-um-vetor-e-uma-matriz" class="slide level2">
+<h1>Multiplicar um vetor e uma matriz</h1>
+</section><section id="interpretação-geométrica" class="slide level2">
+<h1>Interpretação Geométrica</h1>
+</section></section>
+<section><section id="transformações" class="titleslide slide level1"><h1>Transformações</h1></section><section id="rotação-em-2d" class="slide level2">
+<h1>Rotação em 2D</h1>
+</section><section id="rotação-em-3d" class="slide level2">
+<h1>Rotação em 3D</h1>
+</section><section id="rotação-sobre-um-eixo-arbitrário" class="slide level2">
+<h1>Rotação sobre um eixo arbitrário</h1>
+</section><section id="escala" class="slide level2">
+<h1>Escala</h1>
+</section><section id="escala-em-uma-direção-arbitrária" class="slide level2">
+<h1>Escala em uma direção arbitrária</h1>
+</section><section id="projeção-ortográfica" class="slide level2">
+<h1>Projeção Ortográfica</h1>
+</section><section id="reflexão" class="slide level2">
+<h1>Reflexão</h1>
+</section><section id="cisalhamento" class="slide level2">
+<h1>Cisalhamento</h1>
+</section><section id="composição-de-transformações" class="slide level2">
+<h1>Composição de Transformações</h1>
+</section></section>
+<section><section id="classes-de-transformações" class="titleslide slide level1"><h1>Classes de Transformações</h1></section><section id="geometria-euclidiana" class="slide level2">
+<h1>Geometria Euclidiana</h1>
+</section><section id="geometria-de-similaridade" class="slide level2">
+<h1>Geometria de Similaridade</h1>
+</section><section id="geometria-afim" class="slide level2">
+<h1>Geometria Afim</h1>
+</section><section id="geometria-projetiva" class="slide level2">
+<h1>Geometria Projetiva</h1>
+</section><section id="transformação-linear" class="slide level2">
+<h1>Transformação Linear</h1>
+</section><section id="transformação-afim" class="slide level2">
+<h1>Transformação Afim</h1>
+</section><section id="transformação-inversível" class="slide level2">
+<h1>Transformação Inversível</h1>
+</section></section>
+<section><section id="matrizes-1" class="titleslide slide level1"><h1>Matrizes</h1></section><section id="determinante" class="slide level2">
+<h1>Determinante</h1>
+</section><section id="inversa" class="slide level2">
+<h1>Inversa</h1>
+</section><section id="matrizes-ortogonais" class="slide level2">
+<h1>Matrizes Ortogonais</h1>
+</section><section id="matrizes-homogêneas" class="slide level2">
+<h1>Matrizes Homogêneas</h1>
+</section></section>
+<section><section id="orientação-e-deslocamento-angular" class="titleslide slide level1"><h1>Orientação e Deslocamento Angular</h1></section></section>
+<section><section id="primitivas-geométricas" class="titleslide slide level1"><h1>Primitivas Geométricas</h1></section></section>
+<section><section id="testes-geométricos" class="titleslide slide level1"><h1>Testes Geométricos</h1></section></section>
+    </div>
+  </div>
+
+  <script src="reveal.js/lib/js/head.min.js"></script>
+  <script src="reveal.js/js/reveal.min.js"></script>
+
+  <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        theme: 'beige', // available themes are in /css/theme
+        transition: 'linear', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: 'reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+//          { src: 'reveal.js/plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; }, }
+//          { src: 'reveal.js/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+]});
+    </script>
+  </body>
+</html>

@@ -1,0 +1,4 @@
+#!/bin/sh
+
+pandoc -s -t revealjs $1.md -o $1.html -V theme=beige -V transition=linear --mathjax
+

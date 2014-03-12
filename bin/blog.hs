@@ -34,7 +34,7 @@ main = hakyllWith config $ do
     match "assets/csl/*" $ compile cslCompiler
 
     -- Copy static assets
-    match "assets/files/*" $ do
+    match "assets/files/**" $ do
         route   idRoute
         compile copyFileCompiler
     
