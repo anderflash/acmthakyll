@@ -66,72 +66,1064 @@ Devendo uma ovelha<br><img src="../../images/linha_ovelhas_negativos.png" />
 <p>Se parecer Ok, então está Ok.</p>
 </section><section id="duas-dimensões" class="slide level2">
 <h1>Duas dimensões</h1>
+<ul>
+<li>Cartésia</li>
+</ul>
 <figure>
 <img src="../../images/cartesia.png" />
 </figure>
+</section><section id="duas-dimensões-1" class="slide level2">
+<h1>Duas dimensões</h1>
+<ul>
+<li>Disléxia</li>
+</ul>
 <figure>
 <img src="../../images/sistema-coordenadas-tela.png" />
 </figure>
-<p><img src="../../images/orientacao1.png" /> <img src="../../images/orientacao2.png" /> <img src="../../images/orientacao3.png" /> <img src="../../images/orientacao4.png" /> <img src="../../images/orientacao5.png" /> <img src="../../images/orientacao6.png" /> <img src="../../images/orientacao7.png" /> <img src="../../images/orientacao8.png" /></p>
+<ul>
+<li>Várias orientações;<br> <img src="../../images/orientacao1.png" /> <img src="../../images/orientacao2.png" /> <img src="../../images/orientacao3.png" /> <img src="../../images/orientacao4.png" /> <img src="../../images/orientacao5.png" /> <img src="../../images/orientacao6.png" /> <img src="../../images/orientacao7.png" /> <img src="../../images/orientacao8.png" /></li>
+</ul>
+<ul>
+<li class="fragment">Uma como <em>orientação normal</em>.</li>
+<li class="fragment">Rotações nas outras ↦ <em>orientação normal</em></li>
+</ul>
 </section><section id="três-dimensões" class="slide level2">
 <h1>Três dimensões</h1>
-<p>test3</p>
+<ul>
+<li>Mais um eixo</li>
+</ul>
+<figure>
+<img src="../../images/3d-coord-space.png" />
+</figure>
+</section><section id="três-dimensões-1" class="slide level2">
+<h1>Três dimensões</h1>
+<ul>
+<li>Mão esquerda X Mão direita</li>
+</ul>
+<p><img src="../../images/left-hand.png" /> <img src="../../images/right-hand.png" /></p>
+</section><section id="três-dimensões-2" class="slide level2">
+<h1>Três dimensões</h1>
+<ul>
+<li>Orientação (Ex: Mão esquerda)</li>
+</ul>
+<figure>
+<img src="../../images/left-hand-orientation.png" />
+</figure>
 </section></section>
-<section><section id="vetores" class="titleslide slide level1"><h1>Vetores</h1></section><section id="vetor-zero" class="slide level2">
+<section><section id="vetores" class="titleslide slide level1"><h1>Vetores</h1></section><section id="conceito" class="slide level2">
+<h1>Conceito</h1>
+<p>Tupla <span class="math">\([x_1,x_2, ...,x_n]\)</span>, com <span class="math">\(x_i \in R^n, 1 \le i \le n\)</span>.</p>
+<ul>
+<li>Magnitude</li>
+<li>Direção</li>
+<li>Sentido</li>
+<li>Dimensão: <span class="math">\(n\)</span></li>
+<li>Vetor Linha: <span class="math">\[\begin{bmatrix}1&amp;2&amp;3\end{bmatrix}\]</span></li>
+<li>Vetor Coluna: <span class="math">\[\begin{bmatrix}1\\2\\3\end{bmatrix}\]</span></li>
+</ul>
+</section><section id="conceito-1" class="slide level2">
+<h1>Conceito</h1>
+<ul>
+<li><span class="math">\(\vec{v}_{linha}^T = \vec{v}_{coluna}\)</span></li>
+<li>Notação coluna: <span class="math">\([1,2,3]^T\)</span></li>
+<li><span class="math">\(\vec{a}\)</span> como <span class="math">\([a_1,a_2,a_3,a_4]\)</span> ou <span class="math">\([a_x,a_y,a_z,a_w]\)</span>.</li>
+</ul>
+</section><section id="ponto" class="slide level2">
+<h1>Ponto</h1>
+<ul>
+<li>Tupla <span class="math">\((x_1,x_2, ...,x_n)\)</span>, com <span class="math">\(x_i \in R^n, 1 \le i \le n\)</span>.</li>
+<li>Notação: <span class="math">\(()\)</span> para ponto e <span class="math">\([]\)</span> para vetor</li>
+</ul>
+<figure>
+<img src="../../images/ponto-vetor.png" />
+</figure>
+<table>
+<col style="width: 47%" /><col style="width: 52%" /><thead>
+<tr class="header">
+<th style="text-align: left;">ponto</th>
+<th style="text-align: left;">vetor</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><p>representa uma posição não tem direção não tem sentido não tem magnitude tem posição</p></td>
+<td style="text-align: left;"><p>representa um deslocamento tem direção tem sentido tem magnitude não tem uma posição específica</p></td>
+</tr>
+</tbody>
+</table>
+</section><section id="ponto-1" class="slide level2">
+<h1>Ponto</h1>
+<ul>
+<li class="fragment">Ex: <span class="math">\(A=(-23,46)\)</span> e <span class="math">\(B=(50,20)\)</span></li>
+<li class="fragment">De <span class="math">\(A\)</span> a <span class="math">\(B\)</span>, o deslocamento <span class="math">\(\vec{d}=[50-(-23),20-46]=[73,66]\)</span></li>
+<li class="fragment"><span class="math">\(\vec{d}=[73,66]\)</span> é diferente de um ponto <span class="math">\(C=(73,66)\)</span></li>
+</ul>
+</section><section id="ponto-2" class="slide level2">
+<h1>Ponto</h1>
+<p>Relacionando vetor e ponto:</p>
+<ul>
+<li><span class="math">\(A - B = \vec{v}\)</span></li>
+<li><span class="math">\(A + \vec{v} = B\)</span></li>
+<li><span class="math">\(\vec{v} + \vec{w} = \vec{z}\)</span></li>
+</ul>
+</section><section id="vetor-zero" class="slide level2">
 <h1>Vetor zero</h1>
+<ul>
+<li><span class="math">\([0,0,\dots,0]^T\)</span></li>
+<li>Identidade da adição</li>
+<li>Não há direção (ou então há todos)</li>
+<li>Melhor pensar como <em>Sem deslocamento</em></li>
+</ul>
 </section><section id="negar-um-vetor" class="slide level2">
 <h1>Negar um vetor</h1>
+<p><span class="math">\(-\vec{a}= -[a_1,a_2,\dots,a_n]^T = [-a_1,-a_2,\dots,-a_n]^T\)</span></p>
+<p>Geometricamente invertes o sentido do vetor:</p>
+<figure>
+<img src="../../images/negative.png" />
+</figure>
 </section><section id="magnitude" class="slide level2">
 <h1>Magnitude</h1>
+<ul>
+<li>Norma, comprimento ou intensidade.</li>
+<li>O vetor <span class="math">\([3,4]^T\)</span> tem magnitude nem 3 nem 4, mas 5.</li>
+</ul>
+<p><span class="math">\(\|\vec{v}\| = \sqrt{v_1^2 + v_2^2 + ... + v_{n-1}^2 + v_n^2}\)</span></p>
+<p><span class="math">\(\|\vec{v}\| = \sqrt{\sum^{n}_{i=1}{v_i^2}}\)</span></p>
+<p>Geometricamente, usando pitágoras:</p>
+<figure>
+<img src="../../images/magnitude.png" />
+</figure>
+</section><section id="magnitude-1" class="slide level2">
+<h1>Magnitude</h1>
+<ul>
+<li><span class="math">\(v_x\)</span> e <span class="math">\(v_y\)</span> podem ser valores negativos, todavia <span class="math">\(\|\vec{v}\|\)</span> não é.</li>
+<li>Já que <span class="math">\(|x|^2 = x^2\)</span> então as equações seguintes são equivalentes:</li>
+</ul>
+<p><span class="math">\(\|\vec{v}\|^2 = |v_1|^2 + |v_2|^2\)</span></p>
+<p><span class="math">\(\|\vec{v}\|^2 = v_1^2 + v_2^2\)</span></p>
 </section><section id="multiplicação-por-um-escalar" class="slide level2">
 <h1>Multiplicação por um escalar</h1>
+<p><span class="math">\[
+k 
+\begin{bmatrix} v_1 \\ v_2 \\ \vdots \\ v_n \end{bmatrix}
+=
+\begin{bmatrix} v_1 \\ v_2 \\ \vdots \\ v_n \end{bmatrix}
+k
+=
+\begin{bmatrix} kv_1 \\ kv_2 \\ \vdots \\ kv_n \end{bmatrix}
+\]</span></p>
+</section><section id="multiplicação-por-um-escalar-1" class="slide level2">
+<h1>Multiplicação por um escalar</h1>
+<ul>
+<li>Divisão: multiplicar por <span class="math">\(\frac{1}{k}\)</span>.</li>
+<li>Omite-se o símbolo de multiplicação;</li>
+<li>Antes da adição: <span class="math">\(3\vec{a} + \vec{b} = (3\vec{a})+\vec{b} \neq 3(\vec{a}+\vec{b})\)</span>;</li>
+<li><span class="math">\(\nexists k/\vec{v}\)</span> e <span class="math">\(\nexists \vec{v}/\vec{w}\)</span>;</li>
+<li><span class="math">\(-\vec{v} = -1\vec{v}\)</span>.</li>
+</ul>
+</section><section id="multiplicação-por-um-escalar-2" class="slide level2">
+<h1>Multiplicação por um escalar</h1>
+<ul>
+<li>Mantém o sentido, muda a magnitude (proporcional a <span class="math">\(k\)</span>).</li>
+</ul>
+<figure>
+<img src="../../images/mult-scalar.png" />
+</figure>
 </section><section id="normalização" class="slide level2">
 <h1>Normalização</h1>
+<ul>
+<li>Para onde o vento está orientado nesse ponto?</li>
+<li>Para onde esse fóton está indo?</li>
+<li>Essa cidade fica ao norte ou ao leste daqui?</li>
+<li>Na sinuca, em que direção o taco deve se orientar para acertar a bola?</li>
+</ul>
+</section><section id="normalização-1" class="slide level2">
+<h1>Normalização</h1>
+<ul>
+<li>Normal, versor ou vetor unitário;</li>
+<li><span class="math">\(\|\vec{v}\| = 1\)</span>;</li>
+<li> não tem versor;</li>
+<li>Basta dividir pela magnitude</li>
+</ul>
+<p><span class="math">\(\vec{v}_{norm} = \frac{\vec{v}}{\|v\|}\)</span></p>
+</section><section id="normalização-2" class="slide level2">
+<h1>Normalização</h1>
+<figure>
+<img src="../../images/normalization.png" />
+</figure>
 </section><section id="adição-e-subtração-de-vetores" class="slide level2">
 <h1>Adição e Subtração de vetores</h1>
+<p>Na adição, <span class="math">\(\vec{a} + \vec{b} = \vec{b} + \vec{a}\)</span>:</p>
+<p><span class="math">\[
+\begin{bmatrix} a_1 \\ a_2 \\ \vdots \\ a_n \end{bmatrix}
++
+\begin{bmatrix} b_1 \\ b_2 \\ \vdots \\ b_n \end{bmatrix}
+=
+\begin{bmatrix} a_1 + b_1 \\ a_2 + b_2 \\ \vdots \\ a_n + b_n \end{bmatrix}
+\]</span></p>
+</section><section id="adição-e-subtração-de-vetores-1" class="slide level2">
+<h1>Adição e Subtração de vetores</h1>
+<p>Na subtração, <span class="math">\(\vec{a} - \vec{b} = - (\vec{b} - \vec{a})\)</span>:</p>
+<p><span class="math">\[
+\begin{bmatrix} a_1 \\ a_2 \\ \vdots \\ a_n \end{bmatrix}
+-
+\begin{bmatrix} b_1 \\ b_2 \\ \vdots \\ b_n \end{bmatrix}
+=
+\begin{bmatrix} a_1 - b_1 \\ a_2 - b_2 \\ \vdots \\ a_n - b_n \end{bmatrix}
+\]</span></p>
+</section><section id="adição-e-subtração-de-vetores-2" class="slide level2">
+<h1>Adição e Subtração de vetores</h1>
+<figure>
+<img src="../../images/sum_subtraction.png" />
+</figure>
+<ul>
+<li>Adição: se eu caminhar por uma sequência de lugares, qual o deslocamento do primeiro lugar para o último?</li>
+<li>Subtração: se eu sair daqui para um dos dois outros lugares, qual é o deslocamento entre estes destinos? É longe um do outro?</li>
+</ul>
+</section><section id="adição-e-subtração-de-vetores-3" class="slide level2">
+<h1>Adição e Subtração de vetores</h1>
+<p>Representando um vetor como uma soma (sequência) ponderada</p>
+<p><span class="math">\[
+\begin{bmatrix} a_1 \\ a_2 \\ \vdots \\ a_n \end{bmatrix}
+=
+a_1\begin{bmatrix} 1 \\ 0 \\ \vdots \\ 0 \end{bmatrix}
++
+a_2\begin{bmatrix} 0 \\ 1 \\ \vdots \\ 0 \end{bmatrix}
++
+\dots
++
+a_n\begin{bmatrix} 0 \\ 0 \\ \vdots \\ 1 \end{bmatrix}
+\]</span></p>
 </section><section id="distância-entre-pontos" class="slide level2">
 <h1>Distância entre pontos</h1>
+<figure>
+<img src="../../images/distance.png" />
+</figure>
+<ul>
+<li>Pontos A e B</li>
+<li><span class="math">\(v = A-B = [a_1 - b_1,a_2-b_2,\dots,a_n-b_n]^T\)</span>.</li>
+<li>A distância entre A e B é a magnitude <span class="math">\(\|v\| = \sqrt{(a_1-b_1)^2+(a_2-b_2)^2+\dots+(a_n-b_n)^2}\)</span></li>
+</ul>
 </section><section id="produto-escalar" class="slide level2">
 <h1>Produto Escalar</h1>
+<ul>
+<li class="fragment">Resultado: uma escalar</li>
+<li class="fragment"><span class="math">\(\vec{a}\cdot\vec{b} = a_1b_1 + a_2b_2 + \dots + a_nb_n\)</span>.</li>
+<li class="fragment">Soma de multiplicações elemento-a-elemento.</li>
+<li class="fragment">O quão similares são os vetores</li>
+<li class="fragment"><span class="math">\(\vec{a}\cdot\vec{b} = \|\vec{a}\|\|\vec{b}\|cos(\theta)\)</span></li>
+<li class="fragment">Versores: <span class="math">\(\vec{a}\cdot\vec{b} = cos(\theta)\)</span></li>
+</ul>
+<figure>
+<img src="../../images/dot_product_angle.png" />
+</figure>
 </section><section id="projetando-um-vetor-no-outro" class="slide level2">
 <h1>Projetando um vetor no outro</h1>
+<figure>
+<img src="../../images/vector_projection_big.png" />
+</figure>
+<ul>
+<li class="fragment"><span class="math">\(\|\vec{v}_\parallel\| = \|\vec{v}\|cos(\theta)\)</span>.</li>
+<li class="fragment"><span class="math">\(\vec{v}\cdot\vec{w} = \|\vec{v}\|\|\vec{w}\|cos(\theta)\)</span></li>
+<li class="fragment"><span class="math">\(\frac{\vec{v}\cdot\vec{w}}{\|\vec{w}\|} = \|\vec{v}\|cos(\theta)\)</span></li>
+<li class="fragment"><span class="math">\(\|\vec{v}_\parallel\| = \frac{\vec{v}\cdot\vec{w}}{\|\vec{w}\|}\)</span></li>
+<li class="fragment"><span class="math">\(\vec{v}_\parallel = \frac{\vec{w}}{\|\vec{w}\|}\|\vec{v}_\parallel\| = \vec{w}\frac{\vec{v}\cdot\vec{w}}{\|\vec{w}\|^2}\)</span></li>
+</ul>
+</section><section id="projetando-um-vetor-no-outro-1" class="slide level2">
+<h1>Projetando um vetor no outro</h1>
+<ul>
+<li>Para vetores unitários: <span class="math">\(\vec{v}_\parallel = \vec{w}(\vec{v}\cdot\vec{w})\)</span></li>
+<li><span class="math">\(\vec{v}\cdot\vec{w} = \vec{v}^T\vec{w}\)</span></li>
+</ul>
 </section><section id="produto-vetorial" class="slide level2">
 <h1>Produto Vetorial</h1>
+<ul>
+<li>Resultado: um vetor perpendicular aos dois</li>
+</ul>
+<p><span class="math">\[
+\begin{bmatrix} x_1 \\ y_1 \\ z_1 \end{bmatrix}
+\times
+\begin{bmatrix} x_2 \\ y_2 \\ z_2 \end{bmatrix}
+=
+\begin{bmatrix} y_1z_2 - y_2z_1 \\ x_1z_2 - z_1x_2 \\ x_1y_2-y_1x_2 \end{bmatrix}
+\]</span></p>
+<ul>
+<li class="fragment">Para capturar o primeiro elemento
+<ul>
+<li class="fragment">Remova a primeira linha (<span class="math">\(x_1\)</span> e <span class="math">\(x_2\)</span>)</li>
+<li class="fragment">Determinante da matriz com os elem. restantes</li>
+</ul></li>
+<li class="fragment">Determinante usando expansão em cofatores</li>
+</ul>
+</section><section id="produto-vetorial-1" class="slide level2">
+<h1>Produto Vetorial</h1>
+<ul>
+<li><span class="math">\([x,y,z]^T\)</span> como <span class="math">\(x\vec{i}+y\vec{j}+z\vec{k}\)</span></li>
+<li><span class="math">\(\vec{i} = [1,0,0]^T\)</span>, <span class="math">\(\vec{j} = [0,1,0]^T\)</span> e <span class="math">\(\vec{k} = [0,0,1]^T\)</span></li>
+</ul>
+<p><span class="math">\[
+\vec{v}\times\vec{w} = 
+\begin{bmatrix}
+  \vec{i} &amp; \vec{j} &amp; \vec{k} \\
+  v_1     &amp; v_2     &amp; v_3     \\
+  w_1     &amp; w_2     &amp; w_3    
+\end{bmatrix}
+\]</span></p>
+</section><section id="produto-vetorial-2" class="slide level2">
+<h1>Produto Vetorial</h1>
+<ul>
+<li>Que eu saiba, com dois vetores distintos, há outros dois vetores que são perpendiculares a eles. Qual deles é o resultado do produto vetorial?</li>
+</ul>
+<div style="height:300px"/>
+
+</section><section id="produto-vetorial-3" class="slide level2">
+<h1>Produto Vetorial</h1>
+<table><tr>
+  <td>
+<img src="../../images/cross_product_big.png" />
+</td>
+  <td style="vertical-align:top">
+<ul>
+<li class="fragment">Regra da mão direita
+<ul>
+<li class="fragment">polegar no primeiro vetor</li>
+<li class="fragment">outros dedos no segundo vetor</li>
+<li class="fragment">produto vetorial saindo da palma da mão</li>
+</ul></li>
+<li class="fragment">Veja se o <code>?</code> é o <span class="math">\(\vec{w}\times\vec{v}\)</span></li>
+<li class="fragment">Então <span class="math">\(\vec{v}\times\vec{w} = -\)</span>$
+</td>
+</tr></table>
+</li>
+</ul>
+</section><section id="produto-vetorial-4" class="slide level2">
+<h1>Produto Vetorial</h1>
+<ul>
+<li><span class="math">\(\|\vec{v}\times\vec{w}\| = \|\vec{w}\times\vec{v}\| = Area_{paralelogramo}\)</span></li>
+</ul>
+<figure>
+<img src="../../images/cross_product_area_big.png" />
+</figure>
+<p><span class="math">\[
+\begin{split}
+Area_{paralelogramo} &amp; = bh \\
+                     &amp; = \|\vec{v}\|h \\
+                     &amp; = \|\vec{v}\|\|\vec{w}\|sen(\theta)
+\end{split}
+\]</span></p>
 </section></section>
 <section><section id="matrizes" class="titleslide slide level1"><h1>Matrizes</h1></section><section id="introdução" class="slide level2">
 <h1>Introdução</h1>
+<ul>
+<li>Multidimensional;</li>
+<li>Retangular;</li>
+<li>Uma matriz <span class="math">\(l\times c\)</span> tem <span class="math">\(l\)</span> linhas e <span class="math">\(c\)</span> colunas.</li>
+<li><span class="math">\(M = [m_{ij}]\)</span>, onde <span class="math">\(1 \le i \le l\)</span> e <span class="math">\(1 \le j \le c\)</span></li>
+</ul>
+<p><span class="math">\[M=\begin{bmatrix}
+m_{11}  &amp;  m_{12}  &amp;  \dots  &amp; m_{1c} \\
+m_{21}  &amp;  m_{22}  &amp;  \dots  &amp; m_{2c} \\
+\vdots  &amp; \vdots   &amp;  \ddots &amp; \vdots \\
+m_{l1}  &amp;  m_{l2}  &amp;  \dots  &amp; m_{lc}
+\end{bmatrix}
+\]</span></p>
+</section><section id="introdução-1" class="slide level2">
+<h1>Introdução</h1>
+<ul>
+<li>Vetor linha <span class="math">\(\vec{v}_{1\times c}\)</span> e coluna <span class="math">\(\vec{v}_{l\times 1}\)</span></li>
+<li>Se <span class="math">\(M_{l\times c}=[m_{ij}]\)</span>, então <span class="math">\(M^T_{c\times l}=[m_{ji}]\)</span>, <br><span class="math">\(1 \le i \le l\)</span> e <span class="math">\(1 \le j \le c\)</span></li>
+<li><span class="math">\((M^{T})^T = M\)</span></li>
+</ul>
 </section><section id="multiplicação-de-uma-matriz-por-uma-escalar" class="slide level2">
 <h1>Multiplicação de uma matriz por uma escalar</h1>
+<p><span class="math">\[kM = 
+k\begin{bmatrix} m_{11} &amp; m_{12} &amp; m_{13} \\ m_{21} &amp; m_{22} &amp; m_{23} \\ m_{31} &amp; m_{32} &amp; m_{33}\end{bmatrix} = \begin{bmatrix}km_{11} &amp; km_{12} &amp; km_{13} \\ km_{21} &amp; km_{22} &amp; km_{23} \\ km_{31} &amp; km_{32} &amp; km_{33}\end{bmatrix}\]</span></p>
 </section><section id="multiplicação-entre-matrizes" class="slide level2">
 <h1>Multiplicação entre Matrizes</h1>
+<ul>
+<li>Elemento a elemento</li>
+</ul>
+<p><span class="math">\[AB = [a_{ij}][b_{ij}] = [a_{ij}b_{ij}]\]</span></p>
+<ul>
+<li class="fragment"><div>
+Outra forma, mais usada. Ex: Equações Lineares<br><span class="math">\[\begin{array}\\\color{red}{a_{11}}x_1 + \color{red}{a_{12}}x_2 + \color{red}{a_{13}}x_3 + \color{red}{a_{14}}x_4 = b_1 \\\color{red}{a_{21}}x_1 + \color{red}{a_{22}}x_2 + \color{red}{a_{23}}x_3 + \color{red}{a_{24}}x_4 = b_2 \\\color{red}{a_{31}}x_1 + \color{red}{a_{32}}x_2 + \color{red}{a_{33}}x_3 + \color{red}{a_{34}}x_4 = b_3 \\\color{red}{a_{41}}x_1 + \color{red}{a_{42}}x_2 + \color{red}{a_{43}}x_3 + \color{red}{a_{44}}x_4 = b_4\end{array}\]</span>
+</div></li>
+<li class="fragment">1ª Equação: produto interno entre o vetor <span class="math">\([\color{red}{a_{11}, a_{12}, a_{13}, a_{14}}]^T\)</span> e o vetor <span class="math">\([x_1,x_2,x_3,x_4]^T\)</span>.</li>
+</ul>
+</section><section id="multiplicação-entre-matrizes-1" class="slide level2">
+<h1>Multiplicação entre Matrizes</h1>
+<p><span class="math">\[
+\begin{array}\\[\color{red}{a_{11}, a_{12}, a_{13}, a_{14}}][x_1,x_2,x_3,x_4]^T = b_1 \\
+[\color{red}{a_{21}, a_{22}, a_{23}, a_{24}}][x_1,x_2,x_3,x_4]^T = b_2 \\
+[\color{red}{a_{31}, a_{32}, a_{33}, a_{34}}][x_1,x_2,x_3,x_4]^T = b_3 \\
+[\color{red}{a_{41}, a_{42}, a_{43}, a_{44}}][x_1,x_2,x_3,x_4]^T = b_4
+\end{array}
+\]</span></p>
+</section><section id="multiplicação-entre-matrizes-2" class="slide level2">
+<h1>Multiplicação entre Matrizes</h1>
+<ul>
+<li>Reunindo as equações</li>
+</ul>
+<p><span class="math">\[
+\begin{bmatrix}  \color{red}{a_{11}} &amp; \color{red}{a_{12}} &amp; \color{red}{a_{13}} &amp; \color{red}{a_{14}} \\
+  \color{red}{a_{21}} &amp; \color{red}{a_{22}} &amp; \color{red}{a_{23}} &amp; \color{red}{a_{24}} \\
+  \color{red}{a_{31}} &amp; \color{red}{a_{32}} &amp; \color{red}{a_{33}} &amp; \color{red}{a_{34}} \\
+  \color{red}{a_{41}} &amp; \color{red}{a_{42}} &amp; \color{red}{a_{43}} &amp; \color{red}{a_{44}}
+\end{bmatrix}
+\begin{bmatrix}x_1 \\  x_2 \\  x_3 \\  x_4 \end{bmatrix} 
+=
+\begin{bmatrix}b_1 \\  b_2 \\  b_3 \\  b_4 \end{bmatrix}
+\]</span></p>
+<ul>
+<li class="fragment">Abreviando<br> <span class="math">\[\color{red}{A}\vec{x} = \vec{b}\]</span></li>
+</ul>
+</section><section id="multiplicação-entre-matrizes-3" class="slide level2">
+<h1>Multiplicação entre Matrizes</h1>
+<ul>
+<li>Relação entre linhas da 1ª Matriz e colunas da 2ª Matriz.</li>
+</ul>
+<p><span class="math">\[A_{l \times n}B_{n \times c} = C_{l \times c}\]</span></p>
+<ul>
+<li>Cada elemento</li>
+</ul>
+<p><span class="math">\[c_{ij} = \sum^{n}_{k=1}{a_{ik}b_{kj}}\]</span></p>
+</section><section id="multiplicação-entre-matrizes-4" class="slide level2">
+<h1>Multiplicação entre Matrizes</h1>
+<ul>
+<li class="fragment">Multiplicar uma matriz <span class="math">\(M\)</span> por uma matriz quadrada <span class="math">\(Q\)</span> (em qualquer um dos lados) mantém o tamanho de <span class="math">\(M\)</span> (a multiplicação precisa ser válida);</li>
+<li class="fragment">Se <span class="math">\(I\)</span> é a matriz identidade<br> <span class="math">\(MI = IM = M\)</span>;</li>
+</ul>
+<ul>
+<li class="fragment">Multiplicação de matrizes não é comutativa:<br> <span class="math">\(AB \neq BA\)</span>;</li>
+</ul>
+<ul>
+<li class="fragment">Multiplicação de matrizes é associativa:<br> <span class="math">\((AB)C = A(BC)\)</span>;</li>
+</ul>
+</section><section id="multiplicação-entre-matrizes-5" class="slide level2">
+<h1>Multiplicação entre Matrizes</h1>
+<ul>
+<li class="fragment"><span class="math">\((kA)B = k(AB) = A(kB)\)</span> e <span class="math">\((\vec{v}A)B = \vec{v}(AB)\)</span></li>
+<li class="fragment"><span class="math">\((AB)^T = B^TA^T\)</span>.<br> <span class="math">\((A_{l \times n}B_{n \times c})^T = B^T_{c \times n}A^T_{n \times l}\)</span></li>
+<li class="fragment"><span class="math">\((M_1M_2 \cdots M_n)^T = M_n^T\cdots M_2^TM_1^T\)</span></li>
+</ul>
 </section><section id="multiplicar-um-vetor-e-uma-matriz" class="slide level2">
 <h1>Multiplicar um vetor e uma matriz</h1>
+<p><span class="math">\[
+\begin{align}
+\begin{bmatrix}x &amp; y &amp; z\end{bmatrix}\begin{bmatrix}m_{11} &amp; m_{12} &amp; m_{13}\\m_{21} &amp; m_{22} &amp; m_{23}\\m_{31} &amp; m_{32} &amp; m_{33}\end{bmatrix} &amp;= \begin{bmatrix}xm_{11} + ym_{21} + zm_{31} &amp; xm_{12} + ym_{22} + zm_{32} &amp; xm_{13} + ym_{23} + zm_{33}\end{bmatrix}\\
+\begin{bmatrix}m_{11} &amp; m_{12} &amp; m_{13}\\m_{21} &amp; m_{22} &amp; m_{23}\\m_{31} &amp; m_{32} &amp; m_{33}\end{bmatrix}\begin{bmatrix}x \\ y \\ z\end{bmatrix} &amp;= \begin{bmatrix}xm_{11} + ym_{12} + zm_{13} \\ xm_{21} + ym_{22} + zm_{23} \\ xm_{31} + ym_{32} + zm_{33}\end{bmatrix}\\
+\begin{bmatrix}m_{11} &amp; m_{12} &amp; m_{13}\\m_{21} &amp; m_{22} &amp; m_{23}\\m_{31} &amp; m_{32} &amp; m_{33}\end{bmatrix}\begin{bmatrix}x &amp; y &amp; z\end{bmatrix} &amp;= indefinido\\
+\begin{bmatrix}x \\ y \\ z\end{bmatrix}\begin{bmatrix}m_{11} &amp; m_{12} &amp; m_{13}\\m_{21} &amp; m_{22} &amp; m_{23}\\m_{31} &amp; m_{32} &amp; m_{33}\end{bmatrix} &amp;= indefinido
+\end{align}
+\]</span></p>
+</section><section id="multiplicar-um-vetor-e-uma-matriz-1" class="slide level2">
+<h1>Multiplicar um vetor e uma matriz</h1>
+<ul>
+<li>Para vetor linha</li>
+</ul>
+<p><span class="math">\[\begin{bmatrix}xm_{11} + ym_{21} + zm_{31} &amp; xm_{12} + ym_{22} + zm_{32} &amp; xm_{13} + ym_{23} + zm_{33}\end{bmatrix}\]</span></p>
+<ul>
+<li>Para vetor coluna</li>
+</ul>
+<p><span class="math">\[\begin{bmatrix}xm_{11} + ym_{12} + zm_{13} \\ xm_{21} + ym_{22} + zm_{23} \\ xm_{31} + ym_{32} + zm_{33}\end{bmatrix}\]</span></p>
+<ul>
+<li>Os valores não são iguais!</li>
+<li>OpenGL usa vetor coluna</li>
+<li>DirectX usa vetor linha</li>
+</ul>
 </section><section id="interpretação-geométrica" class="slide level2">
 <h1>Interpretação Geométrica</h1>
+<p><span class="math">\[
+\begin{split}
+\begin{bmatrix} v_1 \\ v_2 \\ v_3 \end{bmatrix} &amp; = 
+1\begin{bmatrix} v_1 \\ 0   \\ 0   \end{bmatrix} +
+1\begin{bmatrix} 0   \\ v_2 \\ 0   \end{bmatrix} +
+1\begin{bmatrix} 0   \\ 0   \\ v_3 \end{bmatrix} \\
+&amp; = 
+v_1\begin{bmatrix} 1 \\ 0  \\ 0   \end{bmatrix} +
+v_2\begin{bmatrix} 0 \\ 1  \\ 0   \end{bmatrix} +
+v_3\begin{bmatrix} 0 \\ 0  \\ 1   \end{bmatrix} \\
+&amp; = 
+v_1\vec{i} + v_2\vec{j} + v_3\vec{k} \\
+&amp; = \begin{bmatrix}\vec{i}&amp;\vec{j}&amp;\vec{k}\end{bmatrix}\begin{bmatrix}v_1\\v_2\\v_3\end{bmatrix} \\
+&amp; =
+\begin{bmatrix}1&amp;0&amp;0\\0&amp;1&amp;0\\0&amp;0&amp;1\\\end{bmatrix}\begin{bmatrix}v_1\\v_2\\v_3\end{bmatrix}
+\end{split}
+\]</span></p>
+</section><section id="interpretação-geométrica-1" class="slide level2">
+<h1>Interpretação Geométrica</h1>
+<ul>
+<li>Representando <span class="math">\(\vec{v}\)</span>, <span class="math">\(\vec{i}\)</span> e <span class="math">\(\vec{j}\)</span> (2D)</li>
+</ul>
+<div style="text-align:center;">
+<img src="../../images/matrix_1.png" />
+</div>
+</section><section id="interpretação-geométrica-2" class="slide level2">
+<h1>Interpretação Geométrica</h1>
+<ul>
+<li>E se trocarmos a identidade por outra matriz. Ex:</li>
+</ul>
+<p><span class="math">\[
+\begin{bmatrix}
+2 &amp; 0 &amp; 0 \\
+0 &amp; 3 &amp; 0 \\
+0 &amp; 0 &amp; 5 
+\end{bmatrix}
+\begin{bmatrix}
+v_1 \\
+v_2 \\
+v_3 
+\end{bmatrix}
+=
+\begin{bmatrix}
+2v_1 \\
+3v_2 \\
+5v_3 \\
+\end{bmatrix}
+\]</span></p>
+<ul>
+<li>A matriz transformou um vetor em outro;</li>
+<li>Combinação linear de elementos (da matriz e do vetor);</li>
+</ul>
+</section><section id="interpretação-geométrica-3" class="slide level2">
+<h1>Interpretação Geométrica</h1>
+<ul>
+<li class="fragment"><strong>Mas como eu sei que transformação uma dada matriz provoca?</strong></li>
+<li class="fragment"><em>Resposta: Veja como os VETORES BASE se transformam!!!</em></li>
+</ul>
+</section><section id="interpretação-geométrica-4" class="slide level2">
+<h1>Interpretação Geométrica</h1>
+<ul>
+<li>Como o vetor <span class="math">\(\vec{i}\)</span> se transforma?</li>
+</ul>
+<p><span class="math">\[
+\begin{bmatrix}
+\color{red}{m_{11}} &amp; m_{12} &amp; m_{13} \\
+\color{red}{m_{21}} &amp; m_{22} &amp; m_{23} \\
+\color{red}{m_{31}} &amp; m_{32} &amp; m_{33} 
+\end{bmatrix}
+\begin{bmatrix}
+1 \\ 0 \\ 0
+\end{bmatrix}
+=
+\begin{bmatrix}
+\color{red}{m_{11}} \\ \color{red}{m_{21}} \\ \color{red}{m_{31}}
+\end{bmatrix}
+\]</span></p>
+<ul>
+<li>Como o vetor <span class="math">\(\vec{j}\)</span> se transforma?</li>
+</ul>
+<p><span class="math">\[
+\begin{bmatrix}
+m_{11} &amp; \color{green}{m_{12}} &amp; m_{13} \\
+m_{21} &amp; \color{green}{m_{22}} &amp; m_{23} \\
+m_{31} &amp; \color{green}{m_{32}} &amp; m_{33} 
+\end{bmatrix}
+\begin{bmatrix}
+0 \\ 1 \\ 0
+\end{bmatrix}
+=
+\begin{bmatrix}
+\color{green}{m_{12}} \\ \color{green}{m_{22}} \\ \color{green}{m_{32}}
+\end{bmatrix}
+\]</span></p>
+<ul>
+<li>Como o vetor <span class="math">\(\vec{k}\)</span> se transforma?</li>
+</ul>
+<p><span class="math">\[
+\begin{bmatrix}
+m_{11} &amp; m_{12} &amp; \color{blue}{m_{13}} \\
+m_{21} &amp; m_{22} &amp; \color{blue}{m_{23}} \\
+m_{31} &amp; m_{32} &amp; \color{blue}{m_{33}} 
+\end{bmatrix}
+\begin{bmatrix}
+0 \\ 0 \\ 1
+\end{bmatrix}
+=
+\begin{bmatrix}
+\color{blue}{m_{13}} \\ \color{blue}{m_{23}} \\ \color{blue}{m_{33}}
+\end{bmatrix}
+\]</span></p>
+</section><section id="interpretação-geométrica-5" class="slide level2">
+<h1>Interpretação Geométrica</h1>
+<ul>
+<li class="fragment">Então as próprias colunas das matrizes são o resultado da transformação dos vetores <span class="math">\(\vec{i}\)</span>, <span class="math">\(\vec{j}\)</span> e <span class="math">\(\vec{k}\)</span> (Na regra da mão esquerda, são as linhas).</li>
+<li class="fragment">Ex:<br> <span class="math">\[
+M = \begin{bmatrix}
+ 2 &amp; -1\\
+ 1 &amp;  2\\
+\end{bmatrix}
+\]</span></li>
+</ul>
+<ul>
+<li class="fragment"><span class="math">\(\vec{i}\)</span> se transforma em <span class="math">\([2,1]^T\)</span></li>
+<li class="fragment"><span class="math">\(\vec{j}\)</span> se transforma em <span class="math">\([-1,2]^T\)</span></li>
+</ul>
+</section><section id="interpretação-geométrica-6" class="slide level2">
+<h1>Interpretação Geométrica</h1>
+<table><tr><td>
+<img src="../../images/matrix_2.png" />
+</td><td style="vertical-align:top">
+<ul>
+<li>Uma espécie de escala e rotação.</li>
+<li>Transformações lineares
+<ul>
+<li>Rotação</li>
+<li>Escala</li>
+<li>Projeção Ortográfica</li>
+<li>Reflexão</li>
+<li>Cisalhamento
+</td></tr></table>
+</li>
+</ul></li>
+</ul>
 </section></section>
 <section><section id="transformações" class="titleslide slide level1"><h1>Transformações</h1></section><section id="rotação-em-2d" class="slide level2">
 <h1>Rotação em 2D</h1>
+<div style="text-align:center">
+<img src="../../images/rotation.png" />
+</div>
+<p><span class="math">\[R(\theta)=\begin{bmatrix}
+  \vec{p&#39;} &amp; \vec{q&#39;}
+\end{bmatrix}
+ =
+\begin{bmatrix}
+cos\theta &amp; -sen\theta \\
+sen\theta &amp; cos\theta
+\end{bmatrix}\]</span></p>
 </section><section id="rotação-em-3d" class="slide level2">
 <h1>Rotação em 3D</h1>
+<div style="text-align:center">
+<img src="../../images/rotation_right_thumb.png" />
+</div>
+</section><section id="rotação-em-3d-1" class="slide level2">
+<h1>Rotação em 3D</h1>
+<ul>
+<li>Sobre o eixo X</li>
+</ul>
+<div style="text-align:center">
+<img src="../../images/rotationX_big.png" />
+</div>
+<p><span class="math">\[R_x(\theta)=
+\begin{bmatrix}
+  \vec{i&#39;} &amp;
+  \vec{j&#39;} &amp;
+  \vec{k&#39;}
+\end{bmatrix}=
+\begin{bmatrix}
+  1 &amp; 0       &amp; 0 \\
+  0 &amp; cos(\theta) &amp; -sen(\theta) \\
+  0 &amp; sen(\theta) &amp;  cos(\theta)
+\end{bmatrix}\]</span></p>
+</section><section id="rotação-em-3d-2" class="slide level2">
+<h1>Rotação em 3D</h1>
+<ul>
+<li>Sobre o eixo Y</li>
+</ul>
+<div style="text-align:center">
+<img src="../../images/rotationY_big.png" />
+</div>
+<p><span class="math">\[R_y(\theta)=
+\begin{bmatrix}
+  \vec{i&#39;} &amp;
+  \vec{j&#39;} &amp;
+  \vec{k&#39;}
+\end{bmatrix}=\begin{bmatrix}
+  cos(\theta) &amp; 0 &amp; sen(\theta) \\
+  0           &amp; 1 &amp; 0            \\
+ -sen(\theta) &amp; 0 &amp; cos(\theta)
+\end{bmatrix}\]</span></p>
+</section><section id="rotação-em-3d-3" class="slide level2">
+<h1>Rotação em 3D</h1>
+<ul>
+<li>Sobre o eixo Z</li>
+</ul>
+<div style="text-align:center">
+<img src="../../images/rotationZ_big.png" />
+</div>
+<p><span class="math">\[R_z(\theta)=
+\begin{bmatrix}
+  \vec{i&#39;} &amp;
+  \vec{j&#39;} &amp;
+  \vec{k&#39;}
+\end{bmatrix}=\begin{bmatrix}
+  cos(\theta) &amp; -sen(\theta) &amp; 0 \\
+  sen(\theta) &amp;  cos(\theta) &amp; 0 \\
+  0           &amp; 0        &amp; 1
+\end{bmatrix}\]</span></p>
 </section><section id="rotação-sobre-um-eixo-arbitrário" class="slide level2">
 <h1>Rotação sobre um eixo arbitrário</h1>
+<table><tr><td>
+<img src="../../images/rotation_arbitrary.png" />
+</td><td style="vertical-align:top">
+<p><span class="math">\[\begin{align}
+\vec{v}_\parallel &amp; = (\vec{v}\cdot \vec{n})\vec{n} \\
+\vec{v}_\perp     &amp; = v - \vec{v}_\parallel \\
+                  &amp; = v - (\vec{v}\cdot \vec{n})\vec{n} \\
+\vec{w}           &amp; = \vec{n} \times \vec{v}_\perp \\
+                  &amp; = \vec{n} \times (\vec{v} - \vec{v}_\parallel) \\
+                  &amp; = \vec{n} \times \vec{v} - \vec{n} \times \vec{v}_\parallel\\
+                  &amp; = \vec{n} \times \vec{v} - \vec{0}\\
+                  &amp; = \vec{n} \times \vec{v}\\
+\vec{v}_\perp&#39;    &amp; = cos(\theta)\vec{v}_\perp + sen(\theta)\vec{w} \\
+                  &amp; = cos(\theta)(\vec{v} - (\vec{v}\cdot \vec{n})\vec{n}) + sen(\theta)(\vec{n}\times\vec{v})\\
+\vec{v}&#39;          &amp; = \vec{v}_\perp&#39; + \vec{v}_\parallel \\
+                  &amp; = cos(\theta)(\vec{v} - (\vec{v} \cdot \vec{n})\vec{n}) + sen(\theta)(\vec{n}\times\vec{v}) + (\vec{v}\cdot\vec{n})\vec{n}
+\end{align}
+\]</span></p>
+</td></tr></table>
+
+
+
+</section><section id="rotação-sobre-um-eixo-arbitrário-1" class="slide level2">
+<h1>Rotação sobre um eixo arbitrário</h1>
+<p><span class="math">\[\begin{align}
+\vec{i}  &amp; = \begin{bmatrix}1&amp;0&amp;0\end{bmatrix}^T \\
+\vec{i}&#39; &amp; = cos(\theta)(\vec{i} - (\vec{i} \cdot \vec{n})\vec{n}) + sen(\theta)(\vec{n}\times\vec{i}) + (\vec{i}\cdot\vec{i})\vec{n} \\
+         &amp; = cos(\theta)\left(
+          \begin{bmatrix}1\\0\\0\end{bmatrix}-\left(
+        \begin{bmatrix}1\\0\\0\end{bmatrix} \cdot
+        \begin{bmatrix}n_x\\n_y\\n_z\end{bmatrix}
+          \right)
+          \begin{bmatrix}n_x\\n_y\\n_z\end{bmatrix}
+         \right)
+         +sen(\theta)\left(
+          \begin{bmatrix}n_x\\n_y\\n_z\end{bmatrix}\times
+          \begin{bmatrix}1\\0\\0\end{bmatrix}
+         \right)
+         +\left(
+          \begin{bmatrix}1\\0\\0\end{bmatrix}\cdot
+          \begin{bmatrix}n_x\\n_y\\n_z\end{bmatrix}
+         \right)
+         \begin{bmatrix}n_x\\n_y\\n_z\end{bmatrix} \\
+     &amp; = cos(\theta)\left(
+           \begin{bmatrix}1\\0\\0\end{bmatrix}-
+           n_x\begin{bmatrix}n_x\\n_y\\n_z\end{bmatrix}
+         \right) +
+         sen(\theta)\begin{bmatrix}0\\n_z\\-n_y\end{bmatrix}+
+         n_x\begin{bmatrix}n_x\\n_y\\n_z\end{bmatrix} \\
+     &amp; = cos(\theta)\begin{bmatrix}1-n_x^2\\-n_xn_y\\-n_xn_z\end{bmatrix}+
+         sin(\theta)\begin{bmatrix}0\\n_z\\-n_y\end{bmatrix} + 
+         \begin{bmatrix}n_x^2\\n_xn_y\\n_xn_z\end{bmatrix} \\
+     &amp; = \begin{bmatrix}cos(\theta)-n_x^2cos(\theta)\\-n_xn_ycos(\theta)\\-n_xn_zcos(\theta)\end{bmatrix} + 
+         \begin{bmatrix}0\\n_zsen(\theta)\\-n_ysen(\theta)\end{bmatrix} + 
+         \begin{bmatrix}n_x^2\\n_xn_y\\n_xn_z\end{bmatrix}
+\end{align}
+\]</span></p>
+</section><section id="rotação-sobre-um-eixo-arbitrário-2" class="slide level2">
+<h1>Rotação sobre um eixo arbitrário</h1>
+<p><span class="math">\[\begin{align}
+\vec{i}&#39; &amp; = \begin{bmatrix}
+         cos(\theta) - \cos(\theta)n_x^2 + n_x^2\\
+         -n_xn_ycos(\theta) + n_zsen(\theta) + n_xn_y\\
+         -n_xn_zcos(\theta) - n_ysen(\theta) + n_xn_z
+         \end{bmatrix} \\
+     &amp; = \begin{bmatrix}
+         n_x^2(1-cos(\theta)) + cos(\theta)\\
+         n_xn_y(1-cos(\theta)) + n_zsen(\theta)\\
+         n_xn_z(1-cos(\theta)) - n_ysen(\theta)
+         \end{bmatrix}
+\end{align}
+\]</span></p>
+</section><section id="rotação-sobre-um-eixo-arbitrário-3" class="slide level2">
+<h1>Rotação sobre um eixo arbitrário</h1>
+<ul>
+<li>Ufa, falta os outros dois (quê?!)</li>
+</ul>
+<p><span class="math">\[\begin{align}
+\vec{j}  &amp; = \begin{bmatrix}0 &amp; 1 &amp; 0\end{bmatrix}^T \\
+\vec{j}&#39; &amp; = \begin{bmatrix}
+n_xn_y(1-cos\theta) - n_zsen\theta)\\
+n_y^2(1 - cos\theta) + cos\theta \\
+n_yn_z(1 - cos\theta) + n_xsen\theta
+\end{bmatrix}\\
+\vec{k}  &amp; = \begin{bmatrix}0 &amp; 0 &amp; 1\end{bmatrix}^T \\
+\vec{k}&#39; &amp; = \begin{bmatrix}
+n_xn_z(1-cos\theta) + n_ysen\theta)\\
+n_yn_z(1 - cos\theta) - n_xsen\theta \\
+n_z^2(1 - cos\theta) + cos\theta
+\end{bmatrix}
+\end{align}\]</span></p>
+</section><section id="rotação-sobre-um-eixo-arbitrário-4" class="slide level2">
+<h1>Rotação sobre um eixo arbitrário</h1>
+<ul>
+<li>Finalmente a matriz de rotação</li>
+</ul>
+<p><span class="math">\[R(\vec{n},\theta) = 
+\begin{bmatrix}
+n_x^2(1-cos\theta) + cos\theta     &amp; n_xn_y(1-cos\theta) - n_zsen\theta) &amp; n_xn_z(1-cos\theta) + n_ysen\theta) \\
+n_xn_y(1-cos\theta) + n_zsen\theta &amp; n_y^2(1 - cos\theta) + cos\theta &amp; n_yn_z(1 - cos\theta) - n_xsen\theta \\
+n_xn_z(1-cos\theta) - n_ysen\theta &amp; n_yn_z(1 - cos\theta) + n_xsen\theta &amp; n_z^2(1 - cos\theta) + cos\theta \\
+\end{bmatrix}
+\]</span></p>
 </section><section id="escala" class="slide level2">
 <h1>Escala</h1>
+<table><tr><td>
+<img src="../../images/scale.png" />
+</td><td style="vertical-align:middle">
+<p><span class="math">\[S(k_1, k_2, \dots,k_n) = \begin{bmatrix}
+  k_1    &amp; 0      &amp; \cdots &amp; 0      \\ 
+  0      &amp; k_2    &amp; \cdots &amp; 0      \\ 
+  \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+  0      &amp; 0      &amp; \cdots &amp; k_n        
+\end{bmatrix}\]</span></p>
+</td></tr></table>
+
 </section><section id="escala-em-uma-direção-arbitrária" class="slide level2">
 <h1>Escala em uma direção arbitrária</h1>
+<table><tr><td>
+<img src="../../images/scale_arbitrary_big.png" />
+</td><td style="vertical-align:middle">
+<ul>
+<li>Em 2D:</li>
+</ul>
+<span class="math">\[
+\begin{align}
+  \vec{v} &amp;= \vec{v}_\parallel + \vec{v}_\perp\\
+  \vec{v}_\parallel &amp;= (\vec{v}\cdot\vec{n})\vec{n}\\
+  \vec{v}_\perp&#39; &amp;= \vec{v}_\perp\\
+          &amp;= \vec{v} - \vec{v}_\parallel\\
+          &amp;= \vec{v} - (\vec{v}\cdot\vec{n})\vec{n}\\
+  \vec{v}_\parallel&#39; &amp;= k\vec{v}_\parallel\\
+          &amp;= k(\vec{v}\cdot\vec{n})\vec{n}\\
+  \vec{v}&#39;&amp;= \vec{v}_\perp&#39; + \vec{v}_\parallel&#39;\\
+          &amp;= \vec{v}-(\vec{v}\cdot\vec{n})\vec{n} + k(\vec{v}\cdot\vec{n})\vec{n}\\
+          &amp;= \vec{v}+(k-1)(\vec{v}\cdot\vec{n})\vec{n}\\
+\end{align}
+\]</span>
+</td></tr></table>
+
+</section><section id="escala-em-uma-direção-arbitrária-1" class="slide level2">
+<h1>Escala em uma direção arbitrária</h1>
+<ul>
+<li>Transformação de <span class="math">\(\vec{i}\)</span> e <span class="math">\(\vec{j}\)</span>:</li>
+</ul>
+<table><tr><td>
+<span class="math">\[
+\begin{align}
+  \vec{i} &amp; = \begin{bmatrix}1&amp;0\end{bmatrix}^T\\
+  \vec{i}&#39;&amp; = \vec{i}+(k-1)(\vec{i}\cdot\vec{n})\vec{n}\\
+          &amp; = \begin{bmatrix}1\\0\end{bmatrix}+(k-1)(\begin{bmatrix}1\\0\end{bmatrix}\cdot\begin{bmatrix}n_x\\n_y\end{bmatrix})\begin{bmatrix}n_x\\n_y\end{bmatrix}\\
+          &amp; = \begin{bmatrix}1\\0\end{bmatrix}+(k-1)n_x\begin{bmatrix}n_x\\n_y\end{bmatrix}\\
+          &amp; = \begin{bmatrix}1\\0\end{bmatrix}+\begin{bmatrix}(k-1)n_x^2\\(k-1)n_xn_y\end{bmatrix}\\
+          &amp; = \begin{bmatrix}1+(k-1)n_x^2\\(k-1)n_xn_y\end{bmatrix}
+\end{align}
+\]</span>
+</td><td style="vertical-align:top">
+<span class="math">\[
+\begin{align}
+  \vec{j} &amp; = \begin{bmatrix}0&amp;1\end{bmatrix}^T\\
+  \vec{j}&#39;&amp; = \begin{bmatrix}(k-1)n_xn_y\\1+(k-1)n_y^2\end{bmatrix}\\
+\end{align}
+\]</span>
+</td></tr></table>
+
+</section><section id="escala-em-uma-direção-arbitrária-2" class="slide level2">
+<h1>Escala em uma direção arbitrária</h1>
+<ul>
+<li>Então a matriz de escala por um eixo arbitrário é:</li>
+</ul>
+<p><span class="math">\[
+S(\vec{n},k)=\begin{bmatrix}\vec{i}&#39;&amp;\vec{j}&#39;\end{bmatrix} = 
+\begin{bmatrix}1+(k-1)n_x^2 &amp; (k-1)n_xn_y\\(k-1)n_xn_y &amp; 1+(k-1)n_y^2\end{bmatrix}
+\]</span></p>
+</section><section id="escala-em-uma-direção-arbitrária-3" class="slide level2">
+<h1>Escala em uma direção arbitrária</h1>
+<ul>
+<li>E agora em 3D:</li>
+</ul>
+<table><tr><td>
+<span class="math">\[
+\begin{align}
+  \vec{i} &amp; = \begin{bmatrix}1&amp;0\end{bmatrix}^T\\
+  \vec{i}&#39;&amp; = \vec{i}+(k-1)(\vec{i}\cdot\vec{n})\vec{n}\\
+          &amp; = \begin{bmatrix}1\\0\end{bmatrix}+(k-1)(\begin{bmatrix}1\\0\end{bmatrix}\cdot\begin{bmatrix}n_x\\n_y\end{bmatrix})\begin{bmatrix}n_x\\n_y\end{bmatrix}\\
+          &amp; = \begin{bmatrix}1\\0\end{bmatrix}+(k-1)n_x\begin{bmatrix}n_x\\n_y\end{bmatrix}\\
+          &amp; = \begin{bmatrix}1\\0\end{bmatrix}+\begin{bmatrix}(k-1)n_x^2\\(k-1)n_xn_y\end{bmatrix}\\
+          &amp; = \begin{bmatrix}1+(k-1)n_x^2\\(k-1)n_xn_y\end{bmatrix}
+\end{align}
+\]</span>
+</td><td style="vertical-align:top">
+<span class="math">\[
+\begin{align}
+  \vec{j} &amp; = \begin{bmatrix}0&amp;1\end{bmatrix}^T\\
+  \vec{j}&#39;&amp; = \begin{bmatrix}(k-1)n_xn_y\\1+(k-1)n_y^2\end{bmatrix}\\
+  \vec{k} &amp; = \begin{bmatrix}0&amp;1\end{bmatrix}^T\\
+  \vec{k}&#39;&amp; = \begin{bmatrix}(k-1)n_xn_y\\1+(k-1)n_y^2\end{bmatrix}\\
+\end{align}
+\]</span>
+</td></tr></table>
+
+</section><section id="escala-em-uma-direção-arbitrária-4" class="slide level2">
+<h1>Escala em uma direção arbitrária</h1>
+<ul>
+<li>A matriz de escala por um eixo arbitrário em 3D é:</li>
+</ul>
+<p><span class="math">\[
+S(\vec{n},k)=\begin{bmatrix}\vec{i}&#39;&amp;\vec{j}&#39;\end{bmatrix} = 
+\begin{bmatrix}1+(k-1)n_x^2 &amp; (k-1)n_xn_y\\(k-1)n_xn_y &amp; 1+(k-1)n_y^2\end{bmatrix}
+\]</span></p>
 </section><section id="projeção-ortográfica" class="slide level2">
 <h1>Projeção Ortográfica</h1>
+<table><tr><td>
+<img src="../../images/ortographic.png" />
+</td><td style="vertical-align:top">
+<p><span class="math">\[P_x = S(\begin{bmatrix}0&amp;1\end{bmatrix},0) = \begin{bmatrix}1&amp;0\\0&amp;0\end{bmatrix}\]</span></p>
+<p><span class="math">\[P_y = S(\begin{bmatrix}1&amp;0\end{bmatrix},0) = \begin{bmatrix}0&amp;0\\0&amp;1\end{bmatrix}\]</span></p>
+<p><span class="math">\[P_{xy} = S(\begin{bmatrix}0&amp;0&amp;1\end{bmatrix},0) = \begin{bmatrix}1&amp;0&amp;0\\0&amp;1&amp;0\\0&amp;0&amp;0\end{bmatrix}\]</span></p>
+<p><span class="math">\[P_{xz} = S(\begin{bmatrix}0&amp;1&amp;0\end{bmatrix},0) = \begin{bmatrix}1&amp;0&amp;0\\0&amp;0&amp;0\\0&amp;0&amp;1\end{bmatrix}\]</span></p>
+<span class="math">\[P_{yz} = S(\begin{bmatrix}1&amp;0&amp;0\end{bmatrix},0) = \begin{bmatrix}0&amp;0&amp;0\\0&amp;1&amp;0\\0&amp;0&amp;1\end{bmatrix}\]</span>
+</td></tr></table>
+
+</section><section id="projeção-ortográfica-1" class="slide level2">
+<h1>Projeção Ortográfica</h1>
+<ul>
+<li>Sobre uma direção arbitrária (Em 2D)</li>
+</ul>
+<p><span class="math">\[\begin{align}
+P(\vec{n}) &amp;= S(\vec{n},0) \\
+           &amp;= \begin{bmatrix}1+(0-1)n_x^2 &amp; (0-1)n_xn_y\\(0-1)n_xn_y&amp;1+(0-1)n_y^2\end{bmatrix} \\
+           &amp;= \begin{bmatrix}1-n_x^2&amp;-n_xn_y\\-n_xn_y&amp;1-n_y^2\end{bmatrix}
+\end{align}
+\]</span></p>
+<ul>
+<li>Sobre uma direção arbitrária (Em 3D)</li>
+</ul>
+<p><span class="math">\[\begin{align}
+P(\vec{n}) &amp;= S(\vec{n},0) \\
+           &amp;= \begin{bmatrix}1+(0-1)n_x^2 &amp; (0-1)n_xn_y&amp;(0-1)n_xn_z\\(0-1)n_xn_y&amp;1+(0-1)n_y^2&amp;(0-1)n_yn_z\\(0-1)n_xn_z&amp;(0-1)n_yn_z&amp;1+(0-1)n_z^2\end{bmatrix} \\
+           &amp;= \begin{bmatrix}1-n_x^2&amp;-n_xn_y&amp;-n_xn_z\\-n_xn_y&amp;1-n_y^2&amp;-n_yn_z\\-n_xn_z&amp;-n_yn_z&amp;1-n_z^2\end{bmatrix}
+\end{align}
+\]</span></p>
 </section><section id="reflexão" class="slide level2">
 <h1>Reflexão</h1>
+<div style="text-align:center;">
+<img src="../../images/reflection.png" />
+</div>
+<p><span class="math">\[
+\begin{align}
+R(\vec{n}) &amp; = S(\vec{n}, -1) = \begin{bmatrix}1+(-1-1)n_x^2&amp;(-1-1)n_xn_y\\(-1-1)n_xn_y&amp;1+(-1-1)n_y^2\end{bmatrix} = \begin{bmatrix}1-2n_x^2&amp;-2n_xn_y\\-2n_xn_y&amp;1-2n_y^2\end{bmatrix}
+\end{align}
+\]</span></p>
+</section><section id="reflexão-1" class="slide level2">
+<h1>Reflexão</h1>
+<ul>
+<li>Em 3D:</li>
+</ul>
+<p><span class="math">\[
+\begin{align}
+R(\vec{n}) &amp; = S(\vec{n}, -1) \\
+           &amp; = \begin{bmatrix}1+(-1-1)n_x^2&amp;(-1-1)n_xn_y&amp;(-1-1)n_xn_z\\(-1-1)n_xn_y&amp;1+(-1-1)n_y^2&amp;(-1-1)n_yn_z\\(-1-1)n_xn_z&amp;(-1-1)n_yn_z&amp;1+(-1-1)n_z^2\end{bmatrix}\\
+           &amp; = \begin{bmatrix}1-2n_x^2&amp;-2n_xn_y&amp;-2n_xn_z\\-2n_xn_y&amp; 1-2n_y^2&amp;-2n_yn_z\\-2n_xn_z&amp;-2n_yn_z&amp;1-2n_z^2\end{bmatrix}
+\end{align}
+\]</span></p>
 </section><section id="cisalhamento" class="slide level2">
 <h1>Cisalhamento</h1>
+<table><tr><td>
+<img src="../../images/shearing.png" />
+</td><td style="vertical-align:top">
+<img src="../../images/shearingY.png" />
+</td></tr><tr><td>
+<span class="math">\[H_x(c)=\begin{bmatrix}1&amp;c\\0&amp;1\end{bmatrix}\]</span>
+</td><td>
+<span class="math">\[H_y(c)=\begin{bmatrix}1&amp;0\\c&amp;1\end{bmatrix}\]</span>
+</td></tr></table>
+
+</section><section id="cisalhamento-1" class="slide level2">
+<h1>Cisalhamento</h1>
+<ul>
+<li>Em 3D: Um vetor distorce outros dois</li>
+<li><span class="math">\(H_{xy}\)</span>: o eixo Z contribui para os eixos X e Y</li>
+</ul>
+<p><span class="math">\[
+\begin{align}
+H_{xy}(c,d) &amp;= \begin{bmatrix}1&amp;0&amp;c\\0&amp;1&amp;d\\0&amp;0&amp;1\end{bmatrix}\\
+H_{xz}(c,d) &amp;= \begin{bmatrix}1&amp;c&amp;0\\0&amp;1&amp;0\\0&amp;d&amp;1\end{bmatrix}\\
+H_{yz}(c,d) &amp;= \begin{bmatrix}1&amp;0&amp;0\\c&amp;1&amp;0\\d&amp;0&amp;1\end{bmatrix}
+\end{align}
+\]</span></p>
 </section><section id="composição-de-transformações" class="slide level2">
 <h1>Composição de Transformações</h1>
+<figure>
+<img src="../../images/composition_transformation.png" />
+</figure>
+<p><span class="math">\[\begin{align}
+\vec{v}&#39;  &amp; = \color{red}{M_{objeto\rightarrow mundo}}\vec{v} \\
+\vec{v}&#39;&#39; &amp; = \color{green}{M_{mundo-&gt;camera}}\vec{v}&#39; \\
+          &amp; = \color{green}{M_{mundo-&gt;camera}}(\color{red}{M_{objeto\rightarrow mundo}}\vec{v}) \\
+\vec{v}&#39;&#39;&#39;&amp; = \color{blue}{M_{camera-&gt;tela}}\vec{v}&#39;&#39; \\
+          &amp; = \color{blue}{M_{camera-&gt;tela}}(\color{green}{M_{mundo-&gt;camera}}(\color{red}{M_{objeto\rightarrow mundo}}\vec{v}))
+\end{align}\]</span></p>
+</section><section id="composição-de-transformações-1" class="slide level2">
+<h1>Composição de Transformações</h1>
+<ul>
+<li>Como multiplicação de matrizes é associativa, vamos agrupar as matrizes:</li>
+</ul>
+<p><span class="math">\[\begin{align}
+\vec{v}&#39;&#39;&#39;&amp; = (\color{blue}{M_{camera-&gt;tela}}\color{green}{M_{mundo-&gt;camera}}\color{red}{M_{objeto\rightarrow mundo}})\vec{v} 
+\end{align}\]</span></p>
+<ul>
+<li><span class="math">\(\color{blue}{M_{camera-&gt;tela}}\)</span> é a matriz de projeção <span class="math">\(\color{blue}{P}\)</span></li>
+<li><span class="math">\(\color{green}{M_{mundo-&gt;camera}}\)</span> é a matriz de visualização <span class="math">\(\color{green}{V}\)</span></li>
+<li><span class="math">\(\color{red}{M_{objeto\rightarrow mundo}}\)</span> é a matriz de modelo <span class="math">\(\color{red}{M}\)</span></li>
+<li><em>Model-View-Projection</em>(<span class="math">\(\color{red}{M}\color{green}{V}\color{blue}{P}\)</span>): Da coordenada do objeto à coordenada da tela</li>
+</ul>
 </section></section>
-<section><section id="classes-de-transformações" class="titleslide slide level1"><h1>Classes de Transformações</h1></section><section id="geometria-euclidiana" class="slide level2">
+<section><section id="classes-de-transformações" class="titleslide slide level1"><h1>Classes de Transformações</h1></section><section id="introdução-2" class="slide level2">
+<h1>Introdução</h1>
+<ul>
+<li>O conjunto de transformações + conjunto de pontos = <em><em>geometria</em></em></li>
+</ul>
+</section><section id="geometria-euclidiana" class="slide level2">
 <h1>Geometria Euclidiana</h1>
+<ul>
+<li>Propriedades preservadas (invariantes):
+<ul>
+<li><em>ângulos</em>;</li>
+<li><em>paralelismo</em>;</li>
+<li><em>áreas</em> (2D, 3D e outros <span class="math">\(N\)</span>D, com <span class="math">\(N\ge 2\)</span>);</li>
+<li><em>volumes</em> (no caso de 3D e outros <span class="math">\(N\)</span>D, com <span class="math">\(N\ge 2\)</span>);</li>
+<li><em>razões de distâncias entre pontos</em> (ex: AB/AC se mantém após a transformação);</li>
+<li><em>colinearidade</em>: se vários pontos estão contidos numa linha, os pontos resultantes ainda formarão parte de uma linha;</li>
+<li><em>distância</em>;</li>
+<li><em>incidência</em>: se uma linha incidir sobre um ponto, a linha transformada incidirá sobre o ponto transformado.</li>
+</ul></li>
+</ul>
+</section><section id="geometria-euclidiana-1" class="slide level2">
+<h1>Geometria Euclidiana</h1>
+<ul>
+<li>(Cont) Propriedades preservadas (invariantes):
+<ul>
+<li><em>razão cruzada</em>: se calculares as distâncias entre um ponto e outros dois pontos (ex: AC e AD), fazer a razão (<span class="math">\(\frac{AC}{AD}\)</span>), e fizer o mesmo com um outro ponto (<span class="math">\(\frac{BC}{BD}\)</span>), e fizer a razão entre estas razões (<span class="math">\(\frac{\frac{AC}{AD}}{\frac{BC}{BD}}\)</span>), esse valor se manterá após a transformação.</li>
+<li><em>forma</em>.</li>
+</ul></li>
+<li>Transformações
+<ul>
+<li>translação;</li>
+<li>rotação.</li>
+</ul></li>
+</ul>
 </section><section id="geometria-de-similaridade" class="slide level2">
 <h1>Geometria de Similaridade</h1>
+<ul>
+<li>Invariantes:
+<ul>
+<li>ângulos;</li>
+<li>paralelismo;</li>
+<li>razões de distâncias entre pontos;</li>
+<li>colinearidade;</li>
+<li>incidência;</li>
+<li>razão cruzada;</li>
+<li>forma;</li>
+</ul></li>
+<li>Transformações
+<ul>
+<li>translação;</li>
+<li>rotação;</li>
+<li>reflexão;</li>
+<li>escala uniforme.</li>
+</ul></li>
+</ul>
 </section><section id="geometria-afim" class="slide level2">
 <h1>Geometria Afim</h1>
 </section><section id="geometria-projetiva" class="slide level2">

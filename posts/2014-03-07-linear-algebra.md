@@ -164,7 +164,7 @@ Geometricamente, usando pitágoras:
 
 ![](../assets/images/magnitude.png)
 
-$v_x$ e $v_y$ podem ser valores negativos, todavia $\|v\|$ não é. Jà que $|x|^2 = x^2$ então as equações seguintes são equivalentes:
+$v_x$ e $v_y$ podem ser valores negativos, todavia $\|v\|$ não é. Já que $|x|^2 = x^2$ então as equações seguintes são equivalentes:
 
 - $\|v\|^2 = |v_1|^2 + |v_2|^2$
 - $\|v\|^2 = v_1^2 + v_2^2$
@@ -222,7 +222,7 @@ $$
 \begin{bmatrix} a_1 + b_1 \\ a_2 + b_2 \\ \vdots \\ a_n + b_n \end{bmatrix}
 $$
 
-Na subtração, $\vec{a} - \vec{b} = - \vec{b} - \vec{a}$:
+Na subtração, $\vec{a} - \vec{b} = - (\vec{b} - \vec{a})$:
 
 $$
 \begin{bmatrix} a_1 \\ a_2 \\ \vdots \\ a_n \end{bmatrix}
@@ -263,7 +263,7 @@ Dados dois pontos A e B, podes obter um vetor $v = A-B = [a_1 - b_1,a_2-b_2,\dot
 
 Vimos como multiplicar um vetor por um produto escalar. Podemos multiplicar um vetor por um outro vetor. Com o tempo, perceberam que certas formas de multiplicação entre vetores tornaram-se úteis no dia-a-dia.
 
-O produto escalar (ou produto interno) tem esse nome pois o resultado é uma escalar. Dado dois vetores $\vec{a}$ e $\vec{b}$, o produto escalar $\vec{a}\cdot\vec{b} = [a_1b_1, a_2b_2,\dots,a_nb_n]$. Simplesmente é a multiplicação elemento a elemento. Qual a utilidade disso. Fica mais fácil vendo geometricamente a consequência dessa operação:
+O produto escalar (ou produto interno) tem esse nome pois o resultado é uma escalar. Dado dois vetores $\vec{a}$ e $\vec{b}$, o produto escalar $\vec{a}\cdot\vec{b} = a_1b_1 +  a_2b_2 + \dots + a_nb_n$. Simplesmente é a multiplicação elemento a elemento. Qual a utilidade disso. Fica mais fácil vendo geometricamente a consequência dessa operação:
 
 ![](../assets/images/dot_product_angle.png)
 
@@ -373,14 +373,14 @@ Uma matriz é um vetor multidimensional, retangular com valores dispostos em lin
 
 Você pode considerar os vetores como matrizes. O vetor linha é uma matriz $1 \times n$, enquanto que o vetor coluna é uma matriz $n \times 1$.
 
-A transposta de uma matriz  $M_{r \times c} = [m_{ij}]$ é uma matriz $M^T_{c \times r}=[m_{ji}]$, ambas com $1 \le i \le r$ e $1 \le j \le c$. Uma matriz é simétrica quando $M = M^T$. A transposta de um vetor coluna é um vetor linha, e vice-versa. A transposta da transposta de uma matriz é igual à matriz.
+A transposta de uma matriz  $M_{l \times c} = [m_{ij}]$ é uma matriz $M^T_{c \times l}=[m_{ji}]$, ambas com $1 \le i \le l$ e $1 \le j \le c$. Uma matriz é simétrica quando $M = M^T$. A transposta de um vetor coluna é um vetor linha, e vice-versa. A transposta da transposta de uma matriz é igual à matriz.
 
 ### Multiplicação de uma matriz por uma escalar
 
 A multiplicação é semelhante à multiplicação entre vetores e escalares:
 
 $$kM = 
-k\begin{bmatrix} m_{11} & m_{12} & m_{13} \\ m_{21} & m_{22} & m_{23} \\ m_{31} & m_{32} & m_{33}\end{bmatrix} = \begin{bmatrix}km_{11} & km_{12} & km_{13} \\ km_{21} & km_{22} & km_{23} \\ km_{31} & km_{32} & km_{33}\end{bmatrix}
+k\begin{bmatrix} m_{11} & m_{12} & m_{13} \\ m_{21} & m_{22} & m_{23} \\ m_{31} & m_{32} & m_{33}\end{bmatrix} = \begin{bmatrix}km_{11} & km_{12} & km_{13} \\ km_{21} & km_{22} & km_{23} \\ km_{31} & km_{32} & km_{33}\end{bmatrix}$$
 
 ### Multiplicação entre Matrizes
 
@@ -782,13 +782,13 @@ Ufa, achamos a primeira coluna da matriz. Faltam outras duas. O processo é o me
 
 $$\begin{align}
 \vec{j}  & = \begin{bmatrix}0 & 1 & 0\end{bmatrix}^T \\
-vec{j}' & = \begin{bmatrix}
+\vec{j}' & = \begin{bmatrix}
 n_xn_y(1-cos\theta) - n_zsen\theta)\\
 n_y^2(1 - cos\theta) + cos\theta \\
 n_yn_z(1 - cos\theta) + n_xsen\theta
 \end{bmatrix}\\
 \vec{k}  & = \begin{bmatrix}0 & 0 & 1\end{bmatrix}^T \\
-vec{k}' & = \begin{bmatrix}
+\vec{k}' & = \begin{bmatrix}
 n_xn_z(1-cos\theta) + n_ysen\theta)\\
 n_yn_z(1 - cos\theta) - n_xsen\theta \\
 n_z^2(1 - cos\theta) + cos\theta
@@ -864,7 +864,7 @@ $$
 Então a matriz de escala por um eixo arbitrário é:
 
 $$
-S(\vec{n},k)=\begin{bmatrix}\vec{i}'\\\vec{j}'\end{bmatrix} = 
+S(\vec{n},k)=\begin{bmatrix}\vec{i}'&\vec{j}'\end{bmatrix} = 
 \begin{bmatrix}1+(k-1)n_x^2 & (k-1)n_xn_y\\(k-1)n_xn_y & 1+(k-1)n_y^2\end{bmatrix}
 $$
 
@@ -888,7 +888,7 @@ $$
 A matriz de escala por um eixo arbitrário em 3D é:
 
 $$
-S(\vec{n},k)=\begin{bmatrix}\vec{i}'\\\vec{j}'\end{bmatrix} = 
+S(\vec{n},k)=\begin{bmatrix}\vec{i}'&\vec{j}'\end{bmatrix} = 
 \begin{bmatrix}1+(k-1)n_x^2 & (k-1)n_xn_y\\(k-1)n_xn_y & 1+(k-1)n_y^2\end{bmatrix}
 $$
 
@@ -938,7 +938,7 @@ Em 2D a reflexão ocorre sobre um eixo. Você pode fazer uma reflexão sobre um 
 
 $$
 \begin{align}
-R(\vec{n}) & = S(\vec{n}, -1) = \begin{bmatrix}1+(-1-1)n_x^2&(-1-1)n_xn_y\\(-1-1)n_xn_y&1+(-1-1)n_y^2\end{bmatrix} = \begin{bmatrix}1-2n_x^2&-2n_xn_y\\-2n_xn_y 1-2n_y^2\end{bmatrix}
+R(\vec{n}) & = S(\vec{n}, -1) = \begin{bmatrix}1+(-1-1)n_x^2&(-1-1)n_xn_y\\(-1-1)n_xn_y&1+(-1-1)n_y^2\end{bmatrix} = \begin{bmatrix}1-2n_x^2&-2n_xn_y\\-2n_xn_y&1-2n_y^2\end{bmatrix}
 \end{align}
 $$
 
@@ -948,7 +948,7 @@ $$
 \begin{align}
 R(\vec{n}) & = S(\vec{n}, -1) 
              = \begin{bmatrix}1+(-1-1)n_x^2&(-1-1)n_xn_y&(-1-1)n_xn_z\\(-1-1)n_xn_y&1+(-1-1)n_y^2&(-1-1)n_yn_z\\(-1-1)n_xn_z&(-1-1)n_yn_z&1+(-1-1)n_z^2\end{bmatrix}
-             = \begin{bmatrix}1-2n_x^2&-2n_xn_y&-2n_xn_z\\-2n_xn_y 1-2n_y^2&-2n_yn_z\\-2n_xn_z&-2n_yn_z&1-2n_z^2\end{bmatrix}
+             = \begin{bmatrix}1-2n_x^2&-2n_xn_y&-2n_xn_z\\-2n_xn_y& 1-2n_y^2&-2n_yn_z\\-2n_xn_z&-2n_yn_z&1-2n_z^2\end{bmatrix}
 \end{align}
 $$
 
@@ -1042,8 +1042,7 @@ A geometria euclidiana contém transformações que preservam:
 As transformações dessa geometria são:
 
 - translação;
-- rotação;
-- reflexão.
+- rotação.
 
 ### Geometria de Similaridade
 
@@ -1072,6 +1071,7 @@ A geometria afim preserva menos propriedades do que a geometria de similaridade 
 
 - paralelismo;
 - razões de distâncias entre pontos;
+- razão cruzada;
 - colinearidade;
 
 As transformações dessa geometria são:
@@ -1089,7 +1089,7 @@ Já viste uma foto de uma praia em um pôr-de-sol? E uma foto que contenha um tr
 
 As propriedades que a geometria projetiva preserva são:
 
-- razões de distâncias entre pontos;
+- razão cruzada;
 - colinearidade;
 
 **E onde está o paralelismo?** Mesmo o trilho de trem sendo paralelo no espaço, na foto elas aparecerão se encontrando no horizonte (na hipotética linha do infinito). De fato, todas as linhas paralelas, transformadas projetivamente, na verdade se encontram no horizonte. Isso transforma a frase da geometria euclidiana - "Duas linhas se encontram em um ponto exceto quando são paralelas" - na frase - "Duas linhas se encontram em um ponto", removendo a indesejada exceção. Por causa disso, ela não preserva o paralelismo.
