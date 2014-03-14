@@ -9,8 +9,8 @@
 > - Números contáveis
 > - <div>Contar ovelha<br>![](../../images/uma_ovelha.png)</div>
 > - [Introdução à História da Matemática](http://www.livrariasaraiva.com.br/produto/392616)
-- <div>Pensamento Logaritmo<br>
-![](../../images/babylogarithms.jpg)</div>
+- Pensamento Logaritmo<br>
+<div style="text-align:center;"><img src="../../images/babylogarithms.jpg" style="width:300px"/></div>
 
 ## Uma dimensão
 
@@ -273,11 +273,12 @@ $$
 > - Resultado: uma escalar
 > - $\vec{a}\cdot\vec{b} = a_1b_1 + a_2b_2 + \dots + a_nb_n$.
 > - Soma de multiplicações elemento-a-elemento.
-> - O quão similares são os vetores
+> - O quão similares são os vetores<br>
+    ![](../../images/dot_product_angle.png)
 > - $\vec{a}\cdot\vec{b} = \|\vec{a}\|\|\vec{b}\|cos(\theta)$
 > - Versores: $\vec{a}\cdot\vec{b} = cos(\theta)$
 
-![](../../images/dot_product_angle.png)
+
 
 ## Projetando um vetor no outro
 
@@ -1068,21 +1069,375 @@ $$\begin{align}
 
 ## Geometria Projetiva
 
+<div style="text-align:center">
+<table><tr><td style="text-align:top">
+![](../../images/perspective2.png)
+</td><td style="text-align:top">
+![](../../images/projective3.png)
+</td></tr></table>
+</div>
+
+> - Euclidiana: 2 linhas se encontram em um ponto exceto em paralelo.
+> - Projetiva: 2 linhas se encontram em um ponto ~~exceto em paralelo~~.
+
+## Geometria Projetiva
+
+<div style="text-align:center">
+<table><tr><td style="text-align:top">
+![](../../images/perspective2.png)
+</td><td style="text-align:top">
+![](../../images/projective3.png)
+</td></tr></table>
+</div>
+
+- Horizonte
+
+## Geometria Projetiva
+
+- Invariantes:
+    - Razão Cruzada;
+    - Colinearidade;    
+- Transformações:
+    - Todas as transformações da geometria afim;
+    - Projeção perspectiva;
+    - Composição de projeções.
+- Livros:
+    - [Multiple View Geometry](http://www.amazon.com/Multiple-View-Geometry-Computer-Vision/dp/0521540518/ref=sr_1_1?ie=UTF8&qid=1394402186&sr=8-1&keywords=multi+view+geometry);
+    - [Projective Geometry](http://www.amazon.com/Projective-Geometry-H-S-M-Coxeter/dp/0387406239/ref=sr_1_1?ie=UTF8&qid=1394402213&sr=8-1&keywords=projective+geometry);
+    - [Geometry](http://books.google.com.br/books?id=UlrmKjIjrzQC)
+
+## Geometria Projetiva
+
+<div style="text-align:center">
+<table><tr><td style="text-align:top">
+![](../../images/projection4.png)
+</td><td style="vertical-align:top;text-align:top">
+
+> - $\mathbb{R}^2 \rightarrow \mathbb{P}^2 \cong \mathbb{R}^3$
+> - Qualquer ponto $k(x,y,1)$ é projetado para $(x,y)$.
+> - Em $\mathbb{P}^2$, $k_1(x,y,1) = k_2(x,y,1)$, para $k_1 \neq k_2$.
+> - O conjunto de pontos $k(x,y,1)$ é uma linha em $\mathbb{R}^3$
+> - Uma linha em $\mathbb{R}^3$ é um Ponto em $\mathbb{P}^2$.
+> - O conjunto de Pontos é todo o espaço $\mathbb{P}^2$.
+> - $(x,y,1)$ é a coordenada homogênea de $(x,y)$.
+
+</td></tr></table>
+</div>
+
+## Geometria Projetiva
+
+> - Mas e em $\mathbb{R}^3$?
+> - $\mathbb{R}^3 \rightarrow \mathbb{P}^3 \cong \mathbb{R}^4$;
+> - $(x,y,z,1)$ é a coordenada homogênea de $(x,y,z)$;
+> - Em $\mathbb{P}^3$, $(kx,ky,kz,k) = k(x,y,z,1) = (x,y,z,1)$.
+> - E as matrizes de transformações?
+> - Vamos ver a escala não uniforme: $[\color{red}{x},\color{red}{y},\color{red}{z},1] \rightarrow [\color{blue}{s_1}\color{red}{x},\color{blue}{s_2}\color{red}{y},\color{blue}{s_3}\color{red}{z},1]$:<br>
+$$\begin{array}\\
+\color{blue}{s_1}\color{red}{x} &+                0\color{red}{y} &+                0\color{red}{z} &+ a\times1 &= s_1\color{red}{x}\\
+                0\color{red}{x} &+ \color{blue}{s_2}\color{red}{y} &+                0\color{red}{z} &+ b\times1 &= s_2\color{red}{y}\\
+                0\color{red}{x} &+                0\color{red}{y} &+ \color{blue}{s_3}\color{red}{z} &+ c\times1 &= s_3\color{red}{z}\\
+                0\color{red}{x} &+                0\color{red}{y} &+                0\color{red}{z} &+ d\times1 &= 1
+\end{array}
+$$
+> - Vemos que $a=b=c=0$ e $d=1$. Arrumando em Matrizes:<br>
+$$
+\begin{bmatrix}
+s_1&0&0&0\\ 
+0&s_2&0&0\\
+0&0&s_3&0\\
+0&0&0&1
+\end{bmatrix}
+\begin{bmatrix}
+x\\y\\z\\1
+\end{bmatrix}=
+\begin{bmatrix}
+s_1x\\s_2y\\s_3z\\1
+\end{bmatrix}
+$$
+
+## Geometria Projetiva
+
+> - Para a rotação, acontece o mesmo: $a=b=c=0$ e $d=1$
+> - Ex: no eixo X<br>
+$$
+\begin{bmatrix}
+  1&         0&         0&0\\ 
+  0& cos\theta& sen\theta&0\\
+  0&-sen\theta& cos\theta&0\\ 
+  0&         0&         0&1
+\end{bmatrix}
+\begin{bmatrix}
+x\\y\\z\\1
+\end{bmatrix}=
+\begin{bmatrix}
+x\\cos\theta y+sen\theta z\\-sen\theta y+cos\theta z\\1
+\end{bmatrix}
+$$
+> - Resumindo: para as tranformações até agora mostradas, basta adicionar $[0,0,0,1]$ na 4ª linha e 4ª coluna
+> - Imagine que a 4ª coluna $[0,0,0,1]^T$ é a origem do sistema.
+> - E para a bendita translação?
+> - A ideia é transladar a origem do sistema de $[0,0,0,1]^T$ para $[t_x, t_y, t_z, 1]$.
+
+## Geometria Projetiva
+
+> - Queremos transformar $[x,y,z,1]$ em $[x+\color{blue}{t_x},y+\color{blue}{t_y},z+\color{blue}{t_z},1]$.
+> - Focando no primeiro elemento<br>
+    $\color{green}{a_{11}}x + \color{green}{a_{12}}y + \color{green}{a_{13}}z + \color{green}{a_{14}}1 = x + \color{blue}{t_x}$
+> - Vemos que $\color{green}{a_{11}} = 1$, $\color{green}{a_{12}} = \color{green}{a_{13}} = 0$ e $\color{green}{a_{14}} = \color{blue}{t_x}$.
+> - Para os outros elementos, é o mesmo processo:<br>
+$$\begin{array}\\
+1x &+& 0y &+& 0z &+& \color{blue}{t_x}\times1 &=& x + \color{blue}{t_x}\\
+0x &+& 1y &+& 0z &+& \color{blue}{t_y}\times1 &=& y + \color{blue}{t_y}\\
+0x &+& 0y &+& 1z &+& \color{blue}{t_z}\times1 &=& z + \color{blue}{t_z}\\
+0x &+& 0y &+& 0z &+&   1\times1 &=& 1
+\end{array}
+$$
+> - Arrumando em matrizes:<br>
+$$
+\begin{bmatrix}
+  1 & 0 & 0 & \color{blue}{t_x}\\
+  0 & 1 & 0 & \color{blue}{t_y}\\
+  0 & 0 & 1 & \color{blue}{t_z}\\
+  0 & 0 & 0 & 1
+\end{bmatrix}
+\begin{bmatrix}
+x\\y\\z\\1
+\end{bmatrix}=
+\begin{bmatrix}
+x + \color{blue}{t_x}\\y + \color{blue}{t_y}\\z + \color{blue}{t_z}\\1
+\end{bmatrix}
+$$
+
+## Geometria Euclidiana (Voltando)
+
+- Translação e Rotação
+- Formato da transformação:<br>
+$$
+\begin{bmatrix}
+  R       & \vec{t}\\
+  \vec{0} & 1
+\end{bmatrix}
+$$
+
+## Geometria de Similaridade (Voltando)
+
+- Translação, Rotação, Reflexão e Escala Uniforme
+- Formato da transformação:<br>
+$$
+\begin{bmatrix}
+  sR       & \vec{t}\\
+  \vec{0}  & 1
+\end{bmatrix}
+$$
+
+## Geometria Afim (Voltando)
+
+- Translação, Rotação, Reflexão, Escala Uniforme e Escala Não-Uniforme
+- Formato da transformação:<br>
+$$
+\begin{bmatrix}
+  A       & \vec{t}\\
+  \vec{0}  & 1
+\end{bmatrix}
+$$
+- $A$ pode ser qualquer matriz
+
+## Geometria Projetiva (Voltando)
+
+- Toda as transformações da Geom. Afim, mais a projeção perspectiva;
+- Formato da transformação:<br>
+$$
+\begin{bmatrix}
+  h_{11} & h_{12} & \cdots & h_{1n}\\
+  h_{21} & h_{22} & \cdots & h_{2n}\\
+  \vdots & \vdots & \ddots & \vdots \\
+  h_{n1} & h_{n2} & \cdots & h_{nn}
+\end{bmatrix}
+$$
+
+## Geometrias (Ilustração)
+
+<div style="text-align:center">![](../../images/transformations.png)</div>
+
+## Geometrias Não-Euclidianas
+
+<div style="text-align:center">
+<table style="margin-left:auto;margin-right:auto"><tr style="text-align:top center;"><td style="text-align:top center;">
+![](../../images/spheric_geometry.png)
+</td><td style="text-align:top center;">
+![](../../images/hyperbolic_geometry.png)
+</td></tr>
+<tr style="text-align:top center;"><td style="text-align:top center;">
+<img style="height:200px" src="../../images/fish_eye.jpg"/>
+</td><td style="text-align:top center;">
+<img style="height:200px" src="../../images/cam-fisheye.png"/>
+</td></tr>
+</table>
+</div>
+
 ## Transformação Linear
+
+- Aditiva:  $F(a+b) = F(a) + F(b)$;
+- Homogênea: $F(ka) = kF(a)$.
+- Ex: Multiplicação de Matriz<br>
+
+$$\begin{align}
+F(\vec{a}+\vec{b}) &= M(\vec{a}+\vec{b}) \\
+       &= M\vec{a}+M\vec{b}  \\
+       &= F(\vec{a}) + F(\vec{b})\\
+F(k\vec{a}) &= M(k\vec{a}) \\
+       &= kM\vec{a}  \\
+       &= kF(\vec{a})
+\end{align}
+$$
 
 ## Transformação Afim
 
+- $F(\vec{a}) = M\vec{a} + \vec{t}$
+- $\vec{t}=\vec{0} \Rightarrow F(\vec{a}) = M\vec{a}$
+- $\vec{t}\neq\vec{0}$<br>
+    $$\begin{align}
+    F(\vec{a} + \vec{b}) &= M(\vec{a} + \vec{b}) + \vec{t} \\
+			&= (M\vec{a} + \vec{t}) + (M\vec{b} + \vec{t}) - \vec{t} \\
+			&= F(\vec{a}) + F(\vec{b}) - \vec{t} \\
+			&\neq F(\vec{a}) + F(\vec{b})
+    \end{align}
+    $$
+
+
 ## Transformação Inversível
+
+- $F(a)=b \Rightarrow F^{-1}(b)=a$
+- Rotação: basta rotacionar $-\theta$
+- Escala: basta escalar
+- Projeção: não tem inversa (perdeu uma dimensão)<br>
+    _Desafio para reconstrução 3D_
+- Translação: basta transladar -[t_x, t_y, t_z]
+- Cisalhamento: basta cisalhar -c no mesmo eixo
+
+## Transformação Ortogonal
+
+- $M^{-1} = M^T$
+- As colunas da matriz são vetores bases ortonormais (perpendiculares e unitários)
+- $det(M)= 1$ (rotação) ou $det(M)= -1$ (reflexão)
 
 # Matrizes
 
 ## Determinante
 
+$$|M| = 
+\begin{vmatrix}
+  m_{11} & m_{12} \\ 
+  m_{21} & m_{22}
+\end{vmatrix}
+= m_{11}m_{22}-m_{12}m_{21}
+$$
+
+$$\begin{align}\begin{vmatrix}
+  m_{11} & m_{12} & m_{13}\\ 
+  m_{21} & m_{22} & m_{23}\\ 
+  m_{31} & m_{32} & m_{33}\\ 
+\end{vmatrix}
+& = m_{11}m_{22}m_{33}+m_{12}m_{23}m_{31}+m_{13}m_{21}m_{32}
+ -m_{13}m_{22}m_{31}-m_{12}m_{21}m_{33}-m_{11}m_{23}m_{32}\\
+& = m_{11}(m_{22}m_{33}-m_{23}m_{32}) -m_{12}(m_{21}m_{33}-m_{23}m_{31}) + m_{13}(m_{21}m_{32}-m_{22}m_{31})
+ \end{align}
+$$
+
+- Regra de Sarrus
+- Teorema de Laplace (Expansão em Cofatores)
+    - Dada uma linha $i$:<br>
+    $$|M_{l\times c}| = \sum^{c}_{j=1}{m_{ij}(-1)^{i+j}|M_{ij}|}$$
+    $M_{ij}$ é a matriz removendo a i-ésima linha e j-ésima coluna.
+
+## Determinante
+
+- $|AB| = |A||B|$;
+- $|M_1M_2\dots M_n|=|M_1||M_2|\dots|M_n|$;
+- $|M^T|=|M|$;
+- Se alguma linha ou coluna for $\vec{0}$, $|M|=0$;
+- Trocar um par de linhas (ou colunas) nega o determinante;
+- Adicionar um multiplo de uma linha (ou coluna) em outra linha (ou coluna) não muda o determinante;
+- Multiplicar uma linha (ou coluna) por um fator $k$, o determinante é multiplicado por $k$.
+
+## Determinante
+
+> - Determinante tem interpretação geométrica?
+> - Área dos vetores base da matriz<br>
+![](../../images/determinant_geometric.png)
+
 ## Inversa
+
+- $MM^{-1} = M^{-1}M = I$
+- $(M^{-1})^{-1}=M$
+- $I^{-1} = I$
+- $(M^T)^{-1} = (M^-1)^T$
+- $(AB)^-1 = B^{-1}A^{-1}$
+- $(M_1M_2\dots M_n)^{-1}=M_n^{-1}\dots M_2^{-1}M_1^{-1}$
+- Geometricamente, $M^{-1}$ é a transformação oposta de $M$<br>
+    $M^{-1}(M\vec{v}) = (M^{-1}M)\vec{v} = I\vec{v} = \vec{v}$
 
 ## Matrizes Ortogonais
 
+- $M^{-1} = M^T \Rightarrow M^TM = MM^T = I$
+- Aparecem muitas vezes em CG (Rotação e Reflexão)
+- Geometricamente, a matriz é ortogonal se seus vetores bases são ortonormais
+- Escolhendo duas colunas $\vec{c}_i$ e $\vec{c}_j$ de $M$<br>
+    $\vec{c}_i\cdot\vec{c}_j = 0$, se $i\neq j$ (perpendiculares)<br>
+    $\vec{c}_i\cdot\vec{c}_j = 1$, se $i=j$ (paralelo)
+
 ## Matrizes Homogêneas
+
+- Coordenadas Homogêneas: $[x,y,z] \Rightarrow [x,y,z,w]$
+- Ponto: $w = 1$
+- Vetor: $w = 0$
+- Matrix $4\times4$
+- Transformações lineares: adiciona a origem $[0,0,0,1]^T$ e $0$ na coordenada $w$ dos vetores base.
+- Projeção perspectiva?
+
+## Matrizes Homogêneas
+
+<table><tr><td>
+![](../../images/projection_side.png)
+</td><td style="vertical-align:center;">
+> - Veja por semelhança de triângulos que:
+    $$\frac{x}{x'} = \frac{z}{d} \Rightarrow x' = \frac{dx}{z}$$
+    $$\frac{y}{y'} = \frac{z}{d} \Rightarrow y' = \frac{dy}{z}$$
+    $$z = d$$
+    $$w = 1$$
+> - Então
+    $$\vec{p}' = 
+    \begin{bmatrix}dx/z\\dy/z\\d\\1\end{bmatrix}
+    = \begin{bmatrix}dx/z\\dy/z\\dz/z\\1\end{bmatrix}
+    = \frac{d}{z}\begin{bmatrix}x\\y\\z\\z/d\end{bmatrix}
+    = \begin{bmatrix}x\\y\\z\\z/d\end{bmatrix}
+    $$
+</td></tr></table>
+
+## Matrizes Homogêneas
+
+> - Construindo nossa matriz de projeção perspectiva
+> - $[1, 0, 0, 0]^T \Rightarrow [1, 0, 0, 0]^T$
+> - $[0, 1, 0, 0]^T \Rightarrow [0, 1, 0, 0]^T$
+> - $[0, 0, 1, 0]^T \Rightarrow [0, 0, d, 1/d]^T$
+> - $[0, 0, 0, 1]^T \Rightarrow [0, 0, 0, 0]^T$
+> - A matriz então:<br>
+$$P(d) = \begin{bmatrix}
+1 & 0 &   0 & 0 \\
+0 & 1 &   0 & 0 \\
+0 & 0 &   d & 0 \\
+0 & 0 & 1/d & 0
+\end{bmatrix}
+$$
+
+## Matrizes Homogêneas
+
+- A matriz de projeção perspectiva converte [x, y, z, 1] em [x, y, z, z/d].
+- Para converter para 3D:
+    - $$\begin{bmatrix}x\\y\\z\\z/d\end{bmatrix} = \begin{bmatrix}dx/z\\dy/z\\dz/z\\z/d\end{bmatrix} = \begin{bmatrix}dx/z\\ dy/z\\ d\\ 1\end{bmatrix}$$
+- Em 3D, o ponto resultante é [dx/z, dy/z, d]
+- A matriz descarta a coordenada $z$. Mas OpenGL precisa da coordenada $z$ para Z-buffering.
+- O plano de projeção é perpendicular a $z$. E se não for?
 
 # Orientação e Deslocamento Angular
 
