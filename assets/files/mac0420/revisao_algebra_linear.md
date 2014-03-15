@@ -34,17 +34,14 @@
 
 ## Duas dimensões
 
-- Cartésia
-
+> - Cartésia<br>
 ![](../../images/cartesia.png)
 
 ## Duas dimensões
 
-- Disléxia
-
+> - Disléxia<br>
 ![](../../images/sistema-coordenadas-tela.png)
-
-- Várias orientações;<br>
+> - Várias orientações;<br>
 ![](../../images/orientacao1.png)
 ![](../../images/orientacao2.png)
 ![](../../images/orientacao3.png)
@@ -53,7 +50,6 @@
 ![](../../images/orientacao6.png)
 ![](../../images/orientacao7.png)
 ![](../../images/orientacao8.png)
-
 > - Uma como _orientação normal_.
 - Rotações nas outras &#8614; _orientação normal_
 
@@ -107,10 +103,14 @@ Tupla $[x_1,x_2, ...,x_n]$, com $x_i \in R^n, 1 \le i \le n$.
 |ponto                               |vetor                                   |
 +====================================+========================================+
 |representa uma posição              |representa um deslocamento              |
++------------------------------------+----------------------------------------+
 |não tem direção                     |tem direção                             |
++------------------------------------+----------------------------------------+
 |não tem sentido                     |tem sentido                             |
++------------------------------------+----------------------------------------+
 |não tem magnitude                   |tem magnitude                           |
-|tem posição                         |não tem uma posição específica          |
++------------------------------------+----------------------------------------+
+|estático                            |dinâmico                                |
 +------------------------------------+----------------------------------------+
 
 ## Ponto
@@ -202,7 +202,7 @@ $$
 
 - Normal, versor ou vetor unitário;
 - $\|\vec{v}\| = 1$;
-- \vec{0} não tem versor;
+- $\vec{0}$ não tem versor;
 - Basta dividir pela magnitude
 
 $\vec{v}_{norm} = \frac{\vec{v}}{\|v\|}$
@@ -237,10 +237,12 @@ $$
 
 ## Adição e Subtração de vetores
 
-![](../../images/sum_subtraction.png)
-
-- Adição: se eu caminhar por uma sequência de lugares, qual o deslocamento do primeiro lugar para o último?
-- Subtração: se eu sair daqui para um dos dois outros lugares, qual é o deslocamento entre estes destinos? É longe um do outro?
+<table><tr><td>
+<img style="width:300px" src="../../images/sum_subtraction.png"/>
+</td><td style="vertical-align:top">
+> - Adição: se eu caminhar por uma sequência de lugares, qual o deslocamento do primeiro lugar para o último?
+> - Subtração: se eu sair daqui para um dos dois outros lugares, qual é o deslocamento entre estes destinos? É longe um do outro?
+</td></tr></table>
 
 ## Adição e Subtração de vetores
 
