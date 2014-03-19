@@ -90,7 +90,7 @@ Vamos agora utilizar o canvas e programar sua inicialização para exibir a demo
 
 Todo script deve ser colocado na tag `<script>`. O código pode estar dentro da própria página ou em um arquivo separado. Como esses dois arquivos serão utilizado por todas as lições, deixamo-los em uma pasta um nível acima dos arquivos das lições.
 
-Obtenha o <a target="_blank" href="webgl/glMatrix-0.9.5.min.js">glMatrix</a> e o <a target="_blank" href="webgl/jquery-2.1.0.min.js">jQuery</a>.
+Obtenha o <a target="_blank" href="http://vision.ime.usp.br/~acmt/webgl/hakyll/glMatrix-0.9.5.min.js"s>glMatrix</http://vision.ime.usp.br/~acmt/hakyll/webgl/jquery-2.1.0.min.jsa> e o <a target="_blank" href="http://vision.ime.usp.br/~acmt/hakyll/webgl/jquery-2.1.0.min.js">jQuery</a>.
 
 **Tarefa**: Crie outra tag `script` dessa forma
 

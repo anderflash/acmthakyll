@@ -2,6 +2,12 @@
 % Anderson Tavares
 % Universidade de São Paulo
 
+- Vamos começar do começo
+
+<div style="text-align:center;"><img src="../../images/bigbang.jpg" style="width:800px"/></div>
+
+- Nem tanto assim!!!
+
 # Sistemas de Coordenadas Cartesiano
 
 ## Uma dimensão
@@ -1443,11 +1449,53 @@ $$
 
 # Orientação e Deslocamento Angular
 
+## Introdução 
+
+- Orientação: direção para onde o objeto está apontando
+- Na verdade, orientação não é o mesmo que direção.
+
+![](../../images/orientation_direction.png)
+![](../../images/orientation_orientation.png)
+
+## Introdução
+
+- Posição: Translação a partir da uma posição padrão (ex: origem);
+- Orientação: Rotação a partir de uma orientação padrão;
+- Quantidade a ser rotacionada: Deslocamento angular;
+- Descrever a orientação &#8658; Descrever a orientação angular;
+- Orientação e Deslocamento Angular são matematicamente equivalentes (similar a ponto e vetor);
+- Orientação é um estado (estático), semelhante a ponto;
+- Deslocamento é uma rotação entre duas orientações (dinâmico), semelhante a vetor.
+
+## Orientação como uma matriz
+
+- Uma forma de representar uma orientação é listar os vetores bases de uma coordenada, relativos a outro espaço de coordenadas;
+- Esses vetores formam a coluna da matriz;
+- Outra foram de ver: a orientação relativa entre dois espaços de coordenadas (pela matriz de rotação)
+
+![](../../images/orientation_matrix.png)
+
+## Orientação como uma matriz
+
+- Vantagens:
+    - Rotação imediatamente disponível;
+    - Formato usado pelas APIs;
+    - Concatenação de múltiplos deslocamentos angulares;
+    - Deslocamento angular oposto
+    
+- Desvantagens:
+    - Mais memória (9 números ao invés de 3);
+    - Difícil para humanos;
+    - Susceptível a erros;
+        - Matriz não válida para rotação;
+        - Ponto flutuante / Arredondamento / Disco...
+    - Deslocamento angular oposto
+    
+## Ângulos de Euler
+
+- Uma sequência de 3 rotações &#8658; 1 simples rotação.
+
 # Primitivas Geométricas
 
 # Testes Geométricos
-
-
-
-
 

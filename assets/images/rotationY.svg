@@ -16,8 +16,8 @@
    inkscape:version="0.48.4 r9939"
    sodipodi:docname="rotationY.svg"
    inkscape:export-filename="/home/acmt/Documentos/git/acmthakyll/assets/images/rotationY.png"
-   inkscape:export-xdpi="40.290001"
-   inkscape:export-ydpi="40.290001">
+   inkscape:export-xdpi="40.059326"
+   inkscape:export-ydpi="40.059326">
   <defs
      id="defs4">
     <marker
@@ -85,8 +85,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.7"
-     inkscape:cx="301.24248"
-     inkscape:cy="181.07926"
+     inkscape:cx="215.1691"
+     inkscape:cy="310.15635"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -101,9 +101,9 @@
      fit-margin-left="5"
      fit-margin-right="5"
      fit-margin-bottom="5"
-     inkscape:window-width="454"
-     inkscape:window-height="738"
-     inkscape:window-x="911"
+     inkscape:window-width="1366"
+     inkscape:window-height="768"
+     inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="0"
      inkscape:snap-object-midpoints="true" />
@@ -125,7 +125,7 @@
      id="layer1"
      transform="translate(-74.642184,-170.88338)">
     <path
-       style="fill:none;stroke:#808080;stroke-width:6;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1Mend)"
+       style="fill:none;stroke:#808080;stroke-width:6;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:none;marker-start:url(#Arrow1Mstart)"
        d="M 82.642184,591.44908 740.90492,415.06811"
        id="path2985"
        inkscape:connector-curvature="0" />
@@ -153,12 +153,12 @@
     <text
        sodipodi:linespacing="125%"
        id="text5527"
-       y="445.77686"
-       x="527.13141"
+       y="584.16772"
+       x="270.55267"
        style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
        xml:space="preserve"><tspan
-         y="445.77686"
-         x="527.13141"
+         y="584.16772"
+         x="270.55267"
          id="tspan5529"
          sodipodi:role="line">θ</tspan></text>
     <text
@@ -195,31 +195,31 @@
          y="512.85144"
          id="tspan6513">i'=[cos<tspan
    style="font-style:italic"
-   id="tspan6515">θ</tspan> 0 sin<tspan
+   id="tspan6515">θ</tspan> 0 -sen<tspan
    style="font-style:italic"
    id="tspan6517">θ</tspan>]</tspan></text>
     <text
        sodipodi:linespacing="125%"
        id="text6519"
-       y="397.70856"
-       x="686.82507"
+       y="559.13715"
+       x="136.82507"
        style="font-size:21.89253044px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#4d4d4d;fill-opacity:1;stroke:none;font-family:Sans"
        xml:space="preserve"><tspan
          id="tspan6521"
-         y="397.70856"
-         x="686.82507"
+         y="559.13715"
+         x="136.82507"
          sodipodi:role="line">k=[0 0 1]</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:21.89253044px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-       x="601.11078"
-       y="300.28"
+       x="206.82506"
+       y="717.42285"
        id="text6527"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
-         x="601.11078"
-         y="300.28"
-         id="tspan6529">k'=[-sin<tspan
+         x="206.82506"
+         y="717.42285"
+         id="tspan6529">k'=[sen<tspan
    style="font-style:italic"
    id="tspan7136">θ</tspan> 0 cos<tspan
    style="font-style:italic"
@@ -237,11 +237,11 @@
     <path
        inkscape:connector-curvature="0"
        id="path6723"
-       d="m 511.76232,275.64681 15.71429,0"
+       d="m 117.47661,692.78967 15.71429,0"
        style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1Send)" />
     <path
        style="fill:#4d4d4d;stroke:#4d4d4d;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1Send)"
-       d="m 633.67372,376.70481 15.71429,0"
+       d="m 83.67372,538.13338 15.71429,0"
        id="path6727"
        inkscape:connector-curvature="0" />
     <path
@@ -269,10 +269,10 @@
        sodipodi:open="true" />
     <path
        sodipodi:open="true"
-       sodipodi:end="5.6269128"
-       sodipodi:start="4.9930217"
+       sodipodi:end="2.4978122"
+       sodipodi:start="1.8691676"
        transform="matrix(1,0,-0.16651249,0.40566039,103.4562,380.82875)"
-       d="m 400.51166,156.29906 c 31.0047,8.93678 58.34415,27.54366 78.03242,53.10789"
+       d="m 314.05692,446.54174 c -30.58178,-9.40551 -57.39854,-28.25596 -76.60295,-53.84696"
        sodipodi:ry="151.42857"
        sodipodi:rx="151.42857"
        sodipodi:cy="301.8038"
@@ -281,7 +281,7 @@
        style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:9.42041302;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0"
        sodipodi:type="arc" />
     <path
-       style="fill:none;stroke:#000000;stroke-width:6;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1Mend)"
+       style="fill:none;stroke:#000000;stroke-width:6;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:none;marker-start:url(#Arrow1Mstart)"
        d="M 200.42416,684.25858 623.12292,322.2586"
        id="path6944"
        inkscape:connector-curvature="0" />

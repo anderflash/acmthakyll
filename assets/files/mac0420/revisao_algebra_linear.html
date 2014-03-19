@@ -27,6 +27,18 @@
     <h3 class="date">Universidade de São Paulo</h3>
 </section>
 
+<section class="slide level2">
+
+<ul>
+<li>Vamos começar do começo</li>
+</ul>
+<div style="text-align:center;">
+<img src="../../images/bigbang.jpg" style="width:800px"/>
+</div>
+<ul>
+<li>Nem tanto assim!!!</li>
+</ul>
+</section>
 <section><section id="sistemas-de-coordenadas-cartesiano" class="titleslide slide level1"><h1>Sistemas de Coordenadas Cartesiano</h1></section><section id="uma-dimensão" class="slide level2">
 <h1>Uma dimensão</h1>
 <ul>
@@ -1530,7 +1542,62 @@ F(k\vec{a}) &amp;= M(k\vec{a}) \\
 <li>O plano de projeção é perpendicular a <span class="math">\(z\)</span>. E se não for?</li>
 </ul>
 </section></section>
-<section><section id="orientação-e-deslocamento-angular" class="titleslide slide level1"><h1>Orientação e Deslocamento Angular</h1></section></section>
+<section><section id="orientação-e-deslocamento-angular" class="titleslide slide level1"><h1>Orientação e Deslocamento Angular</h1></section><section id="introdução-3" class="slide level2">
+<h1>Introdução</h1>
+<ul>
+<li>Orientação: direção para onde o objeto está apontando</li>
+<li>Na verdade, orientação não é o mesmo que direção.</li>
+</ul>
+<p><img src="../../images/orientation_direction.png" /> <img src="../../images/orientation_orientation.png" /></p>
+</section><section id="introdução-4" class="slide level2">
+<h1>Introdução</h1>
+<ul>
+<li>Posição: Translação a partir da uma posição padrão (ex: origem);</li>
+<li>Orientação: Rotação a partir de uma orientação padrão;</li>
+<li>Quantidade a ser rotacionada: Deslocamento angular;</li>
+<li>Descrever a orientação ⇒ Descrever a orientação angular;</li>
+<li>Orientação e Deslocamento Angular são matematicamente equivalentes (similar a ponto e vetor);</li>
+<li>Orientação é um estado (estático), semelhante a ponto;</li>
+<li>Deslocamento é uma rotação entre duas orientações (dinâmico), semelhante a vetor.</li>
+</ul>
+</section><section id="orientação-como-uma-matriz" class="slide level2">
+<h1>Orientação como uma matriz</h1>
+<ul>
+<li>Uma forma de representar uma orientação é listar os vetores bases de uma coordenada, relativos a outro espaço de coordenadas;</li>
+<li>Esses vetores formam a coluna da matriz;</li>
+<li>Outra foram de ver: a orientação relativa entre dois espaços de coordenadas (pela matriz de rotação)</li>
+</ul>
+<figure>
+<img src="../../images/orientation_matrix.png" />
+</figure>
+</section><section id="orientação-como-uma-matriz-1" class="slide level2">
+<h1>Orientação como uma matriz</h1>
+<ul>
+<li>Vantagens:
+<ul>
+<li>Rotação imediatamente disponível;</li>
+<li>Formato usado pelas APIs;</li>
+<li>Concatenação de múltiplos deslocamentos angulares;</li>
+<li>Deslocamento angular oposto</li>
+</ul></li>
+<li>Desvantagens:
+<ul>
+<li>Mais memória (9 números ao invés de 3);</li>
+<li>Difícil para humanos;</li>
+<li>Susceptível a erros;
+<ul>
+<li>Matriz não válida para rotação;</li>
+<li>Ponto flutuante / Arredondamento / Disco...</li>
+</ul></li>
+<li>Deslocamento angular oposto</li>
+</ul></li>
+</ul>
+</section><section id="ângulos-de-euler" class="slide level2">
+<h1>Ângulos de Euler</h1>
+<ul>
+<li>Uma sequência de 3 rotações ⇒ 1 simples rotação.</li>
+</ul>
+</section></section>
 <section><section id="primitivas-geométricas" class="titleslide slide level1"><h1>Primitivas Geométricas</h1></section></section>
 <section><section id="testes-geométricos" class="titleslide slide level1"><h1>Testes Geométricos</h1></section></section>
     </div>

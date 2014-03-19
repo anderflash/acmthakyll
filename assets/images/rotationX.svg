@@ -85,7 +85,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.7"
-     inkscape:cx="301.24248"
+     inkscape:cx="298.89186"
      inkscape:cy="352.50788"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -114,7 +114,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -124,7 +124,7 @@
      id="layer1"
      transform="translate(-74.642184,-170.88338)">
     <path
-       style="fill:none;stroke:#808080;stroke-width:6;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1Mend)"
+       style="fill:none;stroke:#808080;stroke-width:6;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:none;marker-start:url(#Arrow1Mstart)"
        d="M 82.642184,591.44908 740.90492,415.06811"
        id="path2985"
        inkscape:connector-curvature="0" />
@@ -142,7 +142,7 @@
        inkscape:connector-curvature="0"
        id="path5513"
        d="M 171.31382,745.22155 653.19559,263.33978"
-       style="fill:none;stroke:#000000;stroke-width:6;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1Mend)" />
+       style="fill:none;stroke:#000000;stroke-width:6;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:none;marker-start:url(#Arrow1Mstart)" />
     <path
        inkscape:connector-curvature="0"
        id="path5515"
@@ -156,10 +156,10 @@
        sodipodi:cy="501.00861"
        sodipodi:rx="131.08359"
        sodipodi:ry="131.08359"
-       d="m 519.79349,426.74825 c 15.81175,22.99993 23.86945,50.44638 23.00005,78.34355"
+       d="M 308.20716,581.36349 C 290.3379,558.33248 280.65524,530.00225 280.69007,500.85201"
        transform="matrix(1,-0.28511372,0,1,0,117.40229)"
-       sodipodi:start="5.680919"
-       sodipodi:end="6.3143399"
+       sodipodi:start="2.4817343"
+       sodipodi:end="3.1427873"
        sodipodi:open="true" />
     <path
        sodipodi:open="true"
@@ -188,12 +188,12 @@
     <text
        sodipodi:linespacing="125%"
        id="text5527"
-       y="428.46368"
-       x="557.24872"
+       y="598.46368"
+       x="252.963"
        style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
        xml:space="preserve"><tspan
-         y="428.46368"
-         x="557.24872"
+         y="598.46368"
+         x="252.963"
          id="tspan5529"
          sodipodi:role="line">θ</tspan></text>
     <path
@@ -240,31 +240,31 @@
          y="244.5657"
          id="tspan6513">j'=[0 cos<tspan
    style="font-style:italic"
-   id="tspan6515">θ</tspan> -sin<tspan
+   id="tspan6515">θ</tspan> sen<tspan
    style="font-style:italic"
    id="tspan6517">θ</tspan>]</tspan></text>
     <text
        sodipodi:linespacing="125%"
        id="text6519"
-       y="397.70856"
-       x="686.82507"
+       y="553.42285"
+       x="131.11079"
        style="font-size:21.89253044px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#4d4d4d;fill-opacity:1;stroke:none;font-family:Sans"
        xml:space="preserve"><tspan
          id="tspan6521"
-         y="397.70856"
-         x="686.82507"
+         y="553.42285"
+         x="131.11079"
          sodipodi:role="line">k=[0 0 1]</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:21.89253044px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-       x="631.11078"
-       y="250.27998"
+       x="304.53937"
+       y="736.56567"
        id="text6527"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
-         x="631.11078"
-         y="250.27998"
-         id="tspan6529">k'=[0 sinθ cosθ]</tspan></text>
+         x="304.53937"
+         y="736.56567"
+         id="tspan6529">k'=[0 -senθ cosθ]</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1Send)"
        d="m 173.48405,222.07502 15.71429,0"
@@ -278,7 +278,7 @@
     <path
        inkscape:connector-curvature="0"
        id="path6723"
-       d="m 541.50623,228.9989 15.71429,0"
+       d="m 214.9348,715.28461 15.71429,0"
        style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1Send)" />
     <path
        style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1Send)"
@@ -287,7 +287,7 @@
        inkscape:connector-curvature="0" />
     <path
        style="fill:#4d4d4d;stroke:#4d4d4d;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1Send)"
-       d="m 633.67372,376.70481 15.71429,0"
+       d="m 77.959434,532.4191 15.71429,0"
        id="path6727"
        inkscape:connector-curvature="0" />
     <path
