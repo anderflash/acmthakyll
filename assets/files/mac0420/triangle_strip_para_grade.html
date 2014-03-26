@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Anderson Tavares" />
+  <title>Triangle Strip para Grades - CG</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="reveal.js/css/reveal.min.css"/>
+    <style type="text/css">code{white-space: pre;}</style>
+    <style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; }
+code > span.dt { color: #902000; }
+code > span.dv { color: #40a070; }
+code > span.bn { color: #40a070; }
+code > span.fl { color: #40a070; }
+code > span.ch { color: #4070a0; }
+code > span.st { color: #4070a0; }
+code > span.co { color: #60a0b0; font-style: italic; }
+code > span.ot { color: #007020; }
+code > span.al { color: #ff0000; font-weight: bold; }
+code > span.fu { color: #06287e; }
+code > span.er { color: #ff0000; font-weight: bold; }
+    </style>
+    <link rel="stylesheet" href="reveal.js/css/theme/simple.css" id="theme">
+  <link rel="stylesheet" media="print" href="reveal.js/css/print/pdf.css" />
+  <!--[if lt IE 9]>
+  <script src="reveal.js/lib/js/html5shiv.js"></script>
+  <![endif]-->
+    <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+    <h1 class="title">Triangle Strip para Grades - CG</h1>
+    <h2 class="author">Anderson Tavares</h2>
+    <h3 class="date">Universidade de São Paulo</h3>
+</section>
+
+<section><section id="introdução" class="titleslide slide level1"><h1>Introdução</h1></section><section id="grade-com-triângulos" class="slide level2">
+<h1>Grade com Triângulos</h1>
+<ul>
+<li>Se você usar gl.TRIANGLE
+<ul>
+<li>Uma grade de 10x10 tem 100 quadrados</li>
+<li>100 quadrados contém 200 triângulos</li>
+<li>200 triângulos contém 600 vértices</li>
+</ul></li>
+<li>600 vértices para uma bandeira</li>
+<li>Imagina para modelar um terreno</li>
+<li>Numa grade de <span class="math">\(N\times N\)</span>: <span class="math">\(6N^2\)</span> vértices.</li>
+<li>A Página Web pode travar (JavaScript não gosta de vetores grandes).</li>
+<li>Podemos economizar vértices.</li>
+</ul>
+</section><section id="grade-com-strip" class="slide level2">
+<h1>Grade com Strip</h1>
+<ul>
+<li><em>Triangle strip</em> (faixa de triângulos).<br> <img src="../../images/strip1.png" /></li>
+<li>3 vértices para o primeiro triângulo</li>
+<li>1 vértice adicional para cada triângulo adicional</li>
+<li>Ordem antihorária (triângulos ímpares)</li>
+<li>Ordem horária (triângulos pares)</li>
+<li>Uma fita com 100 triângulos: 102 vértices.</li>
+<li>E para uma grade?</li>
+</ul>
+</section><section id="grande-com-strip" class="slide level2">
+<h1>Grande com Strip</h1>
+<ul>
+<li>Uma formação<br> <img src="../../images/grid1.svg" /></li>
+<li>Há um problema nessa formação</li>
+</ul>
+</section><section id="grande-com-strip-1" class="slide level2">
+<h1>Grande com Strip</h1>
+<ul>
+<li>Converta em um grafo (Cada triângulo é um nó)<br> <img src="../../images/grid2.svg" /></li>
+<li>Problema do ciclo Hamiltoniano (NP Completo)</li>
+</ul>
+</section><section id="grande-com-strip-2" class="slide level2">
+<h1>Grande com Strip</h1>
+<ul>
+<li>Veja a primeira fileira (ela acaba no <span class="math">\(f\)</span>)<br> <img src="../../images/grid2.svg" /></li>
+<li>Mas o <span class="math">\(f\)</span> é ligado com <span class="math">\(k\)</span> (o penúltimo da segunda fileira)</li>
+</ul>
+</section><section id="grande-com-strip-3" class="slide level2">
+<h1>Grande com Strip</h1>
+<ul>
+<li>Poderíamos interligá-lo com o último (<span class="math">\(l\)</span>).</li>
+<li>Mas a ligação passa por três triângulos.</li>
+<li>É preciso mudar a estrutura da grade.</li>
+<li>Podemos mudar a segunda fileira</li>
+</ul>
+</section><section id="grande-com-strip-4" class="slide level2">
+<h1>Grande com Strip</h1>
+<ul>
+<li>E se for essa grade?<br> <img src="../../images/grid3.png" /></li>
+</ul>
+</section><section id="grande-com-strip-5" class="slide level2">
+<h1>Grande com Strip</h1>
+<ul>
+<li>Veja como fica a ligação entre os triângulos <img src="../../images/grid4.png" /></li>
+</ul>
+</section><section id="ordem-dos-vértices" class="slide level2">
+<h1>Ordem dos vértices</h1>
+<ul>
+<li>Veja como fica a ligação entre os triângulos <img src="../../images/grid5.png" /></li>
+</ul>
+</section><section id="triângulo-degenerado" class="slide level2">
+<h1>Triângulo degenerado</h1>
+<ul>
+<li>Veja como fica a ligação entre os triângulos <img src="../../images/grid6.png" /></li>
+</ul>
+</section><section id="solução" class="slide level2">
+<h1>Solução</h1>
+<ul>
+<li>Veja como fica a ligação entre os triângulos <img src="../../images/grid7.png" /></li>
+</ul>
+</section><section id="solução-1" class="slide level2">
+<h1>Solução</h1>
+<ul>
+<li>Veja como fica a ligação entre os triângulos
+<table><tr><td>
+  
+<img style="height=300px" src="../../images/grid8.png"/>
+</td><td style="vertical-align:top;"></li>
+<li>Nas linhas ímpares (índice j)
+<ul>
+<li>De 0 até N (índice <span class="math">\(i\)</span>), posso inserir dois vértices: <span class="math">\(jN + i\)</span> e <span class="math">\((j+1)N + i\)</span></li>
+</ul></li>
+<li>Nas linhas pares
+<ul>
+<li>De 0 até N (índice <span class="math">\(i\)</span>), posso inserir dois vértices: <span class="math">\(jN + N-(i+1)\)</span> e <span class="math">\((j+1)N + N-(i+1)\)</span>
+</td></tr></table>
+</li>
+</ul></li>
+</ul>
+</section><section id="algoritmo" class="slide level2">
+<h1>Algoritmo</h1>
+<ul>
+<li>Uma grade de tamanho <span class="math">\(numZ \times numX\)</span></li>
+<li>Adicionam-se <span class="math">\(numZ \times numX\)</span> vértices</li>
+<li>O triangle strip será feito pelos índices</li>
+</ul>
+<table class="sourceCode javascript numberLines" id="mycode" startFrom="5"><tr class="sourceCode"><td class="lineNumbers"><pre>5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre></td><td class="sourceCode"><pre><code class="sourceCode javascript"><span class="kw">for</span>(<span class="kw">var</span> i = <span class="dv">0</span>; i &lt; numZ; i++)
+{
+  <span class="kw">for</span>(<span class="kw">var</span> j = <span class="dv">0</span>; j &lt; numX; j++)
+  {
+      <span class="ot">vertices</span>.<span class="fu">push</span>(i/numX,<span class="fl">0.0</span>,-j/numZ);
+      <span class="kw">if</span>(i%<span class="dv">2</span>) <span class="ot">indices</span>.<span class="fu">push</span>((i<span class="dv">+1</span>)*numX-(j<span class="dv">+1</span>),(i<span class="dv">+2</span>)*numX-(j<span class="dv">+1</span>));
+      <span class="kw">else</span>    <span class="ot">indices</span>.<span class="fu">push</span>(i*numX+j,(i<span class="dv">+1</span>)*numX+j);
+  }
+}</code></pre></td></tr></table>
+<ul>
+<li>Aqui tem <span class="math">\(i+1\)</span> e <span class="math">\(i+2\)</span> pois os índices começam com 1</li>
+</ul>
+</section><section id="economia" class="slide level2">
+<h1>Economia?</h1>
+<ul>
+<li>Para uma grade de NxN
+<ul>
+<li>A primeira e última fileiras não se repetem: <span class="math">\(2N\)</span></li>
+<li>As outras fileiras se repetem: <span class="math">\(2(N-2)N\)</span></li>
+<li>Então temos: <span class="math">\(2N(N-2+1) = 2N(N-1)\)</span></li>
+<li>Numa grade de 10x10: <span class="math">\(2 \times 10(10-1) = 180\)</span></li>
+<li>Muito melhor que os 600 vértices!!!</li>
+</ul></li>
+</ul>
+</section></section>
+    </div>
+  </div>
+
+  <script src="reveal.js/lib/js/head.min.js"></script>
+  <script src="reveal.js/js/reveal.min.js"></script>
+
+  <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        theme: 'beige', // available themes are in /css/theme
+        transition: 'linear', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: 'reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+//          { src: 'reveal.js/plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; }, }
+//          { src: 'reveal.js/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+]});
+    </script>
+  </body>
+</html>
