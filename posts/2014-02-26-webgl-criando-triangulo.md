@@ -45,7 +45,7 @@ HTML é uma linguagem de formatação, no qual todas as instruções de formata�
   <body>
     Olá mundo.
   </body>
-<html>
+</html>
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Essa estrutura minimalista cria uma página apenas com a palavra Olá mundo. O conteúdo deve estar contido entre as tags `<body>` e `</body>`. Vínculos para outros arquivos, arquivos de estilo e scripts que tornam a página mais dinâmica geralmente ficam entre as tags `<head>` e `</head>`.

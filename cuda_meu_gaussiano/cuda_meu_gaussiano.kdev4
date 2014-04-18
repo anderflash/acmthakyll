@@ -1,0 +1,3 @@
+[Project]
+Manager=KDevCMakeManager
+Name=cuda_meu_gaussiano

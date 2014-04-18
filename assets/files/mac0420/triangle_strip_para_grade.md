@@ -36,13 +36,13 @@
 ## Grande com Strip
 
 - Converta em um grafo (Cada triângulo é um nó)<br>
-    ![](../../images/grid2.svg)
+    <img src="../../images/grid2.svg" style="height:300px"/>
 - Problema do ciclo Hamiltoniano (NP Completo)
 
 ## Grande com Strip
 
 - Veja a primeira fileira (ela acaba no $f$)<br>
-    ![](../../images/grid2.svg)
+    <img src="../../images/grid2.svg" style="height:300px"/>
 - Mas o $f$ é ligado com $k$ (o penúltimo da segunda fileira)
 
 ## Grande com Strip
@@ -65,7 +65,18 @@
 ## Ordem dos vértices
 
 - Veja como fica a ligação entre os triângulos
-![](../../images/grid5.png)
+
+<table><tr><td>![](../../images/grid5.png)
+</td><td style="vertical-align:top">
+
+- Ex:Crie uma lista de vértices de 0 a 15
+- Crie uma lista de índices
+- Insira os índices [0,4,1,5,2,6,3,7,11,6]
+- A convenção do TRIANGLE_STRIP são orientações alternadas
+- Mas [7,11,6] tem a mesma ordem de [6,3,7] (se torna um buraco)
+- Pode-se criar um triângulo degenerado, repetindo-se o 7.
+
+</td></tr></table>
 
 ## Triângulo degenerado
 
