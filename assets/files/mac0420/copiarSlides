@@ -1,3 +1,4 @@
 #!/bin/sh
 
-cp *.html ~/public_html/hakyll
+cp *.html ~/public_html/komputilisto/assets/files/mac0420
+cp *.js ~/public_html/komputilisto/assets/files/mac0420

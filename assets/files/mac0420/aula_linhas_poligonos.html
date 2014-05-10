@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Anderson Tavaresacmt@ime.usp.br" />
+  <title>Introdução à Computação Gráfica</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="reveal.js/css/reveal.min.css"/>
+    <style type="text/css">code{white-space: pre;}</style>
+    <link rel="stylesheet" href="reveal.js/css/theme/simple.css" id="theme">
+  <link rel="stylesheet" media="print" href="reveal.js/css/print/pdf.css" />
+  <!--[if lt IE 9]>
+  <script src="reveal.js/lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+<body>
+<div class="cabecalho2"></div>
+  <div class="reveal">
+    <div class="slides">
+<section>
+    <div class="cabecalho"></div>
+    <h1 class="title">Introdução à Computação Gráfica</h1>
+    <h2 class="author">Anderson Tavares<br><span class="email">acmt@ime.usp.br</span></h2>
+    <h3 class="date">EP #2: It's pinball time!</h3>
+</section>
+
+<section class="slide level1">
+
+<div style="text-align:center;">
+<img src="../../images/pinball.jpg" style="width:800px"/>
+</div>
+</section>
+<section id="objetivos" class="slide level1">
+<h1>Objetivos</h1>
+<ul>
+<li>Sistema de Partículas
+<ul>
+<li>Física Clássica (Newtoniana)</li>
+<li>Colisões Inelásticas</li>
+</ul></li>
+<li>Animação (quadro a quadro)</li>
+<li>Transformações Geométricas
+<ul>
+<li>Movimentação da Bola</li>
+<li>Movimentação das Paletas (flippers)</li>
+</ul></li>
+<li>Uso de composição e texturas</li>
+<li>Iluminação</li>
+</ul>
+</section>
+<section id="elementos" class="slide level1">
+<h1>Elementos</h1>
+<ul>
+<li>Mesa
+<ul>
+<li>Ângulo de Inclinação</li>
+<li>Obstáculos</li>
+<li>Textura(s)</li>
+<li>Lançador de bolinhas</li>
+<li>Paletas (Flippers)</li>
+</ul></li>
+<li>Bolinha
+<ul>
+<li>Rolando perpendicularmente ao sentido do movimento</li>
+<li>Texturizado ou colorido.</li>
+</ul></li>
+</ul>
+</section>
+<section id="exemplo-de-mesa" class="slide level1">
+<h1>Exemplo de Mesa</h1>
+<div style="text-align:center;">
+<img src="../../images/layoutmesapinball.jpg" style="width:300px"/>
+</div>
+</section>
+<section id="física" class="slide level1">
+<h1>Física</h1>
+<ul>
+<li>Força da gravidade</li>
+<li>Força inicial do lançamento da bola</li>
+<li>Força resultante da colisão com obstáculos
+<ul>
+<li>Paredes: Somente restituição (ex: perde 20%)</li>
+<li>Obstáculos: X% de perda em cada tipo.</li>
+<li>Paletas
+<ul>
+<li>Velocidade Angular =&gt; Vetor Força</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="interface-gráfica" class="slide level1">
+<h1>Interface Gráfica</h1>
+<table><tr><td style="width:50%">
+<ul>
+<li>Canvas do Jogo
+<ul>
+<li>Redimensionável</li>
+<li>Atualize a Perspectiva</li>
+<li>Mesa centralizada</li>
+</ul></li>
+<li>Escolher a personalização de mesa</li>
+<li>Número de Chances
+<ul>
+<li>3 chances</li>
+<li>Perder uma bolinha: -1 Chance</li>
+<li>Perder todas: Jogo acaba</li>
+</ul></li>
+</ul>
+</td> <td style="width:50%; vertical-align:top">
+
+<ul>
+<li>Pausar/Continuar o jogo</li>
+<li>Reiniciar o jogo</li>
+<li>Pontuação Atual</li>
+<li>Iluminação
+<ul>
+<li>Uma fonte de luz</li>
+<li>Posição livre</li>
+<li>Mudar a cor difusa, especular e ambiente</li>
+<li>Mudar a potência da especular</li>
+</ul></li>
+<li>Modo Cheat
+</td></tr></table>
+
+</li>
+</ul>
+</section>
+<section id="modo-cheat" class="slide level1">
+<h1>Modo Cheat</h1>
+<ul>
+<li>Quanto ativado, permitir rotação como trackball</li>
+<li>Rotação influencia a inclinação</li>
+<li>Quando desativado, voltar à orientação original</li>
+<li>Botão esquerdo do mouse pressionado: iniciar rotação</li>
+<li>Movimento do mouse: rotacionar</li>
+<li>Botão esquerdo do mouse solto: finalizar rotação</li>
+</ul>
+</section>
+<section id="personalização-da-mesa" class="slide level1">
+<h1>Personalização da mesa</h1>
+<ul>
+<li>Quantidade, tipo, posição e rotação dos obstáculos</li>
+<li>Carregado de um link
+<ul>
+<li><span class="link"><span class="linkpart">http://vision.ime.usp.br/~acmt/cg/ep2.php?token=</span>NNNNNNNN<span class="linkpart">&amp;comando=</span>ler</span></li>
+<li>token distinto a cada dupla (recebido pelo monitor da disciplina)</li>
+</ul></li>
+</ul>
+<pre>
+n Caverna do Dragão
+a 10
+b imagem.jpg
+o 01140220000020701150900211718527005025231045
+</pre>
+
+<table class="tabela">
+<tr><td>
+01
+</td>
+    <td>
+140
+</td>
+    <td>
+220
+</td>
+    <td>
+000
+</td>
+</tr>
+<tr><td>
+Tipo de Objeto
+</td>
+    <td>
+Posição X
+</td>
+    <td>
+Posição Y
+</td>
+    <td>
+Ângulo de Rotação
+</td>
+</tr>
+</table>
+
+</section>
+<section id="especificações" class="slide level1">
+<h1>Especificações</h1>
+<ul>
+<li>Câmera em posição e orientação adequadas</li>
+<li>Skybox (céu ou sala ou ...)</li>
+<li>Modo Cheat: Rotacionar também o skybox</li>
+<li>Entregar compactado via Paca (com seus nomes)</li>
+</ul>
+</section>
+<section id="bônus---editor-de-mesa" class="slide level1">
+<h1>Bônus - Editor de Mesa</h1>
+<ul>
+<li>Permite criar uma personalização de uma mesa</li>
+<li>Adicionar, Remover, Mover e Girar elementos</li>
+<li>Salvar mesa usando o seguinte link
+<ul>
+<li><span class="link"><span class="linkpart">http://vision.ime.usp.br/~acmt/cg/ep2.php&amp;token=</span>NNNNNNNNN<span class="linkpart">&amp;comando=</span>adicionar<span class="linkpart">&amp;n=</span>NOME<span class="linkpart">&amp;a=</span>ANGULO<span class="linkpart">&amp;b=</span>IMAGEM<span class="linkpart">&amp;o=</span>LISTADEOBJETOS</span></li>
+</ul></li>
+<li>Remover mesa usando o seguinte link:
+<ul>
+<li><span class="link"><span class="linkpart">http://vision.ime.usp.br/~acmt/cg/ep2.php&amp;token=</span>NNNNNNNNN<span class="linkpart">&amp;comando=</span>remover<span class="linkpart">&amp;n=</span>NOME</span></li>
+</ul></li>
+</ul>
+</section>
+<section id="bônus---áudio" class="slide level1">
+<h1>Bônus - Áudio</h1>
+<ul>
+<li>Sons em eventos
+<ul>
+<li>Colisões com obstáculos</li>
+<li>Lançadores</li>
+<li>Perder a bolinha</li>
+<li>Outros (Pontos alcançados, música de fundo...)</li>
+</ul></li>
+</ul>
+</section>
+<section id="avaliação" class="slide level1">
+<h1>Avaliação</h1>
+<table>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">#</td>
+<td style="text-align: left;">Descrição</td>
+<td style="text-align: left;">Pontuação</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">01</td>
+<td style="text-align: left;">Elementos Básicos da máquina exibidos corretamente (palhetas, esferas e lançador)</td>
+<td style="text-align: left;">05</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">02</td>
+<td style="text-align: left;">Personalização da máquina carregado do site e exibido corretamente</td>
+<td style="text-align: left;">05</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">(selecionando a personalização)</td>
+<td style="text-align: left;">05</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">03</td>
+<td style="text-align: left;">Personalização da máquina carregado em arquivo e exibido corretamente.</td>
+<td style="text-align: left;">05</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">(textura, inclinação, nome e objetos posicionados e rotacionados)</td>
+<td style="text-align: left;">05</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">04</td>
+<td style="text-align: left;">Palhetas se movimentam corretamente</td>
+<td style="text-align: left;">05</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="avaliação-1" class="slide level1">
+<h1>Avaliação</h1>
+<table>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">#</td>
+<td style="text-align: left;">Descrição</td>
+<td style="text-align: left;">Pontuação</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">05</td>
+<td style="text-align: left;">Palhetas impulsionam a esfera corretamente</td>
+<td style="text-align: left;">05</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">06</td>
+<td style="text-align: left;">Obstáculos funcionando corretamente</td>
+<td style="text-align: left;">05</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">07</td>
+<td style="text-align: left;">Ao perder a esfera, uma chance é gasta e o jogo é recomeçado</td>
+<td style="text-align: left;">05</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">08</td>
+<td style="text-align: left;">Ao perder 3 chances, o jogo termina.</td>
+<td style="text-align: left;">05</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">09</td>
+<td style="text-align: left;">Pontuação funcionando corretamente</td>
+<td style="text-align: left;">05</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">10</td>
+<td style="text-align: left;">Interface correta</td>
+<td style="text-align: left;">05</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="avaliação-2" class="slide level1">
+<h1>Avaliação</h1>
+<table>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">#</td>
+<td style="text-align: left;">Descrição</td>
+<td style="text-align: left;">Pontuação</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">11</td>
+<td style="text-align: left;">Iluminação correta (alterando tons de textura e cores)</td>
+<td style="text-align: left;">05</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">12</td>
+<td style="text-align: left;">Iluminação atualizada pelos controles da interface</td>
+<td style="text-align: left;">05</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">13</td>
+<td style="text-align: left;">Lançador funcionando corretamente</td>
+<td style="text-align: left;">05</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">14</td>
+<td style="text-align: left;">Esfera se movimenta na velocidade e aceleração corretas</td>
+<td style="text-align: left;">05</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">15</td>
+<td style="text-align: left;">Esfera se rola corretamente</td>
+<td style="text-align: left;">05</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="avaliação-3" class="slide level1">
+<h1>Avaliação</h1>
+<table>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">#</td>
+<td style="text-align: left;">Descrição</td>
+<td style="text-align: left;">Pontuação</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">16</td>
+<td style="text-align: left;">Dinâmica do jogo funcionando efetivamente</td>
+<td style="text-align: left;">05</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">17</td>
+<td style="text-align: left;">Modo Cheat feito corretamente (rotação da mesa e interface)</td>
+<td style="text-align: left;">05</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">18</td>
+<td style="text-align: left;">Modo Cheat influencia a esfera corretamente</td>
+<td style="text-align: left;">05</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">19</td>
+<td style="text-align: left;">Botões pausar/continuar e reiniciar funcionando corretamente</td>
+<td style="text-align: left;">05</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">20</td>
+<td style="text-align: left;">Demonstração feita satisfatoriamente</td>
+<td style="text-align: left;">05</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="avaliação-4" class="slide level1">
+<h1>Avaliação</h1>
+<table>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">#</td>
+<td style="text-align: left;">Descrição</td>
+<td style="text-align: left;">Pontuação</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">21</td>
+<td style="text-align: left;">Bônus – editor de mapas feito corretamente</td>
+<td style="text-align: left;">05</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">22</td>
+<td style="text-align: left;">Bônus – áudio funcionando corretamente</td>
+<td style="text-align: left;">05</td>
+</tr>
+</tbody>
+</table>
+</section>
+    </div>
+  </div>
+  <script src="reveal.js/lib/js/head.min.js"></script>
+  <script src="reveal.js/js/reveal.min.js"></script>
+
+  <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: false,
+        slideNumber: true,
+        theme: 'ime', // available themes are in /css/theme
+        transition: 'fade', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: 'reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+//          { src: 'reveal.js/plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; }, }
+//          { src: 'reveal.js/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+]});
+      Reveal.addEventListener( 'customevent', function() {
+	  console.log( '"customevent" has fired' );
+      } );
+    </script>
+  </body>
+</html>
