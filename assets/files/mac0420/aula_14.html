@@ -16,21 +16,21 @@
     <style type="text/css">
 table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
   margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; background-color: #2a211c; color: #bdae9d; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; background-color: #2a211c; color: #bdae9d; border-right: 1px solid #bdae9d; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
 td.sourceCode { padding-left: 5px; }
-pre, code { color: #bdae9d; background-color: #2a211c; }
-code > span.kw { color: #43a8ed; font-weight: bold; }
-code > span.dt { text-decoration: underline; }
-code > span.dv { color: #44aa43; }
-code > span.bn { color: #44aa43; }
-code > span.fl { color: #44aa43; }
-code > span.ch { color: #049b0a; }
-code > span.st { color: #049b0a; }
-code > span.co { color: #0066ff; font-style: italic; }
-code > span.al { color: #ffff00; }
-code > span.fu { color: #ff9358; font-weight: bold; }
-code > span.er { font-weight: bold; }
+code > span.kw { color: #007020; font-weight: bold; }
+code > span.dt { color: #902000; }
+code > span.dv { color: #40a070; }
+code > span.bn { color: #40a070; }
+code > span.fl { color: #40a070; }
+code > span.ch { color: #4070a0; }
+code > span.st { color: #4070a0; }
+code > span.co { color: #60a0b0; font-style: italic; }
+code > span.ot { color: #007020; }
+code > span.al { color: #ff0000; font-weight: bold; }
+code > span.fu { color: #06287e; }
+code > span.er { color: #ff0000; font-weight: bold; }
     </style>
     <link rel="stylesheet" href="reveal.js/css/theme/simple.css" id="theme">
   <link rel="stylesheet" media="print" href="reveal.js/css/print/pdf.css" />
@@ -107,28 +107,16 @@ code > span.er { font-weight: bold; }
 <li><p>Calcula os coeficientes da equação</p>
 <p><span class="math">\(y = \color{blue}{m}x + \color{red}{b}\)</span>, onde <span class="math">\(\color{blue}{m} = \frac{y_2 - y_1}{x_2-x_1}\)</span> e <span class="math">\(\color{red}{b} = y_1 - \color{blue}{m}x_1\)</span></p></li>
 </ul>
-<table class="sourceCode matlab numberLines" id="mycode" startFrom="1"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+<table class="sourceCode ruby numberLines" id="mycode" startFrom="1"><tr class="sourceCode"><td class="lineNumbers"><pre>1
 2
 3
-</pre></td><td class="sourceCode"><pre><code class="sourceCode matlab">for x = x1 to x2
+</pre></td><td class="sourceCode"><pre><code class="sourceCode ruby"><span class="kw">for</span> x <span class="kw">in</span> x1..x2
     y = m * x + b
     desenhaPonto(x,y)</code></pre></td></tr></table>
 </section>
 <section id="exemplo" class="slide level1">
 <h1>Exemplo</h1>
-<pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">function</span> <span class="fu">DesenharLinha</span>(p1, p2, cor)
-{
-  <span class="kw">var</span> m = (<span class="ot">p2</span>.<span class="fu">y</span> - <span class="ot">p1</span>.<span class="fu">y</span>)/(<span class="ot">p2</span>.<span class="fu">x</span> - <span class="ot">p1</span>.<span class="fu">x</span>);
-  <span class="kw">var</span> b = <span class="ot">p1</span>.<span class="fu">y</span> - m * <span class="ot">p1</span>.<span class="fu">x</span>;
-  <span class="kw">var</span> y, x;
-  
-  <span class="kw">for</span>(x = <span class="ot">p1</span>.<span class="fu">x</span>, y = <span class="ot">p1</span>.<span class="fu">y</span>; x &lt;= <span class="ot">p2</span>.<span class="fu">x</span>; x++)
-  {
-    <span class="fu">desenharPixel</span>(x, <span class="fu">ROUND</span>(y), cor);
-    y = m*x+b;
-  }
-}</code></pre>
-<table class="sourceCode html numberLines" id="mycode" startFrom="1"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+<table class="sourceCode javascript numberLines" id="mycode" startFrom="1"><tr class="sourceCode"><td class="lineNumbers"><pre>1
 2
 3
 4
@@ -140,15 +128,15 @@ code > span.er { font-weight: bold; }
 10
 11
 12
-</pre></td><td class="sourceCode"><pre><code class="sourceCode html">function DesenharLinha(p1, p2, cor)
+</pre></td><td class="sourceCode"><pre><code class="sourceCode javascript"><span class="kw">function</span> <span class="fu">DesenharLinha</span>(p1, p2, cor)
 {
-  var m = (p2.y - p1.y)/(p2.x - p1.x);
-  var b = p1.y - m * p1.x;
-  var y, x;
+  <span class="kw">var</span> m = (<span class="ot">p2</span>.<span class="fu">y</span> - <span class="ot">p1</span>.<span class="fu">y</span>)/(<span class="ot">p2</span>.<span class="fu">x</span> - <span class="ot">p1</span>.<span class="fu">x</span>);
+  <span class="kw">var</span> b = <span class="ot">p1</span>.<span class="fu">y</span> - m * <span class="ot">p1</span>.<span class="fu">x</span>;
+  <span class="kw">var</span> y, x;
   
-  for(x = p1.x, y = p1.y; x <span class="er">&lt;</span>= p2.x; x++)
+  <span class="kw">for</span>(x = <span class="ot">p1</span>.<span class="fu">x</span>, y = <span class="ot">p1</span>.<span class="fu">y</span>; x &lt;= <span class="ot">p2</span>.<span class="fu">x</span>; x++)
   {
-    desenharPixel(x, ROUND(y), cor);
+    <span class="fu">desenharPixel</span>(x, <span class="fu">ROUND</span>(y), cor);
     y = m*x+b;
   }
 }</code></pre></td></tr></table>
@@ -196,17 +184,17 @@ for t = <span class="fl">0</span> to <span class="fl">1</span>
 <ul>
 <li><em>Digital Differential Analyzer</em></li>
 <li><p>DDA foi uma máquina para resolver equações diferenciais de forma numérica</p>
-<p><span class="math">\[ \frac{dy}{dx} = m = \frac{\delta y}{\delta x} = \frac{y_2-y_1}{x_2-x_1}\]</span></p></li>
-<li><p>Podemos desenhá-la para cada passo <span class="math">\(\delta x\)</span>:</p></li>
+<p><span class="math">\[ \frac{dy}{dx} = m = \frac{\Delta y}{\Delta x} = \frac{y_2-y_1}{x_2-x_1}\]</span></p></li>
+<li><p>Podemos desenhá-la para cada passo <span class="math">\(\Delta x\)</span>:</p></li>
 </ul>
 <table class="sourceCode javascript numberLines" id="mycode" startFrom="1"><tr class="sourceCode"><td class="lineNumbers"><pre>1
 2
 3
 4
-</pre></td><td class="sourceCode"><pre><code class="sourceCode javascript"><span class="kw">for</span>(x = x1; x &lt;= x2; x++, y+=m)
-{
-  <span class="fu">desenharPixel</span>(x, <span class="fu">ROUND</span>(y), cor);
-}</code></pre></td></tr></table>
+</pre></td><td class="sourceCode"><pre><code class="sourceCode javascript">y = y1
+m = (y2-y1)/(x2-x1)
+<span class="kw">for</span>(x = x1; x &lt;= x2; x++, y+=m)
+  <span class="fu">desenharPixel</span>(x, <span class="fu">ROUND</span>(y), cor);</code></pre></td></tr></table>
 </section>
 <section id="excluir" class="slide level1">
 <h1>Excluir</h1>
@@ -592,7 +580,7 @@ Posição Y
           { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
           { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
           { src: 'reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
-          { src: 'reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+//          { src: 'reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
 //          { src: 'reveal.js/plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; }, }
 //          { src: 'reveal.js/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
 ]});

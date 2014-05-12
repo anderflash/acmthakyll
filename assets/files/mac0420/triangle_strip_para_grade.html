@@ -3,12 +3,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="generator" content="pandoc">
+  <script src="gl-matrix-min.js"></script>
+  <script src="webgl-utils.js"></script>
   <meta name="author" content="Anderson Tavares" />
   <title>Triangle Strip para Grades - CG</title>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <link rel="stylesheet" href="reveal.js/css/reveal.min.css"/>
+  <link rel="stylesheet" href="reveal.js/lib/css/xcode.css"/>
     <style type="text/css">code{white-space: pre;}</style>
     <style type="text/css">
 table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
@@ -37,10 +40,11 @@ code > span.er { color: #ff0000; font-weight: bold; }
     <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
 </head>
 <body>
+<div class="cabecalho2"></div>
   <div class="reveal">
     <div class="slides">
-
 <section>
+    <div class="cabecalho"></div>
     <h1 class="title">Triangle Strip para Grades - CG</h1>
     <h2 class="author">Anderson Tavares</h2>
     <h3 class="date">Universidade de São Paulo</h3>
@@ -199,7 +203,6 @@ code > span.er { color: #ff0000; font-weight: bold; }
 </section></section>
     </div>
   </div>
-
   <script src="reveal.js/lib/js/head.min.js"></script>
   <script src="reveal.js/js/reveal.min.js"></script>
 
@@ -211,8 +214,9 @@ code > span.er { color: #ff0000; font-weight: bold; }
         controls: true,
         progress: true,
         history: true,
-        center: true,
-        theme: 'beige', // available themes are in /css/theme
+        center: false,
+        slideNumber: true,
+        theme: 'ime', // available themes are in /css/theme
         transition: 'fade', // default/cube/page/concave/zoom/linear/fade/none
 
         // Optional libraries used to extend on reveal.js
@@ -220,9 +224,13 @@ code > span.er { color: #ff0000; font-weight: bold; }
           { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
           { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
           { src: 'reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+//          { src: 'reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
 //          { src: 'reveal.js/plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; }, }
 //          { src: 'reveal.js/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
 ]});
+      Reveal.addEventListener( 'customevent', function() {
+	  console.log( '"customevent" has fired' );
+      } );
     </script>
   </body>
 </html>

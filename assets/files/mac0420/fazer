@@ -1,4 +1,4 @@
 #!/bin/sh
 
-pandoc -s -t revealjs $1.md -o $1.html -V theme=ime -V transition=fade --highlight-style=espresso --mathjax --slide-level 1 --template=template.html
+pandoc -s -t revealjs $1.md -o $1.html -V theme=ime -V transition=fade --mathjax --slide-level 1 --template=template.html
 

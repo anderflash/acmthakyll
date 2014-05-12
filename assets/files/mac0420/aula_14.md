@@ -43,30 +43,15 @@
 
     $y = \color{blue}{m}x + \color{red}{b}$, onde $\color{blue}{m} = \frac{y_2 - y_1}{x_2-x_1}$ e $\color{red}{b} = y_1 - \color{blue}{m}x_1$
 
-~~~~ {#mycode .matlab .numberLines startFrom="1"}
-for x = x1 to x2
+~~~~ {#mycode .ruby .numberLines startFrom="1"}
+for x in x1..x2
     y = m * x + b
     desenhaPonto(x,y)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 # Exemplo
 
-```javascript
-function DesenharLinha(p1, p2, cor)
-{
-  var m = (p2.y - p1.y)/(p2.x - p1.x);
-  var b = p1.y - m * p1.x;
-  var y, x;
-  
-  for(x = p1.x, y = p1.y; x <= p2.x; x++)
-  {
-    desenharPixel(x, ROUND(y), cor);
-    y = m*x+b;
-  }
-}
-```
-
-~~~~ {#mycode .html .numberLines startFrom="1"}
+~~~~ {#mycode .javascript .numberLines startFrom="1"}
 function DesenharLinha(p1, p2, cor)
 {
   var m = (p2.y - p1.y)/(p2.x - p1.x);
@@ -115,15 +100,15 @@ for t = 0 to 1
 - _Digital Differential Analyzer_
 - DDA foi uma máquina para resolver equações diferenciais de forma numérica
 
-    $$ \frac{dy}{dx} = m = \frac{\delta y}{\delta x} = \frac{y_2-y_1}{x_2-x_1}$$
+    $$ \frac{dy}{dx} = m = \frac{\Delta y}{\Delta x} = \frac{y_2-y_1}{x_2-x_1}$$
 
-- Podemos desenhá-la para cada passo $\delta x$:
+- Podemos desenhá-la para cada passo $\Delta x$:
 
 ~~~~ {#mycode .javascript .numberLines startFrom="1"}
+y = y1
+m = (y2-y1)/(x2-x1)
 for(x = x1; x <= x2; x++, y+=m)
-{
   desenharPixel(x, ROUND(y), cor);
-}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 # Excluir

@@ -51,6 +51,7 @@ document.addEventListener('DOMContentLoaded', function(event)
 	this.triangulo = new Triangulo([-0.5, -0.5, 0.0, 0.5, -0.5, 0.0, 0.0, 0.5, 0.0],[1,0,0,1,1,0,0,1,1,0,0,1]);
 	this.criado = true;
       }
+      mat4.lookAt(wglVars.vMatrix, [0,0,5],[0,0,0],[0,1,0]);
     },
     tick:function()
     {
