@@ -36,6 +36,96 @@
 
 <div id="desenhoretasdiv"></div>
 
+# Algoritmo Básico
+
+- Dado pontos extremos da linha da tela $Pt_{1}$ e $Pt_{2}$
+- Calcula os coeficientes da equação
+
+    $y = \color{blue}{m}x + \color{red}{b}$, onde $\color{blue}{m} = \frac{y_2 - y_1}{x_2-x_1}$ e $\color{red}{b} = y_1 - \color{blue}{m}x_1$
+
+~~~~ {#mycode .matlab .numberLines startFrom="1"}
+for x = x1 to x2
+    y = m * x + b
+    desenhaPonto(x,y)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# Exemplo
+
+```javascript
+function DesenharLinha(p1, p2, cor)
+{
+  var m = (p2.y - p1.y)/(p2.x - p1.x);
+  var b = p1.y - m * p1.x;
+  var y, x;
+  
+  for(x = p1.x, y = p1.y; x <= p2.x; x++)
+  {
+    desenharPixel(x, ROUND(y), cor);
+    y = m*x+b;
+  }
+}
+```
+
+~~~~ {#mycode .html .numberLines startFrom="1"}
+function DesenharLinha(p1, p2, cor)
+{
+  var m = (p2.y - p1.y)/(p2.x - p1.x);
+  var b = p1.y - m * p1.x;
+  var y, x;
+  
+  for(x = p1.x, y = p1.y; x <= p2.x; x++)
+  {
+    desenharPixel(x, ROUND(y), cor);
+    y = m*x+b;
+  }
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# Desvantagens
+
+- Multiplicação, soma e arredondamento.
+- Como melhorar.
+
+<div style="text-align:center;">
+<img src="../../images/lines.jpg" style="width:300px"/>
+</div>
+
+# Usando Equação Paramétrica
+
+- Da equação paramétrica da reta 
+    - $P = Pt_1 + t (Pt_2 - Pt_1)$ 
+    - t variando de 0 a 1
+- $x = x_1 + t(x_2-x_1)$
+- $y = y_1 + t(y_2-y_1)$
+
+~~~~ {#mycode .matlab .numberLines startFrom="1"}
+y = y1;
+x = x1;
+for t = 0 to 1
+    desenhaPonto(x,y)
+    y = y1 + t * (y2 - y1)
+    x = x1 + t * (x2 - x1)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- 2 somas e 2 multiplicações
+- Como melhorar?
+
+# Usando Algoritmo DDA
+
+- _Digital Differential Analyzer_
+- DDA foi uma máquina para resolver equações diferenciais de forma numérica
+
+    $$ \frac{dy}{dx} = m = \frac{\delta y}{\delta x} = \frac{y_2-y_1}{x_2-x_1}$$
+
+- Podemos desenhá-la para cada passo $\delta x$:
+
+~~~~ {#mycode .javascript .numberLines startFrom="1"}
+for(x = x1; x <= x2; x++, y+=m)
+{
+  desenharPixel(x, ROUND(y), cor);
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 # Excluir
 
 - Sistema de Partículas

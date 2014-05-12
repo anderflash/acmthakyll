@@ -1,4 +1,5 @@
 // Parte MVR
+var TORADIANS = Math.PI/180;
 document.addEventListener('DOMContentLoaded', function(event)
 {
   function atualizarCanvas()
@@ -63,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function(event)
       var cor = [Math.random(),Math.random(),Math.random(),Math.random()];
       wglVars.current = new Date().getTime();
       var deltaT = (wglVars.current - wglVars.old) / 1000;
-      mat4.rotateZ(this.mRotacao, this.mRotacao, deltaT * this.zRot * Math.PI/180);
+      mat4.rotateZ(this.mRotacao, this.mRotacao, deltaT * this.zRot * TORADIANS);
       setPixel(this.gradePixelada, parseInt(Math.random()*this.gradePixelada.colunas),
 	      parseInt(Math.random()*this.gradePixelada.linhas),cor);
       
@@ -108,40 +109,59 @@ document.addEventListener('DOMContentLoaded', function(event)
   {
     grade:null,
     reta:null,
+    p1: [-0.45,-0.45,0],
+    p2: [0.45,0.45,0],
+    yRotation:10,
     zRotation:45,
+    cor:[1,0,0,1],
+    corApagada: [1,0,0,0],
+    zRotationRad: 0,
+    yRotationRad: 0,
     zRotationMatrix:mat4.create(),
+    yRotationMatrix:mat4.create(),
+    reta1Matrix:mat4.create(),
+    reta2Matrix:mat4.create(),
     gradePixelada:null,
+    gradeRetaPixelada:null,
     criado:false,
     parado:false,
+    p1Antes:null,
+    p1Depois:null,
+    mLookAt:mat4.create(),
     init:function()
     {
       if(!this.criado)
       {
-	var p1 = [-0.45,-0.45,0];
-	var p2 = [0.45,0.45,0];
-	var cor = [1,0,0,1];
 	this.grade = mvr.grade;
-	this.reta = new Reta(p1,p2,cor);
+	this.reta = new Reta(this.p1,this.p2,this.cor);
 	this.gradePixelada = new Grade(true);
-	setPixel(this.gradePixelada, parseInt(p1[0]*5 + 5),parseInt(p1[1]*5 + 5),cor);
-	setPixel(this.gradePixelada, parseInt(p2[0]*5 + 5),parseInt(p2[1]*5 + 5),cor);
-	//setPixel(this.gradePixelada, parseInt(p2[0]*10 + 5),parseInt(p2[1]*10 + 5),cor);
+	this.p1Antes = [parseInt(this.p1[0]*5 + 5), parseInt(this.p1[1]*5 + 5)];
+	this.p2Antes = [parseInt(this.p2[0]*5 + 5), parseInt(this.p2[1]*5 + 5)];
+	setPixel(this.gradePixelada, this.p1Antes[0], this.p1Antes[1],this.cor);
+	setPixel(this.gradePixelada, this.p2Antes[0], this.p2Antes[1],this.cor);
 	this.gradeRetaPixelada = new Grade(true);
-	
+	this.zRotationRad = this.zRotation * TORADIANS;
+	this.yRotationRad = this.yRotation * TORADIANS;
+	mat4.translate(this.reta1Matrix, this.reta1Matrix, [-4,0,0]);
+	mat4.lookAt(this.mLookAt, [0,0,5],[0,0,0],[0,1,0]);
 	this.criado = true;
       }
+      wglVars.vMatrix = mat4.create();
     },
     tick:function()
     {
       if(!ddr.parado) requestAnimFrame(ddr.tick);
       ddr.desenharCena();
       ddr.animar();
+      wglVars.old = wglVars.current;
     },
     animar:function()
     {
       wglVars.current = new Date().getTime();
       var deltaT = (wglVars.current - wglVars.old) / 1000;
-      mat4.rotateZ(this.zRotationMatrix, zRotation/);
+      mat4.rotateZ(this.reta1Matrix, this.reta1Matrix, deltaT * this.zRotationRad);
+      mat4.rotateZ(this.reta2Matrix, this.reta2Matrix, deltaT * this.zRotationRad);
+      mat4.rotateY(this.yRotationMatrix, this.yRotationMatrix, deltaT * this.yRotationRad);
     },
     desenharGrade:function(grade, obj, posicao, tipo=null)
     {
@@ -151,22 +171,47 @@ document.addEventListener('DOMContentLoaded', function(event)
     },
     desenharCena:function()
     {
-      // Só a reta
+      mat4.mul(wglVars.vMatrix, this.mLookAt, this.yRotationMatrix);
       desenharCenaInicial();
-      mat4.translate(this.reta.mMatrix, mat4.create(), [-4,0,0]);
+      
+      // Só a reta
+      mat4.copy(this.reta.mMatrix, this.reta1Matrix);
       DesenharObj(this.reta, wglVars.LINES);
       
       // Reta com extremos pixelados
+      mat4.copy(this.reta.mMatrix, this.reta2Matrix);
       mat4.translate(this.grade.mMatrix, mat4.create(), [0,0,0]);
+      
+      var p1t = [0,0,0];
+      var p2t = [0,0,0];
+      vec3.transformMat4(p1t, this.p1, this.reta2Matrix);
+      vec3.transformMat4(p2t, this.p2, this.reta2Matrix);
+      vec3.scaleAndAdd(p1t, [5,5,0], p1t, 5);
+      vec3.scaleAndAdd(p2t, [5,5,0], p2t, 5);
+      setPixel(this.gradePixelada, Math.floor(this.p1Antes[0]), Math.floor(this.p1Antes[1]),this.corApagada);
+      setPixel(this.gradePixelada, Math.floor(this.p2Antes[0]), Math.floor(this.p2Antes[1]),this.corApagada);      
+//       p1t[0] = Math.floor(p1t[0]);
+//       p1t[1] = Math.floor(p1t[1]);
+//       p2t[0] = Math.floor(p2t[0]);
+//       p2t[1] = Math.floor(p2t[1]);
+      setPixel(this.gradePixelada, Math.floor(p1t[0]),Math.floor(p1t[1]),this.cor);
+      setPixel(this.gradePixelada, Math.floor(p2t[0]),Math.floor(p2t[1]),this.cor);
+      
+      // Reta pixelada
+      setReta(this.gradeRetaPixelada, this.p1Antes, this.p2Antes, this.corApagada, false); // Apagar reta anterior
+      setReta(this.gradeRetaPixelada, p1t, p2t, this.cor);
+      
+      
       mat4.copy(this.gradeRetaPixelada.mMatrix, this.grade.mMatrix);
-      mat4.copy(this.reta.mMatrix, this.grade.mMatrix);
       DesenharObj(this.reta, wglVars.LINES);
       this.desenharGrade(this.grade, this.gradePixelada, [0,0,0]);
       
-      // Reta pixelada
       mat4.translate(this.grade.mMatrix, mat4.create(), [4,0,0]);
       mat4.copy(this.gradeRetaPixelada.mMatrix, this.grade.mMatrix);
       this.desenharGrade(this.grade, this.gradeRetaPixelada, [4,0,0]);
+      
+      this.p1Antes = p1t;
+      this.p2Antes = p2t;
     }
   };
   

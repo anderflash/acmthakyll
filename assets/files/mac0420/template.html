@@ -16,6 +16,7 @@ $endif$
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <link rel="stylesheet" href="$revealjs-url$/css/reveal.min.css"/>
+  <link rel="stylesheet" href="$revealjs-url$/lib/css/xcode.css"/>
     <style type="text/css">code{white-space: pre;}</style>
 $if(highlighting-css)$
     <style type="text/css">
@@ -93,6 +94,7 @@ $endfor$
           { src: '$revealjs-url$/lib/js/classList.js', condition: function() { return !document.body.classList; } },
           { src: '$revealjs-url$/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
           { src: '$revealjs-url$/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: '$revealjs-url$/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
 //          { src: '$revealjs-url$/plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; }, }
 //          { src: '$revealjs-url$/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
 ]});

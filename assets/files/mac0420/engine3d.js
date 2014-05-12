@@ -140,6 +140,8 @@ function Reta(p1, p2, cor)
   this.vertices=[p1[0],p1[1],p1[2],p2[0],p2[1],p2[2]];
   this.cores = [cor[0],cor[1],cor[2],cor[3],cor[0],cor[1],cor[2],cor[3]];
   this.indices = [0,1];
+  this.p1 = p1;
+  this.p2 = p2;
   UploadBuffer(this);
 }
 inherits(Reta, Objeto3D);
@@ -256,4 +258,57 @@ function desenharCenaInicial()
 function pixelarReta(gradePixelada, reta)
 {
   
+}
+
+function setReta(gradePixelada, p1, p2, cor, upload = true)
+{
+  var delta = [0,0,0];
+  vec3.subtract(delta, p2,p1);
+  if((Math.abs(delta[1]) > Math.abs(delta[0]) && delta[1] < 0) ||
+       (Math.abs(delta[0]) > Math.abs(delta[1]) && delta[0] < 0)  )
+  {
+    //console.log("trocando: ["+p1[0]+","+p1[1]+"] por ["+p2[0]+","+p2[1]+"]");
+    var tmp = p1;
+    p1 = p2;
+    p2 = tmp;
+  }
+  var m = null, mi = null;
+  
+  if(delta[1] == 0) m = 0;
+  else if(delta[0] != 0) m = (p2[1] - p1[1])/(p2[0] - p1[0]);
+  else 
+  {
+    mi = 0;
+    m = 2;
+  }
+  
+  var y = p1[1];
+  var x = p1[0];
+  var indice;
+  if(Math.abs(m) <= 1)
+  {
+    for(var i = Math.floor(p1[0]); i <= Math.floor(p2[0]); i++, y += m)
+    {
+      indice = (Math.floor(y)*gradePixelada.linhas + i) << 4;
+      for(var j = 0; j < 4; j++)
+	for(var k = 0; k < 4; k++, indice++)
+	  gradePixelada.cores[indice] = cor[k];
+    }
+  }
+  else
+  {
+    if(mi === null) mi = 1/m;
+    for(var i = Math.floor(p1[1]); i <= Math.floor(p2[1]); i++, x += mi)
+    {
+      indice = (i*gradePixelada.linhas + Math.floor(x)) << 4;
+      for(var j = 0; j < 4; j++)
+	for(var k = 0; k < 4; k++, indice++)
+	  gradePixelada.cores[indice] = cor[k];
+    }
+  }
+  if(upload)
+  {
+    wglVars.gl.bindBuffer(wglVars.gl.ARRAY_BUFFER, gradePixelada.bCores);
+    wglVars.gl.bufferData(wglVars.gl.ARRAY_BUFFER, new Float32Array(gradePixelada.cores), wglVars.gl.STATIC_DRAW);
+  }
 }
