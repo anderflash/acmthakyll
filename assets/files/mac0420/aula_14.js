@@ -216,6 +216,65 @@ document.addEventListener('DOMContentLoaded', function(event)
     }
   };
   
+  var exemplo1 = 
+  {
+    exemplo1div: document.getElementById("exemplo1"),
+    snapExemplo:Snap("#exemplo1"),
+    linhasGrade:[[], []],
+    numLinhas:null,
+    numColunas:null,
+    espacoX:null,
+    espacoY:null,
+    linha:null,
+    init:function()
+    {
+      this.largura = this.exemplo1div.width.baseVal.value;
+      this.altura = this.exemplo1div.height.baseVal.value;
+      this.exemplo1div.viewBox = "0 0 "+this.largura+" "+this.altura;
+      //var bigCircle = s.circle(150, 150, 100);
+      var lineX = this.snapExemplo.line(0,this.altura/2,this.largura,this.altura/2);
+      var lineY = this.snapExemplo.line(this.largura/2,0,this.largura/2,this.altura);
+      //bigCircle.attr({fill:"#bada55",stroke: "#000",strokeWidth:5});
+      lineX.attr({stroke:"#000", strokeWidth:2});
+      lineY.attr({stroke:"#000", strokeWidth:2});
+      this.fazerGrade(10, 32);
+      this.fazerLinha([-16,-5], [5,5],"#F00");
+      this.exemplo1div.addEventListener("click", function(event){console.log(event);});
+    },
+    fazerGrade:function(linhas, colunas)
+    {
+      this.numLinhas = linhas;
+      this.numColunas = colunas;
+      this.espacoX = this.largura/colunas;
+      this.espacoY = this.altura/linhas;
+      // Fazer as linhas verticais
+      var posX = 0, posY = 0;
+      var atributos = {stroke:"#000", strokeWidth:1, "stroke-dasharray":"1, 3"};
+      for(var i = 0; i <= colunas; i++, posX+=this.espacoX)
+      {
+	this.linhasGrade[0].push(this.snapExemplo.line(posX, 0, posX, this.altura));
+	this.linhasGrade[0][i].attr(atributos);
+      }
+      for(var i = 0; i <= linhas; i++, posY+=this.espacoY)
+      {
+	this.linhasGrade[1].push(this.snapExemplo.line(0, posY, this.largura, posY));
+	this.linhasGrade[1][i].attr(atributos);
+      }
+    },
+    fazerLinha:function(p1, p2, cor)
+    {
+      var p1svg = this.fromGridToSVG(p1);
+      var p2svg = this.fromGridToSVG(p2);
+      linha = this.snapExemplo.line(p1svg[0],p1svg[1],p2svg[0],p2svg[1]);
+      linha.attr({stroke:cor, strokeWidth:2});
+    },
+    fromGridToSVG:function(pin)
+    {
+      return [pin[0]*this.espacoX+this.largura/2,this.altura/2 - pin[1]*this.espacoY];
+    }
+  };
+  
+  exemplo1.init();
   initCanvas("mundovetorraster");
   atualizarCanvas();
 }, false);

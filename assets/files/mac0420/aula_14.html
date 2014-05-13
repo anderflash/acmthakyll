@@ -11,7 +11,6 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <link rel="stylesheet" href="reveal.js/css/reveal.min.css"/>
-  <link rel="stylesheet" href="reveal.js/lib/css/xcode.css"/>
     <style type="text/css">code{white-space: pre;}</style>
     <style type="text/css">
 table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
@@ -126,20 +125,19 @@ code > span.er { color: #ff0000; font-weight: bold; }
 8
 9
 10
-11
-12
-</pre></td><td class="sourceCode"><pre><code class="sourceCode javascript"><span class="kw">function</span> <span class="fu">DesenharLinha</span>(p1, p2, cor)
-{
+</pre></td><td class="sourceCode"><pre><code class="sourceCode javascript"><span class="kw">function</span> <span class="fu">DesenharLinha</span>(p1, p2, cor){
   <span class="kw">var</span> m = (<span class="ot">p2</span>.<span class="fu">y</span> - <span class="ot">p1</span>.<span class="fu">y</span>)/(<span class="ot">p2</span>.<span class="fu">x</span> - <span class="ot">p1</span>.<span class="fu">x</span>);
   <span class="kw">var</span> b = <span class="ot">p1</span>.<span class="fu">y</span> - m * <span class="ot">p1</span>.<span class="fu">x</span>;
   <span class="kw">var</span> y, x;
   
-  <span class="kw">for</span>(x = <span class="ot">p1</span>.<span class="fu">x</span>, y = <span class="ot">p1</span>.<span class="fu">y</span>; x &lt;= <span class="ot">p2</span>.<span class="fu">x</span>; x++)
-  {
+  <span class="kw">for</span>(x = <span class="ot">p1</span>.<span class="fu">x</span>, y = <span class="ot">p1</span>.<span class="fu">y</span>; x &lt;= <span class="ot">p2</span>.<span class="fu">x</span>; x++){
     <span class="fu">desenharPixel</span>(x, <span class="fu">ROUND</span>(y), cor);
     y = m*x+b;
   }
 }</code></pre></td></tr></table>
+<svg id="exemplo1" height="300px" width="960px" viewBox="0 0 960 300"></svg>
+
+
 </section>
 <section id="desvantagens" class="slide level1">
 <h1>Desvantagens</h1>
@@ -561,6 +559,7 @@ Posição Y
   </div>
   <script src="reveal.js/lib/js/head.min.js"></script>
   <script src="reveal.js/js/reveal.min.js"></script>
+  <script src="snap.svg-min.js"></script>
 
   <script>
 

@@ -52,19 +52,20 @@ for x in x1..x2
 # Exemplo
 
 ~~~~ {#mycode .javascript .numberLines startFrom="1"}
-function DesenharLinha(p1, p2, cor)
-{
+function DesenharLinha(p1, p2, cor){
   var m = (p2.y - p1.y)/(p2.x - p1.x);
   var b = p1.y - m * p1.x;
   var y, x;
   
-  for(x = p1.x, y = p1.y; x <= p2.x; x++)
-  {
+  for(x = p1.x, y = p1.y; x <= p2.x; x++){
     desenharPixel(x, ROUND(y), cor);
     y = m*x+b;
   }
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+<svg id="exemplo1" height="300px" width="960px" viewBox="0 0 960 300"></svg>
+
 
 # Desvantagens
 
