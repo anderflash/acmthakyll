@@ -1,3 +1,54 @@
+// Closure
+(function(){
+
+	/**
+	 * Decimal adjustment of a number.
+	 *
+	 * @param	{String}	type	The type of adjustment.
+	 * @param	{Number}	value	The number.
+	 * @param	{Integer}	exp		The exponent (the 10 logarithm of the adjustment base).
+	 * @returns	{Number}			The adjusted value.
+	 */
+	function decimalAdjust(type, value, exp) {
+		// If the exp is undefined or zero...
+		if (typeof exp === 'undefined' || +exp === 0) {
+			return Math[type](value);
+		}
+		value = +value;
+		exp = +exp;
+		// If the value is not a number or the exp is not an integer...
+		if (isNaN(value) || !(typeof exp === 'number' && exp % 1 === 0)) {
+			return NaN;
+		}
+		// Shift
+		value = value.toString().split('e');
+		value = Math[type](+(value[0] + 'e' + (value[1] ? (+value[1] - exp) : -exp)));
+		// Shift back
+		value = value.toString().split('e');
+		return +(value[0] + 'e' + (value[1] ? (+value[1] + exp) : exp));
+	}
+
+	// Decimal round
+	if (!Math.round10) {
+		Math.round10 = function(value, exp) {
+			return decimalAdjust('round', value, exp);
+		};
+	}
+	// Decimal floor
+	if (!Math.floor10) {
+		Math.floor10 = function(value, exp) {
+			return decimalAdjust('floor', value, exp);
+		};
+	}
+	// Decimal ceil
+	if (!Math.ceil10) {
+		Math.ceil10 = function(value, exp) {
+			return decimalAdjust('ceil', value, exp);
+		};
+	}
+
+})();
+
 // Parte Comum
 var wglVars = 
 {
@@ -134,11 +185,11 @@ function Piramide(vertices, cores)
 }
 inherits(Piramide, Objeto3D);
 
-function Reta(p1, p2, cor)
+function Reta(p1, p2, cor1, cor2)
 {
   Reta.super_.call(this);
   this.vertices=[p1[0],p1[1],p1[2],p2[0],p2[1],p2[2]];
-  this.cores = [cor[0],cor[1],cor[2],cor[3],cor[0],cor[1],cor[2],cor[3]];
+  this.cores = [cor1[0],cor1[1],cor1[2],cor1[3],cor2[0],cor2[1],cor2[2],cor2[3]];
   this.indices = [0,1];
   this.p1 = p1;
   this.p2 = p2;
@@ -204,22 +255,12 @@ function Grade(pixelado = false, cor=null, linhas = 10, colunas = 10)
   UploadBuffer(this);
   this.limpar = function()
   {
-    for(var i = 0; i < this.linhas; i++)
-    {
-      for(var j = 0; j < this.colunas; j++)
-      {
-	var indice = i* this.colunas + j;
-	for(var k = 0; k < 4; k++)
-	{
-	  this.cores[(indice<<2)+k+0] = 1;
-	  this.cores[(indice<<2)+k+1] = 1;
-	  this.cores[(indice<<2)+k+2] = 1;
-	  this.cores[(indice<<2)+k+3] = 0;
-	}
-      }
-    }
-    wglVars.gl.bindBuffer(wglVars.gl.ARRAY_BUFFER, grade.bCores);
-    wglVars.gl.bufferData(wglVars.gl.ARRAY_BUFFER, new Float32Array(grade.cores), wglVars.gl.STATIC_DRAW);
+    var ind = 0;
+    var numero = this.linhas * this.colunas * 4 * 4;
+    for(var i = 0; i < numero; i++)
+      this.cores[i] = 0;
+    wglVars.gl.bindBuffer(wglVars.gl.ARRAY_BUFFER, this.bCores);
+    wglVars.gl.bufferData(wglVars.gl.ARRAY_BUFFER, new Float32Array(this.cores), wglVars.gl.STATIC_DRAW);
   }
 }
 inherits(Grade, Objeto3D);
@@ -260,17 +301,19 @@ function pixelarReta(gradePixelada, reta)
   
 }
 
-function setReta(gradePixelada, p1, p2, cor, upload = true)
+function setReta(gradePixelada, p1, p2, cor1, cor2, upload = true)
 {
   var delta = [0,0,0];
   vec3.subtract(delta, p2,p1);
   if((Math.abs(delta[1]) > Math.abs(delta[0]) && delta[1] < 0) ||
        (Math.abs(delta[0]) > Math.abs(delta[1]) && delta[0] < 0)  )
   {
-    //console.log("trocando: ["+p1[0]+","+p1[1]+"] por ["+p2[0]+","+p2[1]+"]");
     var tmp = p1;
     p1 = p2;
     p2 = tmp;
+    tmp = cor1;
+    cor1 = cor2;
+    cor2 = tmp;
   }
   var m = null, mi = null;
   
@@ -287,23 +330,41 @@ function setReta(gradePixelada, p1, p2, cor, upload = true)
   var indice;
   if(Math.abs(m) <= 1)
   {
+    var corinc = [(cor2[0]-cor1[0])/Math.abs(delta[0]),
+                  (cor2[1]-cor1[1])/Math.abs(delta[0]),
+                  (cor2[2]-cor1[2])/Math.abs(delta[0]),
+                  (cor2[3]-cor1[3])/Math.abs(delta[0])];
+    var corint = [cor1[0],cor1[1],cor1[2],cor1[3]];
+    
     for(var i = Math.floor(p1[0]); i <= Math.floor(p2[0]); i++, y += m)
     {
       indice = (Math.floor(y)*gradePixelada.linhas + i) << 4;
       for(var j = 0; j < 4; j++)
 	for(var k = 0; k < 4; k++, indice++)
-	  gradePixelada.cores[indice] = cor[k];
+	  gradePixelada.cores[indice] = corint[k];
+      
+      for(var k = 0; k < 4; k++)
+	corint[k] += corinc[k];
     }
   }
   else
   {
+    var corinc = [(cor2[0]-cor1[0])/Math.abs(delta[1]),
+                  (cor2[1]-cor1[1])/Math.abs(delta[1]),
+                  (cor2[2]-cor1[2])/Math.abs(delta[1]),
+                  (cor2[3]-cor1[3])/Math.abs(delta[1])];
+    var corint = [cor1[0],cor1[1],cor1[2],cor1[3]];
+    
     if(mi === null) mi = 1/m;
     for(var i = Math.floor(p1[1]); i <= Math.floor(p2[1]); i++, x += mi)
     {
       indice = (i*gradePixelada.linhas + Math.floor(x)) << 4;
       for(var j = 0; j < 4; j++)
 	for(var k = 0; k < 4; k++, indice++)
-	  gradePixelada.cores[indice] = cor[k];
+	  gradePixelada.cores[indice] = corint[k];
+
+      for(var k = 0; k < 4; k++)
+	corint[k] += corinc[k];
     }
   }
   if(upload)
@@ -326,4 +387,97 @@ function findParentBySelector(elm, selector) {
         cur = cur.parentNode; //go up
     }
     return cur; //will return null if not found
+}
+
+function createSVGGrid(linhas, colunas, svg)
+{
+  var grid = {
+    container: svg,        // SVG no formato original
+    snapContainer:null,    // SVG no formato Snap
+    linhas:linhas,         // Número de linhas na grade
+    colunas:colunas,       // Número de colunas na grade
+    largura:null,          // Largura do svg
+    altura:null,           // Altura do svg
+    celula:[],           // Células da grade
+    eixoX:null,            // Linha horizontal do eixo X
+    eixoY:null,            // Linha vertical do eixo Y
+    linhasGrade:[[] , []], // [eixos verticais, eixos horizontais]
+    gradePixelada:[],
+    init:function()
+    {
+      this.largura = svg.width.baseVal.value;
+      this.altura = svg.height.baseVal.value;
+      this.celula[0] = this.largura/colunas;
+      this.celula[1] = this.altura/linhas;
+      
+      
+      this.snapContainer = Snap(svg);
+      
+      this.fazerGradePixelada("#00F");
+      this.fazerGrade(linhas, colunas, "#000");
+      this.eixoX = this.snapContainer.line(0, this.altura/2, this.largura-10, this.altura/2);
+      this.eixoY = this.snapContainer.line(this.largura/2, this.altura, this.largura/2, 10);
+      this.path = this.snapContainer.path("M 0 0 L 0 10 L 10 5 z");
+      this.markerX = this.path.marker(0,0,10,10,5,5);
+      this.markerX.attr({orient:"auto"});
+      //this.markerY = this.path.marker(0,0,5,5,1,5);
+      var atributoX = {stroke:"#000", strokeWidth:2, "marker-end":this.markerX};
+      var atributoY = {stroke:"#000", strokeWidth:2, "marker-end":this.markerX};
+      this.eixoX.attr(atributoX);
+      this.eixoY.attr(atributoY);
+      this.escala = this.largura/this.container.getBoundingClientRect().width;
+    },
+    atualizarEscala:function()
+    {
+      this.escala = this.largura/this.container.getBoundingClientRect().width;
+    },
+    fazerGrade:function(linhas, colunas, cor)
+    {
+      // Fazer as linhas verticais
+      var posX = 0, posY = 0;
+      var atributos = {stroke:cor, strokeWidth:1, "stroke-dasharray":"1, 3"};
+      for(var i = 0; i <= colunas; i++, posX+=this.celula[0])
+      {
+	this.linhasGrade[0].push(this.snapContainer.line(posX, 0, posX, this.altura));
+	this.linhasGrade[0][i].attr(atributos);
+      }
+      for(var i = 0; i <= linhas; i++, posY+=this.celula[1])
+      {
+	this.linhasGrade[1].push(this.snapContainer.line(0, posY, this.largura, posY));
+	this.linhasGrade[1][i].attr(atributos);
+      }
+    },
+    fromGridToSVG:function(pin)
+    {
+      return [pin[0]*this.celula[0]+this.largura/2,this.altura/2 - pin[1]*this.celula[1]];
+    },
+    fromSVGToGrid:function(pin)
+    {
+      return [(pin[0]-this.largura/2)/this.celula[0],(this.altura/2 - pin[1])/this.celula[1]];
+    },
+    fazerGradePixelada:function(cor)
+    {
+      for(var i = 0; i < this.linhas; i++)
+      {
+	for(var j = 0; j < this.colunas; j++)
+	{
+	  var rect = this.snapContainer.rect(j * this.celula[0], i * this.celula[1], this.celula[0],this.celula[1]);
+	  rect.attr({fill:cor, opacity:0.0});
+	  this.gradePixelada.push(rect);
+	}
+      }
+    },
+    limparGradePixelada:function()
+    {
+      var numero = this.linhas * this.colunas;
+      for(var i = 0; i < numero; i++)
+	this.gradePixelada[i].attr({opacity:0.0});
+    },
+    setPixel:function(x,y,cor,opacidade)
+    {
+      this.gradePixelada[Math.floor(y)*this.colunas + x].attr({fill:cor, opacity:opacidade});
+    }
+  };
+  grid.init();
+  return grid;
 }

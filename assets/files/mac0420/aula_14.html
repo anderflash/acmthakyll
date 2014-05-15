@@ -5,7 +5,7 @@
   <meta name="generator" content="pandoc">
   <script src="gl-matrix-min.js"></script>
   <script src="webgl-utils.js"></script>
-  <meta name="author" content="Marcel Jackowskimjack@ime.usp.br" />
+  <meta name="author" content="Marcel Jackowski, Anderson Tavares{mjack,acmt}@ime.usp.br" />
   <title>Introdução à Computação Gráfica</title>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -45,7 +45,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <section>
     <div class="cabecalho"></div>
     <h1 class="title">Introdução à Computação Gráfica</h1>
-    <h2 class="author">Marcel Jackowski<br><span class="email">mjack@ime.usp.br</span></h2>
+    <h2 class="author">Marcel Jackowski, Anderson Tavares<br><span class="email">{mjack,acmt}<span class="citation" data-cites="ime.usp.br">@ime.usp.br</span></span></h2>
     <h3 class="date">Aula #14</h3>
 </section>
 
@@ -56,22 +56,26 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <ul>
 <li>Segmentos de reta
 <ul>
+<li>Algoritmo Básico</li>
 <li>Algoritmo DDA</li>
 <li>Algoritmo de Bresenham</li>
 </ul></li>
-<li>Polígonos</li>
-</ul></li>
-<li>Representação de curvas e superfícies
+<li>Polígonos
 <ul>
-<li>Forma explícita</li>
-<li>Forma implícita</li>
-<li>Forma paramétrica</li>
-<li>(Des)vantagens</li>
+<li>Framebuffer</li>
+<li>Interpolação</li>
+</ul></li>
+<li>Antialiasing</li>
 </ul></li>
 </ul>
 </section>
 <section id="mundo-vetorial-x-mundo-raster-pixels" class="slide level1">
 <h1>Mundo Vetorial X Mundo Raster (Pixels)</h1>
+<ul>
+<li>O primeiro: resultado do <em>vertex shader</em></li>
+<li>O segundo: resultado da montagem e rasterização</li>
+<li>O terceiro: resultado do <em>fragment shader</em></li>
+</ul>
 <div id="mvmr">
 
 </div>
@@ -136,14 +140,22 @@ code > span.er { color: #ff0000; font-weight: bold; }
   }
 }</code></pre></td></tr></table>
 <svg id="exemplo1" height="300px" width="960px" viewBox="0 0 960 300"></svg>
-
+<div class="controleMovimento" id="e1previous">
+⏪
+</div>
+<div class="controleMovimento" id="e1next">
+⏩
+</div>
+<div style="display:inline-block;width:850px;font-size:19pt;">
+Arraste os extremos da linha e/ou clique nos botões para ver as iterações
+</div>
 
 </section>
 <section id="desvantagens" class="slide level1">
 <h1>Desvantagens</h1>
 <ul>
 <li>Multiplicação, soma e arredondamento.</li>
-<li>Como melhorar.</li>
+<li>Como melhorar?</li>
 </ul>
 <div style="text-align:center;">
 <img src="../../images/lines.jpg" style="width:300px"/>
@@ -193,367 +205,571 @@ for t = <span class="fl">0</span> to <span class="fl">1</span>
 m = (y2-y1)/(x2-x1)
 <span class="kw">for</span>(x = x1; x &lt;= x2; x++, y+=m)
   <span class="fu">desenharPixel</span>(x, <span class="fu">ROUND</span>(y), cor);</code></pre></td></tr></table>
-</section>
-<section id="excluir" class="slide level1">
-<h1>Excluir</h1>
 <ul>
-<li>Sistema de Partículas
-<ul>
-<li>Física Clássica (Newtoniana)</li>
-<li>Colisões Inelásticas</li>
-</ul></li>
-<li>Animação (quadro a quadro)</li>
-<li>Transformações Geométricas
-<ul>
-<li>Movimentação da Bola</li>
-<li>Movimentação das Paletas (flippers)</li>
-</ul></li>
-<li>Uso de composição e texturas</li>
-<li>Iluminação</li>
+<li><span class="math">\(x_{i+1} = x_i+1 \Rightarrow y_{i+1} = y_{i}+\frac{\Delta y}{\Delta x}\)</span></li>
+<li>Ainda são necessários uma adição de floats e um arredondamento</li>
+<li>Como melhorar?</li>
 </ul>
 </section>
-<section id="elementos" class="slide level1">
-<h1>Elementos</h1>
-<ul>
-<li>Mesa
-<ul>
-<li>Ângulo de Inclinação</li>
-<li>Obstáculos</li>
-<li>Textura(s)</li>
-<li>Lançador de bolinhas</li>
-<li>Paletas (Flippers)</li>
-</ul></li>
-<li>Bolinha
-<ul>
-<li>Rolando perpendicularmente ao sentido do movimento</li>
-<li>Texturizado ou colorido.</li>
-</ul></li>
-</ul>
-</section>
-<section id="exemplo-de-mesa" class="slide level1">
-<h1>Exemplo de Mesa</h1>
-<div style="text-align:center;">
-<img src="../../images/layoutmesapinball.jpg" style="width:300px"/>
-</div>
-</section>
-<section id="física" class="slide level1">
-<h1>Física</h1>
-<ul>
-<li>Força da gravidade</li>
-<li>Força inicial do lançamento da bola</li>
-<li>Força resultante da colisão com obstáculos
-<ul>
-<li>Paredes: Somente restituição (ex: perde 20%)</li>
-<li>Obstáculos: X% de perda em cada tipo.</li>
-<li>Paletas
-<ul>
-<li>Velocidade Angular =&gt; Vetor Força</li>
-</ul></li>
-</ul></li>
-</ul>
-</section>
-<section id="interface-gráfica" class="slide level1">
-<h1>Interface Gráfica</h1>
-<table><tr><td style="width:50%">
-<ul>
-<li>Canvas do Jogo
-<ul>
-<li>Redimensionável</li>
-<li>Atualize a Perspectiva</li>
-<li>Mesa centralizada</li>
-</ul></li>
-<li>Escolher a personalização de mesa</li>
-<li>Número de Chances
-<ul>
-<li>3 chances</li>
-<li>Perder uma bolinha: -1 Chance</li>
-<li>Perder todas: Jogo acaba</li>
-</ul></li>
-</ul>
-</td> <td style="width:50%; vertical-align:top">
+<section id="simetria---problema" class="slide level1">
+<h1>Simetria - Problema</h1>
+<table><tr><td>
 
 <ul>
-<li>Pausar/Continuar o jogo</li>
-<li>Reiniciar o jogo</li>
-<li>Pontuação Atual</li>
-<li>Iluminação
+<li>No DDA, para cada unidade em <span class="math">\(x\)</span>, colore-se o pixel cuja coordenada <span class="math">\(y\)</span> seja a mais próxima.
 <ul>
-<li>Uma fonte de luz</li>
-<li>Posição livre</li>
-<li>Mudar a cor difusa, especular e ambiente</li>
-<li>Mudar a potência da especular</li>
+<li>Em linhas com alta inclinação, as coordenadas <span class="math">\(y\)</span> não serão contínuas.</li>
+<li>Faça o teste no diagrama interativo anterior (ela mostra o problema da simetria e o problema de não se trabalhar no primeiro quadrante - trocando p1 e p2)</li>
 </ul></li>
-<li>Modo Cheat
+</ul>
+</td><td style="vertical-align:top">
+
+<p><img src="../../images/aula14_problema1.jpg" style="width:300px"/></p>
 </td></tr></table>
 
+</section>
+<section id="simetria---solução" class="slide level1">
+<h1>Simetria - Solução</h1>
+<table><tr><td>
+
+<ul>
+<li>Para <span class="math">\(m\)</span> &gt; 1, troque a função de <span class="math">\(x\)</span> e <span class="math">\(y\)</span>
+<ul>
+<li>Para cada unidade em <span class="math">\(y\)</span>, colore-se o pixel cuja coordenada <span class="math">\(x\)</span> seja a mais próxima.</li>
+<li>Adicionar 1 unidade em <span class="math">\(x\)</span> implica em crescer <span class="math">\(m\)</span> unidades em <span class="math">\(y\)</span></li>
+<li>Adicionar <span class="math">\(\frac{1}{m}\)</span> unidades em <span class="math">\(x\)</span> implica em crescer 1 unidade em <span class="math">\(y\)</span></li>
+</ul></li>
+</ul>
+<table class="sourceCode javascript numberLines" id="mycode" startFrom="1"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+</pre></td><td class="sourceCode"><pre><code class="sourceCode javascript">minverso = <span class="dv">1</span>/m;
+<span class="kw">for</span>(y = y1; y &lt;= y2; y++, x+=minverso)
+  <span class="fu">desenharPixel</span>(<span class="fu">ROUND</span>(x), y, cor);</code></pre></td></tr></table>
+</td><td style="vertical-align:top">
+<img src="../../images/aula14_solucao1.jpg" style="width:300px"/>
+</td></tr></table>
+
+</section>
+<section id="desenho-de-retas-1" class="slide level1">
+<h1>Desenho de Retas</h1>
+<ul>
+<li>Resumo dos problemas
+<ul>
+<li>Inclinação das linhas</li>
+<li>Desempenho
+<ul>
+<li>Número de operações</li>
+<li>Operações em reais X inteiros</li>
+<li>Multiplicações X Adições</li>
+</ul></li>
+</ul></li>
+<li>Soluções
+<ul>
+<li>Eliminar ou reduzir operações em números reais</li>
+<li>Aproveitar coerência espacial
+<ul>
+<li>Similaridade de valores referentes a pixels vizinhos</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="distância-entre-reta-e-ponto" class="slide level1">
+<h1>Distância entre reta e ponto</h1>
+<ul>
+<li><span class="math">\(0 &lt; m \le 1\)</span></li>
+<li>A linha poderia ter passado em qualquer parte do último pixel desenhado</li>
+</ul>
+<p><img src="../../images/aula14distanciaretaponto.svg" style="width:800px"/></p>
+</section>
+<section id="bresenham" class="slide level1">
+<h1>Bresenham</h1>
+<ul>
+<li>Que critério usar para escolher entre os dois candidatos?</li>
+<li>Podemos usar a distância vertical entre a linha e o centro do pixel
+<ul>
+<li>Denominaremos essa distância de <em>erro</em> associado ao pixel</li>
+</ul></li>
+</ul>
+<p><img src="../../images/aula14erro.svg" style="width:600px"/></p>
+</section>
+<section id="algoritmo-de-bresenham" class="slide level1">
+<h1>Algoritmo de Bresenham</h1>
+<ul>
+<li><span class="math">\(e_k\)</span> é o erro do último pixel desenhado (<span class="math">\(x_k\)</span>, <span class="math">\(y_k\)</span>)</li>
+</ul>
+<p><img src="../../images/aula14erro2.svg" style="width:450px"/> <img src="../../images/aula14erro3.svg" style="width:450px"/></p>
+<ul>
+<li>Algoritmo
+<ul>
+<li><p>Estima-se o novo erro <span class="math">\(\color{red}{e_{k+1}}\)</span> caso a escolha seja o pixel L (<span class="math">\(y_{k+1} = y_k\)</span>)</p>
+<ul>
+<li><span class="math">\(\color{red}{e_{k+1}=\color{red}{e_k}+\color{red}{m}}\)</span></li>
+</ul></li>
+<li><p>Se (<span class="math">\(\color{red}{e_{k+1}} &gt; 0.5\)</span>), então naquele ponto a reta passa pelo pixel NE (<span class="math">\(y_{k+1} = y_k + 1\)</span>)</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="algoritmo-de-bresenham-1" class="slide level1">
+<h1>Algoritmo de Bresenham</h1>
+<ul>
+<li><p>O erro agora será baseado em no pixel de coordenada <span class="math">\(y+1\)</span> (removendo 1 do erro)</p>
+<ul>
+<li><span class="math">\(\color{red}{e_{k+1}} = \color{red}{e_k} + \color{red}{m} - 1\)</span> (um valor negativo)</li>
+</ul></li>
+<li><p>Para facilitar o algoritmo, considere o primeiro pixel com <span class="math">\(erro = -0.5\)</span> e a decisão passa a ser (<span class="math">\(\color{red}{e_{k+1}} &gt; 0\)</span>)</p></li>
+</ul>
+</section>
+<section id="algoritmo-de-bresenham-2" class="slide level1">
+<h1>Algoritmo de Bresenham</h1>
+<table class="sourceCode javascript numberLines" id="mycode" startFrom="1"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+</pre></td><td class="sourceCode"><pre><code class="sourceCode javascript"><span class="kw">function</span> <span class="fu">LinhaBresenham</span>(p1, p2, cor)
+{
+  <span class="kw">var</span> m = (y2-y1)/(x2-x1);
+  <span class="kw">var</span> e = -<span class="fl">0.5</span>;
+  <span class="kw">var</span> x, y;
+  <span class="kw">for</span>(x = p1[<span class="dv">0</span>]; x &lt;= p2[<span class="dv">0</span>]; x++)
+  {
+    <span class="kw">if</span>(e &gt;= <span class="dv">0</span>)
+    {
+      y++;
+      e--;
+    }
+    <span class="fu">desenharPixel</span>(x, y, cor);
+    e+=m;
+  }
+}</code></pre></td></tr></table>
+</section>
+<section id="algoritmo-de-bresenham-3" class="slide level1">
+<h1>Algoritmo de Bresenham</h1>
+<ul>
+<li>Algoritmo com Inteiros (trabalhando com o dobro dos valores)</li>
+</ul>
+<table class="sourceCode javascript numberLines" id="mycode" startFrom="1"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+</pre></td><td class="sourceCode"><pre><code class="sourceCode javascript"><span class="kw">function</span> <span class="fu">LinhaBresenhamInteiro</span>(p1, p2, cor)
+{
+  <span class="kw">var</span> DDx = (x2-x1)&lt;&lt;<span class="dv">1</span>;
+  <span class="kw">var</span> DDy = (y2-y1)&lt;&lt;<span class="dv">1</span>;
+  <span class="kw">var</span> ei = -Dx;
+  <span class="kw">var</span> x, y;
+  <span class="kw">for</span>(x = p1[<span class="dv">0</span>]; x &lt;= p2[<span class="dv">0</span>]; x++)
+  {
+    <span class="kw">if</span>(e &gt;= <span class="dv">0</span>)
+    {
+      y++;
+      e-=DDx;
+    }
+    <span class="fu">desenharPixel</span>(x, y, cor);
+    e+=DDy;
+  }
+}</code></pre></td></tr></table>
+</section>
+<section id="algoritmo-de-bresenham-4" class="slide level1">
+<h1>Algoritmo de Bresenham</h1>
+<ul>
+<li>Levar em conta a simetria (octantes)</li>
+</ul>
+<div style="text-align:center">
+<img src="../../images/aula14octantes.svg" style="width:600px"/>
+</div>
+</section>
+<section id="algoritmo-de-bresenham-5" class="slide level1">
+<h1>Algoritmo de Bresenham</h1>
+<ul>
+<li>Levar em conta a simetria (octantes)</li>
+</ul>
+<div style="text-align:center">
+<img src="../../images/aula14octantes2.svg" style="width:600px"/>
+</div>
+</section>
+<section id="extensão-para-círculos" class="slide level1">
+<h1>Extensão para círculos</h1>
+<div style="text-align:center">
+<img src="../../images/aula14brescircle.svg" style="width:600px"/>
+</div>
+</section>
+<section id="extensão-para-círculos-1" class="slide level1">
+<h1>Extensão para círculos</h1>
+<table>
+  <tr><td>
+<span class="math">\(x^2_n + y^2_n\)</span>
+</td><td>
+=
+</td><td>
+<span class="math">\(r^2\)</span> (Mantém-se para cada ponto)
+</td></tr>
+  <tr><td>
+<span class="math">\(x^2_n\)</span>
+</td><td>
+=
+</td><td>
+<span class="math">\(r^2 - y^2_n\)</span> (Rearrumando)
+</td></tr>
+  <tr><td>
+<span class="math">\(x^2_{n+1}\)</span>
+</td><td>
+=
+</td><td>
+<span class="math">\(r^2 - y^2_{n+1}\)</span> (E para o próximo ponto)
+</td></tr>
+  <tr><td>
+<span class="math">\(y^2_{n+1}\)</span>
+</td><td>
+=
+</td><td>
+<span class="math">\((y_n + 1)^2\)</span> (No primeiro octante)
+</td></tr>
+  <tr><td></td><td>
+=
+</td><td>
+<span class="math">\(y^2_n + 2y_n + 1\)</span>
+</td></tr>
+  <tr><td>
+<span class="math">\(x^2_{n+1}\)</span>
+</td><td>
+=
+</td><td>
+<span class="math">\(r^2 - y_n^2 - 2y_n - 1\)</span> (Juntando as equações)
+</td></tr>
+  <tr><td>
+<span class="math">\(x^2_{n+1}\)</span>
+</td><td>
+=
+</td><td>
+<span class="math">\(x^2_n - 2y_n - 1\)</span> (recursiva em <span class="math">\(x\)</span>)
+</td></tr>
+</table>
+
+</section>
+<section id="extensão-para-círculos-2" class="slide level1">
+<h1>Extensão para círculos</h1>
+<ul>
+<li><p>Erro Radial é a diferença entre a exata representação do círculo e o centro (ou outro ponto matemático interno) de cada pixel <span class="math">\((x_i, y_i)\)</span></p>
+<ul>
+<li><span class="math">\(ER(x_i, y_i) = |x_i^2 + y_i^2 - r^2|\)</span></li>
+</ul></li>
+<li><p>Começando no pixel (r,0) (considerando r inteiro - pode-se pensar em r como um conjunto de pixels)</p>
+<ul>
+<li><span class="math">\(ER(x_i, y_i) = |r^2 + 0^2 - r^2| = 0\)</span></li>
+</ul></li>
+<li><p>Limitando-se ao 1º octante, em que <span class="math">\(y_{i+1} = y_{i} + 1\)</span>:</p>
+<ul>
+<li><span class="math">\(ER(x_i - 1, y_i+1) &lt; ER(x_i, y_i+1)\)</span></li>
+</ul></li>
+</ul>
+</section>
+<section id="extensão-para-círculos-3" class="slide level1">
+<h1>Extensão para círculos</h1>
+<ul>
+<li>Expandindo essa inequação</li>
+</ul>
+<table>
+  <tr><td>
+<span class="math">\(ER(x_i-1, y_i+1)\)</span>
+</td>                         <td>
+&lt;
+</td><td>
+<span class="math">\(ER(x_i-1, y_i+1)\)</span>
+</td> </tr>
+  <tr><td>
+<span class="math">\(|(x_i-1)^2 + (y_i+1)^2 - r^2|\)</span>
+</td>            <td>
+&lt;
+</td><td>
+<span class="math">\(|x_i^2+(y_i+1)^2-r^2|\)</span>
+</td></tr>
+  <tr><td>
+<span class="math">\(|(x_i^2 - 2x_i+1)+(y_i^2 + 2y_i + 1)-r^2|\)</span>
+</td><td>
+&lt;
+</td><td>
+<span class="math">\(|x_i^2+(y_i^2+2y_i+1) - r^2|\)</span>
+</td></tr>
+</table>
+
+<ul>
+<li>A inequação se mantém se substituirmos módulos por potências ao quadrado</li>
+</ul>
+<table>
+  <tr><td>
+<span class="math">\([(x_i^2 - 2x_i+1)+(y_i^2 + 2y_i + 1)-r^2]^2\)</span>
+</td><td>
+&lt;
+</td><td>
+<span class="math">\([x_i^2+(y_i^2+2y_i+1) - r^2]^2\)</span>
+</td></tr>
+  <tr><td>
+<span class="math">\([(x_i^2 + y_i^2 - r^2 +2y_i + 1)+(1 - 2x_i)]^2\)</span>
+</td><td>
+&lt;
+</td><td>
+<span class="math">\([x_i^2+ y_i^2 - r^2 +2y_i+1]^2\)</span>
+</td></tr>
+  <tr><td>
+<span class="math">\([A+B]^2\)</span>
+</td><td>
+&lt;
+</td><td>
+<span class="math">\(A^2\)</span>
+</td></tr>
+  <tr><td>
+<span class="math">\(2AB+B^2\)</span>
+</td><td>
+&lt;
+</td><td>
+<span class="math">\(0\)</span>
+</td></tr>
+  <tr><td>
+<span class="math">\(2(1-2x_i)(x_i^2 + y_i^2 - r^2 + 2y_i + 1) + (1-2x_i)^2\)</span>
+</td><td>
+&lt;
+</td><td>
+<span class="math">\(0\)</span>
+</td></tr>
+</table>
+
+</section>
+<section id="extensão-para-círculos-4" class="slide level1">
+<h1>Extensão para círculos</h1>
+<ul>
+<li><span class="math">\(x &gt; 0 \Rightarrow (1-2x_i) &lt; 0\)</span>. Dividindo a inequação por <span class="math">\((1-2x_i)\)</span>:</li>
+</ul>
+<table>
+  <tr><td>
+<span class="math">\(2[(x_i^2 +y_i^2 - r^2) + (2y_i + 1)] + (1-2x_i)\)</span>
+</td><td>
+&gt;
+</td><td>
+<span class="math">\(0\)</span>
+</td></tr>
+  <tr><td>
+<span class="math">\(2[ER(x_i, y_i) + YIncremento] + XIncremento\)</span>
+</td><td>
+&gt;
+</td><td>
+<span class="math">\(0\)</span>
+</td></tr>
+</table>
+
+<!--$$
+\begin{array}\\
+x^2_n + y^2_n & = r^2 \text{(Mantém-se para cada ponto)}\\
+x^2_n & = r^2 - y^2_n \text{(Rearrumando)}\\
+x^2_{n+1} & = r^2 - y^2_{n+1} \text{(E para o próximo ponto)}\\
+y^2_{n+1} & = (y_n + 1)^2 \text{(Para o 1º Octante)}\\
+& = y^2_n + 2y_n + 1\\
+x^2_{n+1} &= r^2 - y_n^2 - 2y_n - 1\\
+x^2_{n+1} &= x^2_n - 2y_n - 1
+\end{array}
+$$-->
+
+</section>
+<section id="algoritmo" class="slide level1">
+<h1>Algoritmo</h1>
+<table class="sourceCode javascript numberLines" id="mycode" startFrom="1"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+</pre></td><td class="sourceCode"><pre><code class="sourceCode javascript"><span class="kw">function</span> <span class="fu">DesenharCirculo</span>(x0, y0, raio, cor)
+{
+  <span class="kw">var</span> x = raio, y = <span class="dv">0</span>;
+  <span class="kw">var</span> erroRaio = <span class="dv">1</span>-x;
+  <span class="kw">while</span>(x &gt;= y)
+  {
+    <span class="fu">desenharPixel</span>( x + x0,  y + y0, cor);
+    <span class="fu">desenharPixel</span>( y + x0,  x + y0, cor);
+    <span class="fu">desenharPixel</span>(-x + x0,  y + y0, cor);
+    <span class="fu">desenharPixel</span>(-y + x0,  x + y0, cor);
+    <span class="fu">desenharPixel</span>(-x + x0, -y + y0, cor);
+    <span class="fu">desenharPixel</span>(-y + x0, -x + y0, cor);
+    <span class="fu">desenharPixel</span>( x + x0, -y + y0, cor);
+    <span class="fu">desenharPixel</span>( y + x0, -x + y0, cor);
+    y++;
+    <span class="kw">if</span>(erroRaio &gt;= <span class="dv">0</span>)
+    {
+      x--;
+      erroRaio += (<span class="dv">1</span> - <span class="dv">2</span> * x);
+    }
+    erroRaio += (<span class="dv">2</span> * y + <span class="dv">1</span>);
+  }
+}</code></pre></td></tr></table>
+</section>
+<section id="aliasing" class="slide level1">
+<h1>Aliasing</h1>
+<ul>
+<li>Os algoritmos apresentados (escolher apenas o pixel mais próximo) produz linhas serrilhadas</li>
+<li>Podemos colorir pixels vizinhos além dos escolhidos para reduzir o efeito serrilhado.</li>
+<li><em>Antialiasing</em></li>
+</ul>
+<div style="text-align:center; vertical-align:top">
+<div style="width:300px; display:inline-block; vertical-align:top">
+<img src="../../images/aula14aliased.png" /><br>Sem antialiasing
+</div>
+<div style="width:300px; display:inline-block; vertical-align:top">
+<img src="../../images/aula14antialiased.png" /><br>Com antialiasing
+</div>
+<div style="width:300px; display:inline-block; vertical-align:top">
+<img src="../../images/aula14antialiasedlanczos.png" /><br>Antialiasing com função sinc
+</div>
+</div>
+</section>
+<section id="rasterização-de-polígonos" class="slide level1">
+<h1>Rasterização de Polígonos</h1>
+<table><tr><td>
+
+<ul>
+<li>Rasterização = Preenchimento</li>
+<li>Como determinar <em>interior</em> e <em>exterior</em>
+<ul>
+<li>Caso convexo é fácil</li>
+<li>Polígonos complexos são mais complicados</li>
+</ul></li>
+<li>Teste par-ímpar (número de interseções entre uma scanline e arestas do polígono)
+<ul>
+<li>par: externo</li>
+<li>ímpar: interno</li>
+</ul></li>
+</ul>
+</td><td style="vertical-align:top">
+
+<p><img src="../../images/aula14evenodd.svg" /></p>
+</td></tr></table>
+
+</section>
+<section id="preenchimento-do-framebuffer" class="slide level1">
+<h1>Preenchimento do Framebuffer</h1>
+<p><img src="../../images/pipeline-simples.svg" /></p>
+<ul>
+<li>No final do <em>pipeline</em> (antes do <em>fragment shader</em>), preenchemos somente polígonos convexos</li>
+<li>Assume-se que polígonos côncavos foram subdivididos (<em>tesselated</em>)</li>
+<li>Cores foram calculadas para os vértices (no caso do <em>Gourard Shading</em>)
+<ul>
+<li>Além de outros <em>varyings</em> do <em>vertex shader</em></li>
+</ul></li>
+</ul>
+</section>
+<section id="interpolação" class="slide level1">
+<h1>Interpolação</h1>
+<ul>
+<li>Cores do <span class="math">\(C_1\)</span>, <span class="math">\(C_2\)</span> e <span class="math">\(C_3\)</span> especificadas no <em>Buffer de Cores</em></li>
+<li>A linha de <em>scan</em> passa pelo polígono</li>
+<li>Intersecta em <span class="math">\(C_4\)</span> e <span class="math">\(C_5\)</span></li>
+<li>Interpolação final entre <span class="math">\(C_4\)</span> e <span class="math">\(C_5\)</span></li>
+</ul>
+<p><img src="../../images/aula14scanline.svg" style="width:450px;" /></p>
+</section>
+<section id="preenchimento-flood-fill" class="slide level1">
+<h1>Preenchimento <em>Flood Fill</em></h1>
+<ul>
+<li>Bastante usado em visão computacional (labeling)</li>
+<li>Consiste em achar um ponto no interior do polígono e colorir os vizinhos, dispersando o processo por todo o polígono recursivamente</li>
+</ul>
+<table class="sourceCode javascript numberLines" id="mycode" startFrom="1"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="sourceCode"><pre><code class="sourceCode javascript"><span class="kw">function</span> <span class="fu">FloodFill</span>(x,y){
+  <span class="kw">if</span>(<span class="fu">getPixel</span>(x,y) == WHITE){
+    <span class="fu">desenharPixel</span>(x,y,BLACK);
+    <span class="fu">FloodFill</span>(x<span class="dv">-1</span>,y);
+    <span class="fu">FloodFill</span>(x<span class="dv">+1</span>,y);
+    <span class="fu">FloodFill</span>(x,y<span class="dv">+1</span>);
+    <span class="fu">FloodFill</span>(x,y<span class="dv">-1</span>);
+  }
+}</code></pre></td></tr></table>
+</section>
+<section id="preenchimento-scan-line" class="slide level1">
+<h1>Preenchimento <em>Scan Line</em></h1>
+<ul>
+<li>Também podemos manter uma estrutura de dados das interseções dos polígonos com scan lines
+<ul>
+<li>Ordenação por scan lines</li>
+<li>Preenchimento de cada segmento</li>
+</ul></li>
+</ul>
+<div style="text-align:center; vertical-align:top">
+<div style="width:450px; display:inline-block; vertical-align:top">
+<img src="../../images/aula14scanline1.svg" /><br>ordem gerada por lista de vértices
+</div>
+<div style="width:450px; display:inline-block; vertical-align:top">
+<img src="../../images/aula14scanline2.svg" /><br>ordem desejada
+</div>
+</div>
+</section>
+<section id="aliasing-de-polígonos" class="slide level1">
+<h1>Aliasing de polígonos</h1>
+<table><tr><td>
+
+<ul>
+<li>Problemas de serrilhamento podem ser sérios
+<ul>
+<li>Arestas serrilhadas</li>
+<li>Desaparecimento de pequenos polígonos</li>
+<li>Utiliza-se de composição, assim a cor de um único polígono não determina a cor do pixel</li>
+<li><a href="http://acko.net/files/fullfrontal/fullfrontal/webglmath/online.html" target="_blank">Apresentação interessante sobre webgl e aliasing</a>
+</td><td style="vertical-align:top">
 </li>
-</ul>
-</section>
-<section id="modo-cheat" class="slide level1">
-<h1>Modo Cheat</h1>
-<ul>
-<li>Quanto ativado, permitir rotação como trackball</li>
-<li>Rotação influencia a inclinação</li>
-<li>Quando desativado, voltar à orientação original</li>
-<li>Botão esquerdo do mouse pressionado: iniciar rotação</li>
-<li>Movimento do mouse: rotacionar</li>
-<li>Botão esquerdo do mouse solto: finalizar rotação</li>
-</ul>
-</section>
-<section id="personalização-da-mesa" class="slide level1">
-<h1>Personalização da mesa</h1>
-<ul>
-<li>Quantidade, tipo, posição e rotação dos obstáculos</li>
-<li>Carregado de um link
-<ul>
-<li><span class="link"><span class="linkpart">http://vision.ime.usp.br/~acmt/cg/ep2.php?token=</span>NNNNNNNN<span class="linkpart">&amp;comando=</span>ler</span></li>
-<li>token distinto a cada dupla (recebido pelo monitor da disciplina)</li>
 </ul></li>
 </ul>
-<pre>
-n Caverna do Dragão
-a 10
-b imagem.jpg
-o 01140220000020701150900211718527005025231045
-</pre>
+<p><img src="../../images/multisampling.svg" style="width:500px" /></p>
+</td></tr></table>
 
-<table class="tabela">
-<tr><td>
-01
-</td>
-    <td>
-140
-</td>
-    <td>
-220
-</td>
-    <td>
-000
-</td>
-</tr>
-<tr><td>
-Tipo de Objeto
-</td>
-    <td>
-Posição X
-</td>
-    <td>
-Posição Y
-</td>
-    <td>
-Ângulo de Rotação
-</td>
-</tr>
-</table>
 
-</section>
-<section id="especificações" class="slide level1">
-<h1>Especificações</h1>
-<ul>
-<li>Câmera em posição e orientação adequadas</li>
-<li>Skybox (céu ou sala ou ...)</li>
-<li>Modo Cheat: Rotacionar também o skybox</li>
-<li>Entregar compactado via Paca (com seus nomes)</li>
-<li>Entrega: 08 de Junho de 2014</li>
-<li>Demonstração: 11 de Junho de 2014</li>
-</ul>
-</section>
-<section id="bônus---editor-de-mesa" class="slide level1">
-<h1>Bônus - Editor de Mesa</h1>
-<ul>
-<li>Permite criar uma personalização de uma mesa</li>
-<li>Adicionar, Remover, Mover e Girar elementos</li>
-<li>Salvar mesa usando o seguinte link
-<ul>
-<li><span class="link"><span class="linkpart">http://vision.ime.usp.br/~acmt/cg/ep2.php&amp;token=</span>NNNNNNNNN<span class="linkpart">&amp;comando=</span>adicionar<span class="linkpart">&amp;n=</span>NOME<span class="linkpart">&amp;a=</span>ANGULO<span class="linkpart">&amp;b=</span>IMAGEM<span class="linkpart">&amp;o=</span>LISTADEOBJETOS</span></li>
-</ul></li>
-<li>Remover mesa usando o seguinte link:
-<ul>
-<li><span class="link"><span class="linkpart">http://vision.ime.usp.br/~acmt/cg/ep2.php&amp;token=</span>NNNNNNNNN<span class="linkpart">&amp;comando=</span>remover<span class="linkpart">&amp;n=</span>NOME</span></li>
-</ul></li>
-</ul>
-</section>
-<section id="bônus---áudio" class="slide level1">
-<h1>Bônus - Áudio</h1>
-<ul>
-<li>Sons em eventos
-<ul>
-<li>Colisões com obstáculos</li>
-<li>Lançadores</li>
-<li>Perder a bolinha</li>
-<li>Outros (Pontos alcançados, música de fundo...)</li>
-</ul></li>
-</ul>
-</section>
-<section id="avaliação" class="slide level1">
-<h1>Avaliação</h1>
-<table>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">#</td>
-<td style="text-align: left;">Descrição</td>
-<td style="text-align: left;">Pontuação</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">01</td>
-<td style="text-align: left;">Elementos Básicos da máquina exibidos corretamente (palhetas, esferas e lançador)</td>
-<td style="text-align: left;">03</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">02</td>
-<td style="text-align: left;">Personalização da máquina (textura, inclinação, nome e objetos) carregado do site e exibido corretamente</td>
-<td style="text-align: left;">05</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">03</td>
-<td style="text-align: left;">Palhetas se movimentam corretamente</td>
-<td style="text-align: left;">03</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">04</td>
-<td style="text-align: left;">Palhetas impulsionam a esfera corretamente</td>
-<td style="text-align: left;">04</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="avaliação-1" class="slide level1">
-<h1>Avaliação</h1>
-<table>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">#</td>
-<td style="text-align: left;">Descrição</td>
-<td style="text-align: left;">Pontuação</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">05</td>
-<td style="text-align: left;">Obstáculos funcionando corretamente</td>
-<td style="text-align: left;">08</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">06</td>
-<td style="text-align: left;">Ao perder a esfera, uma chance é gasta e o jogo é recomeçado</td>
-<td style="text-align: left;">03</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">07</td>
-<td style="text-align: left;">Ao perder 3 chances, o jogo termina.</td>
-<td style="text-align: left;">03</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">08</td>
-<td style="text-align: left;">Pontuação funcionando corretamente</td>
-<td style="text-align: left;">05</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">09</td>
-<td style="text-align: left;">Interface correta</td>
-<td style="text-align: left;">08</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">10</td>
-<td style="text-align: left;">Iluminação correta (alterando tons de textura e cores)</td>
-<td style="text-align: left;">05</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">11</td>
-<td style="text-align: left;">Iluminação atualizada pelos controles da interface</td>
-<td style="text-align: left;">05</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="avaliação-2" class="slide level1">
-<h1>Avaliação</h1>
-<table>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">#</td>
-<td style="text-align: left;">Descrição</td>
-<td style="text-align: left;">Pontuação</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">12</td>
-<td style="text-align: left;">Skybox feito corretamente</td>
-<td style="text-align: left;">05</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">13</td>
-<td style="text-align: left;">Lançador funcionando corretamente</td>
-<td style="text-align: left;">05</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">14</td>
-<td style="text-align: left;">Esfera se movimenta na velocidade e aceleração corretas</td>
-<td style="text-align: left;">05</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">15</td>
-<td style="text-align: left;">Esfera se rola corretamente</td>
-<td style="text-align: left;">04</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="avaliação-3" class="slide level1">
-<h1>Avaliação</h1>
-<table>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">#</td>
-<td style="text-align: left;">Descrição</td>
-<td style="text-align: left;">Pontuação</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">16</td>
-<td style="text-align: left;">Dinâmica do jogo funcionando efetivamente</td>
-<td style="text-align: left;">05</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">17</td>
-<td style="text-align: left;">Modo Cheat feito corretamente (rotação da mesa e interface)</td>
-<td style="text-align: left;">05</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">18</td>
-<td style="text-align: left;">Modo Cheat influencia a esfera corretamente</td>
-<td style="text-align: left;">05</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">19</td>
-<td style="text-align: left;">Botões pausar/continuar e reiniciar funcionando corretamente</td>
-<td style="text-align: left;">04</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">20</td>
-<td style="text-align: left;">Demonstração feita satisfatoriamente</td>
-<td style="text-align: left;">10</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="avaliação-4" class="slide level1">
-<h1>Avaliação</h1>
-<table>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">#</td>
-<td style="text-align: left;">Descrição</td>
-<td style="text-align: left;">Pontuação</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">21</td>
-<td style="text-align: left;">Bônus – editor de mapas feito corretamente</td>
-<td style="text-align: left;">50</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">22</td>
-<td style="text-align: left;">Bônus – áudio funcionando corretamente</td>
-<td style="text-align: left;">50</td>
-</tr>
-</tbody>
-</table>
 </section>
     </div>
   </div>

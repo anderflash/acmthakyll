@@ -1,21 +1,25 @@
 % Introdução à Computação Gráfica
-% Marcel Jackowski<br><span class="email">mjack@ime.usp.br</span>
+% Marcel Jackowski, Anderson Tavares<br><span class="email">{mjack,acmt}@ime.usp.br</span>
 % Aula #14
 
 # Objetivos
 
 - Rasterização
     - Segmentos de reta
+         - Algoritmo Básico
          - Algoritmo DDA
          - Algoritmo de Bresenham
     - Polígonos
-- Representação de curvas e superfícies
-    - Forma explícita
-    - Forma implícita
-    - Forma paramétrica
-    - (Des)vantagens
+         - Framebuffer
+         - Interpolação
+    - Antialiasing
+
 
 # Mundo Vetorial X Mundo Raster (Pixels)
+
+- O primeiro: resultado do _vertex shader_
+- O segundo: resultado da montagem e rasterização
+- O terceiro: resultado do _fragment shader_
 
 <div id="mvmr"></div>
 <canvas id="mundovetorraster" width="960" height="400"></canvas>
@@ -65,12 +69,14 @@ function DesenharLinha(p1, p2, cor){
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 <svg id="exemplo1" height="300px" width="960px" viewBox="0 0 960 300"></svg>
-
+<div class="controleMovimento" id="e1previous">&#9194;</div>
+<div class="controleMovimento" id="e1next">&#9193;</div>
+<div style="display:inline-block;width:850px;font-size:19pt;">Arraste os extremos da linha e/ou clique nos botões para ver as iterações</div>
 
 # Desvantagens
 
 - Multiplicação, soma e arredondamento.
-- Como melhorar.
+- Como melhorar?
 
 <div style="text-align:center;">
 <img src="../../images/lines.jpg" style="width:300px"/>
@@ -112,181 +118,345 @@ for(x = x1; x <= x2; x++, y+=m)
   desenharPixel(x, ROUND(y), cor);
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-# Excluir
+- $x_{i+1} = x_i+1 \Rightarrow y_{i+1} = y_{i}+\frac{\Delta y}{\Delta x}$
+- Ainda são necessários uma adição de floats e um arredondamento
+- Como melhorar?
 
-- Sistema de Partículas
-    - Física Clássica (Newtoniana)
-    - Colisões Inelásticas
-- Animação (quadro a quadro)
-- Transformações Geométricas
-    - Movimentação da Bola
-    - Movimentação das Paletas (flippers)
-- Uso de composição e texturas
-- Iluminação
+# Simetria - Problema
 
-# Elementos
+<table><tr><td>
 
-- Mesa
-    - Ângulo de Inclinação
-    - Obstáculos
-    - Textura(s)
-    - Lançador de bolinhas
-    - Paletas (Flippers)
-- Bolinha
-    - Rolando perpendicularmente ao sentido do movimento
-    - Texturizado ou colorido.
+- No DDA, para cada unidade em $x$, colore-se o pixel cuja coordenada $y$ seja a mais próxima.
+    - Em linhas com alta inclinação, as coordenadas $y$ não serão contínuas.
+    - Faça o teste no diagrama interativo anterior (ela mostra o problema da simetria e o problema de não se trabalhar no primeiro quadrante - trocando p1 e p2)
     
-# Exemplo de Mesa
+</td><td style="vertical-align:top">
 
-<div style="text-align:center;"><img src="../../images/layoutmesapinball.jpg" style="width:300px"/></div>
+<img src="../../images/aula14_problema1.jpg" style="width:300px"/>
 
-# Física
-
-- Força da gravidade
-- Força inicial do lançamento da bola
-- Força resultante da colisão com obstáculos
-    - Paredes: Somente restituição (ex: perde 20%)
-    - Obstáculos: X% de perda em cada tipo.
-    - Paletas
-        - Velocidade Angular => Vetor Força
-
-# Interface Gráfica
-
-<table><tr><td style="width:50%">
-- Canvas do Jogo
-    - Redimensionável
-    - Atualize a Perspectiva
-    - Mesa centralizada
-- Escolher a personalização de mesa
-- Número de Chances
-    - 3 chances
-    - Perder uma bolinha: -1 Chance
-    - Perder todas: Jogo acaba
-
-</td> <td style="width:50%; vertical-align:top">
-
-- Pausar/Continuar o jogo
-- Reiniciar o jogo
-- Pontuação Atual
-- Iluminação
-    - Uma fonte de luz
-    - Posição livre
-    - Mudar a cor difusa, especular e ambiente
-    - Mudar a potência da especular
-- Modo Cheat
 </td></tr></table>
 
+# Simetria - Solução
 
-# Modo Cheat
+<table><tr><td>
 
-- Quanto ativado, permitir rotação como trackball
-- Rotação influencia a inclinação
-- Quando desativado, voltar à orientação original
-- Botão esquerdo do mouse pressionado: iniciar rotação
-- Movimento do mouse: rotacionar
-- Botão esquerdo do mouse solto: finalizar rotação
+- Para $m$ > 1, troque a função de $x$ e $y$
+    - Para cada unidade em $y$, colore-se o pixel cuja coordenada $x$ seja a mais próxima.
+    - Adicionar 1 unidade em $x$ implica em crescer $m$ unidades em $y$
+    - Adicionar $\frac{1}{m}$ unidades em $x$ implica em crescer 1 unidade em $y$
+    
+~~~~ {#mycode .javascript .numberLines startFrom="1"}
+minverso = 1/m;
+for(y = y1; y <= y2; y++, x+=minverso)
+  desenharPixel(ROUND(x), y, cor);
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+</td><td style="vertical-align:top">
+<img src="../../images/aula14_solucao1.jpg" style="width:300px"/>
+</td></tr></table>
 
-# Personalização da mesa
+# Desenho de Retas
 
-- Quantidade, tipo, posição e rotação dos obstáculos
-- Carregado de um link
-    - <span class="link"><span class="linkpart">http://vision.ime.usp.br/~acmt/cg/ep2.php?token=</span>NNNNNNNN<span class="linkpart">&comando=</span>ler</span>
-    - token distinto a cada dupla (recebido pelo monitor da disciplina)
+- Resumo dos problemas
+    - Inclinação das linhas
+    - Desempenho
+        - Número de operações
+        - Operações em reais X inteiros
+        - Multiplicações X Adições
+        
+- Soluções
+    - Eliminar ou reduzir operações em números reais
+    - Aproveitar coerência espacial
+        - Similaridade de valores referentes a pixels vizinhos
 
-<pre>
-n Caverna do Dragão
-a 10
-b imagem.jpg
-o 01140220000020701150900211718527005025231045
-</pre>
+# Distância entre reta e ponto
 
-<table class="tabela">
-<tr><td>01</td>
-    <td>140</td>
-    <td>220</td>
-    <td>000</td>
-</tr>
-<tr><td>Tipo de Objeto</td>
-    <td>Posição X</td>
-    <td>Posição Y</td>
-    <td>Ângulo de Rotação</td>
-</tr>
+- $0 < m \le 1$
+- A linha poderia ter passado em qualquer parte do último pixel desenhado
+
+<img src="../../images/aula14distanciaretaponto.svg" style="width:800px"/>
+
+# Bresenham
+
+- Que critério usar para escolher entre os dois candidatos?
+- Podemos usar a distância vertical entre a linha e o centro do pixel
+    - Denominaremos essa distância de _erro_ associado ao pixel
+
+<img src="../../images/aula14erro.svg" style="width:600px"/>
+
+# Algoritmo de Bresenham
+
+- $e_k$ é o erro do último pixel desenhado ($x_k$, $y_k$)
+
+<img src="../../images/aula14erro2.svg" style="width:450px"/>
+<img src="../../images/aula14erro3.svg" style="width:450px"/>
+
+- Algoritmo
+    - Estima-se o novo erro $\color{red}{e_{k+1}}$ caso a escolha seja o pixel L ($y_{k+1} = y_k$)
+    
+        - $\color{red}{e_{k+1}=\color{red}{e_k}+\color{red}{m}}$
+        
+    - Se ($\color{red}{e_{k+1}} > 0.5$), então naquele ponto a reta passa pelo pixel NE ($y_{k+1} = y_k + 1$)
+    
+# Algoritmo de Bresenham
+
+- O erro agora será baseado em no pixel de coordenada $y+1$ (removendo 1 do erro)
+
+    - $\color{red}{e_{k+1}} = \color{red}{e_k} + \color{red}{m} - 1$ (um valor negativo)
+  
+- Para facilitar o algoritmo, considere o primeiro pixel com $erro = -0.5$ e a decisão passa a ser ($\color{red}{e_{k+1}} > 0$)
+
+# Algoritmo de Bresenham
+    
+~~~~ {#mycode .javascript .numberLines startFrom="1"}
+function LinhaBresenham(p1, p2, cor)
+{
+  var m = (y2-y1)/(x2-x1);
+  var e = -0.5;
+  var x, y;
+  for(x = p1[0]; x <= p2[0]; x++)
+  {
+    if(e >= 0)
+    {
+      y++;
+      e--;
+    }
+    desenharPixel(x, y, cor);
+    e+=m;
+  }
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+# Algoritmo de Bresenham
+    
+- Algoritmo com Inteiros (trabalhando com o dobro dos valores)
+
+~~~~ {#mycode .javascript .numberLines startFrom="1"}
+function LinhaBresenhamInteiro(p1, p2, cor)
+{
+  var DDx = (x2-x1)<<1;
+  var DDy = (y2-y1)<<1;
+  var ei = -Dx;
+  var x, y;
+  for(x = p1[0]; x <= p2[0]; x++)
+  {
+    if(e >= 0)
+    {
+      y++;
+      e-=DDx;
+    }
+    desenharPixel(x, y, cor);
+    e+=DDy;
+  }
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# Algoritmo de Bresenham
+
+- Levar em conta a simetria (octantes)
+
+<div style="text-align:center">
+<img src="../../images/aula14octantes.svg" style="width:600px"/>
+</div>
+
+# Algoritmo de Bresenham
+
+- Levar em conta a simetria (octantes)
+
+<div style="text-align:center">
+<img src="../../images/aula14octantes2.svg" style="width:600px"/>
+</div>
+
+# Extensão para círculos
+
+<div style="text-align:center">
+<img src="../../images/aula14brescircle.svg" style="width:600px"/>
+</div>
+
+# Extensão para círculos
+
+<table>
+  <tr><td>$x^2_n + y^2_n$</td><td>=</td><td>$r^2$ (Mantém-se para cada ponto)</td></tr>
+  <tr><td>$x^2_n$</td><td>=</td><td>$r^2 - y^2_n$ (Rearrumando)</td></tr>
+  <tr><td>$x^2_{n+1}$</td><td>=</td><td>$r^2 - y^2_{n+1}$ (E para o próximo ponto)</td></tr>
+  <tr><td>$y^2_{n+1}$</td><td>=</td><td>$(y_n + 1)^2$ (No primeiro octante)</td></tr>
+  <tr><td></td><td>=</td><td>$y^2_n + 2y_n + 1$ </td></tr>
+  <tr><td>$x^2_{n+1}$</td><td>=</td><td>$r^2 - y_n^2 - 2y_n - 1$ (Juntando as equações)</td></tr>
+  <tr><td>$x^2_{n+1}$</td><td>=</td><td>$x^2_n - 2y_n - 1$ (recursiva em $x$)</td></tr>
 </table>
 
-# Especificações
+# Extensão para círculos
 
-- Câmera em posição e orientação adequadas
-- Skybox (céu ou sala ou ...)
-- Modo Cheat: Rotacionar também o skybox
-- Entregar compactado via Paca (com seus nomes)
-- Entrega: 08 de Junho de 2014
-- Demonstração: 11 de Junho de 2014
+- Erro Radial é a diferença entre a exata representação do círculo e o centro (ou outro ponto matemático interno) de cada pixel $(x_i, y_i)$
 
-# Bônus - Editor de Mesa
-
-- Permite criar uma personalização de uma mesa
-- Adicionar, Remover, Mover e Girar elementos
-- Salvar mesa usando o seguinte link
-    - <span class="link"><span class="linkpart">http://vision.ime.usp.br/~acmt/cg/ep2.php&token=</span>NNNNNNNNN<span class="linkpart">&comando=</span>adicionar<span class="linkpart">&n=</span>NOME<span class="linkpart">&a=</span>ANGULO<span class="linkpart">&b=</span>IMAGEM<span class="linkpart">&o=</span>LISTADEOBJETOS</span>
-- Remover mesa usando o seguinte link:
-    - <span class="link"><span class="linkpart">http://vision.ime.usp.br/~acmt/cg/ep2.php&token=</span>NNNNNNNNN<span class="linkpart">&comando=</span>remover<span class="linkpart">&n=</span>NOME</span>
+    - $ER(x_i, y_i) = |x_i^2 + y_i^2 - r^2|$
     
-# Bônus - Áudio
+- Começando no pixel (r,0) (considerando r inteiro - pode-se pensar em r como um conjunto de pixels)
+   
+    - $ER(x_i, y_i) = |r^2 + 0^2 - r^2| = 0$
+    
+- Limitando-se ao 1º octante, em que $y_{i+1} = y_{i} + 1$:
 
-- Sons em eventos
-    - Colisões com obstáculos
-    - Lançadores
-    - Perder a bolinha
-    - Outros (Pontos alcançados, música de fundo...)
+    - $ER(x_i - 1, y_i+1) < ER(x_i, y_i+1)$
+    
+# Extensão para círculos
+    
+- Expandindo essa inequação
 
-# Avaliação
+<table>
+  <tr><td>$ER(x_i-1, y_i+1)$</td>                         <td>&lt;</td><td>$ER(x_i-1, y_i+1)$</td> </tr>
+  <tr><td>$|(x_i-1)^2 + (y_i+1)^2 - r^2|$</td>            <td>&lt;</td><td>$|x_i^2+(y_i+1)^2-r^2|$</td></tr>
+  <tr><td>$|(x_i^2 - 2x_i+1)+(y_i^2 + 2y_i + 1)-r^2|$</td><td>&lt;</td><td>$|x_i^2+(y_i^2+2y_i+1) - r^2|$</td></tr>
+</table>
 
--- -------------------------------------------------------------------------------------------------------- ---------
-#  Descrição                                                                                                Pontuação
-01 Elementos Básicos da máquina exibidos corretamente (palhetas, esferas e lançador)                               03
-02 Personalização da máquina (textura, inclinação, nome e objetos) carregado do site e exibido corretamente        05
-03 Palhetas se movimentam corretamente                                                                             03
-04 Palhetas impulsionam a esfera corretamente                                                                      04
--- -------------------------------------------------------------------------------------------------------- ---------
+- A inequação se mantém se substituirmos módulos por potências ao quadrado
 
-# Avaliação
+<table>
+  <tr><td>$[(x_i^2 - 2x_i+1)+(y_i^2 + 2y_i + 1)-r^2]^2$</td><td>&lt;</td><td>$[x_i^2+(y_i^2+2y_i+1) - r^2]^2$</td></tr>
+  <tr><td>$[(x_i^2 + y_i^2 - r^2 +2y_i + 1)+(1 - 2x_i)]^2$</td><td>&lt;</td><td>$[x_i^2+ y_i^2 - r^2 +2y_i+1]^2$</td></tr>
+  <tr><td>$[A+B]^2$</td><td>&lt;</td><td>$A^2$</td></tr>
+  <tr><td>$2AB+B^2$</td><td>&lt;</td><td>$0$</td></tr>
+  <tr><td>$2(1-2x_i)(x_i^2 + y_i^2 - r^2 + 2y_i + 1) + (1-2x_i)^2$</td><td>&lt;</td><td>$0$</td></tr>
+</table>
 
--- --------------------------------------------------------------------------------- ---------
-#  Descrição                                                                         Pontuação
-05 Obstáculos funcionando corretamente                                                      08
-06 Ao perder a esfera, uma chance é gasta e o jogo é recomeçado                             03
-07 Ao perder 3 chances, o jogo termina.                                                     03
-08 Pontuação funcionando corretamente                                                       05
-09 Interface correta                                                                        08
-10 Iluminação correta (alterando tons de textura e cores)                                   05
-11 Iluminação atualizada pelos controles da interface                                       05
--- --------------------------------------------------------------------------------- ---------
+# Extensão para círculos
 
-# Avaliação
+- $x > 0 \Rightarrow (1-2x_i) < 0$. Dividindo a inequação por $(1-2x_i)$:
 
--- --------------------------------------------------------------------------------- ---------
-#  Descrição                                                                         Pontuação
-12 Skybox feito corretamente                                                                05
-13 Lançador funcionando corretamente                                                        05
-14 Esfera se movimenta na velocidade e aceleração corretas                                  05
-15 Esfera se rola corretamente                                                              04
--- --------------------------------------------------------------------------------- ---------
+<table>
+  <tr><td>$2[(x_i^2 +y_i^2 - r^2) + (2y_i + 1)] + (1-2x_i)$</td><td>&gt;</td><td>$0$</td></tr>
+  <tr><td>$2[ER(x_i, y_i) + YIncremento] + XIncremento$</td><td>&gt;</td><td>$0$</td></tr>
+</table>
 
-# Avaliação
+<!--$$
+\begin{array}\\
+x^2_n + y^2_n & = r^2 \text{(Mantém-se para cada ponto)}\\
+x^2_n & = r^2 - y^2_n \text{(Rearrumando)}\\
+x^2_{n+1} & = r^2 - y^2_{n+1} \text{(E para o próximo ponto)}\\
+y^2_{n+1} & = (y_n + 1)^2 \text{(Para o 1º Octante)}\\
+& = y^2_n + 2y_n + 1\\
+x^2_{n+1} &= r^2 - y_n^2 - 2y_n - 1\\
+x^2_{n+1} &= x^2_n - 2y_n - 1
+\end{array}
+$$-->
 
--- --------------------------------------------------------------------------------- ---------
-#  Descrição                                                                         Pontuação
-16 Dinâmica do jogo funcionando efetivamente                                                05
-17 Modo Cheat feito corretamente (rotação da mesa e interface)                              05
-18 Modo Cheat influencia a esfera corretamente                                              05
-19 Botões pausar/continuar e reiniciar funcionando corretamente                             04
-20 Demonstração feita satisfatoriamente                                                     10
--- --------------------------------------------------------------------------------- ---------
+# Algoritmo
 
-# Avaliação
+~~~~ {#mycode .javascript .numberLines startFrom="1"}
+function DesenharCirculo(x0, y0, raio, cor)
+{
+  var x = raio, y = 0;
+  var erroRaio = 1-x;
+  while(x >= y)
+  {
+    desenharPixel( x + x0,  y + y0, cor);
+    desenharPixel( y + x0,  x + y0, cor);
+    desenharPixel(-x + x0,  y + y0, cor);
+    desenharPixel(-y + x0,  x + y0, cor);
+    desenharPixel(-x + x0, -y + y0, cor);
+    desenharPixel(-y + x0, -x + y0, cor);
+    desenharPixel( x + x0, -y + y0, cor);
+    desenharPixel( y + x0, -x + y0, cor);
+    y++;
+    if(erroRaio >= 0)
+    {
+      x--;
+      erroRaio += (1 - 2 * x);
+    }
+    erroRaio += (2 * y + 1);
+  }
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
--- --------------------------------------------------------------------------------- ---------
-#  Descrição                                                                         Pontuação
-21 Bônus – editor de mapas feito corretamente                                               50
-22 Bônus – áudio funcionando corretamente                                                   50
--- --------------------------------------------------------------------------------- ---------
+# Aliasing
+
+- Os algoritmos apresentados (escolher apenas o pixel mais próximo) produz linhas serrilhadas
+- Podemos colorir pixels vizinhos além dos escolhidos para reduzir o efeito serrilhado.
+- _Antialiasing_
+ 
+<div style="text-align:center; vertical-align:top">
+<div style="width:300px; display:inline-block; vertical-align:top"><img src="../../images/aula14aliased.png" /><br>Sem antialiasing</div>
+<div style="width:300px; display:inline-block; vertical-align:top"><img src="../../images/aula14antialiased.png" /><br>Com antialiasing</div>
+<div style="width:300px; display:inline-block; vertical-align:top"><img src="../../images/aula14antialiasedlanczos.png" /><br>Antialiasing com função sinc</div>
+</div>
+
+
+
+# Rasterização de Polígonos
+
+<table><tr><td>
+
+- Rasterização = Preenchimento
+- Como determinar _interior_ e _exterior_
+    - Caso convexo é fácil
+    - Polígonos complexos são mais complicados
+- Teste par-ímpar (número de interseções entre uma scanline e arestas do polígono)
+    - par: externo
+    - ímpar: interno
+
+</td><td style="vertical-align:top">
+
+<img src="../../images/aula14evenodd.svg" />
+
+</td></tr></table>
+
+# Preenchimento do Framebuffer
+
+<img src="../../images/pipeline-simples.svg" />
+
+- No final do _pipeline_ (antes do _fragment shader_), preenchemos somente polígonos convexos
+- Assume-se que polígonos côncavos foram subdivididos (_tesselated_)
+- Cores foram calculadas para os vértices (no caso do _Gourard Shading_)
+    - Além de outros _varyings_ do _vertex shader_
+
+# Interpolação
+
+- Cores do $C_1$, $C_2$ e $C_3$ especificadas no _Buffer de Cores_
+- A linha de _scan_ passa pelo polígono
+- Intersecta em $C_4$ e $C_5$
+- Interpolação final entre $C_4$ e $C_5$
+
+<img src="../../images/aula14scanline.svg" style="width:450px;" />
+
+# Preenchimento _Flood Fill_
+
+- Bastante usado em visão computacional (labeling)
+- Consiste em achar um ponto no interior do polígono e colorir os vizinhos, dispersando o processo por todo o polígono recursivamente
+
+~~~~ {#mycode .javascript .numberLines startFrom="1"}
+function FloodFill(x,y){
+  if(getPixel(x,y) == WHITE){
+    desenharPixel(x,y,BLACK);
+    FloodFill(x-1,y);
+    FloodFill(x+1,y);
+    FloodFill(x,y+1);
+    FloodFill(x,y-1);
+  }
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# Preenchimento _Scan Line_
+
+- Também podemos manter uma estrutura de dados das interseções dos polígonos com scan lines
+    - Ordenação por scan lines
+    - Preenchimento de cada segmento
+
+<div style="text-align:center; vertical-align:top">
+<div style="width:450px; display:inline-block; vertical-align:top"><img src="../../images/aula14scanline1.svg" /><br>ordem gerada por lista de vértices</div>
+<div style="width:450px; display:inline-block; vertical-align:top"><img src="../../images/aula14scanline2.svg" /><br>ordem desejada</div>
+</div>
+    
+# Aliasing de polígonos
+
+<table><tr><td>
+
+- Problemas de serrilhamento podem ser sérios
+    - Arestas serrilhadas
+    - Desaparecimento de pequenos polígonos
+    - Utiliza-se de composição, assim a cor de um único polígono não determina a cor do pixel
+    - <a href="http://acko.net/files/fullfrontal/fullfrontal/webglmath/online.html" target="_blank">Apresentação interessante sobre webgl e aliasing</a>
+</td><td style="vertical-align:top">
+
+<img src="../../images/multisampling.svg" style="width:500px" />
+
+</td></tr></table>

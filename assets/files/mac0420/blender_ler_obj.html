@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <script src="gl-matrix-min.js"></script>
+  <script src="webgl-utils.js"></script>
+  <meta name="author" content="Anderson Tavaresacmt@ime.usp.br" />
+  <title>Introdução à Computação Gráfica</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" href="reveal.js/css/reveal.min.css"/>
+    <style type="text/css">code{white-space: pre;}</style>
+    <style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; }
+code > span.dt { color: #902000; }
+code > span.dv { color: #40a070; }
+code > span.bn { color: #40a070; }
+code > span.fl { color: #40a070; }
+code > span.ch { color: #4070a0; }
+code > span.st { color: #4070a0; }
+code > span.co { color: #60a0b0; font-style: italic; }
+code > span.ot { color: #007020; }
+code > span.al { color: #ff0000; font-weight: bold; }
+code > span.fu { color: #06287e; }
+code > span.er { color: #ff0000; font-weight: bold; }
+    </style>
+    <link rel="stylesheet" href="reveal.js/css/theme/simple.css" id="theme">
+  <link rel="stylesheet" media="print" href="reveal.js/css/print/pdf.css" />
+  <!--[if lt IE 9]>
+  <script src="reveal.js/lib/js/html5shiv.js"></script>
+  <![endif]-->
+    <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+</head>
+<body>
+<div class="cabecalho2"></div>
+  <div class="reveal">
+    <div class="slides">
+<section>
+    <div class="cabecalho"></div>
+    <h1 class="title">Introdução à Computação Gráfica</h1>
+    <h2 class="author">Anderson Tavares<br><span class="email">acmt@ime.usp.br</span></h2>
+    <h3 class="date">Blender e Leitor de OBJ</h3>
+</section>
+
+<section id="objetivos" class="slide level1">
+<h1>Objetivos</h1>
+<script type="text/javascript" src="blender_ler_obj.js"></script>
+<ul>
+<li>Navegar pelo Blender</li>
+<li>Aplicar materiais no Blender
+<ul>
+<li>Aplicar texturas</li>
+</ul></li>
+<li>Exportar no formato OBJ</li>
+<li>Criar um <em>parser</em> no JavaScript</li>
+<li>Exibir o OBJ no WebGL</li>
+</ul>
+</section>
+<section id="blender" class="slide level1">
+<h1>Blender</h1>
+<ul>
+<li>Um dos <a href="http://it.wikipedia.org/wiki/Computer_grafica_3D#Programmi_per_la_grafica_3D" target="_blank">Programas de Modelagem 3D</a></li>
+<li>Concorrente gratuito aos comerciais: Maya, 3D Studio Max...</li>
+<li>Seu tamanho na época inicial: 1.44MB (Cabia no disquete)</li>
+<li>Regra de ouro: uma mão no mouse e outra no teclado.</li>
+<li>Tudo tem atalho.</li>
+</ul>
+</section>
+<section id="navegar-pelo-blender" class="slide level1">
+<h1>Navegar pelo Blender</h1>
+<p><img src="../../images/blender1.jpg" style="width:960px"/></p>
+</section>
+<section id="navegar-pelo-blender-1" class="slide level1">
+<h1>Navegar pelo Blender</h1>
+<ul>
+<li>Alguns atalhos</li>
+</ul>
+<svg id="mouse" width="175" height="500" viewport="0 0 175 500"></svg>
+
+</section>
+<section id="parser-obj" class="slide level1">
+<h1>Parser OBJ</h1>
+<ul>
+<li>O formato Wavefront OBJ te dá:
+<ul>
+<li>O arquivo onde estão os materiais</li>
+<li>Uma lista de objetos</li>
+<li>Para cada objeto:
+<ul>
+<li>Uma lista de posições</li>
+<li>Uma lista de coordenadas de textura</li>
+<li>Uma lista de normais</li>
+<li>Uma lista de faces. Cada face contém:
+<ul>
+<li>Vértices no formato <span class="math">\(I_P\)</span>/<span class="math">\(I_T\)</span>/<span class="math">\(I_N\)</span></li>
+<li><span class="math">\(I_P\)</span>: Índice da posição na lista</li>
+<li><span class="math">\(I_T\)</span>: Índice da coordenada de textura</li>
+<li><span class="math">\(I_N\)</span>: Índice da normal</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="formato-obj" class="slide level1">
+<h1>Formato OBJ</h1>
+<table><tr><td>
+<img src="../../images/formatoobj.svg"/>
+</td><td style="vertical-align:top; font-size:22pt; line-height:1.2em">
+<ul>
+<li>Uma estratégia:</li>
+<li>Capturar cada linha (C++: <em>getLine()</em>, Javascript: <em>split</em>)</li>
+<li>Se a linha começar com:
+<ul>
+<li>o: finaliza o objeto atual (se houver) e trabalha com um novo objeto</li>
+<li>v: adicionar os 3 números à lista de posições</li>
+<li>vt: adicionar os 2 números à lista de coordenadas de textura</li>
+<li>vn: adicionar os 3 números à lista de normais</li>
+<li>f: captura os 3 atributos dos 3 vértices e os indexa (indexar? O que é isso?)
+</td></tr></table>
+</li>
+</ul></li>
+</ul>
+</section>
+<section id="indexação" class="slide level1">
+<h1>Indexação</h1>
+<ul>
+<li>O OBJ tem índice para cada atributo: <span class="math">\(I_P\)</span>/<span class="math">\(I_T\)</span>/<span class="math">\(I_N\)</span></li>
+<li>O OpenGL/WebGL tem apenas um índice</li>
+<li>Então precisamos tratar o trio de atributos <span class="math">\(I_P\)</span>/<span class="math">\(I_T\)</span>/<span class="math">\(I_N\)</span> como um vértice de índice <span class="math">\(I_V\)</span></li>
+<li>Se existir um trio exatamente igual, então repete-se o <span class="math">\(I_V\)</span> (significa que outra face está utilizando o mesmo vértice)</li>
+<li><span class="math">\(I_P\)</span>/<span class="math">\(I_T\)</span>/<span class="math">\(I_N \neq \color{red}{I_{P&#39;}}\)</span>/<span class="math">\(I_T\)</span>/<span class="math">\(I_N \neq I_P\)</span>/<span class="math">\(\color{red}{I_{T&#39;}}\)</span>/<span class="math">\(I_N \neq I_P\)</span>/<span class="math">\(I_T\)</span>/<span class="math">\(\color{red}{I_{N&#39;}}\)</span> (significa que faces estão utilizando vértices diferentes, mesmo que contenham a mesma posição)</li>
+</ul>
+</section>
+<section id="passo-0-criar-variáveis" class="slide level1">
+<h1>Passo 0: Criar variáveis</h1>
+<table class="sourceCode javascript numberLines" id="mycode" startFrom="1"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+</pre></td><td class="sourceCode"><pre><code class="sourceCode javascript">
+<span class="kw">function</span> <span class="fu">Objeto3D</span>()
+{
+  <span class="co">// Listas capturadas do OBJ </span>
+  <span class="kw">this</span>.<span class="fu">listaPosicoes</span> = [];
+  <span class="kw">this</span>.<span class="fu">listaCoordTex</span> = [];
+  <span class="kw">this</span>.<span class="fu">listaNormais</span> = [];
+  <span class="co">// Listas após a indexação</span>
+  <span class="kw">this</span>.<span class="fu">listaIndexadaPosicoes</span> = [];
+  <span class="kw">this</span>.<span class="fu">listaIndexadaCoordTex</span> = [];
+  <span class="kw">this</span>.<span class="fu">listaIndexadaNormais</span> = [];
+  <span class="kw">this</span>.<span class="fu">listaIndices</span> = [];
+  <span class="co">// Referências a buffers</span>
+  <span class="kw">this</span>.<span class="fu">bufferPosicoes</span> = <span class="kw">null</span>;
+  <span class="kw">this</span>.<span class="fu">bufferCoordTex</span> = <span class="kw">null</span>;
+  <span class="kw">this</span>.<span class="fu">bufferNormais</span> = <span class="kw">null</span>;
+  <span class="kw">this</span>.<span class="fu">bufferIndices</span> = <span class="kw">null</span>;
+  <span class="kw">this</span>.<span class="fu">bufferTextura</span> = <span class="kw">null</span>;
+}
+<span class="kw">var</span> objetos = [];
+<span class="kw">var</span> objetoAtual = <span class="kw">null</span>;</code></pre></td></tr></table>
+</section>
+<section id="passo-1-ler-o-arquivo" class="slide level1">
+<h1>Passo 1: Ler o arquivo</h1>
+<ul>
+<li>Utilizando o XMLHttpRequest (Nativo)</li>
+</ul>
+<table class="sourceCode javascript numberLines" id="mycode" startFrom="1"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+</pre></td><td class="sourceCode"><pre><code class="sourceCode javascript"><span class="co">// Novo pedido AJAX</span>
+<span class="kw">var</span> xhr = <span class="kw">new</span> <span class="fu">XMLHttpRequest</span>();
+<span class="co">// Usando GET e assíncrono = true</span>
+<span class="ot">xhr</span>.<span class="fu">open</span>(<span class="st">&quot;GET&quot;</span>, <span class="st">&quot;pinball.obj&quot;</span>, <span class="kw">true</span>);
+<span class="ot">xhr</span>.<span class="fu">onload</span> = <span class="kw">function</span>(e){
+  <span class="kw">if</span>(<span class="ot">xhr</span>.<span class="fu">readyState</span> === <span class="dv">4</span>){ <span class="co">// A conexão foi completada?</span>
+    <span class="kw">if</span>(<span class="ot">xhr</span>.<span class="fu">status</span> === <span class="dv">200</span>){ <span class="co">// O status dessa conexão é &quot;recebido&quot;?</span>
+      <span class="co">// Aqui onde trataremos o dado usando xhr.responseText</span>
+      <span class="co">// Passo 2</span>
+    }<span class="kw">else</span>{
+      <span class="co">// Houve algum problema</span>
+      <span class="ot">console</span>.<span class="fu">error</span>(<span class="ot">xhr</span>.<span class="fu">statusText</span>);
+    }
+  }
+};
+<span class="ot">xhr</span>.<span class="fu">onerror</span>=<span class="kw">function</span>(e){
+  <span class="ot">console</span>.<span class="fu">error</span>(<span class="ot">xhr</span>.<span class="fu">statusText</span>);
+};
+<span class="ot">xhr</span>.<span class="fu">send</span>(<span class="kw">null</span>);</code></pre></td></tr></table>
+</section>
+<section id="passo-1-ler-o-arquivo-1" class="slide level1">
+<h1>Passo 1: Ler o arquivo</h1>
+<ul>
+<li>Utilizando o JQuery (Biblioteca <em>Canivete Suíço</em>)</li>
+</ul>
+<table class="sourceCode javascript numberLines" id="mycode" startFrom="1"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="sourceCode"><pre><code class="sourceCode javascript"><span class="ot">$</span>.<span class="fu">get</span>(<span class="st">&quot;pinball.obj&quot;</span>, <span class="kw">function</span>(dadosStr))
+{
+   <span class="co">// Aqui onde trataremos o dado usando dadosStr</span>
+   <span class="co">// Passo 2</span>
+}).<span class="fu">fail</span>(<span class="kw">function</span>(){
+  <span class="ot">console</span>.<span class="fu">log</span>(<span class="st">&quot;erro&quot;</span>);
+});</code></pre></td></tr></table>
+</section>
+<section id="passo-2-capturar-cada-linha" class="slide level1">
+<h1>Passo 2: Capturar cada linha</h1>
+<ul>
+<li>Em XMLHttpRequest</li>
+</ul>
+<table class="sourceCode javascript numberLines" id="mycode" startFrom="1"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre></td><td class="sourceCode"><pre><code class="sourceCode javascript">...
+<span class="kw">if</span>(<span class="ot">xhr</span>.<span class="fu">status</span> === <span class="dv">200</span>){
+  <span class="kw">var</span> dados = <span class="ot">xhr</span>.<span class="fu">responseText</span>;
+  <span class="kw">var</span> linhas = <span class="ot">dados</span>.<span class="fu">split</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>);
+  <span class="kw">for</span>(<span class="kw">var</span> i = <span class="dv">0</span>; &lt; <span class="ot">linhas</span>.<span class="fu">length</span>; i++)
+  {
+    <span class="kw">var</span> linha = linhas[i];
+    <span class="co">// Depois iremos tratar estas linhas - Passo 3</span>
+  }
+}
+...</code></pre></td></tr></table>
+<ul>
+<li>Em JQuery, é o mesmo a partir do <code>var linhas...</code></li>
+</ul>
+</section>
+<section id="passo-3-tratar-a-linha" class="slide level1">
+<h1>Passo 3: Tratar a linha</h1>
+<table class="sourceCode javascript numberLines" id="mycode" startFrom="1"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre></td><td class="sourceCode"><pre><code class="sourceCode javascript">...
+    <span class="kw">var</span> partes = <span class="ot">linha</span>.<span class="fu">split</span>(<span class="st">&quot; &quot;</span>);
+    <span class="kw">switch</span>(partes[<span class="dv">0</span>])
+    {
+      <span class="kw">case</span> <span class="st">&quot;o&quot;</span>:<span class="kw">break</span>; <span class="co">// Passo 4</span>
+      <span class="kw">case</span> <span class="st">&quot;v&quot;</span>:<span class="kw">break</span>; <span class="co">// Passo 5</span>
+      <span class="kw">case</span> <span class="st">&quot;vt&quot;</span>:<span class="kw">break</span>;<span class="co">// Passo 6</span>
+      <span class="kw">case</span> <span class="st">&quot;vn&quot;</span>:<span class="kw">break</span>;<span class="co">// Passo 7</span>
+      <span class="kw">case</span> <span class="st">&quot;f&quot;</span>:<span class="kw">break</span>; <span class="co">// Passo 8</span>
+    }
+...</code></pre></td></tr></table>
+</section>
+<section id="passo-4-tratar-o-objeto" class="slide level1">
+<h1>Passo 4: Tratar o objeto</h1>
+<ul>
+<li>o Objeto</li>
+</ul>
+<table class="sourceCode javascript numberLines" id="mycode" startFrom="1"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="sourceCode"><pre><code class="sourceCode javascript">...
+      <span class="kw">case</span> <span class="st">&quot;o&quot;</span>:
+        <span class="kw">if</span>(objetoAtual) <span class="fu">criarBuffers</span>(objetoAtual);
+        objetoAtual = <span class="kw">new</span> <span class="fu">Objeto3D</span>();
+        <span class="ot">objetos</span>.<span class="fu">push</span>(objetoAtual);
+      <span class="kw">break</span>;
+...</code></pre></td></tr></table>
+</section>
+<section id="passo-5-coletar-as-posições" class="slide level1">
+<h1>Passo 5: Coletar as posições</h1>
+<ul>
+<li><span class="math">\(\color{red}{v}\)</span> <span class="math">\(v_x\)</span> <span class="math">\(v_y\)</span> <span class="math">\(v_z\)</span></li>
+</ul>
+<table class="sourceCode javascript numberLines" id="mycode" startFrom="1"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="sourceCode"><pre><code class="sourceCode javascript">...
+      <span class="kw">case</span> <span class="st">&quot;v&quot;</span>:
+        <span class="kw">var</span> v1 = <span class="fu">parseFloat</span>(partes[<span class="dv">1</span>])
+        <span class="kw">var</span> v2 = <span class="fu">parseFloat</span>(partes[<span class="dv">2</span>])
+        <span class="kw">var</span> v3 = <span class="fu">parseFloat</span>(partes[<span class="dv">3</span>])
+        <span class="ot">objetoAtual</span>.<span class="ot">listaPosicoes</span>.<span class="fu">push</span>(v1,v2,v3);
+      <span class="kw">break</span>;
+...</code></pre></td></tr></table>
+</section>
+<section id="passo-6-coletar-as-coordenadas-de-textura" class="slide level1">
+<h1>Passo 6: Coletar as coordenadas de textura</h1>
+<ul>
+<li><span class="math">\(\color{red}{vt}\)</span> <span class="math">\(vt_s\)</span> <span class="math">\(vt_t\)</span></li>
+</ul>
+<table class="sourceCode javascript numberLines" id="mycode" startFrom="1"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="sourceCode"><pre><code class="sourceCode javascript">...
+      <span class="kw">case</span> <span class="st">&quot;vt&quot;</span>:
+        <span class="kw">var</span> v1 = <span class="fu">parseFloat</span>(partes[<span class="dv">1</span>])
+        <span class="kw">var</span> v2 = <span class="fu">parseFloat</span>(partes[<span class="dv">2</span>])
+        <span class="ot">objetoAtual</span>.<span class="ot">listaCoordTex</span>.<span class="fu">push</span>(v1,v2);
+      <span class="kw">break</span>;
+...</code></pre></td></tr></table>
+</section>
+<section id="passo-7-coletar-as-normais" class="slide level1">
+<h1>Passo 7: Coletar as normais</h1>
+<ul>
+<li><span class="math">\(\color{red}{vn}\)</span> <span class="math">\(vn_x\)</span> <span class="math">\(vn_y\)</span> <span class="math">\(vn_z\)</span></li>
+</ul>
+<table class="sourceCode javascript numberLines" id="mycode" startFrom="1"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="sourceCode"><pre><code class="sourceCode javascript">...
+      <span class="kw">case</span> <span class="st">&quot;vn&quot;</span>:
+        <span class="kw">var</span> v1 = <span class="fu">parseFloat</span>(partes[<span class="dv">1</span>])
+        <span class="kw">var</span> v2 = <span class="fu">parseFloat</span>(partes[<span class="dv">2</span>])
+        <span class="kw">var</span> v3 = <span class="fu">parseFloat</span>(partes[<span class="dv">3</span>])
+        <span class="ot">objetoAtual</span>.<span class="ot">listaNormais</span>.<span class="fu">push</span>(v1,v2,v3);
+      <span class="kw">break</span>;
+...</code></pre></td></tr></table>
+</section>
+<section id="passo-8-trabalhar-os-índices" class="slide level1">
+<h1>Passo 8: Trabalhar os índices</h1>
+<table class="sourceCode javascript numberLines" id="mycode" startFrom="1"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+</pre></td><td class="sourceCode"><pre><code class="sourceCode javascript">...
+      <span class="kw">case</span> <span class="st">&quot;f&quot;</span>:
+    <span class="co">// Para cada vértice do triângulo...</span>
+        <span class="kw">for</span>(<span class="kw">var</span> i = <span class="dv">0</span>; i &lt; <span class="ot">partes</span>.<span class="fu">length</span>; i++)
+        {
+          <span class="co">// Capturamos os índices de cada atributo</span>
+          <span class="kw">var</span> indicesAttr = partes[i].<span class="fu">split</span>(<span class="st">&quot;/&quot;</span>);
+          <span class="kw">var</span> iposicao  = <span class="fu">parseInt</span>(indicesAttr[<span class="dv">0</span>])-<span class="dv">1</span>;
+          <span class="kw">var</span> icoordtex = <span class="fu">parseInt</span>(indicesAttr[<span class="dv">1</span>])-<span class="dv">1</span>;
+          <span class="kw">var</span> inormal   = <span class="fu">parseInt</span>(indicesAttr[<span class="dv">2</span>])-<span class="dv">1</span>;
+          
+          <span class="co">// Passo 9</span>
+          <span class="kw">if</span>(<span class="co">/*Este vértice já foi adicionado na lista indexada*/</span>)
+            <span class="co">/* Repetir seu índice na lista de índices*/</span>
+          <span class="kw">else</span>
+          {
+            <span class="co">/* Indexar o vértice */</span>
+            <span class="co">/* Criar um novo índice*/</span>
+          }
+        }
+      <span class="kw">break</span>;
+...</code></pre></td></tr></table>
+</section>
+<section id="passo-9-indexar-os-vértices" class="slide level1">
+<h1>Passo 9: Indexar os vértices</h1>
+<ul>
+<li>Adicione este vetor de flags no passo 3</li>
+</ul>
+<table class="sourceCode javascript numberLines" id="mycode" startFrom="1"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+</pre></td><td class="sourceCode"><pre><code class="sourceCode javascript"><span class="kw">var</span> bitsNormais = <span class="dv">13</span>;
+<span class="kw">var</span> bitsPosicoes = <span class="dv">13</span>;
+<span class="kw">var</span> flags = <span class="fu">Array</span>((<span class="dv">1</span> &lt;&lt; bitsNormais) &lt;&lt; bitsPosicoes);</code></pre></td></tr></table>
+<ul>
+<li>Agora continuando o Passo 9</li>
+</ul>
+<table class="sourceCode javascript numberLines" id="mycode" startFrom="1"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+</pre></td><td class="sourceCode"><pre><code class="sourceCode javascript"><span class="kw">var</span> bitsNormais = <span class="dv">13</span>;
+<span class="kw">var</span> bitsPosicoes = <span class="dv">13</span>;
+<span class="kw">var</span> flags = <span class="fu">Array</span>((<span class="dv">1</span> &lt;&lt; bitsNormais) &lt;&lt; bitsPosicoes);</code></pre></td></tr></table>
+</section>
+    </div>
+  </div>
+  <script src="reveal.js/lib/js/head.min.js"></script>
+  <script src="reveal.js/js/reveal.min.js"></script>
+  <script src="snap.svg-min.js"></script>
+
+  <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: false,
+        slideNumber: true,
+        theme: 'ime', // available themes are in /css/theme
+        transition: 'fade', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: 'reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+//          { src: 'reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+//          { src: 'reveal.js/plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; }, }
+//          { src: 'reveal.js/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+]});
+      Reveal.addEventListener( 'customevent', function() {
+	  console.log( '"customevent" has fired' );
+      } );
+    </script>
+  </body>
+</html>
