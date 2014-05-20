@@ -1,6 +1,6 @@
 % Introdução à Computação Gráfica
 % Anderson Tavares<br><span class="email">acmt@ime.usp.br</span>
-% Leitor de OBJ
+% Objeto3D
 
 # Objetivos 
 
