@@ -1,0 +1,30 @@
+% Detecção de Trajetórias em Esportes de Invasão para Planejamento Estratégico
+% Anderson Tavares
+% Universidade de São Paulo
+
+# Introdução
+
+Basquete 
+
+# Caracterização do Problema
+
+(@mean-fitness) $x = 1$
+
+A Equação (@mean-fitness) trabalha com
+
+# Metodologia
+Banerjee [@Banerjee2010] trabalha com um arcabouço denominado _Multi-Agent Plan Recognition_ (MPAR), onde modela o planejamento das sequências de atividades de uma equipe. 
+
+Xing et al. [@Xing2011a] desenvolve um método para _Multiple Object Tracking_ (MOT) onde contribui com um modelo de observação progressivo (classificando campo e resto, depois jogadores e campo, depois distintos jogadores) e um modelo de rastreamento (rastreando indivíduos e clusters de jogadores oclusos por diferentes métodos).
+
+![](diagrama.png)
+
+- Modelo de Observação Progressivo
+	  - Classificação de 
+- Modelo de 
+
+
+
+# Resultados Esperados
+
+# Bibliografia
