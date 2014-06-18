@@ -226,6 +226,7 @@ document.addEventListener('DOMContentLoaded', function(event)
     espacoX:null,
     espacoY:null,
     linha:null,
+    pt: null,// Created once for document
     init:function()
     {
       this.largura = this.exemplo1div.width.baseVal.value;
@@ -239,7 +240,22 @@ document.addEventListener('DOMContentLoaded', function(event)
       lineY.attr({stroke:"#000", strokeWidth:2});
       this.fazerGrade(10, 32);
       this.fazerLinha([-16,-5], [5,5],"#F00");
-      this.exemplo1div.addEventListener("click", function(event){console.log(event);});
+      this.pt = this.exemplo1div.createSVGPoint();
+      this.snapExemplo.click(function(evento){
+	var posicao = toViewboxCoordinate(evento, exemplo1.largura, exemplo1.altura);
+	console.log("("+posicao[0]+","+posicao[1]+")");
+// 	alert_coords(exemplo1.pt, evento, exemplo1.exemplo1div);
+// 	var rect = evento.target.getBoundingClientRect();
+// 	console.log("["+rect.left + "," + rect.top + "," + rect.width + "," + rect.height + "]");
+      });
+      
+      
+//       (function(exemplo1){
+// 	exemplo1.exemplo1div.addEventListener("click", function(event){
+// 	  exemplo1.atualizarLinha(transformEventCoordsToNodeCoords(event,event.target, exemplo1.exemplo1div));
+// 	  //console.log(event.target.getBoundingClientRect());console.log(event);
+// 	});
+//       })(this);
     },
     fazerGrade:function(linhas, colunas)
     {
@@ -271,6 +287,10 @@ document.addEventListener('DOMContentLoaded', function(event)
     fromGridToSVG:function(pin)
     {
       return [pin[0]*this.espacoX+this.largura/2,this.altura/2 - pin[1]*this.espacoY];
+    },
+    atualizarLinha:function(ponto)
+    {
+      console.log(ponto);
     }
   };
   
