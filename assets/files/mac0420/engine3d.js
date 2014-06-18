@@ -327,3 +327,33 @@ function findParentBySelector(elm, selector) {
     }
     return cur; //will return null if not found
 }
+
+function transformEventCoordsToNodeCoords(evt,node, svgelement)
+{
+  var point = svgelement.createSVGPoint();
+  point.x = evt.clientX;
+  point.y = evt.clientY;
+
+  var ctm = node.getScreenCTM();
+  return point.matrixTransform(ctm.inverse());
+}
+
+
+
+function alert_coords(pt, evt, svg) {
+    pt.x = evt.screenX;
+    pt.y = evt.screenY;
+    console.log("$" + evt.screenX + ", " + evt.screenY + "$");
+    console.log("|" + evt.clientX + ", " + evt.clientY + "|");
+    console.log("%" + evt.pageX + ", " + evt.pageY + "%");
+    // The cursor point, translated into svg coordinates
+    var cursorpt =  pt.matrixTransform(svg.getScreenCTM().inverse());
+    console.log("(" + cursorpt.x + ", " + cursorpt.y + ")");
+}
+
+function toViewboxCoordinate(evento, largura, altura)
+{
+  var rect = evento.target.getBoundingClientRect();
+  return [(evento.pageX - rect.left)/rect.width * largura,
+          (evento.pageY - rect.top)/rect.height * altura];
+}
